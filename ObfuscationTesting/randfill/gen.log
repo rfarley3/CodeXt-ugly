@@ -1,0 +1,60 @@
+Buffer size: 1024, its: 1000, combo: 0
+   58:   527 plaintext cd80 exists
+   93:   311 plaintext cd80 exists
+  115:   854 plaintext cd80 exists
+  337:   497 plaintext cd80 exists
+  360:   232 plaintext cd80 exists
+  401:   971 plaintext cd80 exists
+  425:   780 plaintext cd80 exists
+  471:   344 plaintext cd80 exists
+  586:   882 plaintext cd80 exists
+  596:   526 plaintext cd80 exists
+  676:   280 plaintext cd80 exists
+  708:   747 plaintext cd80 exists
+  721:   189 plaintext cd80 exists
+  726:   806 plaintext cd80 exists
+  774:   382 plaintext cd80 exists
+  777:   798 plaintext cd80 exists
+  840:   735 plaintext cd80 exists
+  853:   609 plaintext cd80 exists
+  890:   527 plaintext cd80 exists
+  918:   809 plaintext cd80 exists
+  961:   206 plaintext cd80 exists
+Buffer size: 10240, its: 100, combo: 1
+    9:  4453 plaintext cd80 exists
+   11:  5868 plaintext cd80 exists
+   14:  3871 plaintext cd80 exists
+   18:   751 plaintext cd80 exists
+   27:  5807 plaintext cd80 exists
+   48:  2120 plaintext cd80 exists
+   53:  8275 plaintext cd80 exists
+   57:  4079 plaintext cd80 exists
+   64:  1841 plaintext cd80 exists
+   71:  2353 plaintext cd80 exists
+   82:  5691 plaintext cd80 exists
+   89:  2068 plaintext cd80 exists
+   90:  2178 plaintext cd80 exists
+   99:  4312 plaintext cd80 exists
+Buffer size: 102400, its: 10, combo: 2
+    0: 37932 plaintext cd80 exists
+    0: 46037 plaintext cd80 exists
+    1: 11772 plaintext cd80 exists
+    2: 54067 plaintext cd80 exists
+    3:  8311 plaintext cd80 exists
+    4: 76058 plaintext cd80 exists
+    4: 82690 plaintext cd80 exists
+    5: 11926 plaintext cd80 exists
+    5: 17194 plaintext cd80 exists
+    5: 17318 plaintext cd80 exists
+    5: 52004 plaintext cd80 exists
+    6:  3507 plaintext cd80 exists
+    6: 58612 plaintext cd80 exists
+    6: 74892 plaintext cd80 exists
+    6: 84202 plaintext cd80 exists
+    7: 18623 plaintext cd80 exists
+    7: 40368 plaintext cd80 exists
+    8:  2729 plaintext cd80 exists
+    9: 70212 plaintext cd80 exists
+There were 54 plan text syscalls or 0.001758 percent, 115.23 perc of theoretical (0.001526)
+Distribution checker, if any beyond threshold, printed here: None found, entire output is collectively uniformly random
+Finished, exiting

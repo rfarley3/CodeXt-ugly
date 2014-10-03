@@ -1,0 +1,507 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x2d3a000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x2fe1000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1bec2000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1bf0b000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1da32000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1daa6000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+25 [State 0] Message from guest (0xbfd8c08c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+25 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+25 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+25 [State 1] Message from guest (0xbfd8c08c): << About to call dasospreproc_init with shell: 0xbfd8ca30 (offset of 0 not yet applied), shell_len: 414, eip: 0x00000000
+
+25 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfd8ca30-0xbfd8cbce with eip: 0x00000000 buffer length: 414 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfd8ca30, length: 414B, end_addr: 0xbfd8cbce
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd8ca30 c7c36b62 2e519bdb e3ddd1d9 f2dec1de  ..kb.Q..........
+0xbfd8ca40 c10fcbfc def1f5de d981eb51 2e626b8b  ...........Q.bk.
+0xbfd8ca50 ffdbe2d9 e4c7c3eb 7a4b7bdb e2dee981  ........zK{.....
+0xbfd8ca60 f34d5db3 2b81eba6 27f85066 c7c32500  .M].+...'.Pf..%.
+0xbfd8ca70 85c04385 d2d9fdd9 ebd9e043 fcf5fd43  ..C........C...C
+0xbfd8ca80 d9f809ff d9d0d9d0 43d8d18b fff5dde1  ........C.......
+0xbfd8ca90 d9eac7c7 8b3c24c3 57dee1f5 fc81f96e  .....<$.W......n
+0xbfd8caa0 9d98458d 3c24dee9 fd81f9c4 544850ff  ..E.<$......THP.
+0xbfd8cab0 d7ddd152 500f31c7 c1e24cd4 5981e9e7  ...RP.1...L.Y...
+0xbfd8cac0 4cd45941 41414141 8bc80f31 2bc16633  L.YAAAAA...1+.f3
+0xbfd8cad0 c003f858 5ac7c203 ec05123b c73bdad9  ...XZ......;.;..
+0xbfd8cae0 ebdde981 f2cbc8db 1fd9f7d9 f3def981  ................
+0xbfd8caf0 eac824de 0ddee1dd c1d9fa81 fba5761b  ..$...........v.
+0xbfd8cb00 3957fcdd e95ad9fa d9f421c0 c7c07e53  9W...Z....!...~S
+0xbfd8cb10 854b81e8 6752854b 8b0a81ff b4878b6b  .K..gR.K.......k
+0xbfd8cb20 d9f49009 db4221db d9e142d9 e8d9e58b  .....B!...B.....
+0xbfd8cb30 c0d9f757 dde9d9f8 dec903f8 d9eb09db  ...W............
+0xbfd8cb40 09dbf5d9 eb310fd9 f75fd9ea 09c009db  .....1..._......
+0xbfd8cb50 3bfa803a c175068b d7d9e9dd d9d9fe81  ;..:.u..........
+0xbfd8cb60 e8ac0338 2a09dbde f181c0ab 03382a81  ...8*........8*.
+0xbfd8cb70 ebddd011 57dec981 c3ddd011 5721c0d8  ....W.......W!..
+0xbfd8cb80 d1d9f0d9 eddee94b 09ff09c9 d9f0def1  .......K........
+0xbfd8cb90 ddc121db dae90f8f 7cffffff d9e8d9fc  ..!.....|.......
+0xbfd8cba0 235da2d2 1bc4c999 de05c20a b4214d5f  #]...........!M_
+0xbfd8cbb0 2de290b9 4d40edb9 0c274e4b ecb3f2cf  -...M@...'NK....
+0xbfd8cbc0 fb03a2da 6922d2d2 0b1f6350 000000    ....i"....cP... 
+
+ >> oTBS pc: 0xbfd8ca30
+ >> oTIE pc: 0xbfd8ca30:0x00 nextpc: bfd8ca36 len: 6
+  0:  0: 1  6B @0xbfd8ca30: c7 c3 6b 62 2e 51                  mov ebx, 0x512e626b      nextPC: 0xbfd8ca36
+ >> oTBE Target by pc: 0xbfd8ca36 to pc: 0xbfd8ca36
+ >> oTIE pc: 0xbfd8ca36:0x06 nextpc: bfd8ca36 len: 1
+  0:  1: 1  1B @0xbfd8ca36: 9b                                 wait                     nextPC: 0xbfd8ca36
+ >> oExc pc: 0xbfd8ca30 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfd8ca30
+  0:  0: 1  6B @0xbfd8ca30: c7 c3 6b 62 2e 51                  mov ebx, 0x512e626b      nextPC: 0xbfd8ca36
+ >> oEB pc: 0xbfd8ca36
+ >> oExc pc: 0xbfd8ca36 exception_idx: 7(0x07)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd8ca36
+ >> oTBE Target by pc: 0xbfd8ca36 to pc: 0xbfd8ca36
+ >> oTIE pc: 0xbfd8ca36:0x06 nextpc: bfd8ca37 len: 1
+  0:  2: 2  1B @0xbfd8ca36: 9b                                 wait                     nextPC: 0xbfd8ca37
+ >> oTIE pc: 0xbfd8ca37:0x07 nextpc: bfd8ca39 len: 2
+  0:  3: 2  2B @0xbfd8ca37: db e3                              fninit                   nextPC: 0xbfd8ca39
+ >> oTIE pc: 0xbfd8ca39:0x09 nextpc: bfd8ca3b len: 2
+  0:  4: 2  2B @0xbfd8ca39: dd d1                              fst st1                  nextPC: 0xbfd8ca3b
+ >> oTIE pc: 0xbfd8ca3b:0x0b nextpc: bfd8ca3d len: 2
+  0:  5: 2  2B @0xbfd8ca3b: d9 f2                              fptan                    nextPC: 0xbfd8ca3d
+ >> oTIE pc: 0xbfd8ca3d:0x0d nextpc: bfd8ca3f len: 2
+  0:  6: 2  2B @0xbfd8ca3d: de c1                              faddp st1, st0           nextPC: 0xbfd8ca3f
+ >> oTIE pc: 0xbfd8ca3f:0x0f nextpc: bfd8ca41 len: 2
+  0:  7: 2  2B @0xbfd8ca3f: de c1                              faddp st1, st0           nextPC: 0xbfd8ca41
+ >> oTIE pc: 0xbfd8ca41:0x11 nextpc: bfd8ca43 len: 2
+  0:  8: 2  2B @0xbfd8ca41: 0f cb                              bswap ebx                nextPC: 0xbfd8ca43
+ >> oTIE pc: 0xbfd8ca43:0x13 nextpc: bfd8ca44 len: 1
+  0:  9: 2  1B @0xbfd8ca43: fc                                 cld                      nextPC: 0xbfd8ca44
+ >> oTIE pc: 0xbfd8ca44:0x14 nextpc: bfd8ca46 len: 2
+  0: 10: 2  2B @0xbfd8ca44: de f1                              fdivrp st1, st0          nextPC: 0xbfd8ca46
+ >> oTIE pc: 0xbfd8ca46:0x16 nextpc: bfd8ca47 len: 1
+  0: 11: 2  1B @0xbfd8ca46: f5                                 cmc                      nextPC: 0xbfd8ca47
+ >> oTIE pc: 0xbfd8ca47:0x17 nextpc: bfd8ca49 len: 2
+  0: 12: 2  2B @0xbfd8ca47: de d9                              fcompp                   nextPC: 0xbfd8ca49
+ >> oTIE pc: 0xbfd8ca49:0x19 nextpc: bfd8ca4f len: 6
+  0: 13: 2  6B @0xbfd8ca49: 81 eb 51 2e 62 6b                  sub ebx, 0x6b622e51      nextPC: 0xbfd8ca4f
+ >> oTIE pc: 0xbfd8ca4f:0x1f nextpc: bfd8ca51 len: 2
+  0: 14: 2  2B @0xbfd8ca4f: 8b ff                              mov edi, edi             nextPC: 0xbfd8ca51
+ >> oTIE pc: 0xbfd8ca51:0x21 nextpc: bfd8ca53 len: 2
+  0: 15: 2  2B @0xbfd8ca51: db e2                              fclex                    nextPC: 0xbfd8ca53
+ >> oTIE pc: 0xbfd8ca53:0x23 nextpc: bfd8ca55 len: 2
+  0: 16: 2  2B @0xbfd8ca53: d9 e4                              ftst                     nextPC: 0xbfd8ca55
+ >> oTIE pc: 0xbfd8ca55:0x25 nextpc: bfd8ca5b len: 6
+  0: 17: 2  6B @0xbfd8ca55: c7 c3 eb 7a 4b 7b                  mov ebx, 0x7b4b7aeb      nextPC: 0xbfd8ca5b
+ >> oTIE pc: 0xbfd8ca5b:0x2b nextpc: bfd8ca5d len: 2
+  0: 18: 2  2B @0xbfd8ca5b: db e2                              fclex                    nextPC: 0xbfd8ca5d
+ >> oTIE pc: 0xbfd8ca5d:0x2d nextpc: bfd8ca5f len: 2
+  0: 19: 2  2B @0xbfd8ca5d: de e9                              fsubp st1, st0           nextPC: 0xbfd8ca5f
+ >> oTIE pc: 0xbfd8ca5f:0x2f nextpc: bfd8ca65 len: 6
+  0: 20: 2  6B @0xbfd8ca5f: 81 f3 4d 5d b3 2b                  xor ebx, 0x2bb35d4d      nextPC: 0xbfd8ca65
+ >> oTIE pc: 0xbfd8ca65:0x35 nextpc: bfd8ca6b len: 6
+  0: 21: 2  6B @0xbfd8ca65: 81 eb a6 27 f8 50                  sub ebx, 0x50f827a6      nextPC: 0xbfd8ca6b
+ >> oTIE pc: 0xbfd8ca6b:0x3b nextpc: bfd8ca70 len: 5
+  0: 22: 2  5B @0xbfd8ca6b: 66 c7 c3 25 00                     mov bx, 0x25             nextPC: 0xbfd8ca70
+ >> oTIE pc: 0xbfd8ca70:0x40 nextpc: bfd8ca72 len: 2
+  0: 23: 2  2B @0xbfd8ca70: 85 c0                              test eax, eax            nextPC: 0xbfd8ca72
+ >> oTIE pc: 0xbfd8ca72:0x42 nextpc: bfd8ca73 len: 1
+  0: 24: 2  1B @0xbfd8ca72: 43                                 inc ebx                  nextPC: 0xbfd8ca73
+ >> oTIE pc: 0xbfd8ca73:0x43 nextpc: bfd8ca75 len: 2
+  0: 25: 2  2B @0xbfd8ca73: 85 d2                              test edx, edx            nextPC: 0xbfd8ca75
+ >> oTIE pc: 0xbfd8ca75:0x45 nextpc: bfd8ca77 len: 2
+  0: 26: 2  2B @0xbfd8ca75: d9 fd                              fscale                   nextPC: 0xbfd8ca77
+ >> oTIE pc: 0xbfd8ca77:0x47 nextpc: bfd8ca79 len: 2
+  0: 27: 2  2B @0xbfd8ca77: d9 eb                              fldlpi                   nextPC: 0xbfd8ca79
+ >> oTIE pc: 0xbfd8ca79:0x49 nextpc: bfd8ca7b len: 2
+  0: 28: 2  2B @0xbfd8ca79: d9 e0                              fchs                     nextPC: 0xbfd8ca7b
+ >> oTIE pc: 0xbfd8ca7b:0x4b nextpc: bfd8ca7c len: 1
+  0: 29: 2  1B @0xbfd8ca7b: 43                                 inc ebx                  nextPC: 0xbfd8ca7c
+ >> oTIE pc: 0xbfd8ca7c:0x4c nextpc: bfd8ca7d len: 1
+  0: 30: 2  1B @0xbfd8ca7c: fc                                 cld                      nextPC: 0xbfd8ca7d
+ >> oTIE pc: 0xbfd8ca7d:0x4d nextpc: bfd8ca7e len: 1
+  0: 31: 2  1B @0xbfd8ca7d: f5                                 cmc                      nextPC: 0xbfd8ca7e
+ >> oTIE pc: 0xbfd8ca7e:0x4e nextpc: bfd8ca7f len: 1
+  0: 32: 2  1B @0xbfd8ca7e: fd                                 std                      nextPC: 0xbfd8ca7f
+ >> oTBE Target by pc: 0xbfd8ca7e to pc: 0xbfd8ca7f
+ >> oExc pc: 0xbfd8ca36 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd8ca36
+ >> oEI pc: 0xbfd8ca36
+  1:  2: 2  1B @0xbfd8ca36: 9b                                 wait                     nextPC: 0xbfd8ca37
+ >> oEI pc: 0xbfd8ca37
+ >> oEI handling FPU insn pc: 0xbfd8ca37
+  2:  3: 2  2B @0xbfd8ca37: db e3                              fninit                   nextPC: 0xbfd8ca39
+ >> oEI pc: 0xbfd8ca39
+ >> oEI handling FPU insn pc: 0xbfd8ca39
+  3:  4: 2  2B @0xbfd8ca39: dd d1                              fst st1                  nextPC: 0xbfd8ca3b
+ >> oEI pc: 0xbfd8ca3b
+ >> oEI handling FPU insn pc: 0xbfd8ca3b
+  4:  5: 2  2B @0xbfd8ca3b: d9 f2                              fptan                    nextPC: 0xbfd8ca3d
+ >> oEI pc: 0xbfd8ca3d
+ >> oEI handling FPU insn pc: 0xbfd8ca3d
+  5:  6: 2  2B @0xbfd8ca3d: de c1                              faddp st1, st0           nextPC: 0xbfd8ca3f
+ >> oEI pc: 0xbfd8ca3f
+ >> oEI handling FPU insn pc: 0xbfd8ca3f
+  6:  7: 2  2B @0xbfd8ca3f: de c1                              faddp st1, st0           nextPC: 0xbfd8ca41
+ >> oEI pc: 0xbfd8ca41
+  7:  8: 2  2B @0xbfd8ca41: 0f cb                              bswap ebx                nextPC: 0xbfd8ca43
+ >> oEI pc: 0xbfd8ca43
+  8:  9: 2  1B @0xbfd8ca43: fc                                 cld                      nextPC: 0xbfd8ca44
+ >> oEI pc: 0xbfd8ca44
+ >> oEI handling FPU insn pc: 0xbfd8ca44
+  9: 10: 2  2B @0xbfd8ca44: de f1                              fdivrp st1, st0          nextPC: 0xbfd8ca46
+ >> oEI pc: 0xbfd8ca46
+ 10: 11: 2  1B @0xbfd8ca46: f5                                 cmc                      nextPC: 0xbfd8ca47
+ >> oEI pc: 0xbfd8ca47
+ >> oEI handling FPU insn pc: 0xbfd8ca47
+ 11: 12: 2  2B @0xbfd8ca47: de d9                              fcompp                   nextPC: 0xbfd8ca49
+ >> oEI pc: 0xbfd8ca49
+ 12: 13: 2  6B @0xbfd8ca49: 81 eb 51 2e 62 6b                  sub ebx, 0x6b622e51      nextPC: 0xbfd8ca4f
+ >> oEI pc: 0xbfd8ca4f
+ 13: 14: 2  2B @0xbfd8ca4f: 8b ff                              mov edi, edi             nextPC: 0xbfd8ca51
+ >> oEI pc: 0xbfd8ca51
+ >> oEI handling FPU insn pc: 0xbfd8ca51
+ 14: 15: 2  2B @0xbfd8ca51: db e2                              fclex                    nextPC: 0xbfd8ca53
+ >> oEI pc: 0xbfd8ca53
+ >> oEI handling FPU insn pc: 0xbfd8ca53
+ 15: 16: 2  2B @0xbfd8ca53: d9 e4                              ftst                     nextPC: 0xbfd8ca55
+ >> oEI pc: 0xbfd8ca55
+ 16: 17: 2  6B @0xbfd8ca55: c7 c3 eb 7a 4b 7b                  mov ebx, 0x7b4b7aeb      nextPC: 0xbfd8ca5b
+ >> oEI pc: 0xbfd8ca5b
+ >> oEI handling FPU insn pc: 0xbfd8ca5b
+ 17: 18: 2  2B @0xbfd8ca5b: db e2                              fclex                    nextPC: 0xbfd8ca5d
+ >> oEI pc: 0xbfd8ca5d
+ >> oEI handling FPU insn pc: 0xbfd8ca5d
+ 18: 19: 2  2B @0xbfd8ca5d: de e9                              fsubp st1, st0           nextPC: 0xbfd8ca5f
+ >> oEI pc: 0xbfd8ca5f
+ 19: 20: 2  6B @0xbfd8ca5f: 81 f3 4d 5d b3 2b                  xor ebx, 0x2bb35d4d      nextPC: 0xbfd8ca65
+ >> oEI pc: 0xbfd8ca65
+ 20: 21: 2  6B @0xbfd8ca65: 81 eb a6 27 f8 50                  sub ebx, 0x50f827a6      nextPC: 0xbfd8ca6b
+ >> oEI pc: 0xbfd8ca6b
+ 21: 22: 2  5B @0xbfd8ca6b: 66 c7 c3 25 00                     mov bx, 0x25             nextPC: 0xbfd8ca70
+ >> oEI pc: 0xbfd8ca70
+ 22: 23: 2  2B @0xbfd8ca70: 85 c0                              test eax, eax            nextPC: 0xbfd8ca72
+ >> oEI pc: 0xbfd8ca72
+ 23: 24: 2  1B @0xbfd8ca72: 43                                 inc ebx                  nextPC: 0xbfd8ca73
+ >> oEI pc: 0xbfd8ca73
+ 24: 25: 2  2B @0xbfd8ca73: 85 d2                              test edx, edx            nextPC: 0xbfd8ca75
+ >> oEI pc: 0xbfd8ca75
+ >> oEI handling FPU insn pc: 0xbfd8ca75
+ 25: 26: 2  2B @0xbfd8ca75: d9 fd                              fscale                   nextPC: 0xbfd8ca77
+ >> oEI pc: 0xbfd8ca77
+ >> oEI handling FPU insn pc: 0xbfd8ca77
+ 26: 27: 2  2B @0xbfd8ca77: d9 eb                              fldlpi                   nextPC: 0xbfd8ca79
+ >> oEI pc: 0xbfd8ca79
+ >> oEI handling FPU insn pc: 0xbfd8ca79
+ 27: 28: 2  2B @0xbfd8ca79: d9 e0                              fchs                     nextPC: 0xbfd8ca7b
+ >> oEI pc: 0xbfd8ca7b
+ 28: 29: 2  1B @0xbfd8ca7b: 43                                 inc ebx                  nextPC: 0xbfd8ca7c
+ >> oEI pc: 0xbfd8ca7c
+ 29: 30: 2  1B @0xbfd8ca7c: fc                                 cld                      nextPC: 0xbfd8ca7d
+ >> oEI pc: 0xbfd8ca7d
+ 30: 31: 2  1B @0xbfd8ca7d: f5                                 cmc                      nextPC: 0xbfd8ca7e
+ >> oEI pc: 0xbfd8ca7e
+ 31: 32: 2  1B @0xbfd8ca7e: fd                                 std                      nextPC: 0xbfd8ca7f
+ >> oEB pc: 0xbfd8ca7e
+ >> oExc pc: 0xbfd8ca7f exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd8ca7f
+ >> oTIE pc: 0xbfd8ca7f:0x4f nextpc: bfd8ca80 len: 1
+  0: 33: 3  1B @0xbfd8ca7f: 43                                 inc ebx                  nextPC: 0xbfd8ca80
+ >> oTIE pc: 0xbfd8ca80:0x50 nextpc: bfd8ca82 len: 2
+  0: 34: 3  2B @0xbfd8ca80: d9 f8                              fprem                    nextPC: 0xbfd8ca82
+ >> oTIE pc: 0xbfd8ca82:0x52 nextpc: bfd8ca84 len: 2
+  0: 35: 3  2B @0xbfd8ca82: 09 ff                              or edi, edi              nextPC: 0xbfd8ca84
+ >> oTBE Target by pc: 0xbfd8ca84 to pc: 0xbfd8ca84
+ >> oTIE pc: 0xbfd8ca84:0x54 nextpc: bfd8ca86 len: 2
+  0: 36: 3  2B @0xbfd8ca84: d9 d0                              fnop                     nextPC: 0xbfd8ca86
+ >> oTBE Target by pc: 0xbfd8ca86 to pc: 0xbfd8ca86
+ >> oTIE pc: 0xbfd8ca86:0x56 nextpc: bfd8ca88 len: 2
+  0: 37: 3  2B @0xbfd8ca86: d9 d0                              fnop                     nextPC: 0xbfd8ca88
+ >> oTIE pc: 0xbfd8ca88:0x58 nextpc: bfd8ca89 len: 1
+  0: 38: 3  1B @0xbfd8ca88: 43                                 inc ebx                  nextPC: 0xbfd8ca89
+ >> oTIE pc: 0xbfd8ca89:0x59 nextpc: bfd8ca8b len: 2
+  0: 39: 3  2B @0xbfd8ca89: d8 d1                              fcom st0, st1            nextPC: 0xbfd8ca8b
+ >> oTIE pc: 0xbfd8ca8b:0x5b nextpc: bfd8ca8d len: 2
+  0: 40: 3  2B @0xbfd8ca8b: 8b ff                              mov edi, edi             nextPC: 0xbfd8ca8d
+ >> oTIE pc: 0xbfd8ca8d:0x5d nextpc: bfd8ca8e len: 1
+  0: 41: 3  1B @0xbfd8ca8d: f5                                 cmc                      nextPC: 0xbfd8ca8e
+ >> oTIE pc: 0xbfd8ca8e:0x5e nextpc: bfd8ca90 len: 2
+  0: 42: 3  2B @0xbfd8ca8e: dd e1                              fucom st1                nextPC: 0xbfd8ca90
+ >> oTIE pc: 0xbfd8ca90:0x60 nextpc: bfd8ca92 len: 2
+  0: 43: 3  2B @0xbfd8ca90: d9 ea                              fldl2e                   nextPC: 0xbfd8ca92
+ >> oTIE pc: 0xbfd8ca92:0x62 nextpc: bfd8ca98 len: 6
+  0: 44: 3  6B @0xbfd8ca92: c7 c7 8b 3c 24 c3                  mov edi, 0xc3243c8b      nextPC: 0xbfd8ca98
+ >> oTIE pc: 0xbfd8ca98:0x68 nextpc: bfd8ca99 len: 1
+  0: 45: 3  1B @0xbfd8ca98: 57                                 push edi                 nextPC: 0xbfd8ca99
+ >> oTIE pc: 0xbfd8ca99:0x69 nextpc: bfd8ca9b len: 2
+  0: 46: 3  2B @0xbfd8ca99: de e1                              fsubrp st1, st0          nextPC: 0xbfd8ca9b
+ >> oTIE pc: 0xbfd8ca9b:0x6b nextpc: bfd8ca9c len: 1
+  0: 47: 3  1B @0xbfd8ca9b: f5                                 cmc                      nextPC: 0xbfd8ca9c
+ >> oTIE pc: 0xbfd8ca9c:0x6c nextpc: bfd8ca9d len: 1
+  0: 48: 3  1B @0xbfd8ca9c: fc                                 cld                      nextPC: 0xbfd8ca9d
+ >> oTIE pc: 0xbfd8ca9d:0x6d nextpc: bfd8caa3 len: 6
+  0: 49: 3  6B @0xbfd8ca9d: 81 f9 6e 9d 98 45                  cmp ecx, 0x45989d6e      nextPC: 0xbfd8caa3
+ >> oTIE pc: 0xbfd8caa3:0x73 nextpc: bfd8caa6 len: 3
+  0: 50: 3  3B @0xbfd8caa3: 8d 3c 24                           lea edi, [esp]           nextPC: 0xbfd8caa6
+ >> oTIE pc: 0xbfd8caa6:0x76 nextpc: bfd8caa8 len: 2
+  0: 51: 3  2B @0xbfd8caa6: de e9                              fsubp st1, st0           nextPC: 0xbfd8caa8
+ >> oTIE pc: 0xbfd8caa8:0x78 nextpc: bfd8caa9 len: 1
+  0: 52: 3  1B @0xbfd8caa8: fd                                 std                      nextPC: 0xbfd8caa9
+ >> oTIE pc: 0xbfd8caa9:0x79 nextpc: bfd8caaf len: 6
+  0: 53: 3  6B @0xbfd8caa9: 81 f9 c4 54 48 50                  cmp ecx, 0x504854c4      nextPC: 0xbfd8caaf
+ >> oTIE pc: 0xbfd8caaf:0x7f nextpc: bfd8ca86 len: 2
+  0: 54: 3  2B @0xbfd8caaf: ff d7                              call edi                 nextPC: 0xbfd8ca86
+ >> oExc pc: 0xbfd8ca7f exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd8ca7f
+ >> oTIE pc: 0xbfd8ca7f:0x4f nextpc: bfd8ca80 len: 1
+!!* pc != prev insn's next_pc; 0xbfd8ca7f != bfd8ca86
+  0: 55: 4  1B @0xbfd8ca7f: 43                                 inc ebx                  nextPC: 0xbfd8ca80
+ >> oTBE Target by pc: 0xbfd8ca80 to pc: 0xbfd8ca80
+ >> oTIE pc: 0xbfd8ca80:0x50 nextpc: bfd8ca80 len: 1
+  0: 56: 4  1B @0xbfd8ca80: d9                                 invalid                  nextPC: 0xbfd8ca80
+ >> oEI pc: 0xbfd8ca7f
+ 32: 55: 4  1B @0xbfd8ca7f: 43                                 inc ebx                  nextPC: 0xbfd8ca80
+ >> oEB pc: 0xbfd8ca80
+ >> oExc pc: 0xbfd8ca80 exception_idx: 7(0x07)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd8ca80
+ >> oTIE pc: 0xbfd8ca80:0x50 nextpc: bfd8ca82 len: 2
+  0: 57: 5  2B @0xbfd8ca80: d9 f8                              fprem                    nextPC: 0xbfd8ca82
+ >> oTIE pc: 0xbfd8ca82:0x52 nextpc: bfd8ca84 len: 2
+  0: 58: 5  2B @0xbfd8ca82: 09 ff                              or edi, edi              nextPC: 0xbfd8ca84
+ >> oTBE Target by pc: 0xbfd8ca84 to pc: 0xbfd8ca84
+ >> oTIE pc: 0xbfd8ca84:0x54 nextpc: bfd8ca86 len: 2
+  0: 59: 5  2B @0xbfd8ca84: d9 d0                              fnop                     nextPC: 0xbfd8ca86
+ >> oTBE Target by pc: 0xbfd8ca86 to pc: 0xbfd8ca86
+ >> oTIE pc: 0xbfd8ca86:0x56 nextpc: bfd8ca88 len: 2
+  0: 60: 5  2B @0xbfd8ca86: d9 d0                              fnop                     nextPC: 0xbfd8ca88
+ >> oTIE pc: 0xbfd8ca88:0x58 nextpc: bfd8ca89 len: 1
+  0: 61: 5  1B @0xbfd8ca88: 43                                 inc ebx                  nextPC: 0xbfd8ca89
+ >> oTIE pc: 0xbfd8ca89:0x59 nextpc: bfd8ca8b len: 2
+  0: 62: 5  2B @0xbfd8ca89: d8 d1                              fcom st0, st1            nextPC: 0xbfd8ca8b
+ >> oTIE pc: 0xbfd8ca8b:0x5b nextpc: bfd8ca8d len: 2
+  0: 63: 5  2B @0xbfd8ca8b: 8b ff                              mov edi, edi             nextPC: 0xbfd8ca8d
+ >> oTIE pc: 0xbfd8ca8d:0x5d nextpc: bfd8ca8e len: 1
+  0: 64: 5  1B @0xbfd8ca8d: f5                                 cmc                      nextPC: 0xbfd8ca8e
+ >> oTIE pc: 0xbfd8ca8e:0x5e nextpc: bfd8ca90 len: 2
+  0: 65: 5  2B @0xbfd8ca8e: dd e1                              fucom st1                nextPC: 0xbfd8ca90
+ >> oTIE pc: 0xbfd8ca90:0x60 nextpc: bfd8ca92 len: 2
+  0: 66: 5  2B @0xbfd8ca90: d9 ea                              fldl2e                   nextPC: 0xbfd8ca92
+ >> oTIE pc: 0xbfd8ca92:0x62 nextpc: bfd8ca98 len: 6
+  0: 67: 5  6B @0xbfd8ca92: c7 c7 8b 3c 24 c3                  mov edi, 0xc3243c8b      nextPC: 0xbfd8ca98
+ >> oTIE pc: 0xbfd8ca98:0x68 nextpc: bfd8ca99 len: 1
+  0: 68: 5  1B @0xbfd8ca98: 57                                 push edi                 nextPC: 0xbfd8ca99
+ >> oTIE pc: 0xbfd8ca99:0x69 nextpc: bfd8ca9b len: 2
+  0: 69: 5  2B @0xbfd8ca99: de e1                              fsubrp st1, st0          nextPC: 0xbfd8ca9b
+ >> oTIE pc: 0xbfd8ca9b:0x6b nextpc: bfd8ca9c len: 1
+  0: 70: 5  1B @0xbfd8ca9b: f5                                 cmc                      nextPC: 0xbfd8ca9c
+ >> oTIE pc: 0xbfd8ca9c:0x6c nextpc: bfd8ca9d len: 1
+  0: 71: 5  1B @0xbfd8ca9c: fc                                 cld                      nextPC: 0xbfd8ca9d
+ >> oTIE pc: 0xbfd8ca9d:0x6d nextpc: bfd8caa3 len: 6
+  0: 72: 5  6B @0xbfd8ca9d: 81 f9 6e 9d 98 45                  cmp ecx, 0x45989d6e      nextPC: 0xbfd8caa3
+ >> oTIE pc: 0xbfd8caa3:0x73 nextpc: bfd8caa6 len: 3
+  0: 73: 5  3B @0xbfd8caa3: 8d 3c 24                           lea edi, [esp]           nextPC: 0xbfd8caa6
+ >> oTIE pc: 0xbfd8caa6:0x76 nextpc: bfd8caa8 len: 2
+  0: 74: 5  2B @0xbfd8caa6: de e9                              fsubp st1, st0           nextPC: 0xbfd8caa8
+ >> oTIE pc: 0xbfd8caa8:0x78 nextpc: bfd8caa9 len: 1
+  0: 75: 5  1B @0xbfd8caa8: fd                                 std                      nextPC: 0xbfd8caa9
+ >> oTIE pc: 0xbfd8caa9:0x79 nextpc: bfd8caaf len: 6
+  0: 76: 5  6B @0xbfd8caa9: 81 f9 c4 54 48 50                  cmp ecx, 0x504854c4      nextPC: 0xbfd8caaf
+ >> oTIE pc: 0xbfd8caaf:0x7f nextpc: bfd8ca86 len: 2
+  0: 77: 5  2B @0xbfd8caaf: ff d7                              call edi                 nextPC: 0xbfd8ca86
+ >> oExc pc: 0xbfd8ca80 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd8ca80
+ >> oTBE Target by pc: 0xbfd8ca80 to pc: 0xbfd8ca80
+ >> oTIE pc: 0xbfd8ca80:0x50 nextpc: bfd8ca80 len: 1
+!!* pc != prev insn's next_pc; 0xbfd8ca80 != bfd8ca86
+  0: 78: 6  1B @0xbfd8ca80: d9                                 invalid                  nextPC: 0xbfd8ca80
+ >> oEB pc: 0xbfd8ca80
+ >> oExc pc: 0xbfd8ca80 exception_idx: 7(0x07)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfd8ca80
+ >> oEI handling FPU insn pc: 0xbfd8ca80
+ 33: 78: 6  1B @0xbfd8ca80: d9                                 invalid                  nextPC: 0xbfd8ca80
+ >> oEI pc: 0xbfd8ca82
+ 34: 58: 5  2B @0xbfd8ca82: 09 ff                              or edi, edi              nextPC: 0xbfd8ca84
+ >> oEB pc: 0xbfd8ca84
+ >> oEI pc: 0xbfd8ca84
+ >> oEI handling FPU insn pc: 0xbfd8ca84
+ 35: 59: 5  2B @0xbfd8ca84: d9 d0                              fnop                     nextPC: 0xbfd8ca86
+ >> oEB pc: 0xbfd8ca86
+ >> oEI pc: 0xbfd8ca86
+ >> oEI handling FPU insn pc: 0xbfd8ca86
+ 36: 60: 5  2B @0xbfd8ca86: d9 d0                              fnop                     nextPC: 0xbfd8ca88
+ >> oEI pc: 0xbfd8ca88
+ 37: 61: 5  1B @0xbfd8ca88: 43                                 inc ebx                  nextPC: 0xbfd8ca89
+ >> oEI pc: 0xbfd8ca89
+ >> oEI handling FPU insn pc: 0xbfd8ca89
+ 38: 62: 5  2B @0xbfd8ca89: d8 d1                              fcom st0, st1            nextPC: 0xbfd8ca8b
+ >> oEI pc: 0xbfd8ca8b
+ 39: 63: 5  2B @0xbfd8ca8b: 8b ff                              mov edi, edi             nextPC: 0xbfd8ca8d
+ >> oEI pc: 0xbfd8ca8d
+ 40: 64: 5  1B @0xbfd8ca8d: f5                                 cmc                      nextPC: 0xbfd8ca8e
+ >> oEI pc: 0xbfd8ca8e
+ >> oEI handling FPU insn pc: 0xbfd8ca8e
+ 41: 65: 5  2B @0xbfd8ca8e: dd e1                              fucom st1                nextPC: 0xbfd8ca90
+ >> oEI pc: 0xbfd8ca90
+ >> oEI handling FPU insn pc: 0xbfd8ca90
+ 42: 66: 5  2B @0xbfd8ca90: d9 ea                              fldl2e                   nextPC: 0xbfd8ca92
+ >> oEI pc: 0xbfd8ca92
+ 43: 67: 5  6B @0xbfd8ca92: c7 c7 8b 3c 24 c3                  mov edi, 0xc3243c8b      nextPC: 0xbfd8ca98
+ >> oDMA OOB Write by seq_num: 44 pc: 0xbfd8ca98:0x68 to addr: 0xbfd8c038 len: 4B value:  0x8b  0x3c  0x24  0xc3 
+ >> >> oDMA value in memory at that address:  0x8b  0x3c  0x24  0xc3 
+ >> oEI pc: 0xbfd8ca98
+ 44: 68: 5  1B @0xbfd8ca98: 57                                 push edi                 nextPC: 0xbfd8ca99
+ >> oEI pc: 0xbfd8ca99
+ >> oEI handling FPU insn pc: 0xbfd8ca99
+ 45: 69: 5  2B @0xbfd8ca99: de e1                              fsubrp st1, st0          nextPC: 0xbfd8ca9b
+ >> oEI pc: 0xbfd8ca9b
+ 46: 70: 5  1B @0xbfd8ca9b: f5                                 cmc                      nextPC: 0xbfd8ca9c
+ >> oEI pc: 0xbfd8ca9c
+ 47: 71: 5  1B @0xbfd8ca9c: fc                                 cld                      nextPC: 0xbfd8ca9d
+ >> oEI pc: 0xbfd8ca9d
+ 48: 72: 5  6B @0xbfd8ca9d: 81 f9 6e 9d 98 45                  cmp ecx, 0x45989d6e      nextPC: 0xbfd8caa3
+ >> oEI pc: 0xbfd8caa3
+ 49: 73: 5  3B @0xbfd8caa3: 8d 3c 24                           lea edi, [esp]           nextPC: 0xbfd8caa6
+ >> oEI pc: 0xbfd8caa6
+ >> oEI handling FPU insn pc: 0xbfd8caa6
+ 50: 74: 5  2B @0xbfd8caa6: de e9                              fsubp st1, st0           nextPC: 0xbfd8caa8
+ >> oEI pc: 0xbfd8caa8
+ 51: 75: 5  1B @0xbfd8caa8: fd                                 std                      nextPC: 0xbfd8caa9
+ >> oEI pc: 0xbfd8caa9
+ 52: 76: 5  6B @0xbfd8caa9: 81 f9 c4 54 48 50                  cmp ecx, 0x504854c4      nextPC: 0xbfd8caaf
+ >> oDMA OOB Write by seq_num: 53 pc: 0xbfd8caaf:0x7f to addr: 0xbfd8c034 len: 4B value:  0xb1  0xca  0xd8  0xbf 
+ >> >> oDMA value in memory at that address:  0xb1  0xca  0xd8  0xbf 
+ >> oEB pc: 0xbfd8caaf
+ >> oEI pc: 0xbfd8caaf
+ 53: 77: 5  2B @0xbfd8caaf: ff d7                              call edi                 nextPC: 0xbfd8ca86
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+25 [State 1] @0xbfd8c038, left buffer range after 79 IoB insns; last IoB insn @0xbfd8ca80, disasm in debug.
+  0: 78: 6  1B @0xbfd8ca80: d9                                 invalid                  nextPC: 0xbfd8ca80
+25 [State 1] ERROR: we've left our module/shellcode unexpectedly, terminateStateEarly
+>> Terminating non-successful state that had 2 legitimate writes, outputting its trace and mem_map
+>> Printing Data_Trace (bytes written in order of write)
+>>     44 by:0xbfd8ca98 wrote  4B @0xbfd8c038: OOB 8b 3c 24 c3 
+>>     53 by:0xbfd8caaf wrote  4B @0xbfd8c034: OOB b1 ca d8 bf 
+25 [State 1] Terminating state 1 with message 'eliminated a state that exec'ed out of module bounds unexpectedly'
+25 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1f2d2a40
+Firing timer event
+25 [State 0] Message from guest (0xbfd8c08c): << Looping fork, currently at 0
+25 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 0 successes
+>> There were 0 fragments

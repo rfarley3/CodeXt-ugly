@@ -1,0 +1,139 @@
+diff --git a/qemu/Makefile.target b/qemu/Makefile.target
+index cc3b60b..6313a57 100644
+--- a/qemu/Makefile.target
++++ b/qemu/Makefile.target
+@@ -321,6 +321,11 @@ s2eobj-y =
+ s2eobj-y += s2e/Signals/signals.o
+ s2eobj-y += s2e/Plugin.o s2e/Plugins/CorePlugin.o s2e/Plugins/Example.o
+ #s2eobj-y += s2e/Plugins/PluginInterface.o
++s2eobj-y += s2e/Plugins/InterruptMonitor.o
++s2eobj-y += s2e/Plugins/LinuxSyscallMonitor.o
+ s2eobj-y += s2e/Plugins/ModuleExecutionDetector.o
+ s2eobj-y += s2e/Plugins/CodeSelector.o
+ s2eobj-y += s2e/Plugins/RawMonitor.o
+@@ -396,6 +401,11 @@ s2e/Plugins/WindowsApi/WindowsDriverExerciser.o: QEMU_CXXFLAGS+=-fno-inline
+ s2e/Plugins/X86ExceptionInterceptor.o: QEMU_CXXFLAGS+=-fno-inline
+ s2e/Plugins/HostFiles.o: QEMU_CXXFLAGS+=-fno-inline
+ s2e/Plugins/MemoryChecker.o: QEMU_CXXFLAGS+=-fno-inline
++s2e/Plugins/InterruptMonitor.o: QEMU_CXXFLAGS+=-fno-inline
++s2e/Plugins/LinuxSyscallMonitor.o: QEMU_CXXFLAGS+=-fno-inline
+ s2e/S2EExecutor.o: QEMU_CXXFLAGS+=-fno-inline
+
+diff --git a/qemu/exec-all.h b/qemu/exec-all.h
+index cf24e56..697a1c8 100644
+--- a/qemu/exec-all.h
++++ b/qemu/exec-all.h
+@@ -158,6 +158,9 @@ enum ETranslationBlockType
+     TB_JMP, TB_JMP_IND,
+     TB_COND_JMP, TB_COND_JMP_IND,
+     TB_CALL, TB_CALL_IND, TB_REP, TB_RET
++    , TB_SYSENTER, TB_SYSEXIT, TB_INTERRUPT
+ };
+
+diff --git a/qemu/s2e/Plugin.cpp b/qemu/s2e/Plugin.cpp
+index fc9e2f4..d532022 100644
+--- a/qemu/s2e/Plugin.cpp
++++ b/qemu/s2e/Plugin.cpp
+@@ -73,6 +73,11 @@
+ #include <s2e/Plugins/Searchers/MaxTbSearcher.h>
+ #include <s2e/Plugins/Searchers/CooperativeSearcher.h>
+ 
++#include <s2e/Plugins/LinuxSyscallMonitor.h>
++#include <s2e/Plugins/InterruptMonitor.h>
++
+ #include <algorithm>
+ #include <assert.h>
+ 
+@@ -142,6 +147,11 @@ PluginsFactory::PluginsFactory()
+     __S2E_REGISTER_PLUGIN(plugins::Debugger);
+     __S2E_REGISTER_PLUGIN(plugins::Example);
+ 
++    __S2E_REGISTER_PLUGIN(plugins::LinuxSyscallMonitor);
++    __S2E_REGISTER_PLUGIN(plugins::InterruptMonitor);
++
+ #undef __S2E_REGISTER_PLUGIN
+ }
+
+diff --git a/qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h b/qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h
+index a364f5d..50eebb3 100644
+--- a/qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h
++++ b/qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h
+@@ -275,6 +275,9 @@ struct ExecutionTraceTb
+         TB_JMP, TB_JMP_IND,
+         TB_COND_JMP, TB_COND_JMP_IND,
+         TB_CALL, TB_CALL_IND, TB_REP, TB_RET
++        , TB_SYSENTER, TB_SYSEXIT, TB_INTERRUPT
+     };
+ 
+     enum EX86Registers
+
+diff --git a/qemu/target-i386/translate.c b/qemu/target-i386/translate.c
+index 8b152dc..5fa408c 100644
+--- a/qemu/target-i386/translate.c
++++ b/qemu/target-i386/translate.c
+@@ -150,6 +150,7 @@ typedef struct DisasContext {
+ #else
+ #define SET_TB_TYPE(t)
+ #define s2e_on_translate_jump_start(...)
++#define s2e_on_syscall(...)
+ #endif
+ 
+ 
+@@ -6326,7 +6327,7 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+         s->pc += 2;
+     do_lret:
+         if (s->pe && !s->vm86) {
+-            if (s->cc_op != CC_OP_DYNAMIC)
++//             if (s->cc_op != CC_OP_DYNAMIC)
+                 gen_op_set_cc_op(s->cc_op);
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_lret_protected(tcg_const_i32(s->dflag),
+@@ -6820,6 +6821,9 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+         }
+         break;
+     case 0xcc: /* int3 */
++    	SET_TB_TYPE(TB_INTERRUPT);
+         gen_interrupt(s, EXCP03_INT3, pc_start - s->cs_base, s->pc - s->cs_base);
+         break;
+     case 0xcd: /* int N */
+@@ -6827,6 +6831,9 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+         if (s->vm86 && s->iopl != 3) {
+             gen_exception(s, EXCP0D_GPF, pc_start - s->cs_base);
+         } else {
++        	SET_TB_TYPE(TB_INTERRUPT);
+             gen_interrupt(s, val, pc_start - s->cs_base, s->pc - s->cs_base);
+         }
+         break;
+@@ -7029,6 +7036,9 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSENTER);
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysenter();
+             gen_eob(s);
+@@ -7045,6 +7055,9 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSEXIT);
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysexit(tcg_const_i32(dflag));
+             gen_eob(s);
+@@ -7057,6 +7070,7 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+             gen_op_set_cc_op(s->cc_op);
+             s->cc_op = CC_OP_DYNAMIC;
+         }
++        SET_TB_TYPE(TB_SYSENTER);
+         gen_jmp_im(s, pc_start - s->cs_base);
+         gen_helper_syscall(tcg_const_i32(s->pc - pc_start));
+         gen_eob(s);
+@@ -7069,6 +7083,7 @@ static target_ulong disas_insn(DisasContext *s, target_ulong pc_start)
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSEXIT);
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysret(tcg_const_i32(s->dflag));
+             /* condition codes are modified only in long mode */
+

@@ -1,0 +1,256 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x40e8000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x438f000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1d270000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1d2b9000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1ede0000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1ee54000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+25 [State 0] Message from guest (0xbfddf36c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+25 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+25 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+25 [State 1] Message from guest (0xbfddf36c): << About to call dasospreproc_init with shell: 0xbfddfd10 (offset of 0 not yet applied), shell_len: 107, eip: 0x00000000
+
+25 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfddfd10-0xbfddfd7b with eip: 0x00000000 buffer length: 107 and syscall number: 1024
+Firing timer event
+  0  2B @0xbfddfd10: eb 1a                              jmp 0x1c                 nextPC: 0xbfddfd2c
+  1  5B @0xbfddfd2c: e8 e1 ff ff ff                     call 0xffffffffffffffe6  nextPC: 0xbfddfd12
+  2  1B @0xbfddfd12: 5e                                 pop esi                  nextPC: 0xbfddfd13
+  3  2B @0xbfddfd13: 89 f7                              mov edi, esi             nextPC: 0xbfddfd15
+  4  2B @0xbfddfd15: 89 f2                              mov edx, esi             nextPC: 0xbfddfd17
+  5  5B @0xbfddfd17: b9 4a 00 00 00                     mov ecx, 0x4a            nextPC: 0xbfddfd1c
+  6  5B @0xbfddfd1c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0xbfddfd21
+  7  2B @0xbfddfd21: 31 c0                              xor eax, eax             nextPC: 0xbfddfd23
+  8  1B @0xbfddfd23: 50                                 push eax                 nextPC: 0xbfddfd24
+  9  1B @0xbfddfd24: ac                                 lodsb                    nextPC: 0xbfddfd25
+ 10  2B @0xbfddfd25: 31 d8                              xor eax, ebx             nextPC: 0xbfddfd27
+ 11  1B @0xbfddfd27: aa                                 stosb                    nextPC: 0xbfddfd28
+ 12  2B @0xbfddfd28: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfddfd2a jmpPc: 0xbfddfd24
+ >> Write by seq#13 PC=0xbfddfd27 to addr=0xbfddfd31 1B value=0xeb
+!!* pc != prev insn's next_pc; 0xbfddfd24 != bfddfd2a
+ 13  1B @0xbfddfd24:*ac                                 lodsb                    nextPC: 0xbfddfd25
+ 14  2B @0xbfddfd25:*31*d8                              xor eax, ebx             nextPC: 0xbfddfd27
+ 15  1B @0xbfddfd27:*aa                                 stosb                    nextPC: 0xbfddfd28
+ 16  2B @0xbfddfd28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfddfd2a jmpPc: 0xbfddfd24
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd32 1B value=0x1a
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd33 1B value=0x5e
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd34 1B value=0x89
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd35 1B value=0xf7
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd36 1B value=0x89
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd37 1B value=0xf2
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd38 1B value=0xb9
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd39 1B value=0x29
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3a 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3b 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3c 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3d 1B value=0xbb
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3e 1B value=0xff
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd3f 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd40 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd41 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd42 1B value=0x31
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd43 1B value=0xc0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd44 1B value=0x50
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd45 1B value=0xac
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd46 1B value=0x31
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd47 1B value=0xd8
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd48 1B value=0xaa
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd49 1B value=0xe2
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4a 1B value=0xfa
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4b 1B value=0xff
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4c 1B value=0xd2
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4d 1B value=0xe8
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4e 1B value=0xe1
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd4f 1B value=0xff
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd50 1B value=0xff
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd51 1B value=0xff
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd52 1B value=0x14
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd53 1B value=0xec
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd54 1B value=0xa6
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd55 1B value=0xce
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd56 1B value=0x3f
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd57 1B value=0x4f
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd58 1B value=0xfb
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd59 1B value=0xce
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5a 1B value=0x24
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5b 1B value=0xbc
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5c 1B value=0xce
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5d 1B value=0x2d
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5e 1B value=0x4d
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd5f 1B value=0xf0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd60 1B value=0x32
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd61 1B value=0x7f
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd62 1B value=0x4f
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd63 1B value=0xfe
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd64 1B value=0xb4
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd65 1B value=0x32
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd66 1B value=0x7f
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd67 1B value=0x17
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd68 1B value=0x17
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd69 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6a 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6b 1B value=0x0
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6c 1B value=0xb7
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6d 1B value=0x9a
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6e 1B value=0x93
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd6f 1B value=0x93
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd70 1B value=0x90
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd71 1B value=0xd3
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd72 1B value=0xdf
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd73 1B value=0x88
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd74 1B value=0x90
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd75 1B value=0x8d
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd76 1B value=0x93
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd77 1B value=0x9b
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd78 1B value=0xde
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd79 1B value=0xf5
+ >> Write by seq#17 PC=0xbfddfd27 to addr=0xbfddfd7a 1B value=0xf2
+ 17  2B @0xbfddfd2a: ff d2                              call edx                 nextPC: 0x00000000
+ 18  2B @0xbfddfd31: eb 1a                              jmp 0x1c                 nextPC: 0xbfddfd4d
+ 19  5B @0xbfddfd4d: e8 e1 ff ff ff                     call 0xffffffffffffffe6  nextPC: 0xbfddfd33
+ 20  1B @0xbfddfd33: 5e                                 pop esi                  nextPC: 0xbfddfd34
+ 21  2B @0xbfddfd34: 89 f7                              mov edi, esi             nextPC: 0xbfddfd36
+ 22  2B @0xbfddfd36: 89 f2                              mov edx, esi             nextPC: 0xbfddfd38
+ 23  5B @0xbfddfd38: b9 29 00 00 00                     mov ecx, 0x29            nextPC: 0xbfddfd3d
+ 24  5B @0xbfddfd3d: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0xbfddfd42
+ 25  2B @0xbfddfd42: 31 c0                              xor eax, eax             nextPC: 0xbfddfd44
+ 26  1B @0xbfddfd44: 50                                 push eax                 nextPC: 0xbfddfd45
+ 27  1B @0xbfddfd45: ac                                 lodsb                    nextPC: 0xbfddfd46
+ 28  2B @0xbfddfd46: 31 d8                              xor eax, ebx             nextPC: 0xbfddfd48
+ 29  1B @0xbfddfd48: aa                                 stosb                    nextPC: 0xbfddfd49
+ 30  2B @0xbfddfd49: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfddfd4b jmpPc: 0xbfddfd45
+ >> Write by seq#31 PC=0xbfddfd48 to addr=0xbfddfd52 1B value=0xeb
+!!* pc != prev insn's next_pc; 0xbfddfd45 != bfddfd4b
+ 31  1B @0xbfddfd45:*ac                                 lodsb                    nextPC: 0xbfddfd46
+ 32  2B @0xbfddfd46:*31*d8                              xor eax, ebx             nextPC: 0xbfddfd48
+ 33  1B @0xbfddfd48:*aa                                 stosb                    nextPC: 0xbfddfd49
+ 34  2B @0xbfddfd49:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfddfd4b jmpPc: 0xbfddfd45
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd53 1B value=0x13
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd54 1B value=0x59
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd55 1B value=0x31
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd56 1B value=0xc0
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd57 1B value=0xb0
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd58 1B value=0x4
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd59 1B value=0x31
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5a 1B value=0xdb
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5b 1B value=0x43
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5c 1B value=0x31
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5d 1B value=0xd2
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5e 1B value=0xb2
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd5f 1B value=0xf
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd60 1B value=0xcd
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd61 1B value=0x80
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd62 1B value=0xb0
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd63 1B value=0x1
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd64 1B value=0x4b
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd65 1B value=0xcd
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd66 1B value=0x80
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd67 1B value=0xe8
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd68 1B value=0xe8
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd69 1B value=0xff
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6a 1B value=0xff
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6b 1B value=0xff
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6c 1B value=0x48
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6d 1B value=0x65
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6e 1B value=0x6c
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd6f 1B value=0x6c
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd70 1B value=0x6f
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd71 1B value=0x2c
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd72 1B value=0x20
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd73 1B value=0x77
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd74 1B value=0x6f
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd75 1B value=0x72
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd76 1B value=0x6c
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd77 1B value=0x64
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd78 1B value=0x21
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd79 1B value=0xa
+ >> Write by seq#35 PC=0xbfddfd48 to addr=0xbfddfd7a 1B value=0xd
+ 35  2B @0xbfddfd4b: ff d2                              call edx                 nextPC: 0x00000000
+ 36  2B @0xbfddfd52: eb 13                              jmp 0x15                 nextPC: 0xbfddfd67
+ 37  5B @0xbfddfd67: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfddfd54
+ 38  1B @0xbfddfd54: 59                                 pop ecx                  nextPC: 0xbfddfd55
+ 39  2B @0xbfddfd55: 31 c0                              xor eax, eax             nextPC: 0xbfddfd57
+ 40  2B @0xbfddfd57: b0 04                              mov al, 0x4              nextPC: 0xbfddfd59
+ 41  2B @0xbfddfd59: 31 db                              xor ebx, ebx             nextPC: 0xbfddfd5b
+ 42  1B @0xbfddfd5b: 43                                 inc ebx                  nextPC: 0xbfddfd5c
+ 43  2B @0xbfddfd5c: 31 d2                              xor edx, edx             nextPC: 0xbfddfd5e
+ 44  2B @0xbfddfd5e: b2 0f                              mov dl, 0xf              nextPC: 0xbfddfd60
+ 45  2B @0xbfddfd60: cd 80                              int 0x80                 nextPC: 0xbfddfd62
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfddfd6c
+EDX=0xf
+ESI=0xbfddfd7b
+EDI=0xbfddfd7b
+EBP=0xbfddf778
+ESP=0xc6175fe4
+EIP=0xc1003190
+CR2=0xb760b29f
+>> Be aware that sysc is not set; is the shell read from file vs libDasosFdump struct?
+>> EIP Found. Syscall number 4 at addr 0xbfddfd60 offset from base: 80 (should be EIP-2) within pid: 86716416 number of instructions: 46. This is success #1

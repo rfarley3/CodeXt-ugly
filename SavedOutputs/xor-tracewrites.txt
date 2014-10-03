@@ -1,0 +1,394 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x3b9d000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x3e44000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1cd25000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1cd6e000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1e895000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1e909000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+25 [State 0] Message from guest (0xbfd2e36c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+25 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+25 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+25 [State 1] Message from guest (0xbfd2e36c): << About to call dasospreproc_init with shell: 0xbfd2ed10 (offset of 0 not yet applied), shell_len: 74, eip: 0x00000000
+
+25 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfd2ed10-0xbfd2ed5a with eip: 0x00000000 buffer length: 74 and syscall number: 1024
+  0  2B @0xbfd2ed10: eb 1a                              jmp 0x1c                 nextPC: 0xbfd2ed2c
+  1  5B @0xbfd2ed2c: e8 e1 ff ff ff                     call 0xffffffffffffffe6  nextPC: 0xbfd2ed12
+  2  1B @0xbfd2ed12: 5e                                 pop esi                  nextPC: 0xbfd2ed13
+  3  2B @0xbfd2ed13: 89 f7                              mov edi, esi             nextPC: 0xbfd2ed15
+  4  2B @0xbfd2ed15: 89 f2                              mov edx, esi             nextPC: 0xbfd2ed17
+  5  5B @0xbfd2ed17: b9 29 00 00 00                     mov ecx, 0x29            nextPC: 0xbfd2ed1c
+  6  5B @0xbfd2ed1c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0xbfd2ed21
+  7  2B @0xbfd2ed21: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed23
+  8  1B @0xbfd2ed23: 50                                 push eax                 nextPC: 0xbfd2ed24
+  9  1B @0xbfd2ed24: ac                                 lodsb                    nextPC: 0xbfd2ed25
+ 10  2B @0xbfd2ed25: 31 d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+ 11  1B @0xbfd2ed27: aa                                 stosb                    nextPC: 0xbfd2ed28
+ 12  2B @0xbfd2ed28: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+ >> Write by seq#13 PC=0xbfd2ed27 to addr=0xbfd2ed31 1B value=0xeb
+!!* pc != prev insn's next_pc; 0xbfd2ed24 != bfd2ed2a
+ 13  1B @0xbfd2ed24:*ac                                 lodsb                    nextPC: 0xbfd2ed25
+ 14  2B @0xbfd2ed25:*31*d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+ 15  1B @0xbfd2ed27:*aa                                 stosb                    nextPC: 0xbfd2ed28
+ 16  2B @0xbfd2ed28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed32 1B value=0x13
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed33 1B value=0x59
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed34 1B value=0x31
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed35 1B value=0xc0
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed36 1B value=0xb0
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed37 1B value=0x4
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed38 1B value=0x31
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed39 1B value=0xdb
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3a 1B value=0x43
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3b 1B value=0x31
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3c 1B value=0xd2
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3d 1B value=0xb2
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3e 1B value=0xf
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed3f 1B value=0xcd
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed40 1B value=0x80
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed41 1B value=0xb0
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed42 1B value=0x1
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed43 1B value=0x4b
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed44 1B value=0xcd
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed45 1B value=0x80
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed46 1B value=0xe8
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed47 1B value=0xe8
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed48 1B value=0xff
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed49 1B value=0xff
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4a 1B value=0xff
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4b 1B value=0x48
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4c 1B value=0x65
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4d 1B value=0x6c
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4e 1B value=0x6c
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed4f 1B value=0x6f
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed50 1B value=0x2c
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed51 1B value=0x20
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed52 1B value=0x77
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed53 1B value=0x6f
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed54 1B value=0x72
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed55 1B value=0x6c
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed56 1B value=0x64
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed57 1B value=0x21
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed58 1B value=0xa
+ >> Write by seq#17 PC=0xbfd2ed27 to addr=0xbfd2ed59 1B value=0xd
+ 17  2B @0xbfd2ed2a: ff d2                              call edx                 nextPC: 0x00000000
+ 18  2B @0xbfd2ed31: eb 13                              jmp 0x15                 nextPC: 0xbfd2ed46
+ 19  5B @0xbfd2ed46: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd2ed33
+Firing timer event
+ 20  1B @0xbfd2ed33: 59                                 pop ecx                  nextPC: 0xbfd2ed34
+ 21  2B @0xbfd2ed34: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed36
+ 22  2B @0xbfd2ed36: b0 04                              mov al, 0x4              nextPC: 0xbfd2ed38
+ 23  2B @0xbfd2ed38: 31 db                              xor ebx, ebx             nextPC: 0xbfd2ed3a
+ 24  1B @0xbfd2ed3a: 43                                 inc ebx                  nextPC: 0xbfd2ed3b
+ 25  2B @0xbfd2ed3b: 31 d2                              xor edx, edx             nextPC: 0xbfd2ed3d
+ 26  2B @0xbfd2ed3d: b2 0f                              mov dl, 0xf              nextPC: 0xbfd2ed3f
+ 27  2B @0xbfd2ed3f: cd 80                              int 0x80                 nextPC: 0xbfd2ed41
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfd2ed4b
+EDX=0xf
+ESI=0xbfd2ed5a
+EDI=0xbfd2ed5a
+EBP=0xbfd2e778
+ESP=0xc6175fe4
+EIP=0xc1003190
+CR2=0xb766429f
+>> Be aware that sysc is not set; is the shell read from file vs libDasosFdump struct?
+>> EIP Found. Syscall number 4 at addr 0xbfd2ed3f offset from base: 47 (should be EIP-2) within pid: 86716416 number of instructions: 28. This is success #1
+>> Success from offset 0
+>> Success densities, overlay: 0.915254; avg: 1.01695
+>> Success eip: 0xbfd2ed41 offset from base: 49
+>> Printing PC Insn_Trace (instructions in order of execution)
+>>      0  2B @0xbfd2ed10: eb 1a                              jmp 0x1c                 nextPC: 0xbfd2ed2c
+>>      1  5B @0xbfd2ed2c: e8 e1 ff ff ff                     call 0xffffffffffffffe6  nextPC: 0xbfd2ed12
+>>      2  1B @0xbfd2ed12: 5e                                 pop esi                  nextPC: 0xbfd2ed13
+>>      3  2B @0xbfd2ed13: 89 f7                              mov edi, esi             nextPC: 0xbfd2ed15
+>>      4  2B @0xbfd2ed15: 89 f2                              mov edx, esi             nextPC: 0xbfd2ed17
+>>      5  5B @0xbfd2ed17: b9 29 00 00 00                     mov ecx, 0x29            nextPC: 0xbfd2ed1c
+>>      6  5B @0xbfd2ed1c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0xbfd2ed21
+>>      7  2B @0xbfd2ed21: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed23
+>>      8  1B @0xbfd2ed23: 50                                 push eax                 nextPC: 0xbfd2ed24
+>>      9  1B @0xbfd2ed24:*ac                                 lodsb                    nextPC: 0xbfd2ed25
+>>     10  2B @0xbfd2ed25:*31*d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+>>     11  1B @0xbfd2ed27:*aa                                 stosb                    nextPC: 0xbfd2ed28
+>>     12  2B @0xbfd2ed28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+>>     13  1B @0xbfd2ed24:*ac                                 lodsb                    nextPC: 0xbfd2ed25
+>>     14  2B @0xbfd2ed25:*31*d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+>>     15  1B @0xbfd2ed27:*aa                                 stosb                    nextPC: 0xbfd2ed28
+>>     16  2B @0xbfd2ed28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+>>     17  2B @0xbfd2ed2a: ff d2                              call edx                 nextPC: 0x00000000
+>>     18  2B @0xbfd2ed31: eb 13                              jmp 0x15                 nextPC: 0xbfd2ed46
+>>     19  5B @0xbfd2ed46: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd2ed33
+>>     20  1B @0xbfd2ed33: 59                                 pop ecx                  nextPC: 0xbfd2ed34
+>>     21  2B @0xbfd2ed34: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed36
+>>     22  2B @0xbfd2ed36: b0 04                              mov al, 0x4              nextPC: 0xbfd2ed38
+>>     23  2B @0xbfd2ed38: 31 db                              xor ebx, ebx             nextPC: 0xbfd2ed3a
+>>     24  1B @0xbfd2ed3a: 43                                 inc ebx                  nextPC: 0xbfd2ed3b
+>>     25  2B @0xbfd2ed3b: 31 d2                              xor edx, edx             nextPC: 0xbfd2ed3d
+>>     26  2B @0xbfd2ed3d: b2 0f                              mov dl, 0xf              nextPC: 0xbfd2ed3f
+>>     27  2B @0xbfd2ed3f: cd 80                              int 0x80                 nextPC: 0xbfd2ed41
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (60/59) = 1.01695
+>>    Mem_map start_addr: 0xbfd2ed10, length: 74B, valid bytes: 60, used bytes: 54, range: 59B, end_addr: 0xbfd2ed4a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed10 eb1a5e89 f789f2b9 29000000 bbff0000  ..^.....).......
+0xbfd2ed20 0031c050 ac31d8aa e2faffd2 e8e1ffff  .1.P.1..........
+0xbfd2ed30 ffeb1359 31c0b004 31db4331 d2b20fcd  ...Y1...1.C1....
+0xbfd2ed40 80------ ----e8e8 ffffff             ...........     
+
+>> Printing PC Data_Trace (bytes written in order of write)
+>>     13 by:0xbfd2ed27 wrote  1B @0xbfd2ed31: eb 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed32: 13 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed33: 59 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed34: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed35: c0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed36: b0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed37: 04 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed38: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed39: db 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3a: 43 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3b: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3c: d2 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3d: b2 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3e: 0f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3f: cd 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed40: 80 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed41: b0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed42: 01 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed43: 4b 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed44: cd 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed45: 80 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed46: e8 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed47: e8 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed48: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed49: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4a: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4b: 48 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4c: 65 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4d: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4e: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4f: 6f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed50: 2c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed51: 20 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed52: 77 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed53: 6f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed54: 72 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed55: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed56: 64 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed57: 21 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed58: 0a 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed59: 0d 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (41/41) = 1
+>>    Mem_map start_addr: 0xbfd2ed31, length: 74B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfd2ed59
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed30   14eca6 ce3f4ffb ce24bcce 2d4df032   ....?O..$..-M.2
+0xbfd2ed40 7f4ffeb4 327f1717 000000b7 9a939390  .O..2...........
+0xbfd2ed50 d3df8890 8d939bde f5f2               ..........      
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (41/41) = 0
+>>    Mem_map start_addr: 0xbfd2ed31, length: 74B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfd2ed59
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed30   eb1359 31c0b004 31db4331 d2b20fcd   ..Y1...1.C1....
+0xbfd2ed40 80b0014b cd80e8e8 ffffff48 656c6c6f  ...K.......Hello
+0xbfd2ed50 2c20776f 726c6421 0a0d               , world!..      
+
+25 [State 1] Terminating state 1 with message 'EIP reached, success'
+25 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x201213a0
+25 [State 0] Message from guest (0xbfd2e36c): << Looping fork, currently at 0
+25 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Success from offset 0
+>> Success densities, overlay: 0.915254; avg: 1.01695
+>> Success eip: 0xbfd2ed41 offset from base: 49
+>> Printing PC Insn_Trace (instructions in order of execution)
+>>      0  2B @0xbfd2ed10: eb 1a                              jmp 0x1c                 nextPC: 0xbfd2ed2c
+>>      1  5B @0xbfd2ed2c: e8 e1 ff ff ff                     call 0xffffffffffffffe6  nextPC: 0xbfd2ed12
+>>      2  1B @0xbfd2ed12: 5e                                 pop esi                  nextPC: 0xbfd2ed13
+>>      3  2B @0xbfd2ed13: 89 f7                              mov edi, esi             nextPC: 0xbfd2ed15
+>>      4  2B @0xbfd2ed15: 89 f2                              mov edx, esi             nextPC: 0xbfd2ed17
+>>      5  5B @0xbfd2ed17: b9 29 00 00 00                     mov ecx, 0x29            nextPC: 0xbfd2ed1c
+>>      6  5B @0xbfd2ed1c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0xbfd2ed21
+>>      7  2B @0xbfd2ed21: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed23
+>>      8  1B @0xbfd2ed23: 50                                 push eax                 nextPC: 0xbfd2ed24
+>>      9  1B @0xbfd2ed24:*ac                                 lodsb                    nextPC: 0xbfd2ed25
+>>     10  2B @0xbfd2ed25:*31*d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+>>     11  1B @0xbfd2ed27:*aa                                 stosb                    nextPC: 0xbfd2ed28
+>>     12  2B @0xbfd2ed28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+>>     13  1B @0xbfd2ed24:*ac                                 lodsb                    nextPC: 0xbfd2ed25
+>>     14  2B @0xbfd2ed25:*31*d8                              xor eax, ebx             nextPC: 0xbfd2ed27
+>>     15  1B @0xbfd2ed27:*aa                                 stosb                    nextPC: 0xbfd2ed28
+>>     16  2B @0xbfd2ed28:*e2*fa                              loop 0xfffffffffffffffc  nextPC: 0xbfd2ed2a jmpPc: 0xbfd2ed24
+>>     17  2B @0xbfd2ed2a: ff d2                              call edx                 nextPC: 0x00000000
+>>     18  2B @0xbfd2ed31: eb 13                              jmp 0x15                 nextPC: 0xbfd2ed46
+>>     19  5B @0xbfd2ed46: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd2ed33
+>>     20  1B @0xbfd2ed33: 59                                 pop ecx                  nextPC: 0xbfd2ed34
+>>     21  2B @0xbfd2ed34: 31 c0                              xor eax, eax             nextPC: 0xbfd2ed36
+>>     22  2B @0xbfd2ed36: b0 04                              mov al, 0x4              nextPC: 0xbfd2ed38
+>>     23  2B @0xbfd2ed38: 31 db                              xor ebx, ebx             nextPC: 0xbfd2ed3a
+>>     24  1B @0xbfd2ed3a: 43                                 inc ebx                  nextPC: 0xbfd2ed3b
+>>     25  2B @0xbfd2ed3b: 31 d2                              xor edx, edx             nextPC: 0xbfd2ed3d
+>>     26  2B @0xbfd2ed3d: b2 0f                              mov dl, 0xf              nextPC: 0xbfd2ed3f
+>>     27  2B @0xbfd2ed3f: cd 80                              int 0x80                 nextPC: 0xbfd2ed41
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (60/59) = 1.01695
+>>    Mem_map start_addr: 0xbfd2ed10, length: 74B, valid bytes: 60, used bytes: 54, range: 59B, end_addr: 0xbfd2ed4a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed10 eb1a5e89 f789f2b9 29000000 bbff0000  ..^.....).......
+0xbfd2ed20 0031c050 ac31d8aa e2faffd2 e8e1ffff  .1.P.1..........
+0xbfd2ed30 ffeb1359 31c0b004 31db4331 d2b20fcd  ...Y1...1.C1....
+0xbfd2ed40 80------ ----e8e8 ffffff             ...........     
+
+>> Printing PC Data_Trace (bytes written in order of write)
+>>     13 by:0xbfd2ed27 wrote  1B @0xbfd2ed31: eb 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed32: 13 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed33: 59 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed34: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed35: c0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed36: b0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed37: 04 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed38: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed39: db 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3a: 43 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3b: 31 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3c: d2 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3d: b2 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3e: 0f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed3f: cd 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed40: 80 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed41: b0 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed42: 01 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed43: 4b 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed44: cd 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed45: 80 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed46: e8 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed47: e8 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed48: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed49: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4a: ff 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4b: 48 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4c: 65 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4d: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4e: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed4f: 6f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed50: 2c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed51: 20 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed52: 77 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed53: 6f 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed54: 72 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed55: 6c 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed56: 64 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed57: 21 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed58: 0a 
+>>     17 by:0xbfd2ed27 wrote  1B @0xbfd2ed59: 0d 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (41/41) = 1
+>>    Mem_map start_addr: 0xbfd2ed31, length: 74B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfd2ed59
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed30   14eca6 ce3f4ffb ce24bcce 2d4df032   ....?O..$..-M.2
+0xbfd2ed40 7f4ffeb4 327f1717 000000b7 9a939390  .O..2...........
+0xbfd2ed50 d3df8890 8d939bde f5f2               ..........      
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (41/41) = 0
+>>    Mem_map start_addr: 0xbfd2ed31, length: 74B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfd2ed59
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd2ed30   eb1359 31c0b004 31db4331 d2b20fcd   ..Y1...1.C1....
+0xbfd2ed40 80b0014b cd80e8e8 ffffff48 656c6c6f  ...K.......Hello
+0xbfd2ed50 2c20776f 726c6421 0a0d               , world!..      
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.915254
+>> The success/offset with the highest average density is 0, value of 1.01695
+>> There were 1 different eips: 0xbfd2ed41 
+25 [State 0] Killing state 0
+25 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x377e380
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x7440d9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44e7c5]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x71f931]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51e8bd]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x4531f1]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44bfe9]

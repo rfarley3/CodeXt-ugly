@@ -1,0 +1,63 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+2 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x2d09000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x2fb0000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x700000, hostAddr = 0x2aaab7aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x3ad9000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x3b1a000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaab81af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x4861000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x65f5000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x737c79]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44e2b5]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x4530c7]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44bad9]

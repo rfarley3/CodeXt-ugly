@@ -1,0 +1,1082 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x2d2c000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x2fd3000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1beb4000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1befd000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1da24000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1da98000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+32 [State 0] Message from guest (0xbfced06c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+33 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+33 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Firing timer event
+33 [State 1] Message from guest (0xbfced06c): << About to call dasospreproc_init with shell: 0xbfceda10 (offset of 0 not yet applied), shell_len: 57, eip: 0x00000000
+
+33 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfceda10-0xbfceda49 with eip: 0x00000000 buffer length: 57 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfceda10, length: 57B, end_addr: 0xbfceda49
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda10 6a2859e8 ffffffff c15e304c 0e07e2fa  j(Y......^0L....
+0xbfceda20 ea115a35 c5b60339 d2493ade bf01c290  ..Z5...9.I:.....
+0xbfceda30 a11358d9 95feffe7 e6e55379 7172700c  ..X.......Syqrp.
+0xbfceda40 01554c56 49420622 2418               .ULVIB."$.      
+
+ >> oTBS pc: 0xbfceda10
+ >> oTIE pc: 0xbfceda10:0x00 nextpc: bfceda12 len: 2
+  0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+ >> oTIE pc: 0xbfceda12:0x02 nextpc: bfceda13 len: 1
+  0:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+ >> oTBE Target by pc: 0xbfceda13 to pc: 0xbfceda17
+ >> oTIE pc: 0xbfceda13:0x03 nextpc: bfceda17 len: 5
+  0:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+ >> oExc pc: 0xbfceda10 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oDMA OOB Write by seq_num: 0 pc: 0xbfceda10:0x0 to addr: 0xbfced018 len: 4B value:  0x28  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x28  0x00  0x00  0x00 
+ >> oEI pc: 0xbfceda10
+  0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+ >> oEI pc: 0xbfceda12
+  1:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbfceda13:0x3 to addr: 0xbfced018 len: 4B value:  0x18  0xda  0xce  0xbf 
+ >> >> oDMA value in memory at that address:  0x18  0xda  0xce  0xbf 
+ >> oEB pc: 0xbfceda13
+ >> oEI pc: 0xbfceda13
+  2:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+ >> oExc pc: 0xbfceda17 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfceda17
+ >> oTIE pc: 0xbfceda17:0x07 nextpc: bfceda19 len: 2
+  0:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+ >> oTIE pc: 0xbfceda19:0x09 nextpc: bfceda1a len: 1
+  0:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+ >> oTIE pc: 0xbfceda1a:0x0a nextpc: bfceda1e len: 4
+  0:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oTBE Target by pc: 0xbfceda1e to pc: 0xbfceda20
+ >> oTBE Target by pc: 0xbfceda1e to pc: 0xbfceda1a
+ >> oTIE pc: 0xbfceda1e:0x0e nextpc: bfceda1a len: 2
+  0:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oEI pc: 0xbfceda17
+  3:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+ >> oEI pc: 0xbfceda19
+  4:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 5 pc: 0xbfceda1a:0xa to addr: 0xbfceda48 len: 1B value:  0x0d 
+ >> >> oDMA value in memory at that address:  0x0d 
+ >> oEI pc: 0xbfceda1a
+  5:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+  6:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oTBS pc: 0xbfceda1a
+ >> oTIE pc: 0xbfceda1a:0x0a nextpc: bfceda1e len: 4
+  0:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oTBE Target by pc: 0xbfceda1e to pc: 0xbfceda20
+ >> oTBE Target by pc: 0xbfceda1e to pc: 0xbfceda1a
+ >> oTIE pc: 0xbfceda1e:0x0e nextpc: bfceda1a len: 2
+  0:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 7 pc: 0xbfceda1a:0xa to addr: 0xbfceda47 len: 1B value:  0x0a 
+ >> >> oDMA value in memory at that address:  0x0a 
+ >> oEI pc: 0xbfceda1a
+  7:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+  8:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 9 pc: 0xbfceda1a:0xa to addr: 0xbfceda46 len: 1B value:  0x21 
+ >> >> oDMA value in memory at that address:  0x21 
+ >> oEI pc: 0xbfceda1a
+  9:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 10:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfceda1a:0xa to addr: 0xbfceda45 len: 1B value:  0x64 
+ >> >> oDMA value in memory at that address:  0x64 
+ >> oEI pc: 0xbfceda1a
+ 11:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 12:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 13 pc: 0xbfceda1a:0xa to addr: 0xbfceda44 len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfceda1a
+ 13:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 14:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 15 pc: 0xbfceda1a:0xa to addr: 0xbfceda43 len: 1B value:  0x72 
+ >> >> oDMA value in memory at that address:  0x72 
+ >> oEI pc: 0xbfceda1a
+ 15:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 16:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 17 pc: 0xbfceda1a:0xa to addr: 0xbfceda42 len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> oEI pc: 0xbfceda1a
+ 17:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 18:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 19 pc: 0xbfceda1a:0xa to addr: 0xbfceda41 len: 1B value:  0x77 
+ >> >> oDMA value in memory at that address:  0x77 
+ >> oEI pc: 0xbfceda1a
+ 19:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 20:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 21 pc: 0xbfceda1a:0xa to addr: 0xbfceda40 len: 1B value:  0x20 
+ >> >> oDMA value in memory at that address:  0x20 
+ >> oEI pc: 0xbfceda1a
+ 21:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 22:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 23 pc: 0xbfceda1a:0xa to addr: 0xbfceda3f len: 1B value:  0x2c 
+ >> >> oDMA value in memory at that address:  0x2c 
+ >> oEI pc: 0xbfceda1a
+ 23:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 24:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 25 pc: 0xbfceda1a:0xa to addr: 0xbfceda3e len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> oEI pc: 0xbfceda1a
+ 25:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 26:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 27 pc: 0xbfceda1a:0xa to addr: 0xbfceda3d len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfceda1a
+ 27:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 28:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 29 pc: 0xbfceda1a:0xa to addr: 0xbfceda3c len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfceda1a
+ 29:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 30:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 31 pc: 0xbfceda1a:0xa to addr: 0xbfceda3b len: 1B value:  0x65 
+ >> >> oDMA value in memory at that address:  0x65 
+ >> oEI pc: 0xbfceda1a
+ 31:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 32:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 33 pc: 0xbfceda1a:0xa to addr: 0xbfceda3a len: 1B value:  0x48 
+ >> >> oDMA value in memory at that address:  0x48 
+ >> oEI pc: 0xbfceda1a
+ 33:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 34:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 35 pc: 0xbfceda1a:0xa to addr: 0xbfceda39 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> oEI pc: 0xbfceda1a
+ 35:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 36:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 37 pc: 0xbfceda1a:0xa to addr: 0xbfceda38 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> oEI pc: 0xbfceda1a
+ 37:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 38:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 39 pc: 0xbfceda1a:0xa to addr: 0xbfceda37 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> oEI pc: 0xbfceda1a
+ 39:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 40:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 41 pc: 0xbfceda1a:0xa to addr: 0xbfceda36 len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> oEI pc: 0xbfceda1a
+ 41:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 42:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 43 pc: 0xbfceda1a:0xa to addr: 0xbfceda35 len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> oEI pc: 0xbfceda1a
+ 43:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 44:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 45 pc: 0xbfceda1a:0xa to addr: 0xbfceda34 len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> oEI pc: 0xbfceda1a
+ 45:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 46:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 47 pc: 0xbfceda1a:0xa to addr: 0xbfceda33 len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> oEI pc: 0xbfceda1a
+ 47:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 48:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 49 pc: 0xbfceda1a:0xa to addr: 0xbfceda32 len: 1B value:  0x4b 
+ >> >> oDMA value in memory at that address:  0x4b 
+ >> oEI pc: 0xbfceda1a
+ 49:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 50:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 51 pc: 0xbfceda1a:0xa to addr: 0xbfceda31 len: 1B value:  0x01 
+ >> >> oDMA value in memory at that address:  0x01 
+ >> oEI pc: 0xbfceda1a
+ 51:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 52:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 53 pc: 0xbfceda1a:0xa to addr: 0xbfceda30 len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> oEI pc: 0xbfceda1a
+ 53:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 54:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 55 pc: 0xbfceda1a:0xa to addr: 0xbfceda2f len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> oEI pc: 0xbfceda1a
+ 55:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 56:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 57 pc: 0xbfceda1a:0xa to addr: 0xbfceda2e len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> oEI pc: 0xbfceda1a
+ 57:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 58:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 59 pc: 0xbfceda1a:0xa to addr: 0xbfceda2d len: 1B value:  0x0f 
+ >> >> oDMA value in memory at that address:  0x0f 
+ >> oEI pc: 0xbfceda1a
+ 59:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 60:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 61 pc: 0xbfceda1a:0xa to addr: 0xbfceda2c len: 1B value:  0xb2 
+ >> >> oDMA value in memory at that address:  0xb2 
+ >> oEI pc: 0xbfceda1a
+ 61:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 62:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 63 pc: 0xbfceda1a:0xa to addr: 0xbfceda2b len: 1B value:  0xd2 
+ >> >> oDMA value in memory at that address:  0xd2 
+ >> oEI pc: 0xbfceda1a
+ 63:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 64:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 65 pc: 0xbfceda1a:0xa to addr: 0xbfceda2a len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> oEI pc: 0xbfceda1a
+ 65:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 66:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 67 pc: 0xbfceda1a:0xa to addr: 0xbfceda29 len: 1B value:  0x43 
+ >> >> oDMA value in memory at that address:  0x43 
+ >> oEI pc: 0xbfceda1a
+ 67:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 68:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 69 pc: 0xbfceda1a:0xa to addr: 0xbfceda28 len: 1B value:  0xdb 
+ >> >> oDMA value in memory at that address:  0xdb 
+ >> oEI pc: 0xbfceda1a
+ 69:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 70:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 71 pc: 0xbfceda1a:0xa to addr: 0xbfceda27 len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> oEI pc: 0xbfceda1a
+ 71:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 72:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 73 pc: 0xbfceda1a:0xa to addr: 0xbfceda26 len: 1B value:  0x04 
+ >> >> oDMA value in memory at that address:  0x04 
+ >> oEI pc: 0xbfceda1a
+ 73:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 74:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 75 pc: 0xbfceda1a:0xa to addr: 0xbfceda25 len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> oEI pc: 0xbfceda1a
+ 75:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 76:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 77 pc: 0xbfceda1a:0xa to addr: 0xbfceda24 len: 1B value:  0xc0 
+ >> >> oDMA value in memory at that address:  0xc0 
+ >> oEI pc: 0xbfceda1a
+ 77:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 78:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 79 pc: 0xbfceda1a:0xa to addr: 0xbfceda23 len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> oEI pc: 0xbfceda1a
+ 79:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 80:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oExc pc: 0xbfceda1a exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 81 pc: 0xbfceda1a:0xa to addr: 0xbfceda22 len: 1B value:  0x59 
+ >> >> oDMA value in memory at that address:  0x59 
+ >> oEI pc: 0xbfceda1a
+ 81:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 82:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 83 pc: 0xbfceda1a:0xa to addr: 0xbfceda21 len: 1B value:  0x13 
+ >> >> oDMA value in memory at that address:  0x13 
+ >> oEI pc: 0xbfceda1a
+ 83:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 84:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 85 pc: 0xbfceda1a:0xa to addr: 0xbfceda20 len: 1B value:  0xeb 
+ >> >> oDMA value in memory at that address:  0xeb 
+ >> oEI pc: 0xbfceda1a
+ 85:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+ >> oEB pc: 0xbfceda1e
+ >> oEI pc: 0xbfceda1e
+ 86:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+ >> oTBS pc: 0xbfceda20
+ >> oTBE Target by pc: 0xbfceda20 to pc: 0xbfceda35
+ >> oTIE pc: 0xbfceda20:0x10 nextpc: bfceda35 len: 2
+!!* pc != prev insn's next_pc; 0xbfceda20 != bfceda1a
+  0:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+ >> oEB pc: 0xbfceda20
+ >> oEI pc: 0xbfceda20
+ 87:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+ >> oExc pc: 0xbfceda35 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfceda35
+ >> oTBE Target by pc: 0xbfceda35 to pc: 0xbfceda22
+ >> oTIE pc: 0xbfceda35:0x25 nextpc: bfceda22 len: 5
+  0: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+ >> oExc pc: 0xbfceda35 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oDMA OOB Write by seq_num: 88 pc: 0xbfceda35:0x25 to addr: 0xbfced018 len: 4B value:  0x3a  0xda  0xce  0xbf 
+ >> >> oDMA value in memory at that address:  0x3a  0xda  0xce  0xbf 
+ >> oEB pc: 0xbfceda35
+ >> oEI pc: 0xbfceda35
+ 88: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+ >> oTBS pc: 0xbfceda22
+ >> oTIE pc: 0xbfceda22:0x12 nextpc: bfceda23 len: 1
+  0: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+ >> oTIE pc: 0xbfceda23:0x13 nextpc: bfceda25 len: 2
+  0: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+ >> oTIE pc: 0xbfceda25:0x15 nextpc: bfceda27 len: 2
+  0: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+ >> oTIE pc: 0xbfceda27:0x17 nextpc: bfceda29 len: 2
+  0: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+ >> oTIE pc: 0xbfceda29:0x19 nextpc: bfceda2a len: 1
+  0: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+ >> oTIE pc: 0xbfceda2a:0x1a nextpc: bfceda2c len: 2
+  0: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+ >> oTIE pc: 0xbfceda2c:0x1c nextpc: bfceda2e len: 2
+  0: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+ >> oTBE Target by pc: 0xbfceda2e to pc: 0xbfceda2e
+ >> oTBE INTERRUPT by pc: 0xbfceda2e int: 0x80
+ >> oTIE pc: 0xbfceda2e:0x1e nextpc: bfceda2e len: 2
+  0: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+ >> oExc pc: 0xbfceda22 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfceda22
+ 89: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+ >> oEI pc: 0xbfceda23
+ 90: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+ >> oEI pc: 0xbfceda25
+ 91: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+ >> oEI pc: 0xbfceda27
+ 92: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+ >> oEI pc: 0xbfceda29
+ 93: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+ >> oEI pc: 0xbfceda2a
+ 94: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+ >> oEI pc: 0xbfceda2c
+ 95: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+ >> oEB pc: 0xbfceda2e
+ >> oExc pc: 0xbfceda2e exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbfceda2e syscall_num: 4(0x04)
+ >> oEI pc: 0xbfceda2e
+ 96: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+>>      1:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+>>      2:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+>>      3:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+>>      4:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+>>      5:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      6:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      7:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      8:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      9:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     10:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     11:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     12:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     13:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     14:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     15:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     16:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     17:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     18:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     19:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     20:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     21:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     22:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     23:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     24:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     25:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     26:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     27:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     28:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     29:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     30:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     31:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     32:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     33:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     34:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     35:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     36:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     37:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     38:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     39:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     40:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     41:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     42:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     43:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     44:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     45:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     46:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     47:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     48:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     49:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     50:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     51:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     52:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     53:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     54:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     55:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     56:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     57:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     58:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     59:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     60:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     61:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     62:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     63:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     64:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     65:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     66:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     67:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     68:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     69:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     70:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     71:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     72:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     73:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     74:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     75:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     76:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     77:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     78:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     79:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     80:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     81:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     82:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     83:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     84:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     85:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     86:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     87:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+>>     88: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+>>     89: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+>>     90: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+>>     91: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+>>     92: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+>>     93: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+>>     94: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+>>     95: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+>>     96: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+>> onSuccess EIP Found. Syscall number 0x4 at addr 0xbfceda2e offset from base: 30 (should be EIP-2) within pid: 86716416 number of exec'ed instructions: 97. This is success #1
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfceda3a
+EDX=0xf
+ESI=0xbfceda18
+EDI=0x0
+EBP=0xbfced478
+ESP=0xbfced01c
+EIP=0xbfceda2e
+CR2=0xb764529f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.880952; avg: 0
+>> Syscall eip: 0xbfceda30 offset from base: 32
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+>>      0:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+>>      0:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+>>      0:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+>>      0:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+>>      0:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      0:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      0:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      0:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      0:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+>>      0: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+>>      0: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+>>      0: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+>>      0: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+>>      0: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+>>      0: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+>>      0: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+>>      0: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+>>      0: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+>>      1:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+>>      2:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+>>      3:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+>>      4:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+>>      5:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      6:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      7:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      8:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      9:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     10:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     11:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     12:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     13:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     14:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     15:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     16:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     17:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     18:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     19:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     20:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     21:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     22:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     23:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     24:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     25:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     26:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     27:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     28:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     29:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     30:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     31:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     32:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     33:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     34:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     35:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     36:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     37:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     38:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     39:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     40:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     41:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     42:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     43:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     44:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     45:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     46:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     47:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     48:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     49:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     50:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     51:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     52:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     53:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     54:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     55:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     56:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     57:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     58:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     59:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     60:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     61:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     62:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     63:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     64:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     65:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     66:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     67:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     68:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     69:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     70:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     71:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     72:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     73:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     74:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     75:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     76:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     77:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     78:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     79:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     80:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     81:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     82:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     83:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     84:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     85:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     86:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     87:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+>>     88: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+>>     89: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+>>     90: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+>>     91: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+>>     92: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+>>     93: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+>>     94: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+>>     95: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+>>     96: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (37/43) = 0
+>>    Mem_map start_addr: 0xbfceda10, length: 42B, valid bytes: 37, used bytes: 37, range: 43B, end_addr: 0xbfceda3a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda10 6a2859e8 ffffffff c15e304c 0e07e2fa  j(Y......^0L....
+0xbfceda20 eb135931 c0b00431 db4331d2 b20fcd80  ..Y1...1.C1.....
+0xbfceda30 -------- --e8e8ff ffff--             ...........     
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      0 by:0xbfceda10 wrote  4B @0xbfced018: OOB 28 00 00 00 
+>>      2 by:0xbfceda13 wrote  4B @0xbfced018: OOB 18 da ce bf 
+>>      5 by:0xbfceda1a wrote  1B @0xbfceda48: 0d 
+>>      7 by:0xbfceda1a wrote  1B @0xbfceda47: 0a 
+>>      9 by:0xbfceda1a wrote  1B @0xbfceda46: 21 
+>>     11 by:0xbfceda1a wrote  1B @0xbfceda45: 64 
+>>     13 by:0xbfceda1a wrote  1B @0xbfceda44: 6c 
+>>     15 by:0xbfceda1a wrote  1B @0xbfceda43: 72 
+>>     17 by:0xbfceda1a wrote  1B @0xbfceda42: 6f 
+>>     19 by:0xbfceda1a wrote  1B @0xbfceda41: 77 
+>>     21 by:0xbfceda1a wrote  1B @0xbfceda40: 20 
+>>     23 by:0xbfceda1a wrote  1B @0xbfceda3f: 2c 
+>>     25 by:0xbfceda1a wrote  1B @0xbfceda3e: 6f 
+>>     27 by:0xbfceda1a wrote  1B @0xbfceda3d: 6c 
+>>     29 by:0xbfceda1a wrote  1B @0xbfceda3c: 6c 
+>>     31 by:0xbfceda1a wrote  1B @0xbfceda3b: 65 
+>>     33 by:0xbfceda1a wrote  1B @0xbfceda3a: 48 
+>>     35 by:0xbfceda1a wrote  1B @0xbfceda39: ff 
+>>     37 by:0xbfceda1a wrote  1B @0xbfceda38: ff 
+>>     39 by:0xbfceda1a wrote  1B @0xbfceda37: ff 
+>>     41 by:0xbfceda1a wrote  1B @0xbfceda36: e8 
+>>     43 by:0xbfceda1a wrote  1B @0xbfceda35: e8 
+>>     45 by:0xbfceda1a wrote  1B @0xbfceda34: 80 
+>>     47 by:0xbfceda1a wrote  1B @0xbfceda33: cd 
+>>     49 by:0xbfceda1a wrote  1B @0xbfceda32: 4b 
+>>     51 by:0xbfceda1a wrote  1B @0xbfceda31: 01 
+>>     53 by:0xbfceda1a wrote  1B @0xbfceda30: b0 
+>>     55 by:0xbfceda1a wrote  1B @0xbfceda2f: 80 
+>>     57 by:0xbfceda1a wrote  1B @0xbfceda2e: cd 
+>>     59 by:0xbfceda1a wrote  1B @0xbfceda2d: 0f 
+>>     61 by:0xbfceda1a wrote  1B @0xbfceda2c: b2 
+>>     63 by:0xbfceda1a wrote  1B @0xbfceda2b: d2 
+>>     65 by:0xbfceda1a wrote  1B @0xbfceda2a: 31 
+>>     67 by:0xbfceda1a wrote  1B @0xbfceda29: 43 
+>>     69 by:0xbfceda1a wrote  1B @0xbfceda28: db 
+>>     71 by:0xbfceda1a wrote  1B @0xbfceda27: 31 
+>>     73 by:0xbfceda1a wrote  1B @0xbfceda26: 04 
+>>     75 by:0xbfceda1a wrote  1B @0xbfceda25: b0 
+>>     77 by:0xbfceda1a wrote  1B @0xbfceda24: c0 
+>>     79 by:0xbfceda1a wrote  1B @0xbfceda23: 31 
+>>     81 by:0xbfceda1a wrote  1B @0xbfceda22: 59 
+>>     83 by:0xbfceda1a wrote  1B @0xbfceda21: 13 
+>>     85 by:0xbfceda1a wrote  1B @0xbfceda20: eb 
+>>     88 by:0xbfceda35 wrote  4B @0xbfced018: OOB 3a da ce bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (41/41) = 1
+>>    Mem_map start_addr: 0xbfceda20, length: 40B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfceda48
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda20 ea115a35 c5b60339 d2493ade bf01c290  ..Z5...9.I:.....
+0xbfceda30 a11358d9 95feffe7 e6e55379 7172700c  ..X.......Syqrp.
+0xbfceda40 01554c56 49420622 24                 .ULVIB."$       
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (41/41) = 0
+>>    Mem_map start_addr: 0xbfceda20, length: 40B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfceda48
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda20 eb135931 c0b00431 db4331d2 b20fcd80  ..Y1...1.C1.....
+0xbfceda30 b0014bcd 80e8e8ff ffff4865 6c6c6f2c  ..K.......Hello,
+0xbfceda40 20776f72 6c64210a 0d                  world!..       
+
+33 [State 1] Terminating state 1 with message 'EIP reached, success'
+33 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1f2d2530
+33 [State 0] Message from guest (0xbfced06c): << Looping fork, currently at 0
+33 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.880952; avg: 0
+>> Syscall eip: 0xbfceda30 offset from base: 32
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+>>      0:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+>>      0:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+>>      0:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+>>      0:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+>>      0:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      0:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      0:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      0:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      0:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+>>      0: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+>>      0: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+>>      0: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+>>      0: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+>>      0: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+>>      0: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+>>      0: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+>>      0: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+>>      0: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfceda10: 6a 28                              push 0x28                nextPC: 0xbfceda12
+>>      1:  1: 1  1B @0xbfceda12: 59                                 pop ecx                  nextPC: 0xbfceda13
+>>      2:  2: 1  5B @0xbfceda13: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfceda17
+>>      3:  3: 2  2B @0xbfceda17: ff c1                              inc ecx                  nextPC: 0xbfceda19
+>>      4:  4: 2  1B @0xbfceda19: 5e                                 pop esi                  nextPC: 0xbfceda1a
+>>      5:  5: 2  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      6:  6: 2  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      7:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>      8:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>      9:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     10:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     11:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     12:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     13:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     14:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     15:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     16:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     17:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     18:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     19:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     20:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     21:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     22:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     23:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     24:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     25:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     26:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     27:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     28:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     29:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     30:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     31:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     32:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     33:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     34:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     35:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     36:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     37:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     38:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     39:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     40:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     41:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     42:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     43:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     44:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     45:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     46:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     47:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     48:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     49:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     50:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     51:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     52:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     53:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     54:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     55:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     56:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     57:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     58:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     59:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     60:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     61:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     62:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     63:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     64:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     65:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     66:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     67:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     68:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     69:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     70:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     71:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     72:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     73:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     74:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     75:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     76:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     77:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     78:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     79:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     80:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     81:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     82:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     83:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     84:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     85:  7: 3  4B @0xbfceda1a: 30 4c 0e 07                        xor [esi+ecx+0x7], cl    nextPC: 0xbfceda1e
+>>     86:  8: 3  2B @0xbfceda1e: e2 fa                              loop 0xfffffffffffffffc  nextPC: 0xbfceda1a
+>>     87:  9: 4  2B @0xbfceda20: eb 13                              jmp 0x15                 nextPC: 0xbfceda35
+>>     88: 10: 5  5B @0xbfceda35: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfceda22
+>>     89: 11: 6  1B @0xbfceda22: 59                                 pop ecx                  nextPC: 0xbfceda23
+>>     90: 12: 6  2B @0xbfceda23: 31 c0                              xor eax, eax             nextPC: 0xbfceda25
+>>     91: 13: 6  2B @0xbfceda25: b0 04                              mov al, 0x4              nextPC: 0xbfceda27
+>>     92: 14: 6  2B @0xbfceda27: 31 db                              xor ebx, ebx             nextPC: 0xbfceda29
+>>     93: 15: 6  1B @0xbfceda29: 43                                 inc ebx                  nextPC: 0xbfceda2a
+>>     94: 16: 6  2B @0xbfceda2a: 31 d2                              xor edx, edx             nextPC: 0xbfceda2c
+>>     95: 17: 6  2B @0xbfceda2c: b2 0f                              mov dl, 0xf              nextPC: 0xbfceda2e
+>>     96: 18: 6  2B @0xbfceda2e: cd 80                              int 0x80                 nextPC: 0xbfceda2e
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (37/43) = 0
+>>    Mem_map start_addr: 0xbfceda10, length: 42B, valid bytes: 37, used bytes: 37, range: 43B, end_addr: 0xbfceda3a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda10 6a2859e8 ffffffff c15e304c 0e07e2fa  j(Y......^0L....
+0xbfceda20 eb135931 c0b00431 db4331d2 b20fcd80  ..Y1...1.C1.....
+0xbfceda30 -------- --e8e8ff ffff--             ...........     
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      0 by:0xbfceda10 wrote  4B @0xbfced018: OOB 28 00 00 00 
+>>      2 by:0xbfceda13 wrote  4B @0xbfced018: OOB 18 da ce bf 
+>>      5 by:0xbfceda1a wrote  1B @0xbfceda48: 0d 
+>>      7 by:0xbfceda1a wrote  1B @0xbfceda47: 0a 
+>>      9 by:0xbfceda1a wrote  1B @0xbfceda46: 21 
+>>     11 by:0xbfceda1a wrote  1B @0xbfceda45: 64 
+>>     13 by:0xbfceda1a wrote  1B @0xbfceda44: 6c 
+>>     15 by:0xbfceda1a wrote  1B @0xbfceda43: 72 
+>>     17 by:0xbfceda1a wrote  1B @0xbfceda42: 6f 
+>>     19 by:0xbfceda1a wrote  1B @0xbfceda41: 77 
+>>     21 by:0xbfceda1a wrote  1B @0xbfceda40: 20 
+>>     23 by:0xbfceda1a wrote  1B @0xbfceda3f: 2c 
+>>     25 by:0xbfceda1a wrote  1B @0xbfceda3e: 6f 
+>>     27 by:0xbfceda1a wrote  1B @0xbfceda3d: 6c 
+>>     29 by:0xbfceda1a wrote  1B @0xbfceda3c: 6c 
+>>     31 by:0xbfceda1a wrote  1B @0xbfceda3b: 65 
+>>     33 by:0xbfceda1a wrote  1B @0xbfceda3a: 48 
+>>     35 by:0xbfceda1a wrote  1B @0xbfceda39: ff 
+>>     37 by:0xbfceda1a wrote  1B @0xbfceda38: ff 
+>>     39 by:0xbfceda1a wrote  1B @0xbfceda37: ff 
+>>     41 by:0xbfceda1a wrote  1B @0xbfceda36: e8 
+>>     43 by:0xbfceda1a wrote  1B @0xbfceda35: e8 
+>>     45 by:0xbfceda1a wrote  1B @0xbfceda34: 80 
+>>     47 by:0xbfceda1a wrote  1B @0xbfceda33: cd 
+>>     49 by:0xbfceda1a wrote  1B @0xbfceda32: 4b 
+>>     51 by:0xbfceda1a wrote  1B @0xbfceda31: 01 
+>>     53 by:0xbfceda1a wrote  1B @0xbfceda30: b0 
+>>     55 by:0xbfceda1a wrote  1B @0xbfceda2f: 80 
+>>     57 by:0xbfceda1a wrote  1B @0xbfceda2e: cd 
+>>     59 by:0xbfceda1a wrote  1B @0xbfceda2d: 0f 
+>>     61 by:0xbfceda1a wrote  1B @0xbfceda2c: b2 
+>>     63 by:0xbfceda1a wrote  1B @0xbfceda2b: d2 
+>>     65 by:0xbfceda1a wrote  1B @0xbfceda2a: 31 
+>>     67 by:0xbfceda1a wrote  1B @0xbfceda29: 43 
+>>     69 by:0xbfceda1a wrote  1B @0xbfceda28: db 
+>>     71 by:0xbfceda1a wrote  1B @0xbfceda27: 31 
+>>     73 by:0xbfceda1a wrote  1B @0xbfceda26: 04 
+>>     75 by:0xbfceda1a wrote  1B @0xbfceda25: b0 
+>>     77 by:0xbfceda1a wrote  1B @0xbfceda24: c0 
+>>     79 by:0xbfceda1a wrote  1B @0xbfceda23: 31 
+>>     81 by:0xbfceda1a wrote  1B @0xbfceda22: 59 
+>>     83 by:0xbfceda1a wrote  1B @0xbfceda21: 13 
+>>     85 by:0xbfceda1a wrote  1B @0xbfceda20: eb 
+>>     88 by:0xbfceda35 wrote  4B @0xbfced018: OOB 3a da ce bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (41/41) = 1
+>>    Mem_map start_addr: 0xbfceda20, length: 40B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfceda48
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda20 ea115a35 c5b60339 d2493ade bf01c290  ..Z5...9.I:.....
+0xbfceda30 a11358d9 95feffe7 e6e55379 7172700c  ..X.......Syqrp.
+0xbfceda40 01554c56 49420622 24                 .ULVIB."$       
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (41/41) = 0
+>>    Mem_map start_addr: 0xbfceda20, length: 40B, valid bytes: 41, used bytes: 41, range: 41B, end_addr: 0xbfceda48
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfceda20 eb135931 c0b00431 db4331d2 b20fcd80  ..Y1...1.C1.....
+0xbfceda30 b0014bcd 80e8e8ff ffff4865 6c6c6f2c  ..K.......Hello,
+0xbfceda40 20776f72 6c64210a 0d                  world!..       
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.880952
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbfceda30 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3218004496 and ends at 3218004526
+>>    Done printing chunk 0
+33 [State 0] Killing state 0
+33 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x290d4c0
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3f9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

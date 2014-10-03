@@ -1,0 +1,8 @@
+#! /bin/sh
+
+PATH=/home/s2e/s2e/dasos/s2e/build/qemu-release
+DIR=/home/s2e/s2e/dasos/DasosPreproc
+
+
+$PATH/i386-s2e-softmmu/qemu -m 8 -s2e-config-file $DIR/conf-SyscallTracker.lua
+

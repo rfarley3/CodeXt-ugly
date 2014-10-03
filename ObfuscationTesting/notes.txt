@@ -1,0 +1,8 @@
+[user@linux]$ nasm -f elf enc2.asm
+[user@linux]$ ld -o enc2 enc2.o
+[user@linux]$ objdump -d enc2
+enc2:     file format elf32-i386
+
+[user@linux]$ ./obf1.pl
+
+http://funoverip.net/2011/09/simple-shellcode-obfuscation/

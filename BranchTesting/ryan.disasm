@@ -1,0 +1,84 @@
+!! Warning: disasm range is out of shellcode range, setting to maximum: 200
+<< Requesting disasm out
+<< From raw input
+55               push ebp                
+89e5             mov ebp, esp            
+57               push edi                
+56               push esi                
+53               push ebx                
+e800000000       call 0xb                
+5b               pop ebx                 
+83c3f5           add ebx, 0xf5           
+31d2             xor edx, edx            
+bf05000000       mov edi, 0x5            
+8db3b1000000     lea esi, [ebx+0xb1]     
+89f8             mov eax, edi            
+89d1             mov ecx, edx            
+53               push ebx                
+89f3             mov ebx, esi            
+cd80             int 0x80                
+5b               pop ebx                 
+89c7             mov edi, eax            
+40               inc eax                 
+7459             jz 0x84                 
+8d4df3           lea ecx, [ebp-0xd]      
+ba01000000       mov edx, 0x1            
+b803000000       mov eax, 0x3            
+53               push ebx                
+89fb             mov ebx, edi            
+cd80             int 0x80                
+5b               pop ebx                 
+48               dec eax                 
+740b             jz 0x4c                 
+89d0             mov eax, edx            
+53               push ebx                
+bbfeffffff       mov ebx, 0xfffffffe     
+cd80             int 0x80                
+5b               pop ebx                 
+8a45f3           mov al, [ebp-0xd]       
+3c09             cmp al, 0x9             
+7e29             jle 0x7c                
+b202             mov dl, 0x2             
+0fbed2           movsx edx, dl           
+42               inc edx                 
+b806000000       mov eax, 0x6            
+53               push ebx                
+89fb             mov ebx, edi            
+cd80             int 0x80                
+5b               pop ebx                 
+b801000000       mov eax, 0x1            
+53               push ebx                
+89d3             mov ebx, edx            
+cd80             int 0x80                
+5b               pop ebx                 
+31c0             xor eax, eax            
+83c410           add esp, 0x10           
+5b               pop ebx                 
+5e               pop esi                 
+5f               pop edi                 
+c9               leave                   
+c3               ret                     
+8d7600           lea esi, [esi+0x0]      
+84c0             test al, al             
+7814             js 0x94                 
+b201             mov dl, 0x1             
+ebd1             jmp 0x55                
+b801000000       mov eax, 0x1            
+53               push ebx                
+bbffffffff       mov ebx, 0xffffffff     
+cd80             int 0x80                
+5b               pop ebx                 
+eb97             jmp 0x2b                
+80fa00           cmp dl, 0x0            <--- new code 
+7504             jnz 0x9d                
+31d2             xor edx, edx            
+ebbc             jmp 0x59                
+80fa01           cmp dl, 0x1             L12
+750d             jnz 0xaf                
+b001             mov al, 0x1             
+3c00             cmp al, 0x0             
+7507             jnz 0xaf                
+b205             mov dl, 0x5             
+0fbed2           movsx edx, dl           
+ebaa             jmp 0x59                
+eba4             jmp 0x55                .L13

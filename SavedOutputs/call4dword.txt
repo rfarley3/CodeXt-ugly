@@ -1,0 +1,645 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x3d83000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x402a000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1cf0b000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1cf54000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1ea7b000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1eaef000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+24 [State 0] Message from guest (0xbfeb7d0c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+24 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+24 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+24 [State 1] Message from guest (0xbfeb7d0c): << About to call dasospreproc_init with shell: 0xbfeb86b0 (offset of 0 not yet applied), shell_len: 68, eip: 0x00000000
+
+24 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfeb86b0-0xbfeb86f4 with eip: 0x00000000 buffer length: 68 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfeb86b0, length: 68B, end_addr: 0xbfeb86f4
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86b0 33c983e9 f5e8ffff ffffc05e 81760ee5  3..........^.v..
+0xbfeb86c0 c25e9b83 eefce2f4 0ed107aa 25725aaa  .^..........%rZ.
+0xbfeb86d0 3e816f49 57cd931b 55c31556 652ab664  >.oIW...U..Ve*.d
+0xbfeb86e0 1a3d16fe 89ae31b7 c5b531e9 89a67f91  .=....1...1.....
+0xbfeb86f0 e8c25e9b ff                          ..^..           
+
+Firing timer event
+ >> oTBS pc: 0xbfeb86b0
+ >> oTIE pc: 0xbfeb86b0:0x00 nextpc: bfeb86b2 len: 2
+  0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+ >> oTIE pc: 0xbfeb86b2:0x02 nextpc: bfeb86b5 len: 3
+  0:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+ >> oTBE Target by pc: 0xbfeb86b5 to pc: 0xbfeb86b9
+ >> oTIE pc: 0xbfeb86b5:0x05 nextpc: bfeb86b9 len: 5
+  0:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+ >> oExc pc: 0xbfeb86b0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfeb86b0
+  0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+ >> oEI pc: 0xbfeb86b2
+  1:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbfeb86b5:0x5 to addr: 0xbfeb7cb8 len: 4B value:  0xba  0x86  0xeb  0xbf 
+ >> >> oDMA value in memory at that address:  0xba  0x86  0xeb  0xbf 
+ >> oEB pc: 0xbfeb86b5
+ >> oEI pc: 0xbfeb86b5
+  2:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+ >> oTBS pc: 0xbfeb86b9
+ >> oTIE pc: 0xbfeb86b9:0x09 nextpc: bfeb86bb len: 2
+  0:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+ >> oTIE pc: 0xbfeb86bb:0x0b nextpc: bfeb86bc len: 1
+  0:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+ >> oTIE pc: 0xbfeb86bc:0x0c nextpc: bfeb86c3 len: 7
+  0:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oTIE pc: 0xbfeb86c3:0x13 nextpc: bfeb86c6 len: 3
+  0:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oTBE Target by pc: 0xbfeb86c6 to pc: 0xbfeb86c8
+ >> oTBE Target by pc: 0xbfeb86c6 to pc: 0xbfeb86bc
+ >> oTIE pc: 0xbfeb86c6:0x16 nextpc: bfeb86bc len: 2
+  0:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oEI pc: 0xbfeb86b9
+  3:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+ >> oEI pc: 0xbfeb86bb
+  4:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 5 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86c8 len: 4B value:  0xeb  0x13  0x59  0x31 
+ >> >> oDMA value in memory at that address:  0xeb  0x13  0x59  0x31 
+ >> oEI pc: 0xbfeb86bc
+  5:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+  6:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+  7:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oTBS pc: 0xbfeb86bc
+ >> oTIE pc: 0xbfeb86bc:0x0c nextpc: bfeb86c3 len: 7
+  0:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oTIE pc: 0xbfeb86c3:0x13 nextpc: bfeb86c6 len: 3
+  0:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oTBE Target by pc: 0xbfeb86c6 to pc: 0xbfeb86c8
+ >> oTBE Target by pc: 0xbfeb86c6 to pc: 0xbfeb86bc
+ >> oTIE pc: 0xbfeb86c6:0x16 nextpc: bfeb86bc len: 2
+  0: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oExc pc: 0xbfeb86bc exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 8 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86cc len: 4B value:  0xc0  0xb0  0x04  0x31 
+ >> >> oDMA value in memory at that address:  0xc0  0xb0  0x04  0x31 
+ >> oEI pc: 0xbfeb86bc
+  8:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+  9:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 10: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86d0 len: 4B value:  0xdb  0x43  0x31  0xd2 
+ >> >> oDMA value in memory at that address:  0xdb  0x43  0x31  0xd2 
+ >> oEI pc: 0xbfeb86bc
+ 11:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 12:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 13: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 14 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86d4 len: 4B value:  0xb2  0x0f  0xcd  0x80 
+ >> >> oDMA value in memory at that address:  0xb2  0x0f  0xcd  0x80 
+ >> oEI pc: 0xbfeb86bc
+ 14:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 15:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 16: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 17 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86d8 len: 4B value:  0xb0  0x01  0x4b  0xcd 
+ >> >> oDMA value in memory at that address:  0xb0  0x01  0x4b  0xcd 
+ >> oEI pc: 0xbfeb86bc
+ 17:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 18:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 19: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oExc pc: 0xbfeb86bc exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 20 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86dc len: 4B value:  0x80  0xe8  0xe8  0xff 
+ >> >> oDMA value in memory at that address:  0x80  0xe8  0xe8  0xff 
+ >> oEI pc: 0xbfeb86bc
+ 20:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 21:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 22: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 23 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86e0 len: 4B value:  0xff  0xff  0x48  0x65 
+ >> >> oDMA value in memory at that address:  0xff  0xff  0x48  0x65 
+ >> oEI pc: 0xbfeb86bc
+ 23:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 24:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 25: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 26 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86e4 len: 4B value:  0x6c  0x6c  0x6f  0x2c 
+ >> >> oDMA value in memory at that address:  0x6c  0x6c  0x6f  0x2c 
+ >> oEI pc: 0xbfeb86bc
+ 26:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 27:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 28: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 29 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86e8 len: 4B value:  0x20  0x77  0x6f  0x72 
+ >> >> oDMA value in memory at that address:  0x20  0x77  0x6f  0x72 
+ >> oEI pc: 0xbfeb86bc
+ 29:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 30:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 31: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oExc pc: 0xbfeb86bc exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 32 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86ec len: 4B value:  0x6c  0x64  0x21  0x0a 
+ >> >> oDMA value in memory at that address:  0x6c  0x64  0x21  0x0a 
+ >> oEI pc: 0xbfeb86bc
+ 32:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 33:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 34: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 35 pc: 0xbfeb86bc:0xc to addr: 0xbfeb86f0 len: 4B value:  0x0d  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x0d  0x00  0x00  0x00 
+ >> oEI pc: 0xbfeb86bc
+ 35:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+ >> oEI pc: 0xbfeb86c3
+ 36:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+ >> oEB pc: 0xbfeb86c6
+ >> oEI pc: 0xbfeb86c6
+ 37: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+ >> oTBS pc: 0xbfeb86c8
+ >> oTBE Target by pc: 0xbfeb86c8 to pc: 0xbfeb86dd
+ >> oTIE pc: 0xbfeb86c8:0x18 nextpc: bfeb86dd len: 2
+!!* pc != prev insn's next_pc; 0xbfeb86c8 != bfeb86bc
+  0: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+ >> oEB pc: 0xbfeb86c8
+ >> oEI pc: 0xbfeb86c8
+ 38: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+ >> oTBS pc: 0xbfeb86dd
+ >> oTBE Target by pc: 0xbfeb86dd to pc: 0xbfeb86ca
+ >> oTIE pc: 0xbfeb86dd:0x2d nextpc: bfeb86ca len: 5
+  0: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+ >> oDMA OOB Write by seq_num: 39 pc: 0xbfeb86dd:0x2d to addr: 0xbfeb7cb8 len: 4B value:  0xe2  0x86  0xeb  0xbf 
+ >> >> oDMA value in memory at that address:  0xe2  0x86  0xeb  0xbf 
+ >> oEB pc: 0xbfeb86dd
+ >> oEI pc: 0xbfeb86dd
+ 39: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+ >> oTBS pc: 0xbfeb86ca
+ >> oTIE pc: 0xbfeb86ca:0x1a nextpc: bfeb86cb len: 1
+  0: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+ >> oTIE pc: 0xbfeb86cb:0x1b nextpc: bfeb86cd len: 2
+  0: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+ >> oTIE pc: 0xbfeb86cd:0x1d nextpc: bfeb86cf len: 2
+  0: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+ >> oTIE pc: 0xbfeb86cf:0x1f nextpc: bfeb86d1 len: 2
+  0: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+ >> oTIE pc: 0xbfeb86d1:0x21 nextpc: bfeb86d2 len: 1
+  0: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+ >> oTIE pc: 0xbfeb86d2:0x22 nextpc: bfeb86d4 len: 2
+  0: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+ >> oTIE pc: 0xbfeb86d4:0x24 nextpc: bfeb86d6 len: 2
+  0: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+ >> oTBE Target by pc: 0xbfeb86d6 to pc: 0xbfeb86d6
+ >> oTBE INTERRUPT by pc: 0xbfeb86d6 int: 0x80
+ >> oTIE pc: 0xbfeb86d6:0x26 nextpc: bfeb86d6 len: 2
+  0: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+ >> oExc pc: 0xbfeb86ca exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfeb86ca
+ 40: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+ >> oEI pc: 0xbfeb86cb
+ 41: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+ >> oEI pc: 0xbfeb86cd
+ 42: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+ >> oEI pc: 0xbfeb86cf
+ 43: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+ >> oEI pc: 0xbfeb86d1
+ 44: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+ >> oEI pc: 0xbfeb86d2
+ 45: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+ >> oEI pc: 0xbfeb86d4
+ 46: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+ >> oEB pc: 0xbfeb86d6
+ >> oExc pc: 0xbfeb86d6 exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbfeb86d6 syscall_num: 4(0x04)
+ >> oEI pc: 0xbfeb86d6
+ 47: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+>>      1:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+>>      2:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+>>      3:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+>>      4:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+>>      5:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      6:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      7:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      8:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      9:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     10: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     11:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     12:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     13: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     14:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     15:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     16: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     17:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     18:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     19: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     20:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     21:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     22: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     23:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     24:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     25: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     26:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     27:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     28: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     29:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     30:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     31: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     32:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     33:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     34: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     35:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     36:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     37: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     38: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+>>     39: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+>>     40: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+>>     41: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+>>     42: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+>>     43: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+>>     44: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+>>     45: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+>>     46: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+>>     47: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+>> onSuccess EIP Found. Syscall number 0x4 at addr 0xbfeb86d6 offset from base: 38 (should be EIP-2) within pid: 86716416 number of exec'ed instructions: 48. This is success #1
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfeb86e2
+EDX=0xf
+ESI=0xbfeb86e6
+EDI=0x0
+EBP=0xbfeb8118
+ESP=0xbfeb7cbc
+EIP=0xbfeb86d6
+CR2=0xb766b29f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.9; avg: 0
+>> Syscall eip: 0xbfeb86d8 offset from base: 40
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+>>      0:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+>>      0:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+>>      0:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+>>      0:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+>>      0:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      0:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      0:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      0:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      0:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      0: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      0: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+>>      0: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+>>      0: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+>>      0: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+>>      0: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+>>      0: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+>>      0: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+>>      0: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+>>      0: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+>>      0: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+>>      1:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+>>      2:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+>>      3:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+>>      4:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+>>      5:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      6:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      7:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      8:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      9:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     10: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     11:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     12:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     13: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     14:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     15:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     16: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     17:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     18:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     19: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     20:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     21:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     22: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     23:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     24:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     25: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     26:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     27:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     28: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     29:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     30:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     31: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     32:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     33:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     34: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     35:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     36:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     37: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     38: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+>>     39: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+>>     40: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+>>     41: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+>>     42: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+>>     43: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+>>     44: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+>>     45: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+>>     46: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+>>     47: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (45/51) = 0
+>>    Mem_map start_addr: 0xbfeb86b0, length: 50B, valid bytes: 45, used bytes: 45, range: 51B, end_addr: 0xbfeb86e2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86b0 33c983e9 f5e8ffff ffffc05e 81760ee5  3..........^.v..
+0xbfeb86c0 c25e9b83 eefce2f4 eb135931 c0b00431  .^........Y1...1
+0xbfeb86d0 db4331d2 b20fcd80 -------- --e8e8ff  .C1.............
+0xbfeb86e0 ffff--                               ...             
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      2 by:0xbfeb86b5 wrote  4B @0xbfeb7cb8: OOB ba 86 eb bf 
+>>      5 by:0xbfeb86bc wrote  4B @0xbfeb86c8: eb 13 59 31 
+>>      8 by:0xbfeb86bc wrote  4B @0xbfeb86cc: c0 b0 04 31 
+>>     11 by:0xbfeb86bc wrote  4B @0xbfeb86d0: db 43 31 d2 
+>>     14 by:0xbfeb86bc wrote  4B @0xbfeb86d4: b2 0f cd 80 
+>>     17 by:0xbfeb86bc wrote  4B @0xbfeb86d8: b0 01 4b cd 
+>>     20 by:0xbfeb86bc wrote  4B @0xbfeb86dc: 80 e8 e8 ff 
+>>     23 by:0xbfeb86bc wrote  4B @0xbfeb86e0: ff ff 48 65 
+>>     26 by:0xbfeb86bc wrote  4B @0xbfeb86e4: 6c 6c 6f 2c 
+>>     29 by:0xbfeb86bc wrote  4B @0xbfeb86e8: 20 77 6f 72 
+>>     32 by:0xbfeb86bc wrote  4B @0xbfeb86ec: 6c 64 21 0a 
+>>     35 by:0xbfeb86bc wrote  4B @0xbfeb86f0: 0d 00 00 00 
+>>     39 by:0xbfeb86dd wrote  4B @0xbfeb7cb8: OOB e2 86 eb bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbfeb86c8, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfeb86f3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86c0                   0ed107aa 25725aaa          ....%rZ.
+0xbfeb86d0 3e816f49 57cd931b 55c31556 652ab664  >.oIW...U..Ve*.d
+0xbfeb86e0 1a3d16fe 89ae31b7 c5b531e9 89a67f91  .=....1...1.....
+0xbfeb86f0 e8c25e9b                             ..^.            
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (44/44) = 0
+>>    Mem_map start_addr: 0xbfeb86c8, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfeb86f3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86c0                   eb135931 c0b00431          ..Y1...1
+0xbfeb86d0 db4331d2 b20fcd80 b0014bcd 80e8e8ff  .C1.......K.....
+0xbfeb86e0 ffff4865 6c6c6f2c 20776f72 6c64210a  ..Hello, world!.
+0xbfeb86f0 0d000000                             ....            
+
+24 [State 1] Terminating state 1 with message 'EIP reached, success'
+24 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x2031a230
+25 [State 0] Message from guest (0xbfeb7d0c): << Looping fork, currently at 0
+25 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.9; avg: 0
+>> Syscall eip: 0xbfeb86d8 offset from base: 40
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+>>      0:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+>>      0:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+>>      0:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+>>      0:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+>>      0:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      0:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      0:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      0:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      0:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      0: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      0: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+>>      0: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+>>      0: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+>>      0: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+>>      0: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+>>      0: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+>>      0: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+>>      0: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+>>      0: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+>>      0: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfeb86b0: 33 c9                              xor ecx, ecx             nextPC: 0xbfeb86b2
+>>      1:  1: 1  3B @0xbfeb86b2: 83 e9 f5                           sub ecx, 0xf5            nextPC: 0xbfeb86b5
+>>      2:  2: 1  5B @0xbfeb86b5: e8 ff ff ff ff                     call 0x4                 nextPC: 0xbfeb86b9
+>>      3:  3: 2  2B @0xbfeb86b9: ff c0                              inc eax                  nextPC: 0xbfeb86bb
+>>      4:  4: 2  1B @0xbfeb86bb: 5e                                 pop esi                  nextPC: 0xbfeb86bc
+>>      5:  5: 2  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      6:  6: 2  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>      7:  7: 2  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>      8:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>      9:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     10: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     11:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     12:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     13: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     14:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     15:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     16: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     17:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     18:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     19: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     20:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     21:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     22: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     23:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     24:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     25: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     26:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     27:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     28: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     29:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     30:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     31: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     32:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     33:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     34: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     35:  8: 3  7B @0xbfeb86bc: 81 76 0e e5 c2 5e 9b               xor dword [esi+0xe], 0x9b5ec2e5 nextPC: 0xbfeb86c3
+>>     36:  9: 3  3B @0xbfeb86c3: 83 ee fc                           sub esi, 0xfc            nextPC: 0xbfeb86c6
+>>     37: 10: 3  2B @0xbfeb86c6: e2 f4                              loop 0xfffffffffffffff6  nextPC: 0xbfeb86bc
+>>     38: 11: 4  2B @0xbfeb86c8: eb 13                              jmp 0x15                 nextPC: 0xbfeb86dd
+>>     39: 12: 5  5B @0xbfeb86dd: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfeb86ca
+>>     40: 13: 6  1B @0xbfeb86ca: 59                                 pop ecx                  nextPC: 0xbfeb86cb
+>>     41: 14: 6  2B @0xbfeb86cb: 31 c0                              xor eax, eax             nextPC: 0xbfeb86cd
+>>     42: 15: 6  2B @0xbfeb86cd: b0 04                              mov al, 0x4              nextPC: 0xbfeb86cf
+>>     43: 16: 6  2B @0xbfeb86cf: 31 db                              xor ebx, ebx             nextPC: 0xbfeb86d1
+>>     44: 17: 6  1B @0xbfeb86d1: 43                                 inc ebx                  nextPC: 0xbfeb86d2
+>>     45: 18: 6  2B @0xbfeb86d2: 31 d2                              xor edx, edx             nextPC: 0xbfeb86d4
+>>     46: 19: 6  2B @0xbfeb86d4: b2 0f                              mov dl, 0xf              nextPC: 0xbfeb86d6
+>>     47: 20: 6  2B @0xbfeb86d6: cd 80                              int 0x80                 nextPC: 0xbfeb86d6
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (45/51) = 0
+>>    Mem_map start_addr: 0xbfeb86b0, length: 50B, valid bytes: 45, used bytes: 45, range: 51B, end_addr: 0xbfeb86e2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86b0 33c983e9 f5e8ffff ffffc05e 81760ee5  3..........^.v..
+0xbfeb86c0 c25e9b83 eefce2f4 eb135931 c0b00431  .^........Y1...1
+0xbfeb86d0 db4331d2 b20fcd80 -------- --e8e8ff  .C1.............
+0xbfeb86e0 ffff--                               ...             
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      2 by:0xbfeb86b5 wrote  4B @0xbfeb7cb8: OOB ba 86 eb bf 
+>>      5 by:0xbfeb86bc wrote  4B @0xbfeb86c8: eb 13 59 31 
+>>      8 by:0xbfeb86bc wrote  4B @0xbfeb86cc: c0 b0 04 31 
+>>     11 by:0xbfeb86bc wrote  4B @0xbfeb86d0: db 43 31 d2 
+>>     14 by:0xbfeb86bc wrote  4B @0xbfeb86d4: b2 0f cd 80 
+>>     17 by:0xbfeb86bc wrote  4B @0xbfeb86d8: b0 01 4b cd 
+>>     20 by:0xbfeb86bc wrote  4B @0xbfeb86dc: 80 e8 e8 ff 
+>>     23 by:0xbfeb86bc wrote  4B @0xbfeb86e0: ff ff 48 65 
+>>     26 by:0xbfeb86bc wrote  4B @0xbfeb86e4: 6c 6c 6f 2c 
+>>     29 by:0xbfeb86bc wrote  4B @0xbfeb86e8: 20 77 6f 72 
+>>     32 by:0xbfeb86bc wrote  4B @0xbfeb86ec: 6c 64 21 0a 
+>>     35 by:0xbfeb86bc wrote  4B @0xbfeb86f0: 0d 00 00 00 
+>>     39 by:0xbfeb86dd wrote  4B @0xbfeb7cb8: OOB e2 86 eb bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbfeb86c8, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfeb86f3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86c0                   0ed107aa 25725aaa          ....%rZ.
+0xbfeb86d0 3e816f49 57cd931b 55c31556 652ab664  >.oIW...U..Ve*.d
+0xbfeb86e0 1a3d16fe 89ae31b7 c5b531e9 89a67f91  .=....1...1.....
+0xbfeb86f0 e8c25e9b                             ..^.            
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (44/44) = 0
+>>    Mem_map start_addr: 0xbfeb86c8, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfeb86f3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfeb86c0                   eb135931 c0b00431          ..Y1...1
+0xbfeb86d0 db4331d2 b20fcd80 b0014bcd 80e8e8ff  .C1.......K.....
+0xbfeb86e0 ffff4865 6c6c6f2c 20776f72 6c64210a  ..Hello, world!.
+0xbfeb86f0 0d000000                             ....            
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.9
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbfeb86d8 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3219883696 and ends at 3219883734
+>>    Done printing chunk 0
+25 [State 0] Killing state 0
+25 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x3964450
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3f9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

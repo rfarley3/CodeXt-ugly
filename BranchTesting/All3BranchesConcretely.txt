@@ -1,0 +1,259 @@
+>> Printing Syscall_Trace (4 ordered system calls in this fragment)
+>>     0:   16: @0x0848c193:  sysc_num: 5(0x5) match 
+>>       preState:0 eax:0x5 ebx:0x848c218 ecx:0x0 edx:0x0 esi:0x848c218 edi:0x5 ebp:0xbfd53c88 esp:0xbfd53c78 eip:0x848c193 cr2:0x804f000
+>>     1:   25: @0x0848c1b9:  sysc_num: 3(0x3) match 
+>>       preState:0 eax:0x3 ebx:0x3 ecx:0xbfd53c7b edx:0x1 esi:0x848c218 edi:0x3 ebp:0xbfd53c88 esp:0xbfd53c78 eip:0x848c1b9 cr2:0x804f000
+>>     2:   42: @0x0848c1fd:  sysc_num: 6(0x6) match 
+>>       preState:0 eax:0x6 ebx:0x3 ecx:0x0 edx:0x0 esi:0x848c218 edi:0x3 ebp:0xbfd53c88 esp:0xbfd53c78 eip:0x848c1fd cr2:0x804f000
+>>     3:   47: @0x0848c208:  sysc_num: 1(0x1) match 
+>>       preState:0 eax:0x1 ebx:0x0 ecx:0x0 edx:0x0 esi:0x848c218 edi:0x3 ebp:0xbfd53c88 esp:0xbfd53c78 eip:0x848c208 cr2:0x804f000
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0x0848c170: 55                                 push ebp                 nextPC: 0x0848c171
+>>      1:  1: 1  2B @0x0848c171: 89 e5                              mov ebp, esp             nextPC: 0x0848c173
+>>      2:  2: 1  1B @0x0848c173: 57                                 push edi                 nextPC: 0x0848c174
+>>      3:  3: 1  1B @0x0848c174: 56                                 push esi                 nextPC: 0x0848c175
+>>      4:  4: 1  1B @0x0848c175: 53                                 push ebx                 nextPC: 0x0848c176
+>>      5:  5: 1  5B @0x0848c176: e8 00 00 00 00                     call 0x5                 nextPC: 0x0848c17b
+>>      6:  6: 2  1B @0x0848c17b: 5b                                 pop ebx                  nextPC: 0x0848c17c
+>>      7:  7: 2  3B @0x0848c17c: 83 c3 f5                           add ebx, 0xf5            nextPC: 0x0848c17f
+>>      8:  8: 2  2B @0x0848c17f: 31 d2                              xor edx, edx             nextPC: 0x0848c181
+>>      9:  9: 2  5B @0x0848c181: bf 05 00 00 00                     mov edi, 0x5             nextPC: 0x0848c186
+>>     10: 10: 2  6B @0x0848c186: 8d b3 a8 00 00 00                  lea esi, [ebx+0xa8]      nextPC: 0x0848c18c
+>>     11: 11: 2  2B @0x0848c18c: 89 f8                              mov eax, edi             nextPC: 0x0848c18e
+>>     12: 12: 2  2B @0x0848c18e: 89 d1                              mov ecx, edx             nextPC: 0x0848c190
+>>     13: 13: 2  1B @0x0848c190: 53                                 push ebx                 nextPC: 0x0848c191
+>>     14: 14: 2  2B @0x0848c191: 89 f3                              mov ebx, esi             nextPC: 0x0848c193
+>>     15: 15: 2  2B @0x0848c193: cd 80                              int 0x80                 nextPC: 0x0848c193
+>>     16: 16: 3  1B @0x0848c195: 5b                                 pop ebx                  nextPC: 0x0848c196
+>>     17: 17: 3  2B @0x0848c196: 89 c7                              mov edi, eax             nextPC: 0x0848c198
+>>     18: 18: 3  1B @0x0848c198: 40                                 inc eax                  nextPC: 0x0848c199
+>>     19: 20: 4  3B @0x0848c1a9: 8d 4d f3                           lea ecx, [ebp-0xd]       nextPC: 0x0848c1ac
+>>     20: 21: 4  5B @0x0848c1ac: ba 01 00 00 00                     mov edx, 0x1             nextPC: 0x0848c1b1
+>>     21: 22: 4  5B @0x0848c1b1: b8 03 00 00 00                     mov eax, 0x3             nextPC: 0x0848c1b6
+>>     22: 23: 4  1B @0x0848c1b6: 53                                 push ebx                 nextPC: 0x0848c1b7
+>>     23: 24: 4  2B @0x0848c1b7: 89 fb                              mov ebx, edi             nextPC: 0x0848c1b9
+>>     24: 25: 4  2B @0x0848c1b9: cd 80                              int 0x80                 nextPC: 0x0848c1b9
+>>     25: 26: 5  1B @0x0848c1bb: 5b                                 pop ebx                  nextPC: 0x0848c1bc
+>>     26: 27: 5  1B @0x0848c1bc: 48                                 dec eax                  nextPC: 0x0848c1bd
+>>     27: 29: 6  2B @0x0848c1ca: 31 d2                              xor edx, edx             nextPC: 0x0848c1cc
+>>     28: 30: 6  2B @0x0848c1cc: 31 c9                              xor ecx, ecx             nextPC: 0x0848c1ce
+>>     29: 31: 6  1B @0x0848c1ce: 41                                 inc ecx                  nextPC: 0x0848c1cf
+>>     30: 32: 6  3B @0x0848c1cf: 8a 45 f3                           mov al, [ebp-0xd]        nextPC: 0x0848c1d2
+>>     31: 33: 6  2B @0x0848c1d2: 3c 38                              cmp al, 0x38             nextPC: 0x0848c1d4
+>>     32: 35: 7  2B @0x0848c1da: 3c 30                              cmp al, 0x30             nextPC: 0x0848c1dc
+>>     33: 37: 8  3B @0x0848c1e0: 80 fa 00                           cmp dl, 0x0              nextPC: 0x0848c1e3
+>>     34: 38: 8  2B @0x0848c1e3: 75 02                              jnz 0x4                  nextPC: 0x0848c1e5
+>>     35: 39: 9  2B @0x0848c1e5: b1 00                              mov cl, 0x0              nextPC: 0x0848c1e7
+>>     36: 40: 9  3B @0x0848c1e7: 80 fa 01                           cmp dl, 0x1              nextPC: 0x0848c1ea
+>>     37: 42:10  2B @0x0848c1f3: 01 ca                              add edx, ecx             nextPC: 0x0848c1f5
+>>     38: 43:10  5B @0x0848c1f5: b8 06 00 00 00                     mov eax, 0x6             nextPC: 0x0848c1fa
+>>     39: 44:10  1B @0x0848c1fa: 53                                 push ebx                 nextPC: 0x0848c1fb
+>>     40: 45:10  2B @0x0848c1fb: 89 fb                              mov ebx, edi             nextPC: 0x0848c1fd
+>>     41: 46:10  2B @0x0848c1fd: cd 80                              int 0x80                 nextPC: 0x0848c1fd
+>>     42: 47:11  1B @0x0848c1ff: 5b                                 pop ebx                  nextPC: 0x0848c200
+>>     43: 48:11  5B @0x0848c200: b8 01 00 00 00                     mov eax, 0x1             nextPC: 0x0848c205
+>>     44: 49:11  1B @0x0848c205: 53                                 push ebx                 nextPC: 0x0848c206
+>>     45: 50:11  2B @0x0848c206: 89 d3                              mov ebx, edx             nextPC: 0x0848c208
+>>     46: 51:11  2B @0x0848c208: cd 80                              int 0x80                 nextPC: 0x0848c208
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (106/155) = 0
+>>    Mem_map start_addr: 0x0848c170, length: 154B, valid bytes: 106, used bytes: 106, range: 155B, end_addr: 0x0848c20a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0848c170 5589e557 5653e800 0000005b 83c3f531  U..WVS.....[...1
+0x0848c180 d2bf0500 00008db3 a8000000 89f889d1  ................
+0x0848c190 5389f3cd 805b89c7 40------ --------  S....[..@.......
+0x0848c1a0 -------- -------- --8d4df3 ba010000  ..........M.....
+0x0848c1b0 00b80300 00005389 fbcd805b 48------  ......S....[H...
+0x0848c1c0 -------- -------- ----31d2 31c9418a  ..........1.1.A.
+0x0848c1d0 45f33c38 -------- ----3c30 --------  E.<8......<0....
+0x0848c1e0 80fa0075 02b10080 fa01---- --------  ...u............
+0x0848c1f0 ------01 cab80600 00005389 fbcd805b  ..........S....[
+0x0848c200 b8010000 005389d3 cd80--             .....S.....     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>> Printing Syscall_Trace (4 ordered system calls in this fragment)
+>>     0:   16: @0x0861c193:  sysc_num: 5(0x5) match 
+>>       preState:0 eax:0x5 ebx:0x861c218 ecx:0x0 edx:0x0 esi:0x861c218 edi:0x5 ebp:0xbfb8cec8 esp:0xbfb8ceb8 eip:0x861c193 cr2:0x804f000
+>>     1:   25: @0x0861c1b9:  sysc_num: 3(0x3) match 
+>>       preState:0 eax:0x3 ebx:0x3 ecx:0xbfb8cebb edx:0x1 esi:0x861c218 edi:0x3 ebp:0xbfb8cec8 esp:0xbfb8ceb8 eip:0x861c1b9 cr2:0x804f000
+>>     2:   44: @0x0861c1fd:  sysc_num: 6(0x6) match 
+>>       preState:0 eax:0x6 ebx:0x3 ecx:0x1 edx:0x2 esi:0x861c218 edi:0x3 ebp:0xbfb8cec8 esp:0xbfb8ceb8 eip:0x861c1fd cr2:0x804f000
+>>     3:   49: @0x0861c208:  sysc_num: 1(0x1) match 
+>>       preState:0 eax:0x1 ebx:0x2 ecx:0x1 edx:0x2 esi:0x861c218 edi:0x3 ebp:0xbfb8cec8 esp:0xbfb8ceb8 eip:0x861c208 cr2:0x804f000
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0x0861c170: 55                                 push ebp                 nextPC: 0x0861c171
+>>      1:  1: 1  2B @0x0861c171: 89 e5                              mov ebp, esp             nextPC: 0x0861c173
+>>      2:  2: 1  1B @0x0861c173: 57                                 push edi                 nextPC: 0x0861c174
+>>      3:  3: 1  1B @0x0861c174: 56                                 push esi                 nextPC: 0x0861c175
+>>      4:  4: 1  1B @0x0861c175: 53                                 push ebx                 nextPC: 0x0861c176
+>>      5:  5: 1  5B @0x0861c176: e8 00 00 00 00                     call 0x5                 nextPC: 0x0861c17b
+>>      6:  6: 2  1B @0x0861c17b: 5b                                 pop ebx                  nextPC: 0x0861c17c
+>>      7:  7: 2  3B @0x0861c17c: 83 c3 f5                           add ebx, 0xf5            nextPC: 0x0861c17f
+>>      8:  8: 2  2B @0x0861c17f: 31 d2                              xor edx, edx             nextPC: 0x0861c181
+>>      9:  9: 2  5B @0x0861c181: bf 05 00 00 00                     mov edi, 0x5             nextPC: 0x0861c186
+>>     10: 10: 2  6B @0x0861c186: 8d b3 a8 00 00 00                  lea esi, [ebx+0xa8]      nextPC: 0x0861c18c
+>>     11: 11: 2  2B @0x0861c18c: 89 f8                              mov eax, edi             nextPC: 0x0861c18e
+>>     12: 12: 2  2B @0x0861c18e: 89 d1                              mov ecx, edx             nextPC: 0x0861c190
+>>     13: 13: 2  1B @0x0861c190: 53                                 push ebx                 nextPC: 0x0861c191
+>>     14: 14: 2  2B @0x0861c191: 89 f3                              mov ebx, esi             nextPC: 0x0861c193
+>>     15: 15: 2  2B @0x0861c193: cd 80                              int 0x80                 nextPC: 0x0861c193
+>>     16: 16: 3  1B @0x0861c195: 5b                                 pop ebx                  nextPC: 0x0861c196
+>>     17: 17: 3  2B @0x0861c196: 89 c7                              mov edi, eax             nextPC: 0x0861c198
+>>     18: 18: 3  1B @0x0861c198: 40                                 inc eax                  nextPC: 0x0861c199
+>>     19: 20: 4  3B @0x0861c1a9: 8d 4d f3                           lea ecx, [ebp-0xd]       nextPC: 0x0861c1ac
+>>     20: 21: 4  5B @0x0861c1ac: ba 01 00 00 00                     mov edx, 0x1             nextPC: 0x0861c1b1
+>>     21: 22: 4  5B @0x0861c1b1: b8 03 00 00 00                     mov eax, 0x3             nextPC: 0x0861c1b6
+>>     22: 23: 4  1B @0x0861c1b6: 53                                 push ebx                 nextPC: 0x0861c1b7
+>>     23: 24: 4  2B @0x0861c1b7: 89 fb                              mov ebx, edi             nextPC: 0x0861c1b9
+>>     24: 25: 4  2B @0x0861c1b9: cd 80                              int 0x80                 nextPC: 0x0861c1b9
+>>     25: 26: 5  1B @0x0861c1bb: 5b                                 pop ebx                  nextPC: 0x0861c1bc
+>>     26: 27: 5  1B @0x0861c1bc: 48                                 dec eax                  nextPC: 0x0861c1bd
+>>     27: 29: 6  2B @0x0861c1ca: 31 d2                              xor edx, edx             nextPC: 0x0861c1cc
+>>     28: 30: 6  2B @0x0861c1cc: 31 c9                              xor ecx, ecx             nextPC: 0x0861c1ce
+>>     29: 31: 6  1B @0x0861c1ce: 41                                 inc ecx                  nextPC: 0x0861c1cf
+>>     30: 32: 6  3B @0x0861c1cf: 8a 45 f3                           mov al, [ebp-0xd]        nextPC: 0x0861c1d2
+>>     31: 33: 6  2B @0x0861c1d2: 3c 38                              cmp al, 0x38             nextPC: 0x0861c1d4
+>>     32: 35: 7  2B @0x0861c1da: 3c 30                              cmp al, 0x30             nextPC: 0x0861c1dc
+>>     33: 36: 7  2B @0x0861c1dc: 7e 02                              jle 0x4                  nextPC: 0x0861c1de
+>>     34: 37: 8  2B @0x0861c1de: b2 01                              mov dl, 0x1              nextPC: 0x0861c1e0
+>>     35: 38: 8  3B @0x0861c1e0: 80 fa 00                           cmp dl, 0x0              nextPC: 0x0861c1e3
+>>     36: 40: 9  3B @0x0861c1e7: 80 fa 01                           cmp dl, 0x1              nextPC: 0x0861c1ea
+>>     37: 41: 9  2B @0x0861c1ea: 75 07                              jnz 0x9                  nextPC: 0x0861c1ec
+>>     38: 42:10  3B @0x0861c1ec: 80 f9 00                           cmp cl, 0x0              nextPC: 0x0861c1ef
+>>     39: 44:11  2B @0x0861c1f3: 01 ca                              add edx, ecx             nextPC: 0x0861c1f5
+>>     40: 45:11  5B @0x0861c1f5: b8 06 00 00 00                     mov eax, 0x6             nextPC: 0x0861c1fa
+>>     41: 46:11  1B @0x0861c1fa: 53                                 push ebx                 nextPC: 0x0861c1fb
+>>     42: 47:11  2B @0x0861c1fb: 89 fb                              mov ebx, edi             nextPC: 0x0861c1fd
+>>     43: 48:11  2B @0x0861c1fd: cd 80                              int 0x80                 nextPC: 0x0861c1fd
+>>     44: 49:12  1B @0x0861c1ff: 5b                                 pop ebx                  nextPC: 0x0861c200
+>>     45: 50:12  5B @0x0861c200: b8 01 00 00 00                     mov eax, 0x1             nextPC: 0x0861c205
+>>     46: 51:12  1B @0x0861c205: 53                                 push ebx                 nextPC: 0x0861c206
+>>     47: 52:12  2B @0x0861c206: 89 d3                              mov ebx, edx             nextPC: 0x0861c208
+>>     48: 53:12  2B @0x0861c208: cd 80                              int 0x80                 nextPC: 0x0861c208
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (111/155) = 0
+>>    Mem_map start_addr: 0x0861c170, length: 154B, valid bytes: 111, used bytes: 111, range: 155B, end_addr: 0x0861c20a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0861c170 5589e557 5653e800 0000005b 83c3f531  U..WVS.....[...1
+0x0861c180 d2bf0500 00008db3 a8000000 89f889d1  ................
+0x0861c190 5389f3cd 805b89c7 40------ --------  S....[..@.......
+0x0861c1a0 -------- -------- --8d4df3 ba010000  ..........M.....
+0x0861c1b0 00b80300 00005389 fbcd805b 48------  ......S....[H...
+0x0861c1c0 -------- -------- ----31d2 31c9418a  ..........1.1.A.
+0x0861c1d0 45f33c38 -------- ----3c30 7e02b201  E.<8......<0~...
+0x0861c1e0 80fa00-- ------80 fa017507 80f900--  ..........u.....
+0x0861c1f0 ------01 cab80600 00005389 fbcd805b  ..........S....[
+0x0861c200 b8010000 005389d3 cd80--             .....S.....    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>> Printing Syscall_Trace (4 ordered system calls in this fragment)
+>>     0:   16: @0x08819193:  sysc_num: 5(0x5) match 
+>>       preState:0 eax:0x5 ebx:0x8819218 ecx:0x0 edx:0x0 esi:0x8819218 edi:0x5 ebp:0xbfa55368 esp:0xbfa55358 eip:0x8819193 cr2:0x804f000
+>>     1:   25: @0x088191b9:  sysc_num: 3(0x3) match 
+>>       preState:0 eax:0x3 ebx:0x3 ecx:0xbfa5535b edx:0x1 esi:0x8819218 edi:0x3 ebp:0xbfa55368 esp:0xbfa55358 eip:0x88191b9 cr2:0x804f000
+>>     2:   42: @0x088191fd:  sysc_num: 6(0x6) match 
+>>       preState:0 eax:0x6 ebx:0x3 ecx:0x1 edx:0x3 esi:0x8819218 edi:0x3 ebp:0xbfa55368 esp:0xbfa55358 eip:0x88191fd cr2:0x804f000
+>>     3:   47: @0x08819208:  sysc_num: 1(0x1) match 
+>>       preState:0 eax:0x1 ebx:0x3 ecx:0x1 edx:0x3 esi:0x8819218 edi:0x3 ebp:0xbfa55368 esp:0xbfa55358 eip:0x8819208 cr2:0x804f000
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0x08819170: 55                                 push ebp                 nextPC: 0x08819171
+>>      1:  1: 1  2B @0x08819171: 89 e5                              mov ebp, esp             nextPC: 0x08819173
+>>      2:  2: 1  1B @0x08819173: 57                                 push edi                 nextPC: 0x08819174
+>>      3:  3: 1  1B @0x08819174: 56                                 push esi                 nextPC: 0x08819175
+>>      4:  4: 1  1B @0x08819175: 53                                 push ebx                 nextPC: 0x08819176
+>>      5:  5: 1  5B @0x08819176: e8 00 00 00 00                     call 0x5                 nextPC: 0x0881917b
+>>      6:  6: 2  1B @0x0881917b: 5b                                 pop ebx                  nextPC: 0x0881917c
+>>      7:  7: 2  3B @0x0881917c: 83 c3 f5                           add ebx, 0xf5            nextPC: 0x0881917f
+>>      8:  8: 2  2B @0x0881917f: 31 d2                              xor edx, edx             nextPC: 0x08819181
+>>      9:  9: 2  5B @0x08819181: bf 05 00 00 00                     mov edi, 0x5             nextPC: 0x08819186
+>>     10: 10: 2  6B @0x08819186: 8d b3 a8 00 00 00                  lea esi, [ebx+0xa8]      nextPC: 0x0881918c
+>>     11: 11: 2  2B @0x0881918c: 89 f8                              mov eax, edi             nextPC: 0x0881918e
+>>     12: 12: 2  2B @0x0881918e: 89 d1                              mov ecx, edx             nextPC: 0x08819190
+>>     13: 13: 2  1B @0x08819190: 53                                 push ebx                 nextPC: 0x08819191
+>>     14: 14: 2  2B @0x08819191: 89 f3                              mov ebx, esi             nextPC: 0x08819193
+>>     15: 15: 2  2B @0x08819193: cd 80                              int 0x80                 nextPC: 0x08819193
+>>     16: 16: 3  1B @0x08819195: 5b                                 pop ebx                  nextPC: 0x08819196
+>>     17: 17: 3  2B @0x08819196: 89 c7                              mov edi, eax             nextPC: 0x08819198
+>>     18: 18: 3  1B @0x08819198: 40                                 inc eax                  nextPC: 0x08819199
+>>     19: 20: 4  3B @0x088191a9: 8d 4d f3                           lea ecx, [ebp-0xd]       nextPC: 0x088191ac
+>>     20: 21: 4  5B @0x088191ac: ba 01 00 00 00                     mov edx, 0x1             nextPC: 0x088191b1
+>>     21: 22: 4  5B @0x088191b1: b8 03 00 00 00                     mov eax, 0x3             nextPC: 0x088191b6
+>>     22: 23: 4  1B @0x088191b6: 53                                 push ebx                 nextPC: 0x088191b7
+>>     23: 24: 4  2B @0x088191b7: 89 fb                              mov ebx, edi             nextPC: 0x088191b9
+>>     24: 25: 4  2B @0x088191b9: cd 80                              int 0x80                 nextPC: 0x088191b9
+>>     25: 26: 5  1B @0x088191bb: 5b                                 pop ebx                  nextPC: 0x088191bc
+>>     26: 27: 5  1B @0x088191bc: 48                                 dec eax                  nextPC: 0x088191bd
+>>     27: 29: 6  2B @0x088191ca: 31 d2                              xor edx, edx             nextPC: 0x088191cc
+>>     28: 30: 6  2B @0x088191cc: 31 c9                              xor ecx, ecx             nextPC: 0x088191ce
+>>     29: 31: 6  1B @0x088191ce: 41                                 inc ecx                  nextPC: 0x088191cf
+>>     30: 32: 6  3B @0x088191cf: 8a 45 f3                           mov al, [ebp-0xd]        nextPC: 0x088191d2
+>>     31: 33: 6  2B @0x088191d2: 3c 38                              cmp al, 0x38             nextPC: 0x088191d4
+>>     32: 34: 6  2B @0x088191d4: 7e 04                              jle 0x6                  nextPC: 0x088191d6
+>>     33: 35: 7  2B @0x088191d6: b2 02                              mov dl, 0x2              nextPC: 0x088191d8
+>>     34: 36: 7  2B @0x088191d8: eb 06                              jmp 0x8                  nextPC: 0x088191e0
+>>     35: 37: 8  3B @0x088191e0: 80 fa 00                           cmp dl, 0x0              nextPC: 0x088191e3
+>>     36: 39: 9  3B @0x088191e7: 80 fa 01                           cmp dl, 0x1              nextPC: 0x088191ea
+>>     37: 41:10  2B @0x088191f3: 01 ca                              add edx, ecx             nextPC: 0x088191f5
+>>     38: 42:10  5B @0x088191f5: b8 06 00 00 00                     mov eax, 0x6             nextPC: 0x088191fa
+>>     39: 43:10  1B @0x088191fa: 53                                 push ebx                 nextPC: 0x088191fb
+>>     40: 44:10  2B @0x088191fb: 89 fb                              mov ebx, edi             nextPC: 0x088191fd
+>>     41: 45:10  2B @0x088191fd: cd 80                              int 0x80                 nextPC: 0x088191fd
+>>     42: 46:11  1B @0x088191ff: 5b                                 pop ebx                  nextPC: 0x08819200
+>>     43: 47:11  5B @0x08819200: b8 01 00 00 00                     mov eax, 0x1             nextPC: 0x08819205
+>>     44: 48:11  1B @0x08819205: 53                                 push ebx                 nextPC: 0x08819206
+>>     45: 49:11  2B @0x08819206: 89 d3                              mov ebx, edx             nextPC: 0x08819208
+>>     46: 50:11  2B @0x08819208: cd 80                              int 0x80                 nextPC: 0x08819208
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (106/155) = 0
+>>    Mem_map start_addr: 0x08819170, length: 154B, valid bytes: 106, used bytes: 106, range: 155B, end_addr: 0x0881920a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x08819170 5589e557 5653e800 0000005b 83c3f531  U..WVS.....[...1
+0x08819180 d2bf0500 00008db3 a8000000 89f889d1  ................
+0x08819190 5389f3cd 805b89c7 40------ --------  S....[..@.......
+0x088191a0 -------- -------- --8d4df3 ba010000  ..........M.....
+0x088191b0 00b80300 00005389 fbcd805b 48------  ......S....[H...
+0x088191c0 -------- -------- ----31d2 31c9418a  ..........1.1.A.
+0x088191d0 45f33c38 7e04b202 eb06---- --------  E.<8~...........
+0x088191e0 80fa00-- ------80 fa01---- --------  ................
+0x088191f0 ------01 cab80600 00005389 fbcd805b  ..........S....[
+0x08819200 b8010000 005389d3 cd80--             .....S.....     

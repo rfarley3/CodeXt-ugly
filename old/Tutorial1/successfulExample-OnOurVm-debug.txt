@@ -1,0 +1,494 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin TestCaseGenerator
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x463b000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x48e3000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x2f00000, hostAddr = 0x2aaab7aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0xdd76000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0xddba000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaabadb0000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0xf9df000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device pcnet
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+74 [State 0] Inserting symbolic data at 0xbfb959eb of size 0x1 with name 'symb'
+74 [State 0] Message from guest (0xbfb959ec): Running S2E Tutorial1
+
+74 [State 0] Forking state 0 at pc = 0x804855f into states:
+    state 0 with condition (Eq (w8 0) (Read w8 0 v0_symb_0))
+    state 1 with condition (Not (Eq (w8 0) (Read w8 0 v0_symb_0)))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048558
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+74 [State 0] Switching from state 0 to state 1
+Copied 9123920 (count=71169)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048558
+75 [State 1] Forking state 1 at pc = 0x804856a into states:
+    state 1 with condition (Ult (w32 25)
+     (And w32 (Add w32 (w32 4294967199)
+                       (Concat w32 (w8 0)
+                                   (Concat w24 (w8 0)
+                                               (Concat w16 (w8 0) (Read w8 0 v0_symb_0)))))
+              (w32 255)))
+    state 2 with condition (Not (Ult (w32 25)
+          (And w32 (Add w32 (w32 4294967199)
+                            (Concat w32 (w8 0)
+                                        (Concat w24 (w8 0)
+                                                    (Concat w16 (w8 0) (Read w8 0 v0_symb_0)))))
+                   (w32 255))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-9-8048565
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+75 [State 1] Forking state 1 at pc = 0x804858e into states:
+    state 1 with condition (Ult (w32 9)
+     (And w32 (Add w32 (w32 4294967248)
+                       (ZExt w32 (Read w8 0 v0_symb_0)))
+              (w32 255)))
+    state 3 with condition (Not (Ult (w32 9)
+          (And w32 (Add w32 (w32 4294967248)
+                            (ZExt w32 (Read w8 0 v0_symb_0)))
+                   (w32 255))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-13-8048584
+Size=2 Low=0 splitIndex=1 high=1
+76 [State 1] Forking state 1 at pc = 0xb7e8594a into states:
+    state 1 with condition (Eq (w32 10)
+    (Concat w32 (w8 0)
+                (Concat w24 (w8 0)
+                            (Concat w16 (w8 0)
+                                        (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))))
+    state 4 with condition (Not (Eq (w32 10)
+         (Concat w32 (w8 0)
+                     (Concat w24 (w8 0)
+                                 (Concat w16 (w8 0)
+                                             (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-30-b7e85947
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+77 [State 1] Switching from state 1 to state 0
+Copied 9123920 (count=71169)
+77 [State 0] Message from guest (0xbfb959ec): s2e_get_example:0061
+77 [State 0] Killing state 0
+77 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 0 at address 0x80486a4
+
+v0_symb_0: 00  
+77 [State 0] Switching from state 0 to state 4
+Copied 9123920 (count=71169)
+Deleting state 0 0x0x421d0f0
+Finalizing TB execution 4
+s2e_dummyMainFunction
+tcg-llvm-tb-30-b7e85947
+Firing timer event
+78 [State 4] Forking state 4 at pc = 0xc0316c07 into states:
+    state 4 with condition (Eq (w32 0)
+    (And w32 (Add w32 (w32 4294967287)
+                      (ZExt w32 (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))
+             (w32 255)))
+    state 5 with condition (Not (Eq (w32 0)
+         (And w32 (Add w32 (w32 4294967287)
+                           (ZExt w32 (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))
+                  (w32 255))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-56-c0316c01
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+79 [State 4] Switching from state 4 to state 3
+Copied 9123920 (count=71169)
+Finalizing TB execution 3
+s2e_dummyMainFunction
+tcg-llvm-tb-13-8048584
+80 [State 3] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (w32 3225755516)
+                             (And w32 (Concat w32 (w8 0)
+                                                  (Concat w24 (w8 0)
+                                                              (Concat w16 (w8 0)
+                                                                          (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                      (w32 255)))
+                    (w32 7))))
+Firing timer event
+80 [State 3] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (w32 3258999488)
+                             (And w32 (AShr w32 (Concat w32 (w8 0)
+                                                            (Concat w24 (w8 0)
+                                                                        (Concat w16 (w8 0)
+                                                                                    (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                                (w32 9))
+                                      (w32 4294967292)))
+                    (w32 7))))
+80 [State 3] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (ReadLSB w32 N0:(Extract w32 0 (Add w64 (w64 18446744070450552192)
+                                                                     (ZExt w64 (Add w32 (w32 3258999488)
+                                                                                        (And w32 (AShr w32 N1:(Concat w32 (w8 0)
+                                                                                                                          (Concat w24 (w8 0)
+                                                                                                                                      (Concat w16 (w8 0)
+                                                                                                                                                  (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                                                                                           (w32 9))
+                                                                                                 (w32 4294967292)))))) const_arr3)
+                             (Shl w32 (And w32 (AShr w32 N1 (w32 6)) (w32 31))
+                                      (w32 2)))
+                    (w32 7))))
+81 [State 3] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (ReadLSB w32 N0:(Extract w32 0 (Add w64 (w64 18446744070450244352)
+                                                                     (ZExt w64 (Add w32 (ReadLSB w32 N1:(Extract w32 0 (Add w64 (w64 18446744070450552192)
+                                                                                                                                (ZExt w64 (Add w32 (w32 3258999488)
+                                                                                                                                                   (And w32 (AShr w32 N2:(Concat w32 (w8 0)
+                                                                                                                                                                                     (Concat w24 (w8 0)
+                                                                                                                                                                                                 (Concat w16 (w8 0)
+                                                                                                                                                                                                             (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                                                                                                                                                      (w32 9))
+                                                                                                                                                            (w32 4294967292)))))) const_arr3)
+                                                                                        (Shl w32 (And w32 (AShr w32 N2 (w32 6)) (w32 31))
+                                                                                                 (w32 2)))))) const_arr4)
+                             (Shl w32 (And w32 N2 (w32 63)) (w32 1)))
+                    (w32 7))))
+Firing timer event
+82 [State 3] Switching from state 3 to state 1
+Copied 9123920 (count=71169)
+82 [State 1] Message from guest (0xbfb959ec): s2e_get_example:0a61
+a:
+
+82 [State 1] Killing state 1
+82 [State 1] Terminating state 1 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 1 at address 0x80486a4
+
+v0_symb_0: 0a  
+82 [State 1] Switching from state 1 to state 2
+Copied 9123920 (count=71169)
+Deleting state 1 0x0x10f823a0
+Finalizing TB execution 2
+s2e_dummyMainFunction
+tcg-llvm-tb-9-8048565
+83 [State 2] Forking state 2 at pc = 0x80486eb into states:
+    state 2 with condition (Eq (w32 0)
+    (And w32 (Add w32 (w32 4294967199)
+                      (ZExt w32 (Read w8 0 v0_symb_0)))
+             (w32 255)))
+    state 6 with condition (Not (Eq (w32 0)
+         (And w32 (Add w32 (w32 4294967199)
+                           (ZExt w32 (Read w8 0 v0_symb_0)))
+                  (w32 255))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-192-80486e4
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+83 [State 2] Message from guest (0xbfb959ec): s2e_get_example:6161aa:
+
+83 [State 2] Message from guest (0xbfb959ec): s2e_get_example:6161aa:
+
+83 [State 2] Killing state 2
+83 [State 2] Terminating state 2 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 2 at address 0x80486a4
+
+v0_symb_0: 61 a
+83 [State 2] Switching from state 2 to state 4
+Copied 9123920 (count=71169)
+Deleting state 2 0x0x10f40d70
+Firing timer event
+85 [State 4] Message from guest (0xbfb959ec): s2e_get_example:0961	a:
+
+85 [State 4] Killing state 4
+85 [State 4] Terminating state 4 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 4 at address 0x80486a4
+
+v0_symb_0: 09  
+85 [State 4] Switching from state 4 to state 5
+Copied 9123920 (count=71169)
+Deleting state 4 0x0x14d6ad30
+Finalizing TB execution 5
+s2e_dummyMainFunction
+tcg-llvm-tb-56-c0316c01
+Firing timer event
+85 [State 5] Forking state 5 at pc = 0xc0316c0d into states:
+    state 5 with condition (Eq (w32 0)
+    (And w32 (Or w32 (LShr w32 (Select w32 (Eq (w8 0)
+                                               (Extract w8 0 (Add w32 (w32 4294967287)
+                                                                      (ZExt w32 N0:(Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))))
+                                           (w32 64)
+                                           (w32 0))
+                               (w32 6))
+                     (ZExt w32 (Ult N0 (w8 9))))
+             (w32 1)))
+    state 7 with condition (Not (Eq (w32 0)
+         (And w32 (Or w32 (LShr w32 (Select w32 (Eq (w8 0)
+                                                    (Extract w8 0 (Add w32 (w32 4294967287)
+                                                                           (ZExt w32 N0:(Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))))
+                                                (w32 64)
+                                                (w32 0))
+                                    (w32 6))
+                          (ZExt w32 (Ult N0 (w8 9))))
+                  (w32 1))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-280-c0316c0d
+Size=2 Low=0 splitIndex=1 high=1
+86 [State 5] Forking state 5 at pc = 0xc0316c1e into states:
+    state 5 with condition (Eq (w32 0)
+    (And w32 (Add w32 (w32 4294967283)
+                      (Concat w32 (w8 0)
+                                  (Concat w24 (w8 0)
+                                              (Concat w16 (w8 0)
+                                                          (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))))
+             (w32 255)))
+    state 8 with condition (Not (Eq (w32 0)
+         (And w32 (Add w32 (w32 4294967283)
+                           (Concat w32 (w8 0)
+                                       (Concat w24 (w8 0)
+                                                   (Concat w16 (w8 0)
+                                                               (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0)))))))
+                  (w32 255))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-282-c0316c1b
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+86 [State 5] Switching from state 5 to state 3
+Copied 9123920 (count=71169)
+87 [State 3] Message from guest (0xbfb959ec): s2e_get_example:30610a:
+
+87 [State 3] Killing state 3
+87 [State 3] Terminating state 3 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 3 at address 0x80486a4
+
+v0_symb_0: 30 0
+87 [State 3] Switching from state 3 to state 5
+Copied 9123920 (count=71169)
+Deleting state 3 0x0x13928d80
+Firing timer event
+88 [State 5] Message from guest (0xbfb959ec): s2e_get_example:0d61a:
+
+88 [State 5] Killing state 5
+88 [State 5] Terminating state 5 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 5 at address 0x80486a4
+
+v0_symb_0: 0d  
+88 [State 5] Switching from state 5 to state 6
+Copied 9123920 (count=71169)
+Deleting state 5 0x0x161aef10
+Finalizing TB execution 6
+s2e_dummyMainFunction
+tcg-llvm-tb-192-80486e4
+Firing timer event
+89 [State 6] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (w32 3225755516)
+                             (And w32 (Concat w32 (w8 0)
+                                                  (Concat w24 (w8 0)
+                                                              (Concat w16 (w8 0)
+                                                                          (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                      (w32 255)))
+                    (w32 7))))
+Firing timer event
+90 [State 6] Switching from state 6 to state 8
+Copied 9123920 (count=71169)
+Finalizing TB execution 8
+s2e_dummyMainFunction
+tcg-llvm-tb-282-c0316c1b
+90 [State 8] forkAndConcretize((ZExt w64 (LShr w32 (Add w32 (w32 3225755516)
+                             (And w32 (Concat w32 (w8 0)
+                                                  (Concat w24 (w8 0)
+                                                              (Concat w16 (w8 0)
+                                                                          (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                      (w32 255)))
+                    (w32 7))))
+90 [State 8] Forking state 8 at pc = 0xc0316c98 into states:
+    state 8 with condition (Eq (w32 25201215)
+    (LShr w32 (Add w32 (w32 3225755516)
+                       (And w32 (Concat w32 (w8 0)
+                                            (Concat w24 (w8 0)
+                                                        (Concat w16 (w8 0)
+                                                                    (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                (w32 255)))
+              (w32 7)))
+    state 9 with condition (Eq (w32 25201216)
+    (LShr w32 (Add w32 (w32 3225755516)
+                       (And w32 (Concat w32 (w8 0)
+                                            (Concat w24 (w8 0)
+                                                        (Concat w16 (w8 0)
+                                                                    (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                (w32 255)))
+              (w32 7)))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-419-c0316c95
+__ldb_mmu
+Size=2 Low=0 splitIndex=1 high=1
+91 [State 8] Forking state 8 at pc = 0xc0316c9f into states:
+    state 8 with condition (Eq (w32 0)
+    (And w32 (ZExt w32 (Read w8 (Extract w32 0 (Add w64 (w64 18446744070483796096)
+                                                        (ZExt w64 (Add w32 (w32 3225755516)
+                                                                           (And w32 (Concat w32 (w8 0)
+                                                                                                (Concat w24 (w8 0)
+                                                                                                            (Concat w16 (w8 0)
+                                                                                                                        (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                                                                    (w32 255))))))
+                                const_arr6))
+             (w32 8)))
+    state 10 with condition (Not (Eq (w32 0)
+         (And w32 (ZExt w32 (Read w8 (Extract w32 0 (Add w64 (w64 18446744070483796096)
+                                                             (ZExt w64 (Add w32 (w32 3225755516)
+                                                                                (And w32 (Concat w32 (w8 0)
+                                                                                                     (Concat w24 (w8 0)
+                                                                                                                 (Concat w16 (w8 0)
+                                                                                                                             (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                                                                                         (w32 255))))))
+                                     const_arr6))
+                  (w32 8))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-419-c0316c95
+Size=2 Low=0 splitIndex=1 high=1
+Firing timer event
+91 [State 8] Forking state 8 at pc = 0xc032082e into states:
+    state 8 with condition (Eq (w32 128)
+    (And w32 (Concat w32 (w8 0)
+                         (Concat w24 (w8 0)
+                                     (Concat w16 (w8 0)
+                                                 (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+             (w32 192)))
+    state 11 with condition (Not (Eq (w32 128)
+         (And w32 (Concat w32 (w8 0)
+                              (Concat w24 (w8 0)
+                                          (Concat w16 (w8 0)
+                                                      (Extract w8 0 (SExt w32 (Read w8 0 v0_symb_0))))))
+                  (w32 192))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-425-c0320823
+Size=2 Low=0 splitIndex=1 high=1
+92 [State 8] Message from guest (0xbfb959ec): s2e_get_example:8061€a:
+
+92 [State 8] Killing state 8
+92 [State 8] Terminating state 8 with message 'State was terminated by opcode
+            message: "program terminated"
+            status: 0'
+TestCaseGenerator: processTestCase of state 8 at address 0x80486a4
+
+v0_symb_0: 80 €
+92 [State 8] Switching from state 8 to state 11
+Copied 9123920 (count=71169)
+Deleting state 8 0x0x15aaa110
+Finalizing TB execution 11
+s2e_dummyMainFunction
+tcg-llvm-tb-425-c0320823
+Firing timer event
+Stack trace
+  /home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x728699]
+  /home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44bab5]
+  /home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x4508c7]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x4492d9]

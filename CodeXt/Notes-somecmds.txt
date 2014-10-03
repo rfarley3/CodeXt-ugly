@@ -1,0 +1,6 @@
+# run the (saved state of s2eget) waiting qcow2 so you can make edits to it and save state again
+/home/s2e/s2e/dasos/s2e/build/qemu-release/i386-softmmu/qemu -hda ../DiskImgs/s2e_disk2.qcow2 -redir tcp:2222::22 -loadvm savedstate.sav
+
+# run VM Raw
+/usr/local/src/s2e/build/qemu-release/i386-softmmu/qemu-system-i386 -hda ../DiskImgs/s2e_disk.raw -redir tcp:2222::22
+

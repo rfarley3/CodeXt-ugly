@@ -1,0 +1,9 @@
+#! /bin/sh
+
+BINPATH=/home/s2e/s2e/dasos/s2e/build/qemu-release
+IMGDIR=/home/s2e/s2e/dasos/DiskImgs
+
+
+#$PATH/i386-softmmu/qemu -hda s2e_disk2.raw -redir tcp:2222::22
+$BINPATH/i386-softmmu/qemu -hda $IMGDIR/s2e_disk2.qcow2 -redir tcp:2222::22
+

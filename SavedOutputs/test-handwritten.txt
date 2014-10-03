@@ -1,0 +1,115 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+0 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x29f1000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x2c98000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1bb79000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1bbc2000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1d6e9000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1d75d000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+24 [State 0] Message from guest (0xbfc5dcbc): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+24 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+24 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+25 [State 1] Message from guest (0xbfc5dcbc): << About to call dasospreproc_init with shell: 0xbfc5e660 (offset of 0 not yet applied), shell_len: 10, eip: 0x00000000
+
+25 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfc5e660-0xbfc5e66a with eip: 0x00000000 buffer length: 10 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfc5e660, length: 10B, end_addr: 0xbfc5e66a
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfc5e660 31c0f7c8 44332211 cd8005             1...D3"....     
+
+ >> oTBS pc: 0xbfc5e660
+ >> oTIE pc: 0xbfc5e660:0x00 nextpc: bfc5e662 len: 2
+  0:  0: 1  2B @0xbfc5e660: 31 c0                              xor eax, eax             nextPC: 0xbfc5e662
+ >> oTBE Target by pc: 0xbfc5e662 to pc: 0xbfc5e662
+ >> oTIE pc: 0xbfc5e662:0x02 nextpc: bfc5e662 len: 2
+  0:  1: 1  2B @0xbfc5e662: f7 c8                              invalid                  nextPC: 0xbfc5e662
+ >> oExc pc: 0xbfc5e660 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfc5e660
+  0:  0: 1  2B @0xbfc5e660: 31 c0                              xor eax, eax             nextPC: 0xbfc5e662
+ >> oEB pc: 0xbfc5e662
+ >> oExc pc: 0xbfc5e662 exception_idx: 6(0x06)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+25 [State 1] @0x080499bf, left buffer range after 2 IoB insns; last IoB insn @0xbfc5e662, disasm in debug.
+  0:  1: 1  2B @0xbfc5e662: f7 c8                              invalid                  nextPC: 0xbfc5e662
+25 [State 1] ERROR: we've left our module/shellcode unexpectedly, terminateStateEarly
+25 [State 1] Terminating state 1 with message 'eliminated a state that exec'ed out of module bounds unexpectedly'
+25 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1ef92350
+25 [State 0] Message from guest (0xbfc5dcbc): << Looping fork, currently at 0
+25 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 0 successes
+>> There were 0 fragments

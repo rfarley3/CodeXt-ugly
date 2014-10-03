@@ -1,0 +1,73 @@
+bash: cd: /home/s2e/s2e: No such file or directory
+bash: README: No such file or directory
+s2e@ubuntu:~/dasos/SyscallTracker$ man fgrep
+s2e@ubuntu:~/dasos/SyscallTracker$ dhclient eth0
+Internet Systems Consortium DHCP Client V3.1.3
+Copyright 2004-2009 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+can't create /var/lib/dhcp3/dhclient.leases: Permission denied
+SIOCSIFADDR: Permission denied
+SIOCSIFFLAGS: Permission denied
+SIOCSIFFLAGS: Permission denied
+Open a socket for LPF: Operation not permitted
+s2e@ubuntu:~/dasos/SyscallTracker$ sudo dhclient eth0
+[sudo] password for s2e: 
+Internet Systems Consortium DHCP Client V3.1.3
+Copyright 2004-2009 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/eth0/00:0c:29:10:d3:9c
+Sending on   LPF/eth0/00:0c:29:10:d3:9c
+Sending on   Socket/fallback
+DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 3
+DHCPOFFER of 172.16.91.129 from 172.16.91.254
+DHCPREQUEST of 172.16.91.129 on eth0 to 255.255.255.255 port 67
+DHCPACK of 172.16.91.129 from 172.16.91.254
+bound to 172.16.91.129 -- renewal in 776 seconds.
+s2e@ubuntu:~/dasos/SyscallTracker$ ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0c:29:10:d3:9c  
+          inet addr:172.16.91.129  Bcast:172.16.91.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fe10:d39c/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:34 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:88 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:4556 (4.5 KB)  TX bytes:15784 (15.7 KB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:24 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:24 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1776 (1.7 KB)  TX bytes:1776 (1.7 KB)
+
+s2e@ubuntu:~/dasos/SyscallTracker$ ping google.com
+PING google.com (74.125.228.14) 56(84) bytes of data.
+64 bytes from iad23s05-in-f14.1e100.net (74.125.228.14): icmp_req=1 ttl=128 time=17.9 ms
+64 bytes from iad23s05-in-f14.1e100.net (74.125.228.14): icmp_req=2 ttl=128 time=14.9 ms
+64 bytes from iad23s05-in-f14.1e100.net (74.125.228.14): icmp_req=3 ttl=128 time=15.0 ms
+^C
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 14.983/15.986/17.970/1.406 ms
+s2e@ubuntu:~/dasos/SyscallTracker$ teamviewer
+teamviewer   teamviewer7  
+s2e@ubuntu:~/dasos/SyscallTracker$ teamviewer
+TeamViewer: 7.0.9360
+Profile: /home/s2e (s2e)
+Desktop: gnome
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 10.10
+Release:	10.10
+Codename:	maverick
+ 
+Checking setup...
+Launching c:\Program Files\TeamViewer\Version7\TeamViewer.exe...
+
+

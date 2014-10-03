@@ -1,0 +1,10 @@
+#!/bin/sh
+
+UNTOUCHED_S2E=/home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu
+UNTOUCHED_QCOW=/home/s2e/s2e/linux-s2e-tutorial.qcow2
+
+echo "in another window run: scp -P 2222 dasos/Tutorial1/tutorial1 127.0.0.1:~/demos/."
+echo "then in the s2e window run ./tutorial1"
+
+$UNTOUCHED_S2E -m 48 -hda $UNTOUCHED_QCOW -s2e-config-file tutorial1.lua -net nic,model=pcnet -redir tcp:2222::22 -net user  -loadvm ready
+

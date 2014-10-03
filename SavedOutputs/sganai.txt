@@ -1,0 +1,778 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x2ed4000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x317b000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1c05c000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1c0a5000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1dbcc000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1dc40000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+28 [State 0] Message from guest (0xbf8308dc): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+28 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+28 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Firing timer event
+28 [State 1] Message from guest (0xbf8308dc): << About to call dasospreproc_init with shell: 0xbf831280 (offset of 0 not yet applied), shell_len: 68, eip: 0x00000000
+
+28 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbf831280-0xbf8312c4 with eip: 0x00000000 buffer length: 68 and syscall number: 1024
+>>    Mem_map start_addr: 0xbf831280, length: 68B, end_addr: 0xbf8312c4
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831280 dad4b892 ba1e5cd9 7424f45b 29c9b10b  ......\.t$.[)...
+0xbf831290 83c30431 43140343 8658ebb7 b5c52588  ...1C..C.X....%.
+0xbf8312a0 09f174d3 2acba451 a3e6c926 bab304c6  ..t.*..Q...&....
+0xbf8312b0 54ab6838 5b64f2ab cf1ad013 788a5a38  T.h8[d......x.Z8
+0xbf8312c0 e27591cd ff                          .u...           
+
+ >> oTBS pc: 0xbf831280
+ >> oTBE Target by pc: 0xbf831280 to pc: 0xbf831280
+ >> oTIE pc: 0xbf831280:0x00 nextpc: bf831280 len: 1
+  0:  0: 1  1B @0xbf831280: da                                 invalid                  nextPC: 0xbf831280
+ >> oEB pc: 0xbf831280
+ >> oExc pc: 0xbf831280 exception_idx: 7(0x07)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbf831280
+ >> oTIE pc: 0xbf831280:0x00 nextpc: bf831282 len: 2
+  0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+ >> oTIE pc: 0xbf831282:0x02 nextpc: bf831287 len: 5
+  0:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+ >> oTBE Target by pc: 0xbf831287 to pc: 0xbf831287
+ >> oTIE pc: 0xbf831287:0x07 nextpc: bf83128b len: 4
+  0:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+ >> oTIE pc: 0xbf83128b:0x0b nextpc: bf83128c len: 1
+  0:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+ >> oTIE pc: 0xbf83128c:0x0c nextpc: bf83128e len: 2
+  0:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+ >> oTIE pc: 0xbf83128e:0x0e nextpc: bf831290 len: 2
+  0:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+ >> oTIE pc: 0xbf831290:0x10 nextpc: bf831293 len: 3
+  0:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> oTIE pc: 0xbf831293:0x13 nextpc: bf831296 len: 3
+  0:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oTIE pc: 0xbf831296:0x16 nextpc: bf831299 len: 3
+  0:  9: 2  3B @0xbf831296: 03 43 86                           add eax, [ebx-0x7a]      nextPC: 0xbf831299
+ >> oTIE pc: 0xbf831299:0x19 nextpc: bf83129a len: 1
+  0: 10: 2  1B @0xbf831299: 58                                 pop eax                  nextPC: 0xbf83129a
+ >> oTBE Target by pc: 0xbf83129a to pc: 0xbf831253
+ >> oTIE pc: 0xbf83129a:0x1a nextpc: bf831253 len: 2
+  0: 11: 2  2B @0xbf83129a: eb b7                              jmp 0xffffffffffffffb9   nextPC: 0xbf831253
+ >> oExc pc: 0xbf831280 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbf831280
+ >> oEI handling FPU insn pc: 0xbf831280
+  0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+ >> oEI pc: 0xbf831282
+  1:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+ >> oEB pc: 0xbf831287
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830880 len: 4B value:  0x7f  0x03  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x7f  0x03  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830884 len: 4B value:  0x00  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x00  0x00  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830888 len: 4B value:  0xff  0xff  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0xff  0xff  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf83088c len: 4B value:  0x00  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x00  0x00  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830890 len: 4B value:  0x00  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x00  0x00  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830894 len: 4B value:  0x00  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x00  0x00  0x00  0x00 
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbf831287:0x7 to addr: 0xbf830898 len: 4B value:  0x00  0x00  0x00  0x00 
+ >> >> oDMA value in memory at that address:  0x00  0x00  0x00  0x00 
+ >> oEI pc: 0xbf831287
+ >> oEI handling FPU stenv pc: 0xbf831287 writing last_fpu_pc: 0xbf831280 to target: 0xbf83088c
+ >> oEI handling FPU insn pc: 0xbf831287
+  2:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+ >> oEI pc: 0xbf83128b
+  3:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+ >> oEI pc: 0xbf83128c
+  4:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+ >> oEI pc: 0xbf83128e
+  5:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+  6:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Write to previously translated insn! at pc 0xbf831298
+ >> oDMA Write by seq_num: 7 pc: 0xbf831293:0x13 to addr: 0xbf831298 len: 4B value:  0x14  0xe2  0xf5  0xeb 
+ >> >> oDMA value in memory at that address:  0x14  0xe2  0xf5  0xeb 
+ >> oEI pc: 0xbf831293
+  7:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> DEBUG: oEI retranslate triggered at pc 0xbf831293
+ >> oExc pc: 0xbf831296 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbf831296
+ >> oTIE pc: 0xbf831296:0x16 nextpc: bf831299 len: 3
+!!* pc != prev insn's next_pc; 0xbf831296 != bf831253
+  0: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oTBE Target by pc: 0xbf831299 to pc: 0xbf83129b
+ >> oTBE Target by pc: 0xbf831299 to pc: 0xbf831290
+ >> oTIE pc: 0xbf831299:0x19 nextpc: bf831290 len: 2
+  0: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831296
+  8: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+  9: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oTBS pc: 0xbf831290
+ >> oTIE pc: 0xbf831290:0x10 nextpc: bf831293 len: 3
+  0: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> oTIE pc: 0xbf831293:0x13 nextpc: bf831296 len: 3
+  0: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oTIE pc: 0xbf831296:0x16 nextpc: bf831299 len: 3
+  0: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oTBE Target by pc: 0xbf831299 to pc: 0xbf83129b
+ >> oTBE Target by pc: 0xbf831299 to pc: 0xbf831290
+ >> oTIE pc: 0xbf831299:0x19 nextpc: bf831290 len: 2
+  0: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oExc pc: 0xbf831290 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbf831290
+ 10: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbf831293:0x13 to addr: 0xbf83129c len: 4B value:  0x13  0x59  0x31  0xc0 
+ >> >> oDMA value in memory at that address:  0x13  0x59  0x31  0xc0 
+ >> oEI pc: 0xbf831293
+ 11: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 12: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 13: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 14: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 15 pc: 0xbf831293:0x13 to addr: 0xbf8312a0 len: 4B value:  0xb0  0x04  0x31  0xdb 
+ >> >> oDMA value in memory at that address:  0xb0  0x04  0x31  0xdb 
+ >> oEI pc: 0xbf831293
+ 15: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 16: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 17: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 18: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 19 pc: 0xbf831293:0x13 to addr: 0xbf8312a4 len: 4B value:  0x43  0x31  0xd2  0xb2 
+ >> >> oDMA value in memory at that address:  0x43  0x31  0xd2  0xb2 
+ >> oEI pc: 0xbf831293
+ 19: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 20: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 21: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 22: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 23 pc: 0xbf831293:0x13 to addr: 0xbf8312a8 len: 4B value:  0x0f  0xcd  0x80  0xb0 
+ >> >> oDMA value in memory at that address:  0x0f  0xcd  0x80  0xb0 
+ >> oEI pc: 0xbf831293
+ 23: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 24: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 25: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oExc pc: 0xbf831290 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbf831290
+ 26: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 27 pc: 0xbf831293:0x13 to addr: 0xbf8312ac len: 4B value:  0x01  0x4b  0xcd  0x80 
+ >> >> oDMA value in memory at that address:  0x01  0x4b  0xcd  0x80 
+ >> oEI pc: 0xbf831293
+ 27: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 28: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 29: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 30: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 31 pc: 0xbf831293:0x13 to addr: 0xbf8312b0 len: 4B value:  0xe8  0xe8  0xff  0xff 
+ >> >> oDMA value in memory at that address:  0xe8  0xe8  0xff  0xff 
+ >> oEI pc: 0xbf831293
+ 31: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 32: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 33: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oExc pc: 0xbf831290 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbf831290
+ 34: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 35 pc: 0xbf831293:0x13 to addr: 0xbf8312b4 len: 4B value:  0xff  0x48  0x65  0x6c 
+ >> >> oDMA value in memory at that address:  0xff  0x48  0x65  0x6c 
+ >> oEI pc: 0xbf831293
+ 35: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 36: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 37: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 38: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 39 pc: 0xbf831293:0x13 to addr: 0xbf8312b8 len: 4B value:  0x6c  0x6f  0x2c  0x20 
+ >> >> oDMA value in memory at that address:  0x6c  0x6f  0x2c  0x20 
+ >> oEI pc: 0xbf831293
+ 39: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 40: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 41: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 42: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 43 pc: 0xbf831293:0x13 to addr: 0xbf8312bc len: 4B value:  0x77  0x6f  0x72  0x6c 
+ >> >> oDMA value in memory at that address:  0x77  0x6f  0x72  0x6c 
+ >> oEI pc: 0xbf831293
+ 43: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 44: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 45: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oEI pc: 0xbf831290
+ 46: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 47 pc: 0xbf831293:0x13 to addr: 0xbf8312c0 len: 4B value:  0x64  0x21  0x0a  0x0d 
+ >> >> oDMA value in memory at that address:  0x64  0x21  0x0a  0x0d 
+ >> oEI pc: 0xbf831293
+ 47: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+ >> oEI pc: 0xbf831296
+ 48: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+ >> oEB pc: 0xbf831299
+ >> oEI pc: 0xbf831299
+ 49: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+ >> oTBS pc: 0xbf83129b
+ >> oTBE Target by pc: 0xbf83129b to pc: 0xbf8312b0
+ >> oTIE pc: 0xbf83129b:0x1b nextpc: bf8312b0 len: 2
+!!* pc != prev insn's next_pc; 0xbf83129b != bf831290
+  0: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+ >> oEB pc: 0xbf83129b
+ >> oEI pc: 0xbf83129b
+ 50: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+ >> oTBS pc: 0xbf8312b0
+ >> oTBE Target by pc: 0xbf8312b0 to pc: 0xbf83129d
+ >> oTIE pc: 0xbf8312b0:0x30 nextpc: bf83129d len: 5
+  0: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+ >> oExc pc: 0xbf8312b0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oDMA OOB Write by seq_num: 51 pc: 0xbf8312b0:0x30 to addr: 0xbf83088c len: 4B value:  0xb5  0x12  0x83  0xbf 
+ >> >> oDMA value in memory at that address:  0xb5  0x12  0x83  0xbf 
+ >> oEB pc: 0xbf8312b0
+ >> oEI pc: 0xbf8312b0
+ 51: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+ >> oTBS pc: 0xbf83129d
+ >> oTIE pc: 0xbf83129d:0x1d nextpc: bf83129e len: 1
+  0: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+ >> oTIE pc: 0xbf83129e:0x1e nextpc: bf8312a0 len: 2
+  0: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+ >> oTIE pc: 0xbf8312a0:0x20 nextpc: bf8312a2 len: 2
+  0: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+ >> oTIE pc: 0xbf8312a2:0x22 nextpc: bf8312a4 len: 2
+  0: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+ >> oTIE pc: 0xbf8312a4:0x24 nextpc: bf8312a5 len: 1
+  0: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+ >> oTIE pc: 0xbf8312a5:0x25 nextpc: bf8312a7 len: 2
+  0: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+ >> oTIE pc: 0xbf8312a7:0x27 nextpc: bf8312a9 len: 2
+  0: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+ >> oTBE Target by pc: 0xbf8312a9 to pc: 0xbf8312a9
+ >> oTBE INTERRUPT by pc: 0xbf8312a9 int: 0x80
+ >> oTIE pc: 0xbf8312a9:0x29 nextpc: bf8312a9 len: 2
+  0: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+ >> oExc pc: 0xbf83129d exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbf83129d
+ 52: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+ >> oEI pc: 0xbf83129e
+ 53: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+ >> oEI pc: 0xbf8312a0
+ 54: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+ >> oEI pc: 0xbf8312a2
+ 55: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+ >> oEI pc: 0xbf8312a4
+ 56: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+ >> oEI pc: 0xbf8312a5
+ 57: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+ >> oEI pc: 0xbf8312a7
+ 58: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+ >> oEB pc: 0xbf8312a9
+ >> oExc pc: 0xbf8312a9 exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbf8312a9 syscall_num: 4(0x04)
+ >> oEI pc: 0xbf8312a9
+ 59: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+>>      1:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+>>      2:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+>>      3:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+>>      4:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+>>      5:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+>>      6:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      7:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      8: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      9: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     10: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     11: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     12: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     13: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     14: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     15: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     16: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     17: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     18: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     19: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     20: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     21: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     22: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     23: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     24: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     25: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     26: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     27: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     28: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     29: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     30: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     31: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     32: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     33: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     34: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     35: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     36: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     37: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     38: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     39: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     40: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     41: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     42: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     43: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     44: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     45: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     46: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     47: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     48: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     49: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     50: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+>>     51: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+>>     52: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+>>     53: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+>>     54: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+>>     55: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+>>     56: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+>>     57: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+>>     58: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+>>     59: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+>> onSuccess EIP Found. Syscall number 0x4 at addr 0xbf8312a9 offset from base: 41 (should be EIP-2) within pid: 86716416 number of exec'ed instructions: 60. This is success #1
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbf8312b5
+EDX=0xf
+ESI=0x407ced80
+EDI=0x0
+EBP=0xbf830ce8
+ESP=0xbf830890
+EIP=0xbf8312a9
+CR2=0xb75fb29f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.90566; avg: 0
+>> Syscall eip: 0xbf8312ab offset from base: 43
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  1B @0xbf831280: da                                 invalid                  nextPC: 0xbf831280
+>>      0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+>>      0:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+>>      0:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+>>      0:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+>>      0:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+>>      0:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+>>      0:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      0:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      0:  9: 2  3B @0xbf831296: 03 43 86                           add eax, [ebx-0x7a]      nextPC: 0xbf831299
+>>      0: 10: 2  1B @0xbf831299: 58                                 pop eax                  nextPC: 0xbf83129a
+>>      0: 11: 2  2B @0xbf83129a: eb b7                              jmp 0xffffffffffffffb9   nextPC: 0xbf831253
+>>      0: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      0: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>      0: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      0: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      0: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      0: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>      0: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+>>      0: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+>>      0: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+>>      0: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+>>      0: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+>>      0: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+>>      0: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+>>      0: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+>>      0: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+>>      0: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+>>      1:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+>>      2:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+>>      3:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+>>      4:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+>>      5:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+>>      6:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      7:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      8: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      9: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     10: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     11: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     12: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     13: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     14: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     15: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     16: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     17: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     18: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     19: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     20: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     21: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     22: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     23: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     24: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     25: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     26: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     27: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     28: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     29: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     30: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     31: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     32: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     33: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     34: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     35: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     36: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     37: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     38: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     39: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     40: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     41: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     42: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     43: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     44: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     45: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     46: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     47: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     48: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     49: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     50: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+>>     51: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+>>     52: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+>>     53: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+>>     54: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+>>     55: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+>>     56: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+>>     57: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+>>     58: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+>>     59: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (48/54) = 0
+>>    Mem_map start_addr: 0xbf831280, length: 53B, valid bytes: 48, used bytes: 48, range: 54B, end_addr: 0xbf8312b5
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831280 dad4b892 ba1e5cd9 7424f45b 29c9b10b  ......\.t$.[)...
+0xbf831290 83c30431 43140343 14e2f5eb 135931c0  ...1C..C.....Y1.
+0xbf8312a0 b00431db 4331d2b2 0fcd80-- --------  ..1.C1..........
+0xbf8312b0 e8e8ffff ff--                        ......          
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      2 by:0xbf831287 wrote  4B @0xbf830880: OOB 7f 03 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830884: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830888: OOB ff ff 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf83088c: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830890: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830894: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830898: OOB 00 00 00 00 
+>>      7 by:0xbf831293 wrote  4B @0xbf831298: 14 e2 f5 eb 
+>>     11 by:0xbf831293 wrote  4B @0xbf83129c: 13 59 31 c0 
+>>     15 by:0xbf831293 wrote  4B @0xbf8312a0: b0 04 31 db 
+>>     19 by:0xbf831293 wrote  4B @0xbf8312a4: 43 31 d2 b2 
+>>     23 by:0xbf831293 wrote  4B @0xbf8312a8: 0f cd 80 b0 
+>>     27 by:0xbf831293 wrote  4B @0xbf8312ac: 01 4b cd 80 
+>>     31 by:0xbf831293 wrote  4B @0xbf8312b0: e8 e8 ff ff 
+>>     35 by:0xbf831293 wrote  4B @0xbf8312b4: ff 48 65 6c 
+>>     39 by:0xbf831293 wrote  4B @0xbf8312b8: 6c 6f 2c 20 
+>>     43 by:0xbf831293 wrote  4B @0xbf8312bc: 77 6f 72 6c 
+>>     47 by:0xbf831293 wrote  4B @0xbf8312c0: 64 21 0a 0d 
+>>     51 by:0xbf8312b0 wrote  4B @0xbf83088c: OOB b5 12 83 bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbf831298, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbf8312c3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831290                   8658ebb7 b5c52588          .X....%.
+0xbf8312a0 09f174d3 2acba451 a3e6c926 bab304c6  ..t.*..Q...&....
+0xbf8312b0 54ab6838 5b64f2ab cf1ad013 788a5a38  T.h8[d......x.Z8
+0xbf8312c0 e27591cd                             .u..            
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (44/44) = 0
+>>    Mem_map start_addr: 0xbf831298, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbf8312c3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831290                   14e2f5eb 135931c0          .....Y1.
+0xbf8312a0 b00431db 4331d2b2 0fcd80b0 014bcd80  ..1.C1.......K..
+0xbf8312b0 e8e8ffff ff48656c 6c6f2c20 776f726c  .....Hello, worl
+0xbf8312c0 64210a0d                             d!..            
+
+28 [State 1] Terminating state 1 with message 'EIP reached, success'
+28 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1f4619c0
+28 [State 0] Message from guest (0xbf8308dc): << Looping fork, currently at 0
+28 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.90566; avg: 0
+>> Syscall eip: 0xbf8312ab offset from base: 43
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  1B @0xbf831280: da                                 invalid                  nextPC: 0xbf831280
+>>      0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+>>      0:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+>>      0:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+>>      0:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+>>      0:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+>>      0:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+>>      0:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      0:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      0:  9: 2  3B @0xbf831296: 03 43 86                           add eax, [ebx-0x7a]      nextPC: 0xbf831299
+>>      0: 10: 2  1B @0xbf831299: 58                                 pop eax                  nextPC: 0xbf83129a
+>>      0: 11: 2  2B @0xbf83129a: eb b7                              jmp 0xffffffffffffffb9   nextPC: 0xbf831253
+>>      0: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      0: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>      0: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      0: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      0: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      0: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>      0: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+>>      0: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+>>      0: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+>>      0: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+>>      0: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+>>      0: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+>>      0: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+>>      0: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+>>      0: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+>>      0: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  1: 2  2B @0xbf831280: da d4                              fcmovbe st0, st4         nextPC: 0xbf831282
+>>      1:  2: 2  5B @0xbf831282: b8 92 ba 1e 5c                     mov eax, 0x5c1eba92      nextPC: 0xbf831287
+>>      2:  3: 2  4B @0xbf831287: d9 74 24 f4                        fnstenv [esp-0xc]        nextPC: 0xbf83128b
+>>      3:  4: 2  1B @0xbf83128b: 5b                                 pop ebx                  nextPC: 0xbf83128c
+>>      4:  5: 2  2B @0xbf83128c: 29 c9                              sub ecx, ecx             nextPC: 0xbf83128e
+>>      5:  6: 2  2B @0xbf83128e: b1 0b                              mov cl, 0xb              nextPC: 0xbf831290
+>>      6:  7: 2  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>      7:  8: 2  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>      8: 12: 3  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>      9: 13: 3  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     10: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     11: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     12: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     13: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     14: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     15: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     16: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     17: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     18: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     19: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     20: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     21: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     22: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     23: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     24: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     25: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     26: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     27: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     28: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     29: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     30: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     31: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     32: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     33: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     34: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     35: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     36: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     37: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     38: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     39: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     40: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     41: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     42: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     43: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     44: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     45: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     46: 14: 4  3B @0xbf831290: 83 c3 04                           add ebx, 0x4             nextPC: 0xbf831293
+>>     47: 15: 4  3B @0xbf831293: 31 43 14                           xor [ebx+0x14], eax      nextPC: 0xbf831296
+>>     48: 16: 4  3B @0xbf831296: 03 43 14                           add eax, [ebx+0x14]      nextPC: 0xbf831299
+>>     49: 17: 4  2B @0xbf831299: e2 f5                              loop 0xfffffffffffffff7  nextPC: 0xbf831290
+>>     50: 18: 5  2B @0xbf83129b: eb 13                              jmp 0x15                 nextPC: 0xbf8312b0
+>>     51: 19: 6  5B @0xbf8312b0: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbf83129d
+>>     52: 20: 7  1B @0xbf83129d: 59                                 pop ecx                  nextPC: 0xbf83129e
+>>     53: 21: 7  2B @0xbf83129e: 31 c0                              xor eax, eax             nextPC: 0xbf8312a0
+>>     54: 22: 7  2B @0xbf8312a0: b0 04                              mov al, 0x4              nextPC: 0xbf8312a2
+>>     55: 23: 7  2B @0xbf8312a2: 31 db                              xor ebx, ebx             nextPC: 0xbf8312a4
+>>     56: 24: 7  1B @0xbf8312a4: 43                                 inc ebx                  nextPC: 0xbf8312a5
+>>     57: 25: 7  2B @0xbf8312a5: 31 d2                              xor edx, edx             nextPC: 0xbf8312a7
+>>     58: 26: 7  2B @0xbf8312a7: b2 0f                              mov dl, 0xf              nextPC: 0xbf8312a9
+>>     59: 27: 7  2B @0xbf8312a9: cd 80                              int 0x80                 nextPC: 0xbf8312a9
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (48/54) = 0
+>>    Mem_map start_addr: 0xbf831280, length: 53B, valid bytes: 48, used bytes: 48, range: 54B, end_addr: 0xbf8312b5
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831280 dad4b892 ba1e5cd9 7424f45b 29c9b10b  ......\.t$.[)...
+0xbf831290 83c30431 43140343 14e2f5eb 135931c0  ...1C..C.....Y1.
+0xbf8312a0 b00431db 4331d2b2 0fcd80-- --------  ..1.C1..........
+0xbf8312b0 e8e8ffff ff--                        ......          
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      2 by:0xbf831287 wrote  4B @0xbf830880: OOB 7f 03 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830884: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830888: OOB ff ff 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf83088c: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830890: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830894: OOB 00 00 00 00 
+>>      2 by:0xbf831287 wrote  4B @0xbf830898: OOB 00 00 00 00 
+>>      7 by:0xbf831293 wrote  4B @0xbf831298: 14 e2 f5 eb 
+>>     11 by:0xbf831293 wrote  4B @0xbf83129c: 13 59 31 c0 
+>>     15 by:0xbf831293 wrote  4B @0xbf8312a0: b0 04 31 db 
+>>     19 by:0xbf831293 wrote  4B @0xbf8312a4: 43 31 d2 b2 
+>>     23 by:0xbf831293 wrote  4B @0xbf8312a8: 0f cd 80 b0 
+>>     27 by:0xbf831293 wrote  4B @0xbf8312ac: 01 4b cd 80 
+>>     31 by:0xbf831293 wrote  4B @0xbf8312b0: e8 e8 ff ff 
+>>     35 by:0xbf831293 wrote  4B @0xbf8312b4: ff 48 65 6c 
+>>     39 by:0xbf831293 wrote  4B @0xbf8312b8: 6c 6f 2c 20 
+>>     43 by:0xbf831293 wrote  4B @0xbf8312bc: 77 6f 72 6c 
+>>     47 by:0xbf831293 wrote  4B @0xbf8312c0: 64 21 0a 0d 
+>>     51 by:0xbf8312b0 wrote  4B @0xbf83088c: OOB b5 12 83 bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbf831298, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbf8312c3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831290                   8658ebb7 b5c52588          .X....%.
+0xbf8312a0 09f174d3 2acba451 a3e6c926 bab304c6  ..t.*..Q...&....
+0xbf8312b0 54ab6838 5b64f2ab cf1ad013 788a5a38  T.h8[d......x.Z8
+0xbf8312c0 e27591cd                             .u..            
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (44/44) = 0
+>>    Mem_map start_addr: 0xbf831298, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbf8312c3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbf831290                   14e2f5eb 135931c0          .....Y1.
+0xbf8312a0 b00431db 4331d2b2 0fcd80b0 014bcd80  ..1.C1.......K..
+0xbf8312b0 e8e8ffff ff48656c 6c6f2c20 776f726c  .....Hello, worl
+0xbf8312c0 64210a0d                             d!..            
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.90566
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbf8312ab 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3213038208 and ends at 3213038249
+>>    Done printing chunk 0
+28 [State 0] Killing state 0
+28 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x2ab5410
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3f9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

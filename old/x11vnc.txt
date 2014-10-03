@@ -1,0 +1,2 @@
+on s2e run x22vnc -display :0
+on remote connect with a vncviewer to port 5900

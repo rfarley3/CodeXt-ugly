@@ -1,0 +1,1180 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin HostFiles
+Creating plugin CodeXt
+ >> luaLoad: clusterWritesBy 10
+ >> luaLoad: minExecInsns 6
+ >> luaLoad: minExecBytes 15
+ >> luaLoad: maxInRangeInsn 100000
+ >> luaLoad: maxOutRangeInsn 10000
+ >> luaLoad: maxKernelInsn 10000
+ >> luaLoad: maxKillableInsn 10000
+ >> luaLoad: symb/monitor_vars[0]: data_x at 33 for 1B after insn 1
+ >> luaLoad: symb/monitor_vars[1]: data_y at 34 for 1B after insn 1
+ >> luaLoad: symb/monitor_vars[0]: z at 35 for 1B after insn 1
+ >> luaLoad: multisysc false
+ >> luaLoad: multipath false
+2 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x4248000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x44f0000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1d3d0000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1d419000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1ef41000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1efb5000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+30 [State 0] Message from guest (0xbffd2dec): << Within execShellcode with params f: 0, c: 1, eip_known: no, enable_multiple_syscalls: no
+
+ >> fuzzInit: datum forking for value 0
+ >> fuzzInit: datum forking for value 0
+30 [State 0] Forking state 0 at pc = 0x8048a6e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a6e
+Size=2 Low=0 splitIndex=1 high=1
+30 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a6e
+30 [State 1] Message from guest (0xbffd2dec): << About to call codext_init with shell: 0x0893d170 (offset of 0 not yet applied), shell_len: 36, eip: 0x00000000
+
+30 [State 1] Warning: EIP is not set, there may be false positives
+ >> Recv'ed custom insn for a CodeXt memory segment within pid 86716416, addr range: 0x0893d170-0x0893d194 with eip: 0x00000000 buffer length: 36 and syscall number: 1024
+ >> Memory update, cfg is 264 with 0 successes, 0 fragments, and 0 chunks
+ >>    Mem_map start_addr: 0x0893d170, length: 36B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d170 eb1a5e89 f781c702 00000031 c0ac89c3  ..^........1....
+0x0893d180 ac01d8aa 31c04031 db43cd80 e8e1ffff  ....1.@1.C......
+0x0893d190 ff010200                             ....            
+
+ >> ------------------------------------------
+ >> oTBS pc: 0x0893d170 tb_seq_num: 1 conc
+First TB dumpX86State:
+[State 1] CPU dump
+EAX=0x893d170
+EBX=0xf76c2e90
+ECX=0xbffd2d98
+EDX=0xb7740340
+ESI=0x0
+EDI=0x400
+EBP=0xbffd31f8
+ESP=0xbffd2dac
+EIP=0x893d170
+CR2=0x804f000
+Word at top of stack: 0x08049407
+30 [State 1] Disabling timer interrupt
+30 [State 1] Disabling all apic interrupt
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d170:0x00000000 conc
+ >> oTRA pc: 0x0893d170 read_mask: 0b00000000 write_mask: 0b00000000 isMemAccess? 0
+ >> oTBE Target by pc: 0x0893d170 to pc: 0x0893d18c
+ >> oTIE pc: 0x0893d170:0x00000000 nextpc: 0x0893d18c len: 2 conc
+  0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d170 conc
+ >> oEB pc: 0x0893d170
+ >> oEIE pc: 0x0893d170 conc
+  0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >> markSymb: using symb_var_idx: 0
+ >> markSymb: length: 1
+ >> markSymb: label: data_x0000
+30 [State 1] Inserting symbolic byte at 0x0893d191 with label '(Read w8 0 v1_data_x0000_1)'
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> >> taintAddr tainting with label: data_x0000
+ >> >> taintAddr from: 1
+ >> >> taintAddr   to: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> markSymb: inserting at [0]: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> markSymb: using symb_var_idx: 1
+ >> markSymb: length: 1
+ >> markSymb: label: data_y0000
+30 [State 1] Inserting symbolic byte at 0x0893d192 with label '(Read w8 0 v2_data_y0000_2)'
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> >> taintAddr tainting with label: data_y0000
+ >> >> taintAddr from: 2
+ >> >> taintAddr   to: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> markSymb: inserting at [0]: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTBS pc: 0x0893d18c tb_seq_num: 2 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d18c:0x0000001c conc
+ >> oTRA pc: 0x0893d18c read from ESP
+ >> oTRA pc: 0x0893d18c write to ESP
+ >> oTRA pc: 0x0893d18c read_mask: 0b00010000 write_mask: 0b00010000 isMemAccess? 0
+ >> oTBE Target by pc: 0x0893d18c to pc: 0x0893d172
+ >> oTIE pc: 0x0893d18c:0x0000001c nextpc: 0x0893d172 len: 5 conc
+  0:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d18c conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oDMA pc: 0x0893d18c:0x0000001c ESP/push Write by seq_num: 1 to addr: 0xbffd2da8 len: 4B value:  91  d1  93  08 
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> oEB pc: 0x0893d18c
+ >> oEIE pc: 0x0893d18c conc
+  1:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTBS pc: 0x0893d172 tb_seq_num: 3 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d172:0x00000002 conc
+ >> oTRA pc: 0x0893d172 read from ESP
+ >> oTRA pc: 0x0893d172 write to ESP
+ >> oTRA pc: 0x0893d172 write to ESI
+ >> oTRA pc: 0x0893d172 read_mask: 0b00010000 write_mask: 0b01010000 isMemAccess? 0
+ >> oTIE pc: 0x0893d172:0x00000002 nextpc: 0x0893d173 len: 1 conc
+  0:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d173:0x00000003 conc
+ >> oTRA pc: 0x0893d173 read from ESI
+ >> oTRA pc: 0x0893d173 write to EDI
+ >> oTRA pc: 0x0893d173 read_mask: 0b01000000 write_mask: 0b10000000 isMemAccess? 0
+ >> oTIE pc: 0x0893d173:0x00000003 nextpc: 0x0893d175 len: 2 conc
+  0:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d175:0x00000005 conc
+ >> oTRA pc: 0x0893d175 read from EDI
+ >> oTRA pc: 0x0893d175 write to EDI
+ >> oTRA pc: 0x0893d175 read_mask: 0b10000000 write_mask: 0b10000000 isMemAccess? 0
+ >> oTIE pc: 0x0893d175:0x00000005 nextpc: 0x0893d17b len: 6 conc
+  0:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17b:0x0000000b conc
+ >> oTRA pc: 0x0893d17b write to EAX
+ >> oTRA pc: 0x0893d17b read_mask: 0b00000000 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d17b:0x0000000b nextpc: 0x0893d17d len: 2 conc
+  0:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17d:0x0000000d conc
+ >> oTRA pc: 0x0893d17d read from EAX
+ >> oTRA pc: 0x0893d17d write to EAX
+ >> oTRA pc: 0x0893d17d read from ESI
+ >> oTRA pc: 0x0893d17d write to ESI
+ >> oTRA pc: 0x0893d17d read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d17d:0x0000000d nextpc: 0x0893d17e len: 1 conc
+  0:  6: 3  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17e:0x0000000e conc
+ >> oTRA pc: 0x0893d17e read from EAX
+ >> oTRA pc: 0x0893d17e write to EBX
+ >> oTRA pc: 0x0893d17e read_mask: 0b00000001 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d17e:0x0000000e nextpc: 0x0893d180 len: 2 conc
+  0:  7: 3  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d180:0x00000010 conc
+ >> oTRA pc: 0x0893d180 read from EAX
+ >> oTRA pc: 0x0893d180 write to EAX
+ >> oTRA pc: 0x0893d180 read from ESI
+ >> oTRA pc: 0x0893d180 write to ESI
+ >> oTRA pc: 0x0893d180 read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d180:0x00000010 nextpc: 0x0893d181 len: 1 conc
+  0:  8: 3  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d181:0x00000011 conc
+ >> oTRA pc: 0x0893d181 read from EAX
+ >> oTRA pc: 0x0893d181 write to EAX
+ >> oTRA pc: 0x0893d181 read from EBX
+ >> oTRA pc: 0x0893d181 read_mask: 0b00001001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d181:0x00000011 nextpc: 0x0893d183 len: 2 conc
+  0:  9: 3  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d183:0x00000013 conc
+ >> oTRA pc: 0x0893d183 read from EAX
+ >> oTRA pc: 0x0893d183 read from EDI
+ >> oTRA pc: 0x0893d183 write to EDI
+ >> oTRA pc: 0x0893d183 read_mask: 0b10000001 write_mask: 0b10000000 isMemAccess? 0
+ >> oTIE pc: 0x0893d183:0x00000013 nextpc: 0x0893d184 len: 1 conc
+  0: 10: 3  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d184:0x00000014 conc
+ >> oTRA pc: 0x0893d184 write to EAX
+ >> oTRA pc: 0x0893d184 read_mask: 0b00000000 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d184:0x00000014 nextpc: 0x0893d186 len: 2 conc
+  0: 11: 3  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d186:0x00000016 conc
+ >> oTRA pc: 0x0893d186 read from EAX
+ >> oTRA pc: 0x0893d186 write to EAX
+ >> oTRA pc: 0x0893d186 read_mask: 0b00000001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d186:0x00000016 nextpc: 0x0893d187 len: 1 conc
+  0: 12: 3  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d187:0x00000017 conc
+ >> oTRA pc: 0x0893d187 write to EBX
+ >> oTRA pc: 0x0893d187 read_mask: 0b00000000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d187:0x00000017 nextpc: 0x0893d189 len: 2 conc
+  0: 13: 3  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d189:0x00000019 conc
+ >> oTRA pc: 0x0893d189 read from EBX
+ >> oTRA pc: 0x0893d189 write to EBX
+ >> oTRA pc: 0x0893d189 read_mask: 0b00001000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d189:0x00000019 nextpc: 0x0893d18a len: 1 conc
+  0: 14: 3  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d18a:0x0000001a conc
+ >> oTRA pc: 0x0893d18a read_mask: 0b00000000 write_mask: 0b00000000 isMemAccess? 0
+ >> oTBE Target by pc: 0x0893d18a to pc: 0x0893d18a
+ >> oTIE pc: 0x0893d18a:0x0000001a nextpc: 0x0893d18a len: 2 conc
+  0: 15: 3  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d172 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oEIE pc: 0x0893d172 conc
+  2:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d173 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oEIE pc: 0x0893d173 conc
+  3:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d175 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oEIE pc: 0x0893d175 conc
+  4:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d17b conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oRA pc: 0x0893d17b regabcd write to EAX
+ >> oEIE pc: 0x0893d17b conc
+  5:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d17d conc
+ >> oEIS pc: 0x0893d17d scrubbable regabcd write to EAX
+ >> >> scrubAddr len: 0x01
+ >> >> scrubAddr[0]: already clean
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> ------------------------------------------
+ >> oTBS pc: 0x0893d17d tb_seq_num: 4 conc
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17d:0x0000000d conc
+ >> oTRA pc: 0x0893d17d read from EAX
+ >> oTRA pc: 0x0893d17d write to EAX
+ >> oTRA pc: 0x0893d17d read from ESI
+ >> oTRA pc: 0x0893d17d write to ESI
+ >> oTRA pc: 0x0893d17d read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d17d:0x0000000d nextpc: 0x0893d17e len: 1 conc
+!!* pc != prev insn's next_pc; 0x0893d17d != 0x0893d18a
+  0: 16: 4  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17e:0x0000000e conc
+ >> oTRA pc: 0x0893d17e read from EAX
+ >> oTRA pc: 0x0893d17e write to EBX
+ >> oTRA pc: 0x0893d17e read_mask: 0b00000001 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d17e:0x0000000e nextpc: 0x0893d180 len: 2 conc
+  0: 17: 4  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d180:0x00000010 conc
+ >> oTRA pc: 0x0893d180 read from EAX
+ >> oTRA pc: 0x0893d180 write to EAX
+ >> oTRA pc: 0x0893d180 read from ESI
+ >> oTRA pc: 0x0893d180 write to ESI
+ >> oTRA pc: 0x0893d180 read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d180:0x00000010 nextpc: 0x0893d181 len: 1 conc
+  0: 18: 4  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d181:0x00000011 conc
+ >> oTRA pc: 0x0893d181 read from EAX
+ >> oTRA pc: 0x0893d181 write to EAX
+ >> oTRA pc: 0x0893d181 read from EBX
+ >> oTRA pc: 0x0893d181 read_mask: 0b00001001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d181:0x00000011 nextpc: 0x0893d183 len: 2 conc
+  0: 19: 4  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d183:0x00000013 conc
+ >> oTRA pc: 0x0893d183 read from EAX
+ >> oTRA pc: 0x0893d183 read from EDI
+ >> oTRA pc: 0x0893d183 write to EDI
+ >> oTRA pc: 0x0893d183 read_mask: 0b10000001 write_mask: 0b10000000 isMemAccess? 0
+ >> oTIE pc: 0x0893d183:0x00000013 nextpc: 0x0893d184 len: 1 conc
+  0: 20: 4  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d184:0x00000014 conc
+ >> oTRA pc: 0x0893d184 write to EAX
+ >> oTRA pc: 0x0893d184 read_mask: 0b00000000 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d184:0x00000014 nextpc: 0x0893d186 len: 2 conc
+  0: 21: 4  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d186:0x00000016 conc
+ >> oTRA pc: 0x0893d186 read from EAX
+ >> oTRA pc: 0x0893d186 write to EAX
+ >> oTRA pc: 0x0893d186 read_mask: 0b00000001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d186:0x00000016 nextpc: 0x0893d187 len: 1 conc
+  0: 22: 4  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d187:0x00000017 conc
+ >> oTRA pc: 0x0893d187 write to EBX
+ >> oTRA pc: 0x0893d187 read_mask: 0b00000000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d187:0x00000017 nextpc: 0x0893d189 len: 2 conc
+  0: 23: 4  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d189:0x00000019 conc
+ >> oTRA pc: 0x0893d189 read from EBX
+ >> oTRA pc: 0x0893d189 write to EBX
+ >> oTRA pc: 0x0893d189 read_mask: 0b00001000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d189:0x00000019 nextpc: 0x0893d18a len: 1 conc
+  0: 24: 4  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d18a:0x0000001a conc
+ >> oTRA pc: 0x0893d18a read_mask: 0b00000000 write_mask: 0b00000000 isMemAccess? 0
+ >> oTBE Target by pc: 0x0893d18a to pc: 0x0893d18a
+ >> oTIE pc: 0x0893d18a:0x0000001a nextpc: 0x0893d18a len: 2 conc
+  0: 25: 4  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTBS pc: 0x0893d17d tb_seq_num: 5 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17d:0x0000000d symb
+ >> oTRA pc: 0x0893d17d read from EAX
+ >> oTRA pc: 0x0893d17d write to EAX
+ >> oTRA pc: 0x0893d17d read from ESI
+ >> oTRA pc: 0x0893d17d write to ESI
+ >> oTRA pc: 0x0893d17d read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d17d:0x0000000d nextpc: 0x0893d17e len: 1 symb
+!!* pc != prev insn's next_pc; 0x0893d17d != 0x0893d18a
+  0: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d17e:0x0000000e symb
+ >> oTRA pc: 0x0893d17e read from EAX
+ >> oTRA pc: 0x0893d17e write to EBX
+ >> oTRA pc: 0x0893d17e read_mask: 0b00000001 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d17e:0x0000000e nextpc: 0x0893d180 len: 2 symb
+  0: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d180:0x00000010 symb
+ >> oTRA pc: 0x0893d180 read from EAX
+ >> oTRA pc: 0x0893d180 write to EAX
+ >> oTRA pc: 0x0893d180 read from ESI
+ >> oTRA pc: 0x0893d180 write to ESI
+ >> oTRA pc: 0x0893d180 read_mask: 0b01000001 write_mask: 0b01000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d180:0x00000010 nextpc: 0x0893d181 len: 1 symb
+  0: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d181:0x00000011 symb
+ >> oTRA pc: 0x0893d181 read from EAX
+ >> oTRA pc: 0x0893d181 write to EAX
+ >> oTRA pc: 0x0893d181 read from EBX
+ >> oTRA pc: 0x0893d181 read_mask: 0b00001001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d181:0x00000011 nextpc: 0x0893d183 len: 2 symb
+  0: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d183:0x00000013 symb
+ >> oTRA pc: 0x0893d183 read from EAX
+ >> oTRA pc: 0x0893d183 read from EDI
+ >> oTRA pc: 0x0893d183 write to EDI
+ >> oTRA pc: 0x0893d183 read_mask: 0b10000001 write_mask: 0b10000000 isMemAccess? 0
+ >> oTIE pc: 0x0893d183:0x00000013 nextpc: 0x0893d184 len: 1 symb
+  0: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d184:0x00000014 symb
+ >> oTRA pc: 0x0893d184 write to EAX
+ >> oTRA pc: 0x0893d184 read_mask: 0b00000000 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d184:0x00000014 nextpc: 0x0893d186 len: 2 symb
+  0: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d186:0x00000016 symb
+ >> oTRA pc: 0x0893d186 read from EAX
+ >> oTRA pc: 0x0893d186 write to EAX
+ >> oTRA pc: 0x0893d186 read_mask: 0b00000001 write_mask: 0b00000001 isMemAccess? 0
+ >> oTIE pc: 0x0893d186:0x00000016 nextpc: 0x0893d187 len: 1 symb
+  0: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d187:0x00000017 symb
+ >> oTRA pc: 0x0893d187 write to EBX
+ >> oTRA pc: 0x0893d187 read_mask: 0b00000000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d187:0x00000017 nextpc: 0x0893d189 len: 2 symb
+  0: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d189:0x00000019 symb
+ >> oTRA pc: 0x0893d189 read from EBX
+ >> oTRA pc: 0x0893d189 write to EBX
+ >> oTRA pc: 0x0893d189 read_mask: 0b00001000 write_mask: 0b00001000 isMemAccess? 0
+ >> oTIE pc: 0x0893d189:0x00000019 nextpc: 0x0893d18a len: 1 symb
+  0: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oTIS pc: 0x0893d18a:0x0000001a symb
+ >> oTRA pc: 0x0893d18a read_mask: 0b00000000 write_mask: 0b00000000 isMemAccess? 0
+ >> oTBE Target by pc: 0x0893d18a to pc: 0x0893d18a
+ >> oTIE pc: 0x0893d18a:0x0000001a nextpc: 0x0893d18a len: 2 symb
+  0: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d17d symb
+ >> oEIS pc: 0x0893d17d scrubbable regabcd write to EAX
+ >> >> scrubAddr len: 0x01
+ >> >> scrubAddr[0]: already clean
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oRA pc: 0x0893d17d regabcd write to EAX
+ >> oEIE pc: 0x0893d17d symb
+  6: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d17e symb
+ >> oEIS pc: 0x0893d17e scrubbable regabcd write to EBX
+ >> >> regAddressingType reg suffix: ebx
+ >> >> scrubAddr len: 0x04
+ >> >> scrubAddr[0]: already clean
+ >> >> scrubAddr[1]: already clean
+ >> >> scrubAddr[2]: already clean
+ >> >> scrubAddr[3]: already clean
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oRA pc: 0x0893d17e regabcd write to EBX
+ >> oEIE pc: 0x0893d17e symb
+  7: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d180 symb
+ >> oEIS pc: 0x0893d180 scrubbable regabcd write to EAX
+ >> >> scrubAddr len: 0x01
+ >> >> scrubAddr[0]: scrubbed
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oRA pc: 0x0893d180 regabcd write to EAX
+ >> oEIE pc: 0x0893d180 symb
+  8: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d181 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oRA pc: 0x0893d181 regabcd write to EAX
+ >> oEIE pc: 0x0893d181 symb
+  9: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d183 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x00
+ >> oDMA pc: 0x0893d183:0x00000013 Write by seq_num: 10 to addr: 0x0893d193 len: 1B value:  03 
+ >> simplifyLabeledExpr kind: Extract bits: 8
+ >> simplifyLabeledExpr e in: (Extract w8 0 (Add w32 (Concat w32 (w8 0)
+                                   (Concat w24 (w8 0)
+                                               (Concat w16 (w8 0)
+                                                           (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))))
+                       (Concat w32 (w8 0)
+                                   (Concat w24 (w8 0)
+                                               (Concat w16 (w8 0)
+                                                           (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))))))
+ >> handleOp labels 0 is_b? 1 e: (Extract w8 0 (Add w32 (Concat w32 (w8 0)
+                                   (Concat w24 (w8 0)
+                                               (Concat w16 (w8 0)
+                                                           (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))))
+                       (Concat w32 (w8 0)
+                                   (Concat w24 (w8 0)
+                                               (Concat w16 (w8 0)
+                                                           (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))))))
+ >> opExtract8 offset: 0
+ >> handleOp labels 0 is_b? 1 e: (Add w32 (Concat w32 (w8 0)
+                     (Concat w24 (w8 0)
+                                 (Concat w16 (w8 0)
+                                             (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))))
+         (Concat w32 (w8 0)
+                     (Concat w24 (w8 0)
+                                 (Concat w16 (w8 0)
+                                             (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))))))
+ >> opNonBitwise operator: Add bits: 32
+ >> handleOp labels 0 is_b? 0 e: (Concat w32 (w8 0)
+            (Concat w24 (w8 0)
+                        (Concat w16 (w8 0)
+                                    (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))))
+ >> opConcat is_bitwise? 0 bits: 32 bytes: 4
+ >> handleOp labels 0 is_b? 0 e: 0
+ >> handleOp labels 0 is_b? 0 e: (Concat w24 (w8 0)
+            (Concat w16 (w8 0)
+                        (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))))
+ >> opConcat is_bitwise? 0 bits: 24 bytes: 3
+ >> handleOp labels 0 is_b? 0 e: 0
+ >> handleOp labels 0 is_b? 0 e: (Concat w16 (w8 0)
+            (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))
+ >> opConcat is_bitwise? 0 bits: 16 bytes: 2
+ >> handleOp labels 0 is_b? 0 e: 0
+ >> handleOp labels 0 is_b? 0 e: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 1 is_b? 1 e: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 1 is_b? 1 e: (Concat w16 (w8 0)
+            (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))
+ >> opConcat is_bitwise? 1 bits: 16 bytes: 2
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 1 is_b? 1 e: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 1 is_b? 1 e: (Concat w24 (w8 0)
+            (Concat w16 (w8 0)
+                        (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))))
+ >> opConcat is_bitwise? 1 bits: 24 bytes: 3
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 1 is_b? 1 e: (Concat w16 (w8 0)
+            (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2)))
+ >> opConcat is_bitwise? 1 bits: 16 bytes: 2
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 1 is_b? 1 e: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> handleOp labels 1 is_b? 0 e: (Concat w32 (w8 0)
+            (Concat w24 (w8 0)
+                        (Concat w16 (w8 0)
+                                    (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))))
+ >> opConcat is_bitwise? 0 bits: 32 bytes: 4
+ >> handleOp labels 1 is_b? 0 e: 0
+ >> handleOp labels 1 is_b? 0 e: (Concat w24 (w8 0)
+            (Concat w16 (w8 0)
+                        (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))))
+ >> opConcat is_bitwise? 0 bits: 24 bytes: 3
+ >> handleOp labels 1 is_b? 0 e: 0
+ >> handleOp labels 1 is_b? 0 e: (Concat w16 (w8 0)
+            (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))
+ >> opConcat is_bitwise? 0 bits: 16 bytes: 2
+ >> handleOp labels 1 is_b? 0 e: 0
+ >> handleOp labels 1 is_b? 0 e: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 2 is_b? 1 e: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 2 is_b? 1 e: (Concat w16 (w8 0)
+            (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))
+ >> opConcat is_bitwise? 1 bits: 16 bytes: 2
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 2 is_b? 1 e: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 2 is_b? 1 e: (Concat w24 (w8 0)
+            (Concat w16 (w8 0)
+                        (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))))
+ >> opConcat is_bitwise? 1 bits: 24 bytes: 3
+ >> opConcat 2 skipping to next offset: 0
+ >> handleOp labels 2 is_b? 1 e: (Concat w16 (w8 0)
+            (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1)))
+ >> opConcat is_bitwise? 1 bits: 16 bytes: 2
+ >> opConcat direct address deCat: 2
+ >> handleOp labels 2 is_b? 1 e: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> handleOp:isOnlyChild||isAllOps8: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> simplifyLabeledExpr opHandler true
+ >> simplifyLabeledExpr adding found label: (Read w8 0 v2_data_y0000_2)
+ >> simplifyLabeledExpr adding found label: (Read w8 0 v1_data_x0000_1)
+ >> simplifyLabeledExpr'd: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> simplifyAddr'd: 0x0893d193
+ >> oEIE pc: 0x0893d183 symb
+ 10: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d184 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> oRA pc: 0x0893d184 regabcd write to EAX
+ >> oEIE pc: 0x0893d184 symb
+ 11: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d186 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> oRA pc: 0x0893d186 regabcd write to EAX
+ >> oEIE pc: 0x0893d186 symb
+ 12: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d187 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> oRA pc: 0x0893d187 regabcd write to EBX
+ >> oEIE pc: 0x0893d187 symb
+ 13: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d189 symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> oRA pc: 0x0893d189 regabcd write to EBX
+ >> oEIE pc: 0x0893d189 symb
+ 14: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> ------------------------------------------
+ >> oEIS pc: 0x0893d18a symb
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> oEB pc: 0x0893d18a
+ >> oExc pc: 0x0893d18a exception_idx: 128 (0x80)
+ >> oExc INT 0x80 pc: 0x0893d18a syscall_num: 1(0x00000001)
+ >> oEIE pc: 0x0893d18a symb
+ 15: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> monitorMemByte data_x[0] byte value is 0x01 and its symb expr is: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> monitorMemByte data_y[0] byte value is 0x02 and its symb expr is: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> monitorMemByte z[0] byte value is 0x03 and its symb expr is: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> monitorAddresses trans block boundary
+ >> ------------------------------------------
+ >> Possible success terminating reason: non-multi modeling
+ >> onSuccess (EIP found) number of exec'ed instructions: 16, this is success #1
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Constant bits: 8
+ >> simplifyLabeledExpr kind: Add bits: 8
+ >> isLabeledExprLeaf potential leaf call
+ >> simplifyLabeledExpr leaf: (Add w8 (w8 1) (Read w8 0 v1_data_x0000_1))
+ >> simplifyLabeledExpr kind: Add bits: 8
+ >> isLabeledExprLeaf potential leaf call
+ >> simplifyLabeledExpr leaf: (Add w8 (w8 2) (Read w8 0 v2_data_y0000_2))
+ >> simplifyLabeledExpr kind: Add bits: 8
+ >> isLabeledExprLeaf potential leaf call
+ >> isLabeledExprLeaf potential leaf call
+ >> simplifyLabeledExpr leaf: (Add w8 (w8 3)
+        (Add w8 (Read w8 0 v2_data_y0000_2) (Read w8 0 v1_data_x0000_1)))
+
+ >> mapTaints, label[0]: (Read w8 0 v1_data_x0000_1)
+ >> Printing Taint_Trace (in order of address) for label: data_x0000
+ >>	@0x0893d191: 0x01
+ >>	@0x0893d193: 0x03
+ >> Printing the memory map "data_x0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/3) = 0
+ >>    Mem_map start_addr: 0x0893d191, length: 3B, valid bytes: 2, used bytes: 2, range: 3B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190   01--03                              ...            
+
+
+ >> mapTaints, label[1]: (Read w8 0 v2_data_y0000_2)
+ >> Printing Taint_Trace (in order of address) for label: data_y0000
+ >>	@0x0893d192: 0x02
+ >>	@0x0893d193: 0x03
+ >> Printing the memory map "data_y0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/2) = 1
+ >>    Mem_map start_addr: 0x0893d192, length: 2B, valid bytes: 2, used bytes: 2, range: 2B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190     0203                               ..            
+
+ >> Fragment is a SUCCESS
+ >> Fragment densities, overlay: 1; avg: 0
+
+ >> Printing Syscall_Trace (1 ordered system calls in this fragment)
+ >>     0:   16: @0x0893d18a:  sysc_num: 1(0x00000001) match 
+ >>       preState: eax:0x00000001 ebx:0x00000001 ecx:0xbffd2d98 edx:0xb7740340 esi:0x0893d193 edi:0x0893d194 ebp:0xbffd31f8 esp:0xbffd2dac eip:0x0893d18a cr2:0x0804f000
+
+ >> Printing Trans_Trace (instructions in order of translation)
+ >>      0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >>      0:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >>      0:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >>      0:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >>      0:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >>      0:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >>      0:  6: 3  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0:  7: 3  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0:  8: 3  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0:  9: 3  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 10: 3  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 11: 3  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 12: 3  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 13: 3  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 14: 3  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 15: 3  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >>      0: 16: 4  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0: 17: 4  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0: 18: 4  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0: 19: 4  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 20: 4  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 21: 4  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 22: 4  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 23: 4  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 24: 4  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 25: 4  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >>      0: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+
+ >> Printing Exec_Trace (instructions in order of execution)
+ >>      0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >>      1:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >>      2:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >>      3:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >>      4:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >>      5:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >>      6: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      7: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      8: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      9: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>     10: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>     11: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>     12: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>     13: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>     14: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>     15: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> Printing the memory map "Exec_map" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (33/34) = 0
+ >>    Mem_map start_addr: 0x0893d170, length: 34B, valid bytes: 33, used bytes: 33, range: 34B, end_addr: 0x0893d191
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d170 eb1a5e89 f781c702 00000031 c0ac89c3  ..^........1....
+0x0893d180 ac01d8aa 31c04031 db43cd80 e8e1ffff  ....1.@1.C......
+0x0893d190 ff--                                 ..              
+
+ >> Printing Data_Trace (bytes written in order of write)
+ >>      1 by:0x0893d18c wrote  4B @0xbffd2da8: OOB 91 d1 93 08 
+ >>     10 by:0x0893d183 wrote  1B @0x0893d193: 03 
+ >> Printing the memory map "Write_map" (2 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (1/1) = 1
+ >>    Mem_map start_addr: 0x0893d193, length: 1B, valid bytes: 1, used bytes: 1, range: 1B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190       00                                .            
+
+ >>    Printing snapshot 1
+ >>    The density (0 to 1) of this state's path is (1/1) = 0
+ >>    Mem_map start_addr: 0x0893d193, length: 1B, valid bytes: 1, used bytes: 1, range: 1B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190       03                                .            
+
+
+ >> Taint maps per label
+ >> Printing the memory map "data_x0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/3) = 0
+ >>    Mem_map start_addr: 0x0893d191, length: 3B, valid bytes: 2, used bytes: 2, range: 3B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190   01--03                              ...            
+
+ >> Printing the memory map "data_y0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/2) = 1
+ >>    Mem_map start_addr: 0x0893d192, length: 2B, valid bytes: 2, used bytes: 2, range: 2B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190     0203                               ..            
+
+[State 1] CPU dump
+EAX=0x1
+EBX=0x1
+ECX=0xbffd2d98
+EDX=0xb7740340
+ESI=0x893d193
+EDI=0x893d194
+EBP=0xbffd31f8
+ESP=0xbffd2dac
+EIP=0x893d18a
+CR2=0x804f000
+ >> There were 2 labels.
+ >> labels[0]: data_x0000, expr: (Read w8 0 v1_data_x0000_1)
+ >> labels[1]: data_y0000, expr: (Read w8 0 v2_data_y0000_2)
+30 [State 1] Terminating state 1 with message 'Success found, ended this state'
+30 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x207e19b0
+30 [State 0] Message from guest (0xbffd2dec): << Looping fork, currently at 0
+30 [State 0]  >> Recv'ed onFini custom insn
+ >> Recv'ed onFini custom insn
+ >> There were 1 successes
+ >>    Printing success 0
+ >> Fragment is a SUCCESS
+ >> Fragment densities, overlay: 1; avg: 0
+
+ >> Printing Syscall_Trace (1 ordered system calls in this fragment)
+ >>     0:   16: @0x0893d18a:  sysc_num: 1(0x00000001) match 
+ >>       preState: eax:0x00000001 ebx:0x00000001 ecx:0xbffd2d98 edx:0xb7740340 esi:0x0893d193 edi:0x0893d194 ebp:0xbffd31f8 esp:0xbffd2dac eip:0x0893d18a cr2:0x0804f000
+
+ >> Printing Trans_Trace (instructions in order of translation)
+ >>      0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >>      0:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >>      0:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >>      0:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >>      0:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >>      0:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >>      0:  6: 3  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0:  7: 3  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0:  8: 3  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0:  9: 3  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 10: 3  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 11: 3  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 12: 3  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 13: 3  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 14: 3  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 15: 3  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >>      0: 16: 4  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0: 17: 4  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0: 18: 4  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0: 19: 4  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 20: 4  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 21: 4  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 22: 4  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 23: 4  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 24: 4  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 25: 4  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >>      0: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      0: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      0: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      0: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>      0: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>      0: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>      0: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>      0: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>      0: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>      0: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+
+ >> Printing Exec_Trace (instructions in order of execution)
+ >>      0:  0: 1  2B @0x0893d170: eb 1a                             jmp 0x1c                 nextPC: 0x0893d18c
+ >>      1:  1: 2  5B @0x0893d18c: e8 e1 ff ff ff                    call 0xffffffffffffffe6  nextPC: 0x0893d172
+ >>      2:  2: 3  1B @0x0893d172: 5e                                pop esi                  nextPC: 0x0893d173
+ >>      3:  3: 3  2B @0x0893d173: 89 f7                             mov edi, esi             nextPC: 0x0893d175
+ >>      4:  4: 3  6B @0x0893d175: 81 c7 02 00 00 00                 add edi, 0x2             nextPC: 0x0893d17b
+ >>      5:  5: 3  2B @0x0893d17b: 31 c0                             xor eax, eax             nextPC: 0x0893d17d
+ >>      6: 26: 5  1B @0x0893d17d: ac                                lodsb                    nextPC: 0x0893d17e
+ >>      7: 27: 5  2B @0x0893d17e: 89 c3                             mov ebx, eax             nextPC: 0x0893d180
+ >>      8: 28: 5  1B @0x0893d180: ac                                lodsb                    nextPC: 0x0893d181
+ >>      9: 29: 5  2B @0x0893d181: 01 d8                             add eax, ebx             nextPC: 0x0893d183
+ >>     10: 30: 5  1B @0x0893d183: aa                                stosb                    nextPC: 0x0893d184
+ >>     11: 31: 5  2B @0x0893d184: 31 c0                             xor eax, eax             nextPC: 0x0893d186
+ >>     12: 32: 5  1B @0x0893d186: 40                                inc eax                  nextPC: 0x0893d187
+ >>     13: 33: 5  2B @0x0893d187: 31 db                             xor ebx, ebx             nextPC: 0x0893d189
+ >>     14: 34: 5  1B @0x0893d189: 43                                inc ebx                  nextPC: 0x0893d18a
+ >>     15: 35: 5  2B @0x0893d18a: cd 80                             int 0x80                 nextPC: 0x0893d18a
+ >> Printing the memory map "Exec_map" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (33/34) = 0
+ >>    Mem_map start_addr: 0x0893d170, length: 34B, valid bytes: 33, used bytes: 33, range: 34B, end_addr: 0x0893d191
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d170 eb1a5e89 f781c702 00000031 c0ac89c3  ..^........1....
+0x0893d180 ac01d8aa 31c04031 db43cd80 e8e1ffff  ....1.@1.C......
+0x0893d190 ff--                                 ..              
+
+ >> Printing Data_Trace (bytes written in order of write)
+ >>      1 by:0x0893d18c wrote  4B @0xbffd2da8: OOB 91 d1 93 08 
+ >>     10 by:0x0893d183 wrote  1B @0x0893d193: 03 
+ >> Printing the memory map "Write_map" (2 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (1/1) = 1
+ >>    Mem_map start_addr: 0x0893d193, length: 1B, valid bytes: 1, used bytes: 1, range: 1B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190       00                                .            
+
+ >>    Printing snapshot 1
+ >>    The density (0 to 1) of this state's path is (1/1) = 0
+ >>    Mem_map start_addr: 0x0893d193, length: 1B, valid bytes: 1, used bytes: 1, range: 1B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190       03                                .            
+
+
+ >> Taint maps per label
+ >> Printing the memory map "data_x0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/3) = 0
+ >>    Mem_map start_addr: 0x0893d191, length: 3B, valid bytes: 2, used bytes: 2, range: 3B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190   01--03                              ...            
+
+ >> Printing the memory map "data_y0000" (1 snapshots)
+ >>    Printing snapshot 0
+ >>    The density (0 to 1) of this state's path is (2/2) = 1
+ >>    Mem_map start_addr: 0x0893d192, length: 2B, valid bytes: 2, used bytes: 2, range: 2B, end_addr: 0x0893d193
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0x0893d190     0203                               ..            
+
+ >>    Done printing success 0
+ >> Done printing successes
+ >> The success/offset with the highest overlay density is 0, value of 1
+ >> The success/offset with the highest average density is 0, value of 0
+ >> There were 1 different eips: 0x0893d18a 
+ >> There were 0 fragments
+
+ >> There were 1 chunks
+ >>    Printing chunk 0
+ >> There are 1 fragments in this chunk
+ >> Chunk fragment 0 is success starts at 0x0893d170 and ends at 0x143905169, or 33B
+ >>    Done printing chunk 0
+
+30 [State 0] Killing state 0
+30 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x3e29ec0
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x761fb9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44fa25]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x73df51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51fb1d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x454451]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44d249]

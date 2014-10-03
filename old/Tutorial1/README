@@ -1,0 +1,18 @@
+How to put the tutorial1 program onto Vitaly's VM:
+./launch-tutoria1
+# in another window
+scp -P 2222 dasos/Tutorial1/tutorial1 127.0.0.1:~/demos/.
+# in the s2e window
+./tutorial1
+# sometimes non-alphanumeric chars can't be typed, to get around this: scroll up 7 times until you see a command with ./ in it and modify that line
+
+Files in this directory:
+firstRan.sh-tut1 - script that calls tutorial1 from s2eget
+launch-tutorial1 - script that launches Vitaly's s2e with parameters for tutorial1
+Makefile - controls which tut1 is compiled into tutorial1 binary
+mk.* - timestamps for makefile
+README - this file
+sucessfulExample-* - a collection of files that represent a successful test of forking using their s2e binary on Vitaly's VM, the file with OnOurVm is using our s2e binary with our VM.
+tut1-fuzzer.c - an old attempt to make a manual fuzzer for unsigned ints
+tut1-symbretry.c - an old attempt at modifying tutorial1.c for debugging
+*.lua - configs to run the tutorial1s within our VM

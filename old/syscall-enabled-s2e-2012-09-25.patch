@@ -1,0 +1,179 @@
+--- /home/s2e/s2e/s2e/./qemu/exec-all.h	2011-01-24 01:15:11.829830005 -0800
++++ /home/s2e/s2e/dasos/s2e/s2e/./qemu/exec-all.h	2012-08-15 12:13:43.000000000 -0700
+@@ -158,12 +158,14 @@
+     TB_JMP, TB_JMP_IND,
+     TB_COND_JMP, TB_COND_JMP_IND,
+     TB_CALL, TB_CALL_IND, TB_REP, TB_RET
++    , TB_SYSENTER, TB_SYSEXIT, TB_INTERRUPT // RJF
+ };
+ 
+ #ifdef CONFIG_S2E
+ enum JumpType
+ {
+     JT_RET, JT_LRET
++    , JT_IRET            // RJF
+ };
+ #endif
+ 
+--- /home/s2e/s2e/s2e/./qemu/s2e/Plugin.cpp	2012-04-16 02:27:52.769226001 -0700
++++ /home/s2e/s2e/dasos/s2e/s2e/./qemu/s2e/Plugin.cpp	2012-09-03 17:00:35.000000000 -0700
+@@ -39,6 +39,13 @@
+ #include <s2e/S2EExecutionState.h>
+ #include <s2e/Utils.h>
+ 
++// RJF
++#include <s2e/Plugins/InterruptMonitor.h>
++#include <s2e/Plugins/LinuxSyscallMonitor.h>
++//#include <s2e/Plugins/SyscallTracker.h>
++#include <s2e/Plugins/DasosPreproc.h>
++// end RJF
++
+ #include <algorithm>
+ #include <assert.h>
+ 
+--- /home/s2e/s2e/s2e/./qemu/s2e/Plugins/Opcodes.h	2012-04-16 02:27:52.769226001 -0700
++++ /home/s2e/s2e/dasos/s2e/s2e/./qemu/s2e/Plugins/Opcodes.h	2012-09-04 10:52:33.000000000 -0700
+@@ -46,6 +46,7 @@
+ #define STATE_MANAGER_OPCODE 0xAD
+ #define CODE_SELECTOR_OPCODE 0xAE
+ #define MODULE_EXECUTION_DETECTOR_OPCODE 0xAF
++#define DASOS_PREPROC_OPCODE 0xFA
+ 
+ //Expression evaluates to true if the custom instruction operand contains the
+ //specified opcode
+--- /home/s2e/s2e/s2e/./qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h	2012-04-16 02:27:52.769226001 -0700
++++ /home/s2e/s2e/dasos/s2e/s2e/./qemu/s2e/Plugins/ExecutionTracers/TraceEntries.h	2012-08-15 12:20:14.000000000 -0700
+@@ -332,6 +332,7 @@
+         TB_JMP, TB_JMP_IND,
+         TB_COND_JMP, TB_COND_JMP_IND,
+         TB_CALL, TB_CALL_IND, TB_REP, TB_RET
++        , TB_SYSENTER, TB_SYSEXIT, TB_INTERRUPT // RJF
+     };
+ 
+     enum EX86Registers
+--- /home/s2e/s2e/s2e/./qemu/target-i386/translate.c	2012-04-16 02:27:53.159226003 -0700
++++ /home/s2e/s2e/dasos/s2e/s2e/./qemu/target-i386/translate.c	2012-08-15 12:30:15.000000000 -0700
+@@ -157,6 +157,7 @@
+ #else
+ #define SET_TB_TYPE(t)
+ #define s2e_on_translate_jump_start(...)
++#define s2e_on_syscall(...)    // RJF
+ #endif
+ 
+ #ifdef CONFIG_S2E
+@@ -4784,7 +4785,7 @@
+             gen_op_ldu_T0_A0(OT_WORD + s->mem_index);
+         do_lcall:
+             if (s->pe && !s->vm86) {
+-                if (s->cc_op != CC_OP_DYNAMIC)
++                //RJF if (s->cc_op != CC_OP_DYNAMIC)
+                     gen_op_set_cc_op(s->cc_op);
+                 gen_jmp_im(s, pc_start - s->cs_base);
+                 tcg_gen_trunc_tl_i32(cpu_tmp2_i32, cpu_T[0]);
+@@ -6848,6 +6849,7 @@
+         }
+         break;
+     case 0xcc: /* int3 */
++        SET_TB_TYPE(TB_INTERRUPT);                      // RJF
+         gen_interrupt(s, EXCP03_INT3, pc_start - s->cs_base, s->pc - s->cs_base);
+         break;
+     case 0xcd: /* int N */
+@@ -6855,6 +6857,7 @@
+         if (s->vm86 && s->iopl != 3) {
+             gen_exception(s, EXCP0D_GPF, pc_start - s->cs_base);
+         } else {
++            SET_TB_TYPE(TB_INTERRUPT);              // RJF
+             gen_interrupt(s, val, pc_start - s->cs_base, s->pc - s->cs_base);
+         }
+         break;
+@@ -7057,6 +7060,7 @@
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSENTER);                      // RJF
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysenter();
+             gen_eob(s);
+@@ -7073,6 +7077,7 @@
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSEXIT);                      // RJF
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysexit(tcg_const_i32(dflag));
+             gen_eob(s);
+@@ -7085,6 +7090,7 @@
+             gen_op_set_cc_op(s->cc_op);
+             s->cc_op = CC_OP_DYNAMIC;
+         }
++        SET_TB_TYPE(TB_SYSENTER);                      // RJF
+         gen_jmp_im(s, pc_start - s->cs_base);
+         gen_helper_syscall(tcg_const_i32(s->pc - pc_start));
+         gen_eob(s);
+@@ -7097,6 +7103,7 @@
+                 gen_op_set_cc_op(s->cc_op);
+                 s->cc_op = CC_OP_DYNAMIC;
+             }
++            SET_TB_TYPE(TB_SYSEXIT);                      // RJF
+             gen_jmp_im(s, pc_start - s->cs_base);
+             gen_helper_sysret(tcg_const_i32(s->dflag));
+             /* condition codes are modified only in long mode */
+--- /home/s2e/s2e/s2e/./guest/include/s2e.h	2012-04-16 02:27:52.749226000 -0700
++++ /home/s2e/s2e/dasos/s2e/s2e/./guest/include/s2e.h	2012-09-14 12:57:49.000000000 -0700
+@@ -347,6 +347,56 @@
+     return res;
+ }
+ 
++/** DasosPreproc plugin */
++/** Communicates to S2E the coordinates of shellcode within memory and information about the associated process */
++static inline void s2e_dasospreproc_init (unsigned base, unsigned size, unsigned eip) {
++    __asm__ __volatile__(
++        ".byte 0x0f, 0x3f\n"                 // means s2e custom instruction is coming
++        ".byte 0x00, 0xFA, 0x01, 0x00\n"     // XX XX unique per plugin, YY YY YY YY YY YY per custom instruction within plugin
++        ".byte 0x00, 0x00, 0x00, 0x00\n"
++        : : "a" (base), "d" (size), "c" (eip)
++    );
++} // end fn s2e_dasospreproc_init
++
++   //__s2e_touch_buffer (addr, size);
++/** Tells S2E to fuzz a variable */
++static inline unsigned s2e_dasospreproc_fuzz (unsigned start, unsigned end) {
++   unsigned retval;
++   __asm__ __volatile__(
++      ".byte 0x0f, 0x3f\n"                 // means s2e custom instruction is coming
++      ".byte 0x00, 0xFA, 0x02, 0x00\n"     // XX XX unique per plugin, YY YY YY YY YY YY per custom instruction within plugin
++      ".byte 0x00, 0x00, 0x00, 0x00\n"
++      : "=a" (retval) : "a" (0), "b" (start), "c" (end) // 1st : is output, 2nd : is input, specify registers (do not specify size modifiers) for the variables
++   );
++   return retval;
++} // end fn s2e_dasospreproc_fuzz
++
++/** Tells S2E to kill the current fuzzfork state */
++// perhaps don't use this, but instead hook into the s2e_kill_state signal that emitted
++// otherwise use this prototype:
++/*static inline void s2e_dasospreproc_fuzz_kill_state (int status, const char* message)
++{
++    __s2e_touch_string (message);
++    __asm__ __volatile__(
++        "pushl %%ebx\n"
++        "movl %%edx, %%ebx\n"
++        ".byte 0x0f, 0x3f\n"                 // means s2e custom instruction is coming
++        ".byte 0x00, 0xFA, 0x03, 0x00\n"     // XX XX unique per plugin, YY YY YY YY YY YY per custom instruction within plugin
++        ".byte 0x00, 0x00, 0x00, 0x00\n"
++        "popl %%ebx\n"
++        : : "a" (status), "d" (message)
++    );
++} // end fn s2e_dasospreproc_fuzz
++*/
++static inline void s2e_dasospreproc_fuzz_kill_state () {
++    __asm__ __volatile__(
++        ".byte 0x0f, 0x3f\n"                 // means s2e custom instruction is coming
++        ".byte 0x00, 0xFA, 0x03, 0x00\n"     // XX XX unique per plugin, YY YY YY YY YY YY per custom instruction within plugin
++        ".byte 0x00, 0x00, 0x00, 0x00\n"
++    );
++} // end fn s2e_dasospreproc_fuzz
++
++
+ /** Raw monitor plugin */
+ /** Communicates to S2E the coordinates of loaded modules. Useful when there is
+     no plugin to automatically parse OS data structures */

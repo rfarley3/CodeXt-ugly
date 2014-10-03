@@ -1,0 +1,1069 @@
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:241:  FunctionPassManager &PM = jitstate->getPM(locked);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:289:    FunctionPassManager &PM = jitstate->getPM(locked);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:313:  if (jitstate->getMP() == MP) {
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:321:    FunctionPassManager &PM = jitstate->getPM(locked);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:344:  if (jitstate->getMP() == MP) {
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:352:    FunctionPassManager &PM = jitstate->getPM(locked);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:598:  jitstate->getPM(locked).run(*F);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:603:  while (!jitstate->getPendingFunctions(locked).empty()) {
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:604:    Function *PF = jitstate->getPendingFunctions(locked).back();
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:605:    jitstate->getPendingFunctions(locked).pop_back();
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:609:    jitstate->getPM(locked).run(*PF);
+/home/s2e/s2e/dasos/s2e/./build/llvm-2.6/lib/ExecutionEngine/JIT/JIT.cpp:777:  jitstate->getPendingFunctions(locked).push_back(F);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/test/Feature/Searchers.c:10:// RUN: %klee --use-merge --debug-log-merge --debug-log-state-merge %t2.bc
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/AddressSpace.cpp:26:  if(oldOS) state->addressSpaceChange(mo, oldOS, NULL);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/AddressSpace.cpp:27:  state->addressSpaceChange(mo, NULL, os);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/AddressSpace.cpp:37:  if(os) state->addressSpaceChange(mo, os, NULL);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/AddressSpace.cpp:65:    state->addressSpaceChange(mo, os, n);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:2562:    processTree->remove(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:3277:    state->pathOS = pathWriter->open();
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:3279:    state->symPathOS = symPathWriter->open();
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:3301:        arg = memory->allocate(len+1, false, true, state->pc->inst);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:3318:  state->ptreeNode = processTree->root;
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/ExecutionState.cpp:35:DebugLogStateMerge("debug-log-state-merge");
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/ExecutionState.cpp:95:  state->addressSpace.state = state;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/sparc64/target_signal.h:33:    return state->regwptr[UREG_FP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/mips/target_signal.h:26:    return state->active_tc.gpr[29];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/sparc/target_signal.h:33:    return state->regwptr[UREG_FP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/microblaze/target_signal.h:26:    return state->regs[14];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/x86_64/target_signal.h:26:    return state->regs[R_ESP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/cris/target_signal.h:26:    return state->regs[14];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/m68k/target_signal.h:26:    return state->aregs[7];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/sh4/target_signal.h:26:    return state->gregs[15];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/mips64/target_signal.h:26:    return state->active_tc.gpr[29];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/mipsn32/target_signal.h:26:    return state->active_tc.gpr[29];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/i386/target_signal.h:26:    return state->regs[R_ESP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/alpha/target_signal.h:26:    return state->ir[IR_SP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/arm/target_signal.h:26:   return state->regs[13];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/ppc/target_signal.h:26:    return state->gpr[1];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/signal.c:778:        fpstate->status = fpstate->sw;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/linux-user/signal.c:780:        err |= __put_user(magic, &fpstate->magic);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:163:    return kvm_state->irqchip_in_kernel;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:168:    return kvm_state->pit_in_kernel;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:570:    if (!env->kvm_state->regs_modified) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:572:        env->kvm_state->regs_modified = 1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:590:        if (env->kvm_state->regs_modified) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:592:            env->kvm_state->regs_modified = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:879:    return kvm_state->vcpu_events;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:919:    QTAILQ_FOREACH(bp, &env->kvm_state->kvm_sw_breakpoints, entry) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:928:    return !QTAILQ_EMPTY(&env->kvm_state->kvm_sw_breakpoints);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:942:    if (env->kvm_state->regs_modified) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:944:        env->kvm_state->regs_modified = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:991:        QTAILQ_INSERT_HEAD(&current_env->kvm_state->kvm_sw_breakpoints,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/kvm-all.c:1028:        QTAILQ_REMOVE(&current_env->kvm_state->kvm_sw_breakpoints, bp, entry);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/bsd-user/sparc64/target_signal.h:24:    return state->regwptr[UREG_FP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/bsd-user/sparc/target_signal.h:24:    return state->regwptr[UREG_FP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/bsd-user/x86_64/target_signal.h:16:    return state->regs[R_ESP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/bsd-user/i386/target_signal.h:17:    return state->regs[R_ESP];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:505:        write(posix_aio_state->wfd, &byte, sizeof(byte));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:516:    pacb = &posix_aio_state->first_aio;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:580:    acb->next = posix_aio_state->first_aio;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:581:    posix_aio_state->first_aio = acb;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:603:    acb->next = posix_aio_state->first_aio;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/posix-aio-compat.c:604:    posix_aio_state->first_aio = acb;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:1582:        return kvm_insert_breakpoint(gdbserver_state->c_cpu, addr, len, type);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:1616:        return kvm_remove_breakpoint(gdbserver_state->c_cpu, addr, len, type);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:1648:        kvm_remove_all_breakpoints(gdbserver_state->c_cpu);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:2128:    gdbserver_state->c_cpu = env;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:2129:    gdbserver_state->g_cpu = env;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/gdbstub.c:2547:    max_sz = (sizeof(gdbserver_state->last_packet) - 2) / 2;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/blizzard.c:941:        ppm_save(filename, s->state->surface);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:142:                    env->apic_state->irr[0],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:143:                    env->apic_state->irr[1],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:144:                    env->apic_state->irr[2],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:145:                    env->apic_state->irr[3],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:146:                    env->apic_state->irr[4],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:147:                    env->apic_state->irr[5],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:148:                    env->apic_state->irr[6],
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/apic.c:149:                    env->apic_state->irr[7]);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/eepro100.c:1850:    s->vmstate->name = s->nic->nc.model;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/hpet.c:148:            irq=timer->state->irqs[0];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/hpet.c:150:            irq=timer->state->irqs[8];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/hpet.c:153:        irq=timer->state->irqs[route];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:47:    gusptr = state->gusdatapos;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:88:                    adr = (GUSchar *) state->himemaddr + offset;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:96:                    adr = (GUSchar *) state->himemaddr + offset;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:190:    gusptr = state->gusdatapos;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:193:        unsigned int    timer1fraction = state->timer1fraction;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:196:        state->timer1fraction = (elapsed_time + timer1fraction) % (80 * (256 - GUSregb(GUS46Counter1)));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:212:        unsigned int timer2fraction = state->timer2fraction;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:215:        state->timer2fraction = (elapsed_time + timer2fraction) % (320 * (256 - GUSregb(GUS47Counter2)));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_mixer.c:239:        GUSregw(BusyTimerIRQs) = GUS_irqrequest(state, state->gusirq, requestedIRQs);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:42:    gusptr = state->gusdatapos;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:94:            GUS_irqrequest(state, state->gusirq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:118:            if (state->gusdma >= 4)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:125:                    GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:181:            adr = state->himemaddr + (GUSregd(GUSDRAMPOS24bit) & 0xfffff);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:192:    gusptr = state->gusdatapos;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:205:            GUS_irqrequest(state, state->gusirq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:228:                GUS_irqrequest(state, state->gusirq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:248:                GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:261:            GUS_irqrequest(state, state->gusirq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:291:                            GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:308:                            GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:417:                            GUS_irqrequest(state, state->gusirq, GUSregw(TimerIRQs));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:433:                    GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:463:                    GUS_irqclear(state, state->gusirq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:474:            adr = state->himemaddr + (GUSregd(GUSDRAMPOS24bit) & 0xfffff);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:513:    gusptr = state->gusdatapos;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:518:        if (state->gusdma >= 4)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:520:        destaddr = (char *) state->himemaddr + offset; /* wavetable RAM adress */
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:541:        if (state->gusdma >= 4)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/gusemu_hal.c:551:            GUS_irqrequest(state, state->gusirq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/acpi.c:754:        qemu_set_irq(pm_state->irq, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/acpi.c:755:        qemu_set_irq(pm_state->irq, 0);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/pc.c:1162:    isa_irq_state->i8259 = i8259;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/pc.c:1207:        isa_irq_state->ioapic = ioapic_init();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/i8259.c:126:    if (s->special_fully_nested_mode && s == &s->pics_state->pics[0])
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/i8259.c:297:            qemu_irq_lower(s->pics_state->parent_irq);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/i8259.c:382:            s->pics_state->pics[0].isr &= ~(1 << 2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/i8259.c:383:            s->pics_state->pics[0].irr &= ~(1 << 2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:49:    if (macio_state->pic_mem_index >= 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:50:        if (macio_state->is_oldworld) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:53:                                         macio_state->pic_mem_index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:57:                                         macio_state->pic_mem_index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:60:    if (macio_state->dbdma_mem_index >= 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:62:                                     macio_state->dbdma_mem_index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:64:    if (macio_state->escc_mem_index >= 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:66:                                     macio_state->escc_mem_index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:68:    if (macio_state->cuda_mem_index >= 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:70:                                     macio_state->cuda_mem_index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:72:    for (i = 0; i < macio_state->nb_ide; i++) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:73:        if (macio_state->ide_mem_index[i] >= 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:75:                                         macio_state->ide_mem_index[i]);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:78:    if (macio_state->nvram != NULL)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:79:        macio_nvram_map(macio_state->nvram, addr + 0x60000);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:94:    macio_state->is_oldworld = is_oldworld;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:95:    macio_state->pic_mem_index = pic_mem_index;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:96:    macio_state->dbdma_mem_index = dbdma_mem_index;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:97:    macio_state->cuda_mem_index = cuda_mem_index;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:98:    macio_state->escc_mem_index = escc_mem_index;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:99:    macio_state->nvram = nvram;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:102:    macio_state->nb_ide = nb_ide;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:104:        macio_state->ide_mem_index[i] = ide_mem_index[i];
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/hw/macio.c:106:        macio_state->ide_mem_index[i] = -1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:156:        size_t buf_end = (state->buf_start + state->buf_off);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:157:        size_t buf_fend = (state->buf_start + state->buf_len);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:159:        if (!state->orig_buf)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:161:        if (!state->buf_off)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:165:        if ((start >= state->buf_start) &&
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:167:            (end >= state->buf_start) &&
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:170:            char *buf = state->orig_buf + (start - state->buf_start);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:179:        if ((start >= state->buf_start) &&
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:181:            (end >= state->buf_start) &&
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:186:            acb->start = start - state->buf_start;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:190:                if (!state->acb[j]) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:191:                    state->acb[j] = acb;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:255:            state->in_use = 1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:264:    if (state->curl)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:267:    state->curl = curl_easy_init();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:268:    if (!state->curl)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:270:    curl_easy_setopt(state->curl, CURLOPT_URL, s->url);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:271:    curl_easy_setopt(state->curl, CURLOPT_TIMEOUT, 5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:272:    curl_easy_setopt(state->curl, CURLOPT_WRITEFUNCTION, (void *)curl_read_cb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:273:    curl_easy_setopt(state->curl, CURLOPT_WRITEDATA, (void *)state);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:274:    curl_easy_setopt(state->curl, CURLOPT_PRIVATE, (void *)state);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:275:    curl_easy_setopt(state->curl, CURLOPT_AUTOREFERER, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:276:    curl_easy_setopt(state->curl, CURLOPT_FOLLOWLOCATION, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:277:    curl_easy_setopt(state->curl, CURLOPT_NOSIGNAL, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:278:    curl_easy_setopt(state->curl, CURLOPT_ERRORBUFFER, state->errmsg);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:281:    curl_easy_setopt(state->curl, CURLOPT_VERBOSE, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:286:    state->s = s;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:360:    curl_easy_setopt(state->curl, CURLOPT_NOBODY, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:361:    curl_easy_setopt(state->curl, CURLOPT_WRITEFUNCTION, (void *)curl_size_cb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:362:    if (curl_easy_perform(state->curl))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:364:    curl_easy_getinfo(state->curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &d);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:365:    curl_easy_setopt(state->curl, CURLOPT_WRITEFUNCTION, (void *)curl_read_cb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:366:    curl_easy_setopt(state->curl, CURLOPT_NOBODY, 0);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:374:    curl_easy_cleanup(state->curl);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:375:    state->curl = NULL;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:388:    fprintf(stderr, "CURL: Error opening file: %s\n", state->errmsg);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:389:    curl_easy_cleanup(state->curl);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:390:    state->curl = NULL;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:444:    state->buf_off = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:445:    if (state->orig_buf)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:446:        qemu_free(state->orig_buf);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:447:    state->buf_start = start;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:448:    state->buf_len = acb->end + s->readahead_size;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:449:    end = MIN(start + state->buf_len, s->len) - 1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:450:    state->orig_buf = qemu_malloc(state->buf_len);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:451:    state->acb[0] = acb;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:453:    snprintf(state->range, 127, "%lld-%lld", (long long)start, (long long)end);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:454:    dprintf("CURL (AIO): Reading %d at %lld (%s)\n", (nb_sectors * SECTOR_SIZE), start, state->range);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:455:    curl_easy_setopt(state->curl, CURLOPT_RANGE, state->range);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/block/curl.c:457:    curl_multi_add_handle(s->multi, state->curl);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1638:    g_s2e_state->dumpX86State(g_s2e->getDebugStream());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1643:    return g_s2e_state->readDirtyMask(host_address);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1648:    return g_s2e_state->writeDirtyMask(host_address, val);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1655:    return state->isRamRegistered(host_address);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1661:    return state->isRamSharedConcrete(host_address);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1667:    assert(state->isRunningConcrete());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1668:    if(state->isSymbolicExecutionEnabled())
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1669:        state->readRamConcreteCheck(host_address, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1671:        state->readRamConcrete(host_address, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1677:    state->readRamConcrete(host_address, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1683:    state->writeRamConcrete(host_address, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1690:    state->readRegisterConcrete(cpuState, offset, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.cpp:1697:    state->writeRegisterConcrete(cpuState, offset, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2E.cpp:638:                    "/" << m_currentProcessId << " - State " << state->getID() << "] ";
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2E.cpp:640:            stream << "[State " << std::dec << state->getID() << "] ";
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:105:	if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBP]), &ebp, sizeof(ebp)))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:110:	if (!state->readMemoryConcrete(ebp + 12, &eip, sizeof(eip), S2EExecutionState::VirtualAddress))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:130:	if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &esp, sizeof(esp)))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:135:	if (!state->readMemoryConcrete(esp + 12, &eip, sizeof(eip), S2EExecutionState::VirtualAddress))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:197:	//target_ulong cr3 = state->readCpuState(CPU_OFFSET(cr[3]), sizeof(target_ulong) * 8);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LinuxSyscallMonitor.cpp:201:	if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &eax, sizeof(eax)))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:91:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &fnamePtr, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:92:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &flags, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:94:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &guestFd, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:104:            if(!state->readString(fnamePtr, fname)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:139:                state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &guestFd, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:154:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &guestFd, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:156:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &ret, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:168:                state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &ret, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:180:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &guestFd, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:181:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &bufAddr, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:182:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EDX]), &count, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:184:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &ret, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:209:            ok = state->writeMemoryConcrete(bufAddr, buf, ret);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/HostFiles.cpp:216:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &ret, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:274:        state->dumpStack(512, faultyTss.m_ESP);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:284:    if (!state->readMemoryConcrete(pfhdlr, &chr, sizeof(chr))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:322:    idtBase =  state->readCpuState(offsetof(CPUState, idt.base), 8 * sizeof(idtBase));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:323:    idtLimit =  state->readCpuState(offsetof(CPUState, idt.limit), 8 * sizeof(idtLimit));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:333:        if (!state->readMemoryConcrete(idtBase + i * sizeof(X86IDTEntry), &entry, sizeof(X86IDTEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:348:    gdtBase =  state->readCpuState(offsetof(CPUState, gdt.base), 8 * sizeof(gdtBase));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:349:    gdtLimit = state->readCpuState(offsetof(CPUState, gdt.limit), 8 * sizeof(gdtLimit));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:359:        if (!state->readMemoryConcrete(gdtBase + i * sizeof(X86GDTEntry), &entry, sizeof(X86GDTEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:374:  gdtBase =  state->readCpuState(offsetof(CPUState, gdt.base), 8 * sizeof(gdtBase));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:375:  gdtLimit = state->readCpuState(offsetof(CPUState, gdt.limit), 8 * sizeof(gdtLimit));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:395:  if (!state->readMemoryConcrete(gdtBase + entry * sizeof(X86GDTEntry), gdtEntry, sizeof(X86GDTEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:405:    if (!state->readMemoryConcrete(base, tss, sizeof(X86TSS))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:418:  base =  state->readCpuState(offsetof(CPUState, tr.base), 8 * sizeof(base));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/X86ExceptionInterceptor.cpp:419:  limit = state->readCpuState(offsetof(CPUState, tr.limit), 8 * sizeof(limit));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:236:    if (state->isRunningExceptionEmulationCode()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:355:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:370:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:383:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:409:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:442:    region->allocPC = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:503:    region->allocPC = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:632:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:674:    const ModuleDescriptor *module = m_moduleDetector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:693:    res.allocPC = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:911:            uint64_t relPc = desc->ToNativeBase(state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/MemoryChecker.cpp:917:    ss << "<unknown module>!0x" << std::hex << state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/WindowsService.cpp:157:    SREAD(state, state->getSp()+sizeof(uint32_t), paramCount);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/WindowsService.cpp:158:    SREAD(state, state->getSp()+2*sizeof(uint32_t), paramsArray);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/WindowsService.cpp:161:        paramCount << " - " << std::hex << paramsArray << "esp=" << state->getSp() << std::dec << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/WindowsService.cpp:167:        if (!state->readUnicodeString(paramPtr, param)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/WindowsService.cpp:182:        state->writeMemory(state->getSp()+sizeof(uint32_t), v);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:312:    SREAD(state, state->getSp()+sizeof(uint32_t), paramCount);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:313:    SREAD(state, state->getSp()+2*sizeof(uint32_t), paramsArray);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:316:        paramCount << " - " << std::hex << paramsArray << "esp=" << state->getSp() << std::dec << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:322:        if (!state->readString(paramPtr, param)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:337:        state->writeMemory(state->getSp()+sizeof(uint32_t), v);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:343:    if (!concrete && state->needToJumpToSymbolic()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:347:        state->setPc(pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:348:        state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:353:                << " at pc 0x" << state->getPc() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:354:        //state->dumpStack(20);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:356:        state->writeCpuRegisterConcrete(CPU_OFFSET(regs) + reg * sizeof(target_ulong), &val, sizeof(val));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:359:                << " at pc 0x" << state->getPc() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:362:        //state->dumpStack(20);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:363:        klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:364:        state->writeCpuRegister(CPU_OFFSET(regs) + reg * sizeof(target_ulong), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:374:    if (!concrete && state->needToJumpToSymbolic()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:378:        state->setPc(pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:379:        state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:386:    if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs) + reg * sizeof(target_ulong), &base, sizeof(base))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:396:                << " at pc 0x" << state->getPc() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:397:        //state->dumpStack(20);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:399:        state->writeMemoryConcrete((uint64_t)base, &val, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:402:                << " at pc 0x" << state->getPc() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:405:        //state->dumpStack(20);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:406:        klee::ref<klee::Expr> symb = state->createSymbolicValue(size*8, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:407:        state->writeMemory(base, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:419:    SREAD(state, state->getSp()+sizeof(uint32_t), origKeySize);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:420:    SREAD(state, state->getSp()+2*sizeof(uint32_t), origExponent);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:421:    SREAD(state, state->getSp()+3*sizeof(uint32_t), origCallBack);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:434:    state->writeMemory(state->getSp()+sizeof(uint32_t), newKeySize);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DataSelectors/GenericDataSelector.cpp:435:    state->writeMemory(state->getSp()+2*sizeof(uint32_t), newExponent);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LibraryCallMonitor.cpp:154:    uint64_t caller = state->getTb()->pcOfLastInstr;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/LibraryCallMonitor.cpp:161:    uint64_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/SymbolicHardware.cpp:187:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/SymbolicHardware.cpp:193:        tlb_flush(state->getConcreteCpuState(), 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:104:    if (!state->readMemoryConcrete(PsLoadedModuleList, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:112:        if (state->readMemoryConcrete(pModuleEntry, &ModuleEntry, sizeof(ModuleEntry)) < 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:121:        state->readUnicodeString(ModuleEntry.driver_Name.Buffer, desc.Name, ModuleEntry.driver_Name.Length);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:135:        if (!state->readMemoryConcrete(ListHead.Flink, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:151:    if (!state->readMemoryConcrete(pDriverObject,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:171:    if (state->readMemoryConcrete(DrvObject.DriverSection, &Me, sizeof(Me)) < 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:176:    state->readUnicodeString(Me.driver_Name.Buffer, ModuleName, Me.driver_Name.Length);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:197:    if (!state->readMemoryConcrete(state->getSp(), &pDriverObject, m_Os->GetPointerSize())) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/KernelModeInterceptor.cpp:219:    if (!state->readMemoryConcrete(state->getSp() + 4, &pDriverObject, m_Os->GetPointerSize())) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:81:    CPUState *cpuState = (CPUState *)state->getCpuState();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:84:    if (!state->readMemoryConcrete(ActiveProcessList, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:92:        if (!state->readMemoryConcrete(pProcessEntry, &ProcessEntry, sizeof(ProcessEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:97:        state->readString(ProcessEntry.ImageFileName, desc.Name, sizeof(ProcessEntry.ImageFileName));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:116:    if (!state->readMemoryConcrete(m_LdrAddr, &LdrData, sizeof(s2e::windows::PEB_LDR_DATA32))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:129:        if (!state->readMemoryConcrete(CurLib, &LdrEntry, sizeof(s2e::windows::LDR_DATA_TABLE_ENTRY32))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:135:        state->readUnicodeString(LdrEntry.BaseDllName.Buffer, s, LdrEntry.BaseDllName.Length);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:150:        Desc.Pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:155:        //XXX: this must be state-local
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:177:    uint64_t fsBase = state->readCpuState(CPU_OFFSET(segs[R_FS].base), 8*sizeof(target_ulong));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:180:    if (state->getPc() < 0x80000000) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:181:        if(!state->readMemoryConcrete(fsBase + 0x18, &Peb, 4)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:185:        if(!state->readMemoryConcrete(Peb+0x30, &Peb, 4)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:204:    if (!state->readMemoryConcrete(Peb, &PebBlock, sizeof(PebBlock))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:209:    if (!state->readMemoryConcrete(PebBlock.Ldr, &LdrData,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:358:        state->readCpuRegister(CPU_OFFSET(regs[R_EAX]), 8*sizeof(target_ulong)))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/UserModeInterceptor.cpp:363:    if (!state->readMemoryConcrete(pLdrEntry + 0x38, &loadCount, sizeof(loadCount))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/BlueScreenInterceptor.cpp:102:    os << "Killing state "  << state->getID() <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/BlueScreenInterceptor.cpp:110:        exec->dumpMemory(state, os, state->getSp(), 512);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/BlueScreenInterceptor.cpp:112:        state->dumpStack(512);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/BlueScreenInterceptor.cpp:145:    ok &= state->readString(message, strMessage, 256);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/BlueScreenInterceptor.cpp:146:    ok &= state->readString(processImageName, strImage, 256);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:77:    context.Eip = state->readCpuState(offsetof(CPUState, eip), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:108:    klee::ref<klee::Expr> reg = state->readCpuRegister(offset, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:117:        state->writeCpuRegisterConcrete(offset, &ch, sizeof(ch));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:137:    ctx.Dr0 = state->readCpuState(offsetof(CPUState, dr[0]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:138:    ctx.Dr1 = state->readCpuState(offsetof(CPUState, dr[1]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:139:    ctx.Dr2 = state->readCpuState(offsetof(CPUState, dr[2]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:140:    ctx.Dr3 = state->readCpuState(offsetof(CPUState, dr[3]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:141:    ctx.Dr6 = state->readCpuState(offsetof(CPUState, dr[6]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:142:    ctx.Dr7 = state->readCpuState(offsetof(CPUState, dr[7]), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:144:    ctx.SegDs = state->readCpuState(offsetof(CPUState, segs[R_DS].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:145:    ctx.SegEs = state->readCpuState(offsetof(CPUState, segs[R_ES].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:146:    ctx.SegFs = state->readCpuState(offsetof(CPUState, segs[R_FS].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:147:    ctx.SegGs = state->readCpuState(offsetof(CPUState, segs[R_GS].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:149:    ctx.SegCs = state->readCpuState(offsetof(CPUState, segs[R_CS].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:150:    ctx.SegSs = state->readCpuState(offsetof(CPUState, segs[R_SS].selector), 8*sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:152:    ctx.EFlags = cpu_get_eflags_dirty(state->getConcreteCpuState());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:156:    state->getReturnAddress(&pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:183:    filename << prefix << state->getID() << ".dump";
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:205:        OriginalContext[i] = state->readMemory(KprcbProcessContextOffset + i, klee::Expr::Int8);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:210:    ok = state->writeMemoryConcrete(KprcbProcessContextOffset, &context, sizeof(CONTEXT32));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:245:                klee::ref<klee::Expr> v = state->readMemory(physAddr+i, klee::Expr::Int8, S2EExecutionState::PhysicalAddress);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:265:        state->writeMemory(KprcbProcessContextOffset + i, OriginalContext[i]);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:283:    hdr->DirectoryTableBase = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:301:    uint32_t cr4 = state->readCpuState(offsetof(CPUX86State, cr[4]), 8*sizeof(target_ulong));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:306:    ok = state->readMemoryConcrete(hdr->KdDebuggerDataBlock, &KdDebuggerDataBlock, sizeof(KdDebuggerDataBlock));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:325:    ok = state->readMemoryConcrete(KdDebuggerDataBlock.MmPhysicalMemoryBlock.VirtualAddress,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:334:    ok = state->readMemoryConcrete(pMmPhysicalMemoryBlock,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:355:    ok = state->readMemoryConcrete(pMmPhysicalMemoryBlock,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsCrashDumpGenerator.cpp:444:    int stateId = g_s2e_state->getID();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:230:    uint64_t base = state->readCpuState(CPU_OFFSET(segs[R_FS].base), 32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:231:    if (!state->readMemoryConcrete(base + KPCR_FS_OFFSET, &m_pKPCRAddr, sizeof(m_pKPCRAddr))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:238:    if (!state->readMemoryConcrete(m_pKPCRAddr + KPCR_KDVERSION32_OFFSET, &pKdVersionBlock, sizeof(pKdVersionBlock))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:243:    if (!state->readMemoryConcrete(pKdVersionBlock, &m_kdVersion, sizeof(m_kdVersion))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:249:    if (!state->readMemoryConcrete(m_pKPCRAddr + KPCR_KPRCB_PTR_OFFSET, &m_pKPRCBAddr, sizeof(m_pKPRCBAddr))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:259:    if (!state->readMemoryConcrete(m_pKPRCBAddr, &m_kprcb, sizeof(m_kprcb))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:289:            m_PidSet.erase(state->getPid());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:336:        plgState->m_CurrentPid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:337:        if (m_PidSet.find(state->getPid()) != m_PidSet.end()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:342:                ntdll.Pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:349:            m_PidSet.erase(state->getPid());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:392:    if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ESI]), &pThread, sizeof(pThread))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:443:    if (!state->readMemoryConcrete(ActiveProcessList, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:453:        if (!state->readMemoryConcrete(pItem, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:474:    if (!state->readMemoryConcrete(ThreadList, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:484:        if (!state->readMemoryConcrete(pItem, &ListHead, sizeof(ListHead))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:668:    if (!state->readMemoryConcrete(base + FS_CURRENT_THREAD_OFFSET, &pThread, sizeof(pThread))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:687:    if (!state->readMemoryConcrete(eprocess + threadListEntryOffset, &nextThread, sizeof(nextThread))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:710:    if (!state->readMemoryConcrete(pThread + threadOffset, &pProcess, sizeof(pProcess))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:722:    return state->readCpuState(CPU_OFFSET(segs[R_FS].base), 32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:728:    return state->readMemoryConcrete(tibAddress, &tib, sizeof(*tib));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:741:    if (!state->readMemoryConcrete(eprocess + offset, &peb, (sizeof(peb)))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:761:        if (!state->readMemoryConcrete(pProcessEntry, &ProcessEntry, sizeof(ProcessEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:769:        if (!state->readMemoryConcrete(pProcessEntry, &ProcessEntry, sizeof(ProcessEntry))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:794:    uint32_t sp = state->getSp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:798:    if (state->readMemoryConcrete(dpcStackPtr, &dpcStack, sizeof(dpcStack))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:819:    if (!isKernelAddress(state->getPc())) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsMonitor.cpp:824:    if (!state->readMemoryConcrete(pThread, &kThread, sizeof(kThread))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:108:    if (!state->readMemoryConcrete(m_Base, &DosHeader, sizeof(DosHeader))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:118:    if (!state->readMemoryConcrete(m_Base+DosHeader.e_lfanew, &NtHeader, sizeof(NtHeader))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:148:        if (!state->readMemoryConcrete(pSection, &sectionHeader, sizeof(sectionHeader))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:196:    if (!state->readMemoryConcrete(ExportTableAddress, (uint8_t*)ExportDir, ExportTableSize)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:214:    if (!state->readMemoryConcrete(m_Base + ExportDir->AddressOfNames, Names, TblSz)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:220:    if (!state->readMemoryConcrete(m_Base + ExportDir->AddressOfFunctions, FcnPtrs, TblSz)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:234:        state->readString(Names[i] + m_Base, FunctionName);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:278:    if (!state->readMemoryConcrete(ImportTableAddress, ImportDescriptors, ImportTableSize)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:288:        if (!state->readString(ImportDescriptors[i].Name + m_Base, DllName)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:305:            res1 = state->readMemoryConcrete(ImportAddressTable+j*sizeof(s2e::windows::IMAGE_THUNK_DATA32),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:307:            res2 = state->readMemoryConcrete(ImportNameTable+j*sizeof(s2e::windows::IMAGE_THUNK_DATA32),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsInterceptor/WindowsImage.cpp:338:            if (!state->readString(Name+2, FunctionName)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionStatisticsCollector.h:171:        uint64_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionStatisticsCollector.h:186:        uint64_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionStatisticsCollector.h:199:        uint64_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:152:                << " at " << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:211:    target_ulong cr3 = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:212:    target_ulong eip = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:273:    bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ESP]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:278:            << "  EIP=" << hexval(state->getPc()) << " CR3=" << hexval(state->getPid()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:282:    uint64_t pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:284:        pid = m_plugin->m_monitor->getPid(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:301:    target_ulong cr3 = state->readCpuState(CPU_OFFSET(cr[3]), 8*sizeof(target_ulong));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:304:    bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ESP]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/FunctionMonitor.cpp:307:        target_ulong eip = state->readCpuState(CPU_OFFSET(eip),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:80:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:82:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:84:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:95:    if(name && !state->readString(name, nameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:105:    vector<ref<Expr> > symb = state->createSymbolicArray(size, nameStr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:107:        if(!state->writeMemory8(address + i, symb[i])) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:122:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:137:    result = !state->readMemoryConcrete(address, &buf, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:140:    state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &result, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:148:    klee::ref<klee::Expr> status = state->readCpuRegister(CPU_OFFSET(regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:149:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &messagePtr, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:157:        if(!messagePtr || !state->readString(messagePtr, message)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:164:    s2e()->getMessagesStream(state) << "Killing state "  << state->getID() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:177:    ref<Expr> val = state->readCpuRegister(offsetof(CPUX86State, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:178:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:189:    if(name && !state->readString(name, nameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:203:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:205:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:207:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:218:    if(name && !state->readString(name, nameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:228:        ref<Expr> res = state->readMemory8(address+i);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:243:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:245:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:256:        ref<Expr> expr = state->readMemory8(address + i);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:264:            if(!state->writeMemory(address + i, expr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:280:    state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &duration, sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:297:    bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:307:    if(!address || !state->readString(address, str)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:332:                state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &v, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:335:        case 1: state->enableSymbolicExecution(); break;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:336:        case 2: state->disableSymbolicExecution(); break;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:349:            state->writeCpuRegister(offsetof(CPUX86State, regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:350:                klee::ConstantExpr::create(state->getID(), klee::Expr::Int32));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:370:            state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:374:            state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:394:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &count, sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:400:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &count, sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:414:            state->writeCpuState(CPU_OFFSET(timer_interrupt_disabled),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:424:            state->writeCpuState(CPU_OFFSET(all_apic_interrupts_disabled),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:431:                state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &size, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/BaseInstructions.cpp:436:            state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:142:        if (pc != state->getTb()->pc) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:144:                                       << " tbpc=0x" << std::hex << state->getTb()->pc << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:150:    tb.targetPc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:151:    tb.tbType = state->getTb()->s2e_tb_type;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:153:    tb.size = state->getTb()->size;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/TranslationBlockTracer.cpp:160:        if (!state->readCpuRegisterConcrete(offset, &tb.registers[i], sizeof(tb.registers[0]))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ExecutionTracer.cpp:109:    item.stateId = state->getID();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ExecutionTracer.cpp:110:    item.pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ExecutionTracer.cpp:160:    itemFork->pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ModuleTracer.cpp:219:    uint64_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ModuleTracer.cpp:220:    uint64_t pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/ModuleTracer.cpp:221:    uint64_t id = state->getID();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/MemoryTracer.cpp:118:    e.pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/MemoryTracer.cpp:185:    e.pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ExecutionTracers/MemoryTracer.cpp:195:    e.pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Debugger.cpp:181:        if ((state->getSp() & ~0x3FFFF) == (addr & ~0x3FFFF)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Debugger.cpp:219:                   " MEM PC=0x" << std::hex << state->getPc() <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Debugger.cpp:249:            " CC_SRC=" << state->readCpuRegister(offsetof(CPUState, cc_src), klee::Expr::Int32) <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisMemoryCheck.cpp:76:   if (!state->readMemoryConcrete(pNdisPacket, &Packet, sizeof(Packet))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisMemoryCheck.cpp:85:       if (!state->readMemoryConcrete(head, &CurMdl, sizeof(CurMdl))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:147:    state->enableSymbolicExecution();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:148:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:219:                << " at " << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:233:    klee::ref<klee::Expr> eax = state->readCpuRegister(offsetof(CPUState, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:249:    bool driverObjectValid = state->readMemoryConcrete(pDriverObject, &driverObject, sizeof(driverObject));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/WindowsDriverExerciser.cpp:286:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:169:    if (!state->readCpuRegisterConcrete(offsetof(CPUX86State, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:170:        klee::ref<klee::Expr> val = state->readCpuRegister(offsetof(CPUX86State, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:200:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, varName);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:202:    state->addConstraint(constr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:209:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, varName);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:222:    state->addConstraint(constr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:232:    ok = state->readMemoryConcrete(address, &configStringUnicode, sizeof(configStringUnicode));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:238:    ok = state->readUnicodeString(configStringUnicode.Buffer, s, configStringUnicode.Length);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:276:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, varName);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:301:    bool oldForkStatus = state->isForkingEnabled();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:302:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:304:    klee::ref<klee::Expr> success = state->createSymbolicValue(klee::Expr::Int32, msg);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:316:        m_functionMonitor->eraseSp(state == fs ? ts : fs, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:339:    bool oldForkStatus = state->isForkingEnabled();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:340:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:342:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, varName);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:368:    uint64_t pc = state->getTb()->pcOfLastInstr;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:395:    if (!state->readMemoryConcrete(address, &String, sizeof(String))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.cpp:419:    if (!state->readMemoryConcrete(address, &String, sizeof(String))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/HalHandlers.cpp:145:    s2e()->getDebugStream(state) << "Calling " << __FUNCTION__ << " at " << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/HalHandlers.cpp:158:     ok = state->readMemoryConcrete(pBusHandler, &BusHandler, sizeof(BusHandler));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:200:    if (!state->readMemoryConcrete(pUnicodeString, &UnicodeString, sizeof(UnicodeString))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:205:    state->readUnicodeString(UnicodeString.Buffer, ret, UnicodeString.Length);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:224:     ok = state->readString(strptr, message, 255);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:260:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:298:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:305:    state->bypassFunction(7);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:308:    state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:333:        if (!state->readMemoryConcrete(pDeviceObject, &DeviceObject, sizeof(DeviceObject))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:380:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:383:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &isAvailable, sizeof(isAvailable))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:420:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:424:    klee::ref<klee::Expr> ret = state->createSymbolicValue(klee::Expr::Int32, getVariableName(state, __FUNCTION__));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:428:        state->writeMemory(valPtr, ret);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:429:        state->bypassFunction(1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:440:    state->bypassFunction(1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:455:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:461:        klee::ref<klee::Expr> eax = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:462:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), eax);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:463:        state->bypassFunction(3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:478:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:485:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:488:    state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:504:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:511:    state->bypassFunction(1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:519:    state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:535:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:542:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:551:            state->writeMemoryConcrete(pSecurityDescriptor, &secDesc, sizeof(secDesc));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:557:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:560:        state->bypassFunction(2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:577:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:584:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:591:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:595:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:607:    if (state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &res, sizeof(res))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:628:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:635:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:642:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:646:    state->bypassFunction(3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:658:    if (state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &res, sizeof(res))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:673:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:697:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:699:    state->writeCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &failValue, sizeof(failValue));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:712:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &address, sizeof(address))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:825:            if (state->readMemoryConcrete(mdlAddress, &mdl, sizeof(mdl))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:848:            klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int8,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:850:            state->writeMemory(inputBuffer + i, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:889:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:911:    if (!pIrp || !state->readMemoryConcrete(pIrp, &irp, sizeof(irp))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:919:    if (!pStackLocation || !state->readMemoryConcrete(pStackLocation, &stackLocation, sizeof(stackLocation))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:947:    klee::ref<klee::Expr> result = state->readCpuRegister(offsetof(CPUState, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:973:        if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_ECX]), &pIrp, sizeof(pIrp))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:992:    if (!pIrp || !state->readMemoryConcrete(pIrp, &irp, sizeof(irp))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:1003:    if (!state->readMemoryConcrete(pStackLocation, &StackLocation, sizeof(StackLocation))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:1020:    uint64_t callee = state->getTb()->pcOfLastInstr;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:1030:    if (!pIrp || !state->readMemoryConcrete(pIrp, &irp, sizeof(irp))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NtoskrnlHandlers.cpp:1040:    if (!state->readMemoryConcrete(pStackLocation, &StackLocation, sizeof(StackLocation))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.h:80:#define HANDLER_TRACE_CALL() s2e()->getDebugStream(state) << "Calling " << __FUNCTION__ << " at " << hexval(state->getPc()) << std::endl
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/Api.h:81:#define HANDLER_TRACE_RETURN() s2e()->getDebugStream(state) << "Returning from " << __FUNCTION__ << " at " << hexval(state->getPc()) << std::endl
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:56:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:73:    if (!state->readMemoryConcrete(pProtocol, &Protocol, sizeof(Protocol))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:115:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:118:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:365:    if (state->readMemoryConcrete(pStatus, &Status, sizeof(Status))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisProtocolHandlers.cpp:397:    if (state->readMemoryConcrete(pStatus, &Status, sizeof(Status))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:261:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:285:    state->bypassFunction(3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:289:    bool suc = state->writeMemoryConcrete(Address, &null, sizeof(null));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:293:    state->writeCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &failValue, sizeof(failValue));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:305:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:309:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:325:        bool ok = state->readMemoryConcrete(Address, &BufAddress, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:357:        if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:464:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:472:    state->bypassFunction(5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:476:    state->writeMemoryConcrete(VirtualAddress, &null, sizeof(null));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:494:    ok &= state->readMemoryConcrete(pVirtualAddress, &va, sizeof(va));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:495:    ok &= state->readMemoryConcrete(pPhysicalAddress, &pa, sizeof(pa));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:550:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:551:    ok &= state->readMemoryConcrete(pPacket, &Packet, sizeof(Packet));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:613:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:621:    state->bypassFunction(3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:624:    state->writeMemory(pStatus, createFailure(state, getVariableName(state, __FUNCTION__) + "_result"));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:640:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:641:    ok &= state->readMemoryConcrete(pPoolHandle, &Handle, sizeof(Handle));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:685:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:700:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:703:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:721:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:722:    ok &= state->readMemoryConcrete(pPoolHandle, &Handle, sizeof(Handle));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:764:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:778:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:780:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:783:    state->bypassFunction(5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:799:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:800:    ok &= state->readMemoryConcrete(pPoolHandle, &Handle, sizeof(Handle));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:831:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:855:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:858:    state->bypassFunction(3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:895:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:911:    state->writeCpuRegister(CPU_OFFSET(regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:914:    state->bypassFunction(2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:935:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:950:    ok = state->readMemoryConcrete(pUnicodeString, &s, sizeof(s));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:957:    if (state->readUnicodeString(s.Buffer, adapterName)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:979:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:997:    state->writeCpuRegister(CPU_OFFSET(regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1000:    state->bypassFunction(2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1017:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1052:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1060:    state->bypassFunction(11);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1072:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1073:    ok &= state->readMemoryConcrete(pNdisBindingHandle, &NdisBindingHandle, sizeof(NdisBindingHandle));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1124:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1125:    ok &= state->readMemoryConcrete(pBuffer, &Buffer, sizeof(Buffer));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1257:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1263:    //state->dumpStack(20, state->getSp());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1265:    uint32_t realPc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1302:        state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1326:    uint64_t physAddr = state->getPhysicalAddress(state->getSp() + (param+1) * sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1372:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1438:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1461:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1474:        klee::ref<klee::Expr> success = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1475:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), success);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1496:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1501:    if (!state->readCpuRegisterConcrete(offsetof(CPUX86State, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1516:        klee::ref<klee::Expr> success = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1517:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), success);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1571:    //We need to put them in the state-local storage, as parameters can be mangled by the caller
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1588:    state->getReturnAddress(&pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1613:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1629:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1632:    state->bypassFunction(5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1648:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1665:    ok &= state->readMemoryConcrete(ppConfigParam, &pConfigParam, sizeof(pConfigParam));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1679:    ok = state->readMemoryConcrete(pConfigParam, &ConfigParam, sizeof(ConfigParam));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1688:                klee::ref<klee::Expr> val = state->createSymbolicValue(klee::Expr::Int32, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1689:                state->writeMemory(pConfigParam + valueOffset, val);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1817:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1820:    ok = state->getReturnAddress(&retaddr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1835:            state->writeMemory(buffer + i, &buf[i], klee::Expr::Int8);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1839:            klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int8, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1840:            state->writeMemory(buffer+i, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1847:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1849:    state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1850:    state->addConstraint(expr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1852:    state->bypassFunction(5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1869:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1880:    ok = state->getReturnAddress(&retaddr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1887:    klee::ref<klee::Expr> symb = state->createSymbolicValue(klee::Expr::Int32, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1889:    state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1890:    state->addConstraint(expr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1892:    state->bypassFunction(5);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1932:    klee::ref<klee::Expr> Status = state->readMemory(plgState->pStatus, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1939:    klee::ref<klee::Expr> SymbStatus = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1940:    state->writeMemory(plgState->pStatus, SymbStatus);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1972:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1978:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1990:        klee::ref<klee::Expr> success = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:1991:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), success);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2023:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2029:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2040:        klee::ref<klee::Expr> success = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2041:        state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), success);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2084:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2098:    state->writeMemory(pStatus, symb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2101:    state->bypassFunction(4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2117:    ok &= state->readMemoryConcrete(pStatus, &Status, sizeof(Status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2129:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2135:    ok &= state->readMemoryConcrete(pNetworkAddressLength, &Length, sizeof(Length));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2136:    ok &= state->readMemoryConcrete(pNetworkAddress, &NetworkAddress, sizeof(NetworkAddress));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2155:            state->writeMemoryConcrete(NetworkAddress + i, &m_networkAddress[i % m_networkAddress.size()], 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2159:            klee::ref<klee::Expr> val = state->createSymbolicValue(klee::Expr::Int8, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2160:            state->writeMemory(NetworkAddress + i, val);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2181:    if (!state->readMemoryConcrete(state->getSp() + sizeof(pMiniport) * (1+1), &pMiniport, sizeof(pMiniport))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2189:    if (!state->readMemoryConcrete(pMiniport, &Miniport, sizeof(Miniport))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2219:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2225:    if (!state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &eax, sizeof(eax))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2233:            klee::ref<klee::Expr> ret = state->createSymbolicValue(klee::Expr::Int32, __FUNCTION__);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2234:            state->writeCpuRegister(offsetof(CPUState, regs[R_EAX]), ret);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2286:        state->writeCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &success, sizeof(success));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2287:        state->bypassFunction(1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2304:        //state->writeCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &success, sizeof(success));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2309:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2345:    if (!state->readMemoryConcrete(NdisHandle + NDIS_M_STATUS_HANDLER_OFFSET, &pStatusHandler, sizeof(pStatusHandler))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2350:    if (!state->readMemoryConcrete(NdisHandle + NDIS_M_SEND_COMPLETE_HANDLER_OFFSET, &pSendCompleteHandler, sizeof(pSendCompleteHandler))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2358:        //const ModuleDescriptor* module = m_detector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2379:                state->writeMemory(pMediumArray + i * 4, state->createSymbolicValue(klee::Expr::Int32, ss.str()));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2382:            klee::ref<klee::Expr> SymbSize = state->createSymbolicValue(klee::Expr::Int32, "MediumArraySize");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2386:            state->addConstraint(Constr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2396:    const ModuleDescriptor* module = m_detector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2404:    klee::ref<klee::Expr> eax = state->readCpuRegister(offsetof(CPUState, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2408:    if (!solver->mayBeTrue(klee::Query(state->constraints, eq), isTrue)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2409:        s2e()->getMessagesStream(state) << "Killing state "  << state->getID() <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2415:        s2e()->getMessagesStream(state) << "Killing state "  << state->getID() <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2424:    state->addConstraint(constr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2433:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2492:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2494:    bool oldForkStatus = state->isForkingEnabled();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2495:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2498:    klee::ref<klee::Expr> isFake = state->createSymbolicValue(klee::Expr::Int8, "FakeShutdown");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2521:        const ModuleDescriptor* module = m_detector->getModule(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2552:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2604:    ok &= state->readMemoryConcrete(plgState->isrRecognized, &isrRecognized, sizeof(isrRecognized));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2605:    ok &= state->readMemoryConcrete(plgState->isrQueue, &isrQueue, sizeof(isrQueue));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2627:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2647:    klee::ref<klee::Expr> symbOid = state->createSymbolicValue(klee::Expr::Int32, ss.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2649:    klee::ref<klee::Expr> isFakeOid = state->createSymbolicValue(klee::Expr::Int8, "IsFakeOid");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2657:    uint32_t original_sp = state->getSp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2663:    klee::ref<klee::Expr> symbBufferSize = state->createSymbolicValue(klee::Expr::Int32, "QuerySetInfoBufferSize");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2671:        klee::ref<klee::Expr> symbByte = state->createSymbolicValue(klee::Expr::Int8, ssb.str());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2672:        state->writeMemory(current_sp + i, symbByte);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2686:        b &= state->writeMemory(current_sp, (uint8_t*)&origBytesNeeded, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2688:        b &= state->writeMemory(current_sp, (uint8_t*)&origBytesWritten, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2692:        b &= state->writeMemory(current_sp, symbBufferSize);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2696:        b &= state->writeMemory(current_sp, (uint8_t*)&newBufferPtr, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2698:        b &= state->writeMemory(current_sp, symbOid);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2700:        b &= state->writeMemory(current_sp, (uint8_t*)&origContext, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2705:        b &= state->writeMemory(current_sp,(uint8_t*)&retaddr, klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2709:    bool oldForkStatus = state->isForkingEnabled();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2710:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2755:        if (state->readMemoryConcrete(plgState->pInformationBuffer, &status, sizeof(status))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2764:                    state->writeMemoryConcrete(plgState->pInformationBuffer, &status, sizeof(status));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2780:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2819:        s2e()->getDebugStream(state) << "Already explored " << __FUNCTION__ << " at " << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2832:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2843:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2856:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2893:        s2e()->getDebugStream(state) << "Already explored " << __FUNCTION__ << " at " << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2917:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2952:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:2977:    if (!(ok = state->readCpuRegisterConcrete(offsetof(CPUState, regs[R_EAX]), &status, sizeof(status)))) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:3019:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/WindowsApi/NdisHandlers.cpp:3057:        m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:172:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:194:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:218:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:239:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:261:   assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:286:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:308:    assert(g_s2e_state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:329:    assert(g_s2e_state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:332:        g_s2e->getCorePlugin()->onException.emit(g_s2e_state, intNb, g_s2e_state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:459:    assert(g_s2e_state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CorePlugin.cpp:470:    assert(g_s2e_state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:151:    const Instruction *instr = state->pc->inst;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:228:    uint64_t tbVa = curModule->ToRelative(state->getTb()->pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:235:        plgState->m_metric *= state->queryCost < 1 ? 1 : state->queryCost;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:240:    uint64_t newPc = md->ToRelative(state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:283:    plgState->m_metric *= state->queryCost < 1 ? 1 : state->queryCost;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/CooperativeSearcher.cpp:157:            ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &nextState, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/CooperativeSearcher.cpp:178:            state->writeCpuState(CPU_OFFSET(eip), state->getPc() + 10, 32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/CooperativeSearcher.cpp:199:            state->writeCpuState(CPU_OFFSET(eip), state->getPc() + 10, 32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CacheSim.cpp:601:       // std::cout << state->getPc() << " "  << c->getName() << ": " << missCount[i] << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CacheSim.cpp:608:                e.pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CacheSim.cpp:619:                ce.pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CacheSim.cpp:652:  //      s2e()->getDebugStream() << "acc pc=" << std::hex << state->getPc() << " ha=" << constAddress << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CacheSim.cpp:675:        newPc = state->getHostAddress(tb->pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/InterruptMonitor.cpp:84:	if (!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ESP]), &esp, sizeof(esp)))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/InterruptMonitor.cpp:89:	if (!state->readMemoryConcrete(esp, &eip, sizeof(eip), S2EExecutionState::VirtualAddress))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/InterruptMonitor.cpp:129:	if (!state->readMemoryConcrete(pc, &insnByte, 1))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/InterruptMonitor.cpp:143:		if (!state->readMemoryConcrete(pc + 1, &intNumByte, 1))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Annotation.cpp:350:        state->bypassFunction(entry->paramCount);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Annotation.cpp:357:       m_functionMonitor->eraseSp(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Annotation.cpp:392:       state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Annotation.cpp:412:    state->undoCallAndJumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Annotation.cpp:423:    state->jumpToSymbolicCpp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.h:131:   struct X86State preState;  // state->dumpX86State
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.h:132:   struct X86State postState; // state->dumpX86State
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.h:195:      //klee::ref<klee::Expr> symb;// = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:120:        state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:126:        state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:130:    state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:144:        state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:150:        state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:168:    Pids::const_iterator it = m_pidsToTrack.find(state->getPid());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:171:        state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:181:            state->enableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:183:            state->disableForking();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:192:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &isUserSpace, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:197:        m_pidsToTrack[state->getPid()] = false;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:204:        m_pidsToTrack[state->getPid()] = true;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:217:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &pid, 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:226:        pid = state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:242:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &moduleId, sizeof(moduleId));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:251:    if (!state->readString(moduleId, strModuleId)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/CodeSelector.cpp:302:                state->setPc(state->getPc() + OPCODE_SIZE);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:266:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &(cfg.base_addr), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:268:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &(cfg.byte_len), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:270:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &(cfg.eip_addr), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:273:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EDX]), &(cfg.sysc), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:277:         //ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_CR3]), &(cfg.proc_cr3), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:296:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &(start), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:299:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &(end), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:314:            state->writeCpuRegisterConcrete (CPU_OFFSET(regs[R_EAX]), &(start), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:318:         if (state->needToJumpToSymbolic () ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:320:            state->jumpToSymbolic ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:323:         if (!(state->isForkingEnabled () ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:324:            state->enableForking ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:335:         ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]), &(value), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:344:         if (state->needToJumpToSymbolic () ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:346:            state->jumpToSymbolic ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:349:         if (!(state->isForkingEnabled () ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:350:            state->enableForking ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:354:            cfg.symb = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:385:   cfg.proc_id = (unsigned int) state->getPid ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:439:   if (isInShell (state->getPc () ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:628:   if (!state->readMemoryConcrete (pc, insn_raw, len) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:755:   uint64_t pid = state->getPid ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:816:   if (!state->readMemoryConcrete (cfg.base_addr, data_tmp, cfg.byte_len) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:876:   if (!isInShell (state->getPc () ) || !isWrite) { // || !isInShell (cast<klee::ConstantExpr>(guestAddress)->getZExtValue(64) ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:880:   if (state->isRunningExceptionEmulationCode()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:907:      " pc: 0x" << std::hex << state->getPc () <<
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:908:      ":0x" << std::hex << (state->getPc () - cfg.base_addr) << 
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:921:      if (hasBeenTranslated (state, (state->getPc () - cfg.base_addr), addr, accessSize) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:926:         plgState->oEI_retranslate = state->getPc ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:939:   data.other_pc = state->getPc (); // to keep things uniform, other_pc and next_pc are absolute
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:979:   if (!state->readMemoryConcrete (addr, bytes, accessSize) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1037:      state->dumpX86State (s2e()->getDebugStream () );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1098:      if (!state->readMemoryConcrete (pc, &insnByte, 1) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1110:         if (!state->readMemoryConcrete(pc + 1, &intNumByte, 1)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1187:   	if (!state->readMemoryConcrete (pc + i, &(insn_raw[i]), 1) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1228:       state->writeCpuState(offsetof(CPUState, eip), &var, 
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1242:      //ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EBP]), &(s.ebp), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1245:      symb_val = state->readCpuRegister(offsetof(CPUState, regs[R_EAX]), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1269:				   symb_val = state->readMemory8 (cfg.base_addr + cfg.symbVars[i].addr, state->VirtualAddress);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1271:					s2e()->getMessagesStream (state) << "simplified, expr: " << state->constraints.simplifyExpr (symb_val) << ' ';
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1272:					//std::pair<klee::ref<klee::Expr>, klee::ref<klee::Expr> > range = s2e()->getExecutor()->getSolver()->getRange (klee::Query (state->constraints, symb_val) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1274:					//state, cfg.base_addr + cfg.symbVars[i].addr); //Query (state->constraints, symb_val) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1284:					s2e()->getMessagesStream (state) << "is symbolic, simplified expr: " << state->constraints.simplifyExpr (symb_val) << ' ';
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1304:         if (!(state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EBP]), &(x2_addr), sizeof (uint32_t) ) ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1350:   if (!state->readMemoryConcrete (address, &buf, 1) ) { //isSymb (state, address) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1361:   klee::ref<klee::Expr> symb = state->createSymbolicValue (klee::Expr::Int8, nameStr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1363:   if(!state->writeMemory8 (address, symb)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1376:   if (!state->readMemoryConcrete (address, &buf, 1) ) { //isSymb (state, address) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1387:   klee::ref<klee::Expr> symb = state->createSymbolicValue (klee::Expr::Int8, nameStr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1391:   if(!state->writeMemory8 (address, symb)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1403:   if (!state->readMemoryConcrete (address, &buf, 1) ) { //isSymb (state, address) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1416:   // no need for state->addConstraint(symb); plus as a ConstantExpr it'll fail a constraint at a write
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1421:    klee::ref<klee::Expr> symb_taint = state->createSymbolicValue (klee::Expr::Int8, nameStr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1431:   if(!state->writeMemory8 (address, symb) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1446:   if (!state->readMemoryConcrete (address, &buf, 1) ) { //isSymb (state, address) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1459:   // no need for state->addConstraint(symb); plus as a ConstantExpr it'll fail a constraint at a write
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1464:    klee::ref<klee::Expr> symb_taint = state->createSymbolicValue (klee::Expr::Int8, nameStr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1478:   if(!state->writeMemory8 (address, symb)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1497:   result = !state->readMemoryConcrete (address, &buf, 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1514:   symb_val = state->readMemory8 (address, state->VirtualAddress);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1532:   if (state->readMemoryConcrete (address, &buf, 1) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1544:   klee::ref<klee::Expr> expr = state->readMemory8 (address, state->VirtualAddress);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1583:         //state->dumpX86State (s2e()->getDebugStream () );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1584:         if (!state->writeMemoryConcrete(write_addr, &(plgState->last_fpu_pc), sizeof (plgState->last_fpu_pc) ) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1628:   uint64_t pid = state->getPid ();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1760:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EAX]), &(s.eax), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1761:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EBX]), &(s.ebx), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1762:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_ECX]), &(s.ecx), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1763:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EDX]), &(s.edx), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1764:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_ESI]), &(s.esi), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1765:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EDI]), &(s.edi), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1766:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_EBP]), &(s.ebp), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1767:   ok &= state->readCpuRegisterConcrete (CPU_OFFSET (regs[R_ESP]), &(s.esp), sizeof (uint32_t) );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1768:   s.eip = state->readCpuState          (CPU_OFFSET (eip),   sizeof (uint32_t)*8 ) & 0xffffffff;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1769:   s.cr2 = state->readCpuState          (CPU_OFFSET (cr[2]), sizeof (uint32_t)*8 ) & 0xffffffff;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1832:   if (state->getID () == 0) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:1864:   if (!state->readMemoryConcrete (cfg.base_addr, rawshell, cfg.byte_len) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2116:      //state->dumpX86State(s2e()->getDebugStream () );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2121:         bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &(int_num), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2128:         //state->dumpX86State(s2e()->getDebugStream () );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2144:      state->dumpX86State (s2e()->getDebugStream () );
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2568:   if (!state->readMemoryConcrete (insn.addr + cfg.base_addr, raw, insn.len) ) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2851:   klee::ref<klee::Expr> symb = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2866:   state->writeCpuRegisterConcrete (CPU_OFFSET(regs[R_EAX]), &(i), 4); // set the return value
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2877:      klee::ref<klee::Expr> symb = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2878:      //plgState->symb = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2889:   state->writeCpuRegisterConcrete (CPU_OFFSET(regs[R_EAX]), &(value), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2901:      //klee::ref<klee::Expr> symb = state->createSymbolicValue (klee::Expr::Int32, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2903:      klee::ref<klee::Expr> fuzz_symb = state->createSymbolicValue (klee::Expr::Bool, "fuzz_symb");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/DasosPreproc.cpp:2916:   state->writeCpuRegisterConcrete (CPU_OFFSET(regs[R_EAX]), &(value), 4);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:185:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]), &moduleId, sizeof(moduleId));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:186:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &moduleName, sizeof(moduleName));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:187:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EDX]), &isKernelMode, sizeof(isKernelMode));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:196:    if (!state->readString(moduleId, strModuleId)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:202:    if (!state->readString(moduleName, strModuleName)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:252:                state->setPc(state->getPc() + OPCODE_SIZE);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:474:    uint32_t pc = state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:475:    uint64_t pid = m_Monitor->getPid(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/ModuleExecutionDetector.cpp:508:        klee::ref<klee::Expr> val = state->readMemory(sp + i * sizeof(uint32_t), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StackMonitor.cpp:130:            m_lastStackPointer = state->getSp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StackMonitor.cpp:417:    plgState->update(state, state->getPc(), false);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StackMonitor.cpp:473:    uint64_t sp = state->getSp();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StackMonitor.cpp:551:    PidStackBase p = std::make_pair(m_monitor->getPid(state, state->getPc()), stackBase);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StackMonitor.cpp:565:    uint64_t pid = m_monitor->getPid(state, state->getPc());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:165:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:167:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:169:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:180:    if(!state->readString(name, nameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:206:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:215:    ok &= state->readMemoryConcrete(pModuleConfig, &moduleConfig, sizeof(moduleConfig));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:228:    if (!state->readString(moduleConfig.name, moduleDescriptor.Name)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:234:    moduleDescriptor.Pid = moduleConfig.kernelMode ? 0 : state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:246:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:248:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_EBX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:250:    ok &= state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ECX]),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:261:    if(!state->readString(dllname, dllnameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:268:    if(!state->readString(funcname, funcnameStr)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/RawMonitor.cpp:335:    md.Pid = c.kernelMode ? 0 : state->getPid();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/EdgeKiller.cpp:199:    if (plgState->isEdge(sourcePc, state->getPc())) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/EdgeKiller.cpp:202:                << state->getPc();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StateManager.cpp:555:            target_ulong pc = state->getPc() + OPCODE_SIZE;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StateManager.cpp:556:            state->writeCpuState(CPU_OFFSET(eip), pc, 8*sizeof(target_ulong));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/StateManager.cpp:571:            state->writeCpuRegisterConcrete(CPU_OFFSET(regs[R_EAX]), &count, sizeof(uint32_t));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/sqlite3.c:92720:  YYACTIONTYPE stateno;  /* The state-number */
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:144:    StateSharedMemory("state-shared-memory",
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:155:    FlushTBsOnStateSwitch("flush-tbs-on-state-switch",
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:466:    expr = state->constraints.simplifyExpr(expr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:479:    if (state->forkDisabled) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:483:                Query(state->constraints, expr), value);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:488:            state->addConstraint(eqCond);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:498:    Query query(state->constraints, expr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:847:    state->m_runningConcrete = true;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:848:    state->m_active = true;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:851:        state->pathOS = pathWriter->open();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:853:        state->symPathOS = symPathWriter->open();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:862:    state->ptreeNode = processTree->root;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1031:    assert(!initial_state->m_dirtyMask);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1032:    initial_state->m_dirtyMask = g_s2e->getExecutor()->addExternalObject(
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1036:    initial_state->m_dirtyMask->setName("dirtyMask");
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1038:    m_saveOnContextSwitch.push_back(initial_state->m_dirtyMask);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1040:    const ObjectState *dirtyMaskObject = initial_state->addressSpace
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1041:                                .findObject(initial_state->m_dirtyMask);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1043:    initial_state->m_dirtyMaskObject = initial_state->addressSpace
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1044:        .getWriteable(initial_state->m_dirtyMask, dirtyMaskObject);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1050:    assert(!state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1053:    ObjectState* wos = state->m_cpuRegistersObject;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1080:    memcpy((void*) state->m_cpuRegistersState->address,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1087:                << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1093:    assert(state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1101:    ObjectState *wos = state->m_cpuRegistersObject;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1103:           (void*) state->m_cpuRegistersState->address, wos->size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1104:    state->m_runningConcrete = false;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1109:                << hexval(state->getPc()) << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1231:    assert(state->m_active);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1266:    if(!state->m_active) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1337:    state->prevPC = state->pc;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1339:    state->pushFrame(state->pc, kf);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1340:    state->pc = kf->instructions;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1344:            &state->stack[state->stack.size()-2]);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1353:    ++state->m_stats.m_statInstructionCountSymbolic;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1358:    KInstruction *ki = state->pc;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1374:        ref<Expr> efl = state->readCpuRegister(offsetof(CPUState, cc_src), klee::Expr::Int32);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1375:        m_s2e->getDebugStream() << std::hex << state->getPc() << "  CC_SRC " << efl << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1435:        state->writeCpuState(CPU_OFFSET(exception_index), EXCP_INTERRUPT, 8*sizeof(int));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1447:    if(!state->m_needFinalizeTBExec)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1450:    state->m_needFinalizeTBExec = false;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1451:    assert(state->stack.size() != 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1453:    assert(!state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1455:    m_s2e->getDebugStream() << "Finalizing TB execution " << std::dec << state->getID() << std::endl;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1456:    foreach(const StackFrame& fr, state->stack) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1463:    //g_s2e_exec_ret_addr = 0; //state->getTb()->tc_ptr;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1465:    while(state->stack.size() != 1) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1469:    state->prevPC = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1470:    state->pc = m_dummyMain->instructions;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1517:    assert(state->m_active && !state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1518:    assert(state->stack.size() == 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1519:    assert(state->pc == m_dummyMain->instructions);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1521:    ++state->m_stats.m_statTranslationBlockSymbolic;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1540:        if(tb->s2e_tb != state->m_lastS2ETb) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1541:            unrefS2ETb(state->m_lastS2ETb);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1542:            state->m_lastS2ETb = tb->s2e_tb;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1543:            state->m_lastS2ETb->refCount += 1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1555:        while(state->stack.size() != 1) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1581:                    assert(state->stack.size() == 2);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1582:                    state->popFrame();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1612:        state->prevPC = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1613:        state->pc = m_dummyMain->instructions;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1621:            getDestCell(*state, state->pc).value;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1632:    assert(state->m_active && state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1633:    ++state->m_stats.m_statTranslationBlockConcrete;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1718:    assert(state->isActive());
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1723:    if(true/* state->m_symbexEnabled*/) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1724:        if(state->m_startSymbexAtPC != (uint64_t) -1) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1725:            executeKlee |= (state->getPc() == state->m_startSymbexAtPC);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1726:            state->m_startSymbexAtPC = (uint64_t) -1;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1731:        if (state->m_toRunSymbolically.size() > 0 &&  state->m_toRunSymbolically.find(std::make_pair(state->getPc(), state->getPid()))
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1732:            != state->m_toRunSymbolically.end()) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1734:            state->m_toRunSymbolically.erase(std::make_pair(state->getPc(), state->getPid()));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1743:            uint64_t smask = state->getSymbolicRegistersMask();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1771:            executeKlee |= !state->m_cpuRegistersObject->isAllConcrete();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1778:        if(state->m_runningConcrete) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1789:        if(!state->m_runningConcrete)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1804:    assert(state->m_active);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1808:    while(state->stack.size() != 1)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1809:        state->popFrame();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1811:    state->prevPC = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1812:    state->pc = m_dummyMain->instructions;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1815:    if(!state->m_runningConcrete) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1827:    assert(!state->m_runningConcrete);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1828:    assert(!state->prevPC);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1829:    assert(state->stack.size() == 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1837:    KInstIterator callerPC = state->pc;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1838:    uint32_t callerStackSize = state->stack.size();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1844:    while(state->stack.size() != callerStackSize) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1849:        assert(state->stack.size() == 1);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1850:        state->prevPC = 0;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1851:        state->pc = callerPC;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1856:        resExpr = getDestCell(*state, state->pc).value;
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:1875:    processTree->remove(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2134:    if((state->getSymbolicRegistersMask() & (0xf<<1)) || m_executeAlwaysKlee) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2136:        bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(cc_op),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2140:                if(state->m_runningConcrete)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2150:        bool ok = state->readCpuRegisterConcrete(CPU_OFFSET(cc_op),
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2154:            if(!state->m_runningConcrete)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2166:    if(state->m_cpuRegistersObject->isAllConcrete() && !m_executeAlwaysKlee) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2167:        if(!state->m_runningConcrete)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2172:        if(state->m_runningConcrete)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2200:        processTree->deactivate(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2208:        processTree->deactivate(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2217:        processTree->activate(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2225:        processTree->activate(state->ptreeNode);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2256:    assert(state->m_active && !state->m_runningConcrete && state->pc);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2259:    if(state->m_lastMergeICount == state->getTotalInstructionCount() - 1)
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2262:    state->m_lastMergeICount = state->getTotalInstructionCount();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2265:    if(!state->readCpuRegisterConcrete(CPU_OFFSET(regs[R_ESP]), &mergePoint, 8)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2270:    mergePoint = hash64(state->getPc(), mergePoint);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2280:    state->m_stats.updateStats(state);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2336:            << " pc=0x" << std::hex << state->getPc() << std::dec
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2338:    state->setRunningExceptionEmulationCode(false);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2382:    state->setRunningExceptionEmulationCode(true);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2388:    state->setRunningExceptionEmulationCode(false);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2398:    state->enableSymbolicExecution();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2399:    state->jumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2404:    state->jumpToSymbolic();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2412:    state->updateTlbEntry(env, mmu_idx, virtAddr, hostAddr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2418:    return g_s2e_state->dmaRead(hostAddress, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2423:    return g_s2e_state->dmaWrite(hostAddress, buf, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2451:    g_s2e_state->flushTlbCache();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutor.cpp:2456:    g_s2e_state->flushTlbCachePage(static_cast<klee::ObjectState*>(objectState), mmu_idx, index);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EDeviceState.cpp:421:    S2EDeviceState *devState = g_s2e_state->getDeviceState();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EDeviceState.cpp:435:    S2EDeviceState *devState = g_s2e_state->getDeviceState();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EDeviceState.cpp:447:    S2EDeviceState *devState = g_s2e_state->getDeviceState();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EDeviceState.cpp:465:    S2EDeviceState *devState = g_s2e_state->getDeviceState();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EStatsTracker.cpp:237:    uint64_t totalICount = state->getTotalInstructionCount();
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:421:    uint32_t sp = m_state->getSp() + (param+1) * sizeof(uint32_t);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:422:    bool b = m_state->readMemoryConcrete(sp, &val, sizeof(val));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:442:    uint32_t sp = m_state->getSp() + (param+1) * sizeof(uint32_t);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:443:    bool b = m_state->writeMemoryConcrete(sp, &val, sizeof(val));
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:460:    m_state->readMemoryConcrete(address, &ret, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:475:    if (!m_state->writeMemoryConcrete(address, &value, size)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:517:    klee::ref<klee::Expr> val = m_state->createSymbolicValue(width, name);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:518:    if (!m_state->writeMemory(address, val)) {
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:529:        m_state->addConstraint(val3);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:531:        val = m_state->createSymbolicValue(width, name);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:586:    m_state->writeCpuRegisterConcrete(offsetof(CPUState, regs) + regIndex*4, &value, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:608:    klee::ref<klee::Expr> val = m_state->createSymbolicValue(klee::Expr::Int32, namestr);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:609:    m_state->writeCpuRegister(offsetof(CPUState, regs) + regIndex*4, val);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/ConfigFile.cpp:631:    m_state->readCpuRegisterConcrete(offsetof(CPUState, regs) + regIndex*4, &value, size);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.h:392:#define SREAD(state, addr, val) if (!state->readMemoryConcrete(addr, &val, sizeof(val))) { return; }
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/S2EExecutionState.h:393:#define SREADR(state, addr, val) if (!state->readMemoryConcrete(addr, &val, sizeof(val))) { return false; }
+/home/s2e/s2e/dasos/s2e/./s2e/tools/tools/pfprofiler/CacheProfiler.cpp:108:        state->processCacheItem(this, hdr.pid, se);
+/home/s2e/s2e/dasos/s2e/./s2e/tools/tools/pfprofiler/CacheProfiler.cpp:259:    const CacheStatisticsMap &stats = state->getStats();
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/ModuleParser.cpp:100:        if (!state->loadModule(load.name, hdr.pid, load.loadBase, load.nativeBase, load.size)) {
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/ModuleParser.cpp:107:        if (!state->unloadModule(hdr.pid, unload.loadBase)) {
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/TestCase.cpp:69:    if (state->m_foundInputs) {
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/TestCase.cpp:75:    ExecutionTraceTestCase::deserialize(item, hdr.size, state->m_inputs);
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/TestCase.cpp:76:    state->m_foundInputs = true;
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/CacheProfiler.cpp:98:            state->processCacheItem(this, hdr, *se);
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/InstructionCounter.cpp:70:    std::cout << "ID=" << traceIndex << " ICOUNT: e=" << e->count << " state=" << state->m_icount <<
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/InstructionCounter.cpp:74:    assert(e->count >= state->m_icount);
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/InstructionCounter.cpp:75:    state->m_icount = e->count;
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/PageFault.cpp:74:            state->m_totalPageFaults++;
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/PageFault.cpp:76:            state->m_totalPageFaults++;
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/PageFault.cpp:90:            state->m_totalTlbMisses++;
+/home/s2e/s2e/dasos/s2e/./s2e/tools/lib/ExecutionTracer/PageFault.cpp:92:            state->m_totalTlbMisses++;

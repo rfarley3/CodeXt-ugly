@@ -1,0 +1,3 @@
+BITS 32
+mov eax, 0xff
+mov al, 0xff

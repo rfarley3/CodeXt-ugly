@@ -1,0 +1,473 @@
+//
+//  libDasosfDump.c
+//  
+//
+//  Created by Ryan Farley on 3/13/12.
+//  Copyright (c) 2012 George Mason University. All rights reserved.
+//
+#include "libDasosBastard.h"
+
+
+void initDasosBastard () {
+   libdisasm_inited = 0;
+   libdisasm_init ();
+   return;
+} // end fn initDasosfBastard
+
+
+void libdisasm_init () {
+   if (!libdisasm_inited) {
+      x86_init (opt_none, NULL, NULL);  // init library
+      libdisasm_inited = 1;
+   }
+} // end fn libdisasm_init
+
+
+void libdisasm_dest () {
+   if (libdisasm_inited) {
+      x86_cleanup();
+      libdisasm_inited = 0;
+   }
+   return;
+} // end fn endDasosfBastard
+
+
+// starting at EIP, go forward until you see non-code, then backwards until the previous ctrl flow insn
+unsigned int findShellcode_LenViaDisasm (struct dasos_forens_dump dump) {
+   unsigned int offset, offset_finalctrl;
+   int insn_size;
+   x86_insn_t insn;
+   
+   offset = dump.deets.eip - dump.start_addr; // eip
+   offset_finalctrl = offset;
+   libdisasm_init ();
+   
+   while (offset < dump.num_bytes) {
+      insn_size = x86_disasm ((unsigned char*) dump.dump, dump.num_bytes, 0, offset, &insn);
+      // if valid insn
+      if (insn_size) {
+         // if ctrl flow, note its location in case it's the final ctrl flow
+         if (insn.group == insn_controlflow || insn.group == insn_interrupt || insn.group == insn_system) {
+            offset_finalctrl = offset;
+         }
+         offset += insn_size;
+      }
+      else {
+         // find end of final ctrl insn
+         offset_finalctrl += x86_disasm ( (unsigned char*) dump.dump, dump.num_bytes, 0, offset_finalctrl, &insn);
+         offset = dump.num_bytes; // exit loop
+      }
+   };
+   //libdisasm_dest ();
+   
+   // offset is end of final ctrl insn
+   return offset_finalctrl - (dump.deets.eip - dump.start_addr);
+} // end fn findShellcode_LenViaDisasm
+
+
+void findShellcode_2 (struct dasos_forens_dump dump, struct shellcode* shell) {
+   // find beginning via Nop
+   // later brute from by iterating from beginning to find SymExec that reaches EIP
+   shell->addr = findShellcode_StartViaNops (dump);
+   shell->len = dump.deets.eip - shell->addr; // len from shellcode start to eip
+                                              // find furthest end addr via SymExec
+   shell->len += findShellcode_LenViaDisasm (dump);
+   
+   memcpy (shell->shell, &(dump.dump[shell->addr - dump.start_addr]), shell->len * sizeof (char) );
+   return;
+} // end fn findShellcode_2
+
+
+
+// given a string, are there goal more chars of shellcode?
+unsigned int doesShellcodeReach_0 (unsigned char* haystack, unsigned int goal) {
+   unsigned int idx;
+   int insn_size;
+   x86_insn_t insn;
+   
+   //printf ("Check if shellcode reaches EIP, only needs to be %u B\n", goal);
+   goal--;
+   
+   libdisasm_init ();
+   idx = 0;
+   while (idx <= goal) {
+      //printf ("--Checking idx %u\n", idx);
+      if (idx >= goal) {
+         //printf ("----reaches goal\n");
+         //libdisasm_dest ();
+         return 1;
+      }
+      insn_size = x86_disasm (haystack, goal, 0, idx, &insn);
+      // if valid insn
+      if (insn_size) {
+         //printf ("----size %d\n", insn_size);
+         idx += insn_size;
+      }
+      else {
+         //printf ("----not insn\n");
+         //libdisasm_dest ();
+         return 0;
+      }
+   }
+   
+   // should never reach here
+   //libdisasm_dest ();
+   return 0;
+} // end fn doesShellcodeReach_0
+
+
+
+// given a string treated as shellcode, does it reach align mark?
+unsigned int doesShellcodeReach_1 (unsigned char* haystack, unsigned int idx, unsigned int align) {
+   //unsigned int alignment_met;
+   int insn_size;
+   x86_insn_t insn;
+   
+   //printf ("Check if shellcode reaches EIP, only needs to be %u B\n", goal);
+   //goal--;
+   
+   libdisasm_init ();
+   //alignment_met = 0;
+   while (idx <= align) {
+      //printf ("--Checking idx %u\n", idx);
+      if (idx == align) {
+         //printf ("----reaches aligned goal\n");
+         //libdisasm_dest ();
+         return 1;
+         //alignment_met = 1;
+      }
+      insn_size = x86_disasm (haystack, align, 0, idx, &insn);
+      // if valid insn
+      if (insn_size) {
+         //printf ("----size %d\n", insn_size);
+         idx += insn_size;
+      }
+      else {
+         //printf ("----not insn\n");
+         //libdisasm_dest ();
+         return 0;
+      }
+   }
+   
+   // should never reach here
+   //libdisasm_dest ();
+   return 0;
+} // end fn doesShellcodeReach_1 //aligned
+
+
+// given a string treated as shellcode, does it reach align mark and is preceeding insn INT 80 or SYSENTER?
+// eip is always at middle, ie 512
+// which means that 510 is always "CD80" or "0F34"
+unsigned int doesShellcodeReach_2 (unsigned char* haystack, unsigned int idx, unsigned int align) {
+   int insn_size;
+   x86_insn_t insn;
+   unsigned int int_exists;
+   
+   int_exists = 0;
+   //printf ("Check if shellcode reaches EIP, only needs to be %u B\n", align-idx);
+   libdisasm_init ();
+   while (idx <= align) {
+      //printf ("--Checking idx %u\n", idx);
+      
+      // assumes that the dump is at least as long as EIP (which is a safe assumption)
+      if (idx == (align - 2) ) {
+         //printf ("----check for system call cmds: 0x%02x%02x\n", haystack[idx], haystack[idx + 1]);
+         if (haystack[idx] == 0xcd && haystack[idx + 1] == 0x80) {
+            int_exists = 1;
+         }
+         else if (haystack[idx] == 0x0f && haystack[idx + 1] == 0x34) {
+            int_exists = 1;
+         }
+      }
+      if (idx == align && int_exists) {
+         //printf ("----reaches aligned goal\n");
+         return 1;
+      }
+      
+      insn_size = x86_disasm (haystack, align, 0, idx, &insn);
+      // if valid insn
+      if (insn_size) {
+         //printf ("----size %d\n", insn_size);
+         idx += insn_size;
+      }
+      else {
+         return 0;
+      }
+   }
+   // should never reach here
+   return 0;
+} // end fn doesShellcodeReach_2 //alignedInt
+
+
+// given a string treated as shellcode, symbolically execute it
+// is there an execution path that reaches align mark and is preceeding insn INT 80 or SYSENTER?
+// eip is always at middle, ie 512
+// which means that 510 is always "CD80" or "0F34"
+// try to eliminate dead code in the head
+unsigned int doesShellcodeReach_3 (unsigned char* haystack, unsigned int idx, unsigned int align) {
+   int insn_size;
+   x86_insn_t insn;
+   unsigned int int_exists;
+   
+   int_exists = 0;
+   //printf ("Check if shellcode reaches EIP, only needs to be %u B\n", align-idx);
+   libdisasm_init ();
+   while (idx <= align) {
+      //printf ("--Checking idx %u\n", idx);
+      
+      // assumes that the dump is at least as long as EIP (which is a safe assumption)
+      if (idx == (align - 2) ) {
+         //printf ("----check for system call cmds: 0x%02x%02x\n", haystack[idx], haystack[idx + 1]);
+         if (haystack[idx] == 0xcd && haystack[idx + 1] == 0x80) {
+            int_exists = 1;
+         }
+         else if (haystack[idx] == 0x0f && haystack[idx + 1] == 0x34) {
+            int_exists = 1;
+         }
+      }
+      if (idx == align && int_exists) {
+         //printf ("----reaches aligned goal\n");
+         return 1;
+      }
+      
+      insn_size = x86_disasm (haystack, align, 0, idx, &insn);
+      // if valid insn
+      if (insn_size) {
+         //printf ("----size %d\n", insn_size);
+         idx += insn_size;
+      }
+      else {
+         return 0;
+      }
+   }
+   // should never reach here
+   return 0;
+} // end fn doesShellcodeReach_3 // symbolic execution
+
+
+unsigned int doesShellcodeReach (unsigned char* haystack, unsigned int idx, unsigned int align) {
+   //return doesShellcodeReach_0 (haystack, idx);
+   //return doesShellcodeReach_1 (haystack, idx, align);
+   //return doesShellcodeReach_2 (haystack, idx, align);
+   return doesShellcodeReach_3 (haystack, idx, align);
+} // end fn doesShellcodeReach
+
+
+// using EIP and the dump; brute force from start to find a shellcode string that includes the EIP
+// and possibly a preceeding operand that matches the syscall number it failed on
+unsigned int findShellcode_3 (struct dasos_forens_dump dump, struct shellcode* shell) {
+   unsigned int idx;
+   int insn_size;
+   x86_insn_t insn;
+   
+   // this doesn't account for false starts that happens to reach EIP
+   libdisasm_init ();
+   
+   // which means that 510 is always "CD80" or "0F34"
+   idx = 0;
+   while (idx < (dump.deets.eip - dump.start_addr) ) { //dump.num_bytes) {
+      insn_size = x86_disasm ( (unsigned char*) dump.dump, dump.num_bytes, 0, idx, &insn);
+      // if valid insn
+      if (insn_size) {
+         //printf ("Found valid insn (%d) at idx: %u\n", insn_size, idx);
+         // see if string includes eip ie when idx == (dump.deets.eip - dump.start_addr)
+         //idx += size;
+         // dump.deets.eip - dump.start_addr = idx of insn after captured syscall
+         if (doesShellcodeReach ( (unsigned char*) dump.dump, idx, dump.deets.eip - dump.start_addr) ) {
+            //printf ("Found shellcode that reaches EIP at idx: %u (0x%08x)\n", idx, idx);
+            shell->addr = dump.start_addr + idx;
+            shell->eip = dump.deets.eip;
+            shell->len = dump.deets.eip - shell->addr; // len from shellcode start to eip
+            //libdisasm_dest ();
+            shell->len += findShellcode_LenViaDisasm (dump);
+            memcpy (shell->shell, &(dump.dump[shell->addr - dump.start_addr]), shell->len * sizeof (char) );
+            return 1;
+         }
+      }
+      idx++;
+   }
+   
+   //libdisasm_dest ();
+   return 0;
+} // end fn findShellcode_3
+
+
+unsigned int findShellcode (struct dasos_forens_dump dump, struct shellcode* shell) {
+   //findShellcode_0 (dump, shell); // stub code to test printShell
+   //findShellcode_1 (dump, shell); // trivial seek function using NOPs and final int 80
+   return findShellcode_3 (dump, shell); // uses NOPS for start and disasm for end
+   shell->eip = dump.deets.eip; // put this in previous findshellcode fns
+   
+   return 0;
+} // end fn findShellcode
+
+/*********
+ http://manpages.ubuntu.com/manpages/hardy/man3/x86_disasm.3.html
+ 
+ typedef struct { 
+ enum x86_op_type        type;           / operand type /
+ enum x86_op_datatype    datatype;       / operand size /
+ enum x86_op_access      access;         / operand access [RWX] /
+ enum x86_op_flags       flags;          / misc flags /
+ union {
+ / sizeof will have to work on these union members! /
+ / immediate values /
+ char            sbyte;
+ short           sword;
+ long            sdword;
+ qword           sqword;
+ unsigned char   byte;
+ unsigned short  word;
+ unsigned long   dword;
+ qword           qword;
+ float           sreal;
+ double          dreal;
+ / misc large/non-native types /
+ unsigned char   extreal[10];
+ unsigned char   bcd[10];
+ qword           dqword[2];
+ unsigned char   simd[16];
+ unsigned char   fpuenv[28];
+ / absolute address /
+ void            * address;
+ / offset from segment /
+ unsigned long   offset;
+ / ID of CPU register /
+ x86_reg_t       reg;
+ / offsets from current insn /
+ char            relative_near;
+ long            relative_far;
+ / effective address [expression] /
+ x86_ea_t        expression;
+ } data;
+ } x86_op_t;
+ 
+ 
+ typedef struct {
+ / information about the instruction /
+ unsigned long addr;             / load address /
+ unsigned long offset;           / offset into file/buffer /
+ enum x86_insn_group group;      / meta-type, e.g. INS_EXEC /
+ enum x86_insn_type type;        / type, e.g. INS_BRANCH /
+ enum x86_insn_note note;        / note, e.g. RING0 /
+ unsigned char bytes[MAX_INSN_SIZE];
+ unsigned char size;             / size of insn in bytes /
+ / 16/32-bit mode settings /
+ unsigned char addr_size;        / default address size : 2 or 4 /
+ unsigned char op_size;          / default operand size : 2 or 4 /
+ / CPU/instruction set /
+ enum x86_insn_cpu cpu;
+ enum x86_insn_isa isa;
+ / flags /
+ enum x86_flag_status flags_set; / flags set or tested by insn /
+ enum x86_flag_status flags_tested;
+ / stack /
+ unsigned char stack_mod;        / 0 or 1 : is the stack modified? /
+ long stack_mod_val;             / val stack is modified by if known /
+ 
+ / the instruction proper /    
+ enum x86_insn_prefix prefix;    / prefixes ORed together /
+ char prefix_string[MAX_PREFIX_STR]; / prefixes [might be truncated] /
+ char mnemonic[MAX_MNEM_STR];    
+ x86_oplist_t *operands;         / list of explicit/implicit operands / equiv to struct x86_operand_list
+ size_t operand_count;           / total number of operands /
+ size_t explicit_count;          / number of explicit operands /
+ } x86_insn_t;
+ 
+ struct x86_operand_list {
+ x86_op_t op;
+ struct x86_operand_list *next;
+ } x86_oplist_t;
+ 
+ enum x86_insn_group {
+ insn_none = 0,
+ insn_controlflow = 1,
+ insn_arithmetic = 2,
+ insn_logic = 3,
+ insn_stack = 4,
+ insn_comparison = 5,
+ insn_move = 6,
+ insn_string = 7,
+ insn_bit_manip = 8,
+ insn_flag_manip = 9,
+ insn_fpu = 10,
+ insn_interrupt = 13,
+ insn_system = 14,
+ insn_other = 15
+ };
+ */
+
+void disasmShellcode (struct shellcode shell) {
+   char line[DUMP_SIZE];    /* buffer of line to print */
+   int pos = 0;             /* current position in buffer */
+   int size;                /* size of instruction */
+   x86_insn_t insn;         /* instruction */
+   unsigned int syscall_num = 0;
+   char hex_str[256];
+   char byte[4];
+   unsigned int i;
+   
+   libdisasm_init ();
+   
+   printf ("Note\t\tAddress\t\tOffset\tHex                  Insn\tOperands\n");
+   
+   while (pos < shell.len) {
+      /* disassemble address */
+      size = x86_disasm ((unsigned char*) shell.shell, shell.len, 0, pos, &insn);
+      if (size) {
+         /* print instruction */
+         x86_format_insn (&insn, line, DUMP_SIZE, intel_syntax);
+         if (shell.addr + pos + size == shell.eip) {
+            printf ("Caught Here -->\t");
+         }
+         // else if (cmd is INT) { 
+         else {
+            printf ("\t\t");
+         }
+         hex_str[0] = '\0';
+         memset (byte, '\0', 4);
+         for (i = 0; i < size; i++) {
+            snprintf (byte, 4, "%02x ", shell.shell[pos + i] & 0x000000ff);
+            strncat (hex_str, byte, 3);
+            memset (byte, '\0', 4);
+         }
+         printf ("0x%08x\t", (shell.addr + pos) );
+         printf ("%4u\t", pos);
+         printf ("%s", hex_str);
+         for (i = /*MAX_HEX_STR*/7 * 3; i > strlen (hex_str); i--) {
+            printf (" ");
+         }
+         printf ("%s\t\t\t",  line);
+         if (insn.group == insn_interrupt && insn.operands->op.data.sword == 0x80) {
+            // if int try to guess syscall number  
+            printf ("System call, best guess: %u (0x%02x) %s", syscall_num, syscall_num, &(syscall_table[syscall_num * 33]) );
+            syscall_num = 0;
+            //printf ("\top_cnt: %u", insn.operand_count);
+            //printf ("Operand: %u, %02x, %c", insn.operands->op.data.sword);
+         }
+         else if (insn.group == insn_arithmetic || insn.group == insn_stack || insn.group == insn_move || insn.group == insn_bit_manip) {
+            // store last known word
+            x86_oplist_t* oplist = insn.operands;
+            while (oplist != NULL)  {
+               if (oplist->op.type == op_immediate) {
+                  //printf ("immediate value used 0x%02x", oplist->op.data.sword);
+                  syscall_num = oplist->op.data.sword;
+               }
+               oplist = oplist->next;
+            }
+         }
+         
+         printf ("\n");
+         pos += size;
+      } else {
+         printf ("Invalid instruction\n");
+         pos++;
+      }
+   }
+   
+   //libdisasm_dest ();
+   return;
+} // end fn disasmShellcode
+
+
+// end libDasosBastard.c

@@ -1,0 +1,29 @@
+#!/bin/sh
+clear
+
+RED=$(tput setaf 1;tput bold)
+RST=$(tput sgr0)
+CYAN=$(tput setaf 6;tput bold) # Cyan
+YEL=$(tput setaf 3;tput bold) # Yellow
+
+echo "${RED}===============================S2E DEMO===============================${RST}"
+echo "There are two demos: ${CYAN}fork-and-kill${RST} and ${CYAN}grade-this-exam${RST}."
+echo
+echo "${CYAN}Fork-and-kill${RST} demonstrates what happens when"
+echo "forking, killing, and switching paths during symbolic execution."
+echo "Enjoy the visual effects of whole-system symbolic execution!"
+echo
+echo "${CYAN}Grade-this-exam${RST} shows how an overworked teaching assistant"
+echo "can leverage S2E to painlessly grade hundreds of students."
+echo
+echo "The source code of these two demos is available in ~/s2e/demos."
+echo "${RED}======================================================================${RST}"
+echo
+echo "${YEL}To launch the demo, type:${RST}"
+echo "$ ${RED}./launch${RST}"
+echo
+echo "When the guest starts, follow the instructions on the screen."
+echo
+echo "In case you need them, the login:password of the VM are"
+echo "root:root and s2e:s2e"
+echo

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# use the existing demo vm with our modified code
+CLEAN_S2E=/home/s2e/s2e/build/qemu-release/i386-s2e-softmmu/qemu
+
+DIRTY_S2E=/home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu
+
+$DIRTY_S2E -m 48 -hda /home/s2e/s2e/linux-s2e-tutorial.qcow2 -s2e-config-file /home/s2e/s2e/demo.lua -net nic,model=pcnet -redir tcp:2222::22 -net user  -loadvm ready

@@ -1,0 +1,100 @@
+!! Warning: disasm range is out of shellcode range, setting to maximum: 175
+<< Requesting disasm out
+<< From raw input
+55               push ebp                
+89e5             mov ebp, esp            
+57               push edi                
+56               push esi                
+53               push ebx                
+e800000000       call 0xb                
+5b               pop ebx                 
+83c3f5           add ebx, 0xf5           
+31d2             xor edx, edx            
+bf05000000       mov edi, 0x5            
+8db398000000     lea esi, [ebx+0x98]     
+89f8             mov eax, edi            
+89d1             mov ecx, edx            
+53               push ebx                
+89f3             mov ebx, esi            
+cd80             int 0x80                
+5b               pop ebx                 
+89c7             mov edi, eax            
+40               inc eax                 
+7459             jz 0x84                 
+8d4df3           lea ecx, [ebp-0xd]      
+ba01000000       mov edx, 0x1            
+b803000000       mov eax, 0x3            
+53               push ebx                
+89fb             mov ebx, edi            
+cd80             int 0x80                
+5b               pop ebx                 
+48               dec eax                 
+740b             jz 0x4c                 
+89d0             mov eax, edx            
+53               push ebx                
+bbfeffffff       mov ebx, 0xfffffffe     
+cd80             int 0x80                
+5b               pop ebx                 
+8a45f3           mov al, [ebp-0xd]       
+3c09             cmp al, 0x9             
+7e29             jle 0x7c                
+b202             mov dl, 0x2             
+0fbed2           movsx edx, dl           
+42               inc edx                 
+b806000000       mov eax, 0x6            
+53               push ebx                
+89fb             mov ebx, edi            
+cd80             int 0x80                
+5b               pop ebx                 
+b801000000       mov eax, 0x1            
+53               push ebx                
+89d3             mov ebx, edx            
+cd80             int 0x80                
+5b               pop ebx                 
+31c0             xor eax, eax            
+83c410           add esp, 0x10           
+5b               pop ebx                 
+5e               pop esi                 
+5f               pop edi                 
+c9               leave                   
+c3               ret                     
+8d7600           lea esi, [esi+0x0]      
+84c0             test al, al             
+7814             js 0x94                 
+b201             mov dl, 0x1             
+ebd1             jmp 0x55                
+b801000000       mov eax, 0x1            
+53               push ebx                
+bbffffffff       mov ebx, 0xffffffff     
+cd80             int 0x80                
+5b               pop ebx                 
+eb97             jmp 0x2b                
+31d2             xor edx, edx            
+ebc1             jmp 0x59                
+2f               das                     
+6465762f         jbe 0xcc                
+7368             jae 0x107               
+6d               insd                    
+2f               das                     
+6461             popad                   
+736f             jae 0x114               
+7364             jae 0x10b               
+61               popad                   
+7461             jz 0x10b                
+66696c6500       invalid                 
+<< Requesting print out
+<< From raw input
+Shell start_addr: 0xff9fbb00, +512: 0xff9fbd00, length: 175B, range: 175B, end_addr: 0xff9fbbae
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xff9fbb00 5589e557 5653e800 0000005b 83c3f531  U..WVS.....[...1
+0xff9fbb10 d2bf0500 00008db3 98000000 89f889d1  ................
+0xff9fbb20 5389f3cd 805b89c7 4074598d 4df3ba01  S....[..@tY.M...
+0xff9fbb30 000000b8 03000000 5389fbcd 805b4874  ........S....[Ht
+0xff9fbb40 0b89d053 bbfeffff ffcd805b 8a45f33c  ...S.......[.E.<
+0xff9fbb50 097e29b2 020fbed2 42b80600 00005389  .~).....B.....S.
+0xff9fbb60 fbcd805b b8010000 005389d3 cd805b31  ...[.....S....[1
+0xff9fbb70 c083c410 5b5e5fc9 c38d7600 84c07814  ....[^_...v...x.
+0xff9fbb80 b201ebd1 b8010000 0053bbff ffffffcd  .........S......
+0xff9fbb90 805beb97 31d2ebc1 2f646576 2f73686d  .[..1.../dev/shm
+0xff9fbba0 2f646173 6f736461 74616669 6c6500    /dasosdatafile. 
+

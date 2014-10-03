@@ -1,0 +1,11 @@
+#! /bin/sh
+
+PATH=/home/s2e/s2e/dasos/s2e/build/qemu-release
+DIR=/home/s2e/s2e/dasos/DasosPreproc
+IMGDIR=/home/s2e/s2e/dasos/DiskImgs
+
+cd $DIR
+/bin/mv $DIR/HostFiles/pkg.tar $DIR/HostFiles/pkg.tar.old
+/bin/tar cvf $DIR/HostFiles/pkg.tar runtime.dir/*
+$PATH/i386-s2e-softmmu/qemu -s2e-config-file $DIR/conf-SyscallTracker.lua -hda $IMGDIR/s2e-waiting.qcow2 -redir tcp:2222::22 -loadvm s2e-waiting
+

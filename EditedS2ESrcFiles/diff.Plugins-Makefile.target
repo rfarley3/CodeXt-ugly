@@ -1,0 +1,44 @@
+--- /home/s2e/s2e/s2e/qemu/Makefile.target	2012-04-16 02:27:52.749226000 -0700
++++ EditedS2ESrcFiles/Plugins-Makefile.target	2014-03-25 07:34:44.000000000 -0700
+@@ -26,7 +26,9 @@
+ 
+ PROGS=$(QEMU_PROG)
+ 
+-LIBS+=-lm
++#LIBS+=-lm
++# RJF added libudis for disasm, TODO add #defines to have this compile on machines without the library
++LIBS+=-lm -ludis86-64b
+ 
+ kvm.o kvm-all.o: QEMU_CFLAGS+=$(KVM_CFLAGS)
+ 
+@@ -349,6 +351,14 @@
+ s2eobj-y += s2e/Plugins/WindowsApi/WindowsDriverExerciser.o
+ s2eobj-y += s2e/Plugins/ConsistencyModels.o
+ 
++# RJF, put in custom plugins here
++s2eobj-y += s2e/Plugins/InstructionTracker.o
++s2eobj-y += s2e/Plugins/InterruptMonitor.o
++s2eobj-y += s2e/Plugins/LinuxSyscallMonitor.o
++s2eobj-y += s2e/Plugins/SyscallTracker.o
++s2eobj-y += s2e/Plugins/CodeXt.o
++# end RJF
++
+ s2eobj-y += s2e/Plugins/ExecutionTracers/ExecutionTracer.o
+ s2eobj-y += s2e/Plugins/ExecutionTracers/ModuleTracer.o
+ s2eobj-y += s2e/Plugins/ExecutionTracers/EventTracer.o
+@@ -412,6 +422,15 @@
+ s2e/Plugins/MemoryChecker.o: QEMU_CXXFLAGS+=-fno-inline
+ s2e/S2EExecutor.o: QEMU_CXXFLAGS+=-fno-inline
+ 
++# RJF put plugins here
++s2e/Plugins/InterruptMonitor.o: QEMU_CXXFLAGS+=-fno-inline
++s2e/Plugins/LinuxSyscallMonitor.o: QEMU_CXXFLAGS+=-fno-inline
++s2e/Plugins/SyscallTracker.o: QEMU_CXXFLAGS+=-fno-inline
++s2e/Plugins/CodeXt.o: QEMU_CXXFLAGS+=-fno-inline
++#s2e/Plugins/CodeXt.o: QEMU_CXXFLAGS+=-fno-inline -ludis86
++# end RJF
++
++
+ libs2e.a: $(s2eobj-y)
+ 
+ $(s2eobj-y): QEMU_CXXFLAGS+=$(LLVM_CXXFLAGS) $(S2E_CXXFLAGS)

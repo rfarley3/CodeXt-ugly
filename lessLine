@@ -1,0 +1,4 @@
+#! /bin/sh
+
+line=`head -$2 $1 | tail -1`
+echo "$1:$2: $line"

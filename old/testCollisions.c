@@ -1,0 +1,126 @@
+//
+//  testCollisions.c
+//  
+//
+//  Created by Ryan Farley on 3/13/12.
+//  Copyright (c) 2012 George Mason University. All rights reserved.
+//
+
+#include <stdio.h>
+#include "../libDasosf/libDasosfDump.h"
+//#include "libDasosBastard.h"
+
+
+void testFalsePositives (unsigned int numTests);
+
+
+int main (int argc, char* argv[]) {
+   unsigned int numTests;
+   
+   if (argc != 2)  {
+      printf ("DASOSF: Usage: %s <number of collision tests>\n", argv[0]);
+      exit (1);
+   }
+   else {
+      numTests = atoi (argv[1]);
+   }
+   
+   
+   printf ("\nFalse Positive Test Initiating\n");
+   testFalsePositives (numTests);
+   printf ("\nFalse Positive Test Complete\n");
+   
+   return 0;
+} // end fn main
+
+
+void testFalsePositives (unsigned int numTests) {
+   unsigned int i, dumps, fpos, fpos_sizetot;
+   struct dasos_forens_dump haystack;
+   struct shellcode shell;
+   //char shell_filename[256];
+   //unsigned int eips_arr[NUM_EIPS];
+   fpos = 0;
+   fpos_sizetot = 0;
+   
+   initDasosfDump (&haystack, &shell);
+   haystack.num_bytes = DUMP_SIZE;
+   haystack.start_addr = 0;
+   // eip is always at middle, ie 512
+   haystack.deets.eip = haystack.num_bytes / 2;
+   
+   srand ( (unsigned int) time (NULL) );
+   // consider:
+   // srand ( timeSeed () );
+   /* 1 unsigned time_seed()
+    2 {
+    3   time_t now = time ( 0 );
+    4   unsigned char *p = (unsigned char *)&now;
+    5   unsigned seed = 0;
+    6   size_t i;
+    7 
+    8   for ( i = 0; i < sizeof now; i++ )
+    9     seed = seed * ( UCHAR_MAX + 2U ) + p[i];
+    10 
+    11   return seed;
+    12 }*/
+   
+   
+//   printf ("EIPs to be used are: ");
+//   for (eips = 0; eips < NUM_EIPS; eips++) {
+//      eips_arr[eips] = (DUMP_SIZE / NUM_EIPS) * (eips + 1);
+//      printf ("%u (0x%08x) ", eips_arr[eips], eips_arr[eips]);
+//   }
+//   printf ("\n");
+   
+   //foreach round of testing
+   for (dumps = 0; dumps <  numTests; dumps++) {
+      for (i = 0; i < haystack.num_bytes; i++) {
+         //http://eternallyconfuzzled.com/arts/jsw_art_rand.aspx
+         haystack.dump[i] = (char) ((rand () * (1.0 / (RAND_MAX + 1.0) ) ) * 256);
+      }
+      
+      //printf ("Randomized data test %u with %uB\n", dumps + 1, haystack.num_bytes);
+      // print the memory segment of the dump using a format similar to gdb's memory view window
+      //printDump (haystack);
+      
+      //for (eips = 0; eips < NUM_EIPS; eips++) {
+         //haystack.deets.eip = rand () % DUMP_SIZE;
+         
+      //printf ("Random eip at 0x%08x (%u/%u in test %u)\n", haystack.deets.eip, eips + 1, NUM_EIPS, dumps + 1);
+         // print the memory segment of the dump using a format similar to gdb's memory view window
+         //printDump (haystack);
+         
+         // find shellcode
+         if (findShellcode (haystack, &shell) == 0) {
+            //printf ("--Shellcode was not found\n");
+         }
+         else {
+            printf ("##Shellcode was found:\n");
+            fpos++;
+            fpos_sizetot += shell.len;
+            printShellcode (haystack, shell);
+            
+            /*printf ("\nDisassembled Shellcode:\n");
+            disasmShellcode (shell);
+            sprintf (shell_filename, "collision%u", fpos);
+            dumpShellcode (shell_filename, shell);
+            printf ("\nDumped shellcode to file.\n");*/
+         }
+      //}
+      if (dumps % 100 == 0) {
+         printf ("--%8u tests, %2u false positives found: %2.02f%%; avg length: %4.02f\n", dumps + 1, fpos, ((double) fpos / (double) (dumps + 1)  ) * 100, (double) fpos_sizetot / (double) fpos);
+      }
+   }
+   
+   printf ("~~Final stats: %8u tests, %2u false positives found: %2.02f%%; avg length: %4.02f\n", dumps, fpos, ((double) fpos / (double) dumps) * 100, (double) fpos_sizetot / (double) fpos);
+   
+   
+   libdisasm_dest ();
+   endDasosfDump ();
+   
+   return;
+} // end fn testFalsePositives
+
+
+// end testCollisions.c

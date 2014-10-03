@@ -1,0 +1,197 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+0 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x44b3000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x475a000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1d63b000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1d684000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1f1ab000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1f21f000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+24 [State 0] Message from guest (0xbfd005ec): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+24 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+24 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+24 [State 1] Message from guest (0xbfd005ec): << About to call dasospreproc_init with shell: 0xbfd00f90 (offset of 0 not yet applied), shell_len: 9, eip: 0x00000000
+
+24 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfd00f90-0xbfd00f99 with eip: 0x00000000 buffer length: 9 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfd00f90, length: 9B, end_addr: 0xbfd00f99
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd00f90 31c0a944 332211cd 80dd               1..D3"....      
+
+ >> oTBS pc: 0xbfd00f90
+ >> oTIE pc: 0xbfd00f90:0x00 nextpc: bfd00f92 len: 2
+  0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+ >> oTIE pc: 0xbfd00f92:0x02 nextpc: bfd00f97 len: 5
+  0:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+ >> oTBE Target by pc: 0xbfd00f97 to pc: 0xbfd00f97
+ >> oTBE INTERRUPT by pc: 0xbfd00f97 int: 0x80
+ >> oTIE pc: 0xbfd00f97:0x07 nextpc: bfd00f97 len: 2
+  0:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+ >> oExc pc: 0xbfd00f90 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfd00f90
+  0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+ >> oEI pc: 0xbfd00f92
+  1:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+ >> oEB pc: 0xbfd00f97
+ >> oExc pc: 0xbfd00f97 exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbfd00f97 syscall_num: 0(0x00)
+ >> oEI pc: 0xbfd00f97
+  2:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+>>      1:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+>>      2:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+>> onSuccess EIP Found. Syscall number 0x0 at addr 0xbfd00f97 offset from base: 7 (should be EIP-2) within pid: 86716416 number of exec'ed instructions: 3. This is success #1
+[State 1] CPU dump
+EAX=0x0
+EBX=0x0
+ECX=0xbfd00588
+EDX=0xb77b7340
+ESI=0x402ff070
+EDI=0x0
+EBP=0xbfd009f8
+ESP=0xbfd0059c
+EIP=0xbfd00f97
+CR2=0xb76b329f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 1; avg: 0
+>> Syscall eip: 0xbfd00f99 offset from base: 9
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+>>      0:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+>>      0:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+>>      1:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+>>      2:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (9/10) = 0
+>>    Mem_map start_addr: 0xbfd00f90, length: 9B, valid bytes: 9, used bytes: 9, range: 10B, end_addr: 0xbfd00f99
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd00f90 31c0a944 332211cd 80--               1..D3"....      
+
+>> No data trace entries
+24 [State 1] Terminating state 1 with message 'EIP reached, success'
+24 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x20a55900
+24 [State 0] Message from guest (0xbfd005ec): << Looping fork, currently at 0
+24 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 1; avg: 0
+>> Syscall eip: 0xbfd00f99 offset from base: 9
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+>>      0:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+>>      0:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd00f90: 31 c0                              xor eax, eax             nextPC: 0xbfd00f92
+>>      1:  1: 1  5B @0xbfd00f92: a9 44 33 22 11                     test eax, 0x11223344     nextPC: 0xbfd00f97
+>>      2:  2: 1  2B @0xbfd00f97: cd 80                              int 0x80                 nextPC: 0xbfd00f97
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (9/10) = 0
+>>    Mem_map start_addr: 0xbfd00f90, length: 9B, valid bytes: 9, used bytes: 9, range: 10B, end_addr: 0xbfd00f99
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd00f90 31c0a944 332211cd 80--               1..D3"....      
+
+>> No data trace entries
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 1
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbfd00f99 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3218083728 and ends at 3218083735
+>>    Done printing chunk 0
+24 [State 0] Killing state 0
+24 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x4094410
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3f9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

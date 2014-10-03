@@ -1,0 +1,968 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x4298000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x453f000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1d420000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1d469000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1ef90000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1f004000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+25 [State 0] Message from guest (0xbfb5b11c): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+25 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+25 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Firing timer event
+25 [State 1] Message from guest (0xbfb5b11c): << About to call dasospreproc_init with shell: 0xbfb5bac0 (offset of 0 not yet applied), shell_len: 73, eip: 0x00000000
+
+25 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfb5bac0-0xbfb5bb09 with eip: 0x00000000 buffer length: 73 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfb5bac0, length: 73B, end_addr: 0xbfb5bb09
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bac0 fcbbadc2 e984eb0c 5e56311e ad01c385  ........^V1.....
+0xbfb5bad0 c075f7c3 e8efffff ff46d1b0 b5586646  .u.......F...XfF
+0xbfb5bae0 8783c476 3581c4b5 3955db0e f7153478  ...v5...9U....4x
+0xbfb5baf0 f8ea3a31 6278a9ad 40a0465d ebcccc80  ..:1bx..@.F]....
+0xbfb5bb00 01010dc3 15190dc3 15ac               ..........      
+
+ >> oTBS pc: 0xbfb5bac0
+ >> oTIE pc: 0xbfb5bac0:0x00 nextpc: bfb5bac1 len: 1
+  0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+ >> oTIE pc: 0xbfb5bac1:0x01 nextpc: bfb5bac6 len: 5
+  0:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+ >> oTBE Target by pc: 0xbfb5bac6 to pc: 0xbfb5bad4
+ >> oTIE pc: 0xbfb5bac6:0x06 nextpc: bfb5bad4 len: 2
+  0:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+ >> oExc pc: 0xbfb5bac0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfb5bac0
+  0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+ >> oEI pc: 0xbfb5bac1
+  1:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+ >> oEB pc: 0xbfb5bac6
+ >> oEI pc: 0xbfb5bac6
+  2:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+ >> oTBS pc: 0xbfb5bad4
+ >> oTBE Target by pc: 0xbfb5bad4 to pc: 0xbfb5bac8
+ >> oTIE pc: 0xbfb5bad4:0x14 nextpc: bfb5bac8 len: 5
+  0:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+ >> oDMA OOB Write by seq_num: 3 pc: 0xbfb5bad4:0x14 to addr: 0xbfb5b0c8 len: 4B value:  0xd9  0xba  0xb5  0xbf 
+ >> >> oDMA value in memory at that address:  0xd9  0xba  0xb5  0xbf 
+ >> oEB pc: 0xbfb5bad4
+ >> oEI pc: 0xbfb5bad4
+  3:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+ >> oExc pc: 0xbfb5bac8 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfb5bac8
+ >> oTIE pc: 0xbfb5bac8:0x08 nextpc: bfb5bac9 len: 1
+  0:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+ >> oTIE pc: 0xbfb5bac9:0x09 nextpc: bfb5baca len: 1
+  0:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+ >> oTIE pc: 0xbfb5baca:0x0a nextpc: bfb5bacc len: 2
+  0:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oTIE pc: 0xbfb5bacc:0x0c nextpc: bfb5bacd len: 1
+  0:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oTIE pc: 0xbfb5bacd:0x0d nextpc: bfb5bacf len: 2
+  0:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oTIE pc: 0xbfb5bacf:0x0f nextpc: bfb5bad1 len: 2
+  0:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oTBE Target by pc: 0xbfb5bad1 to pc: 0xbfb5bad3
+ >> oTIE pc: 0xbfb5bad1:0x11 nextpc: bfb5bad3 len: 2
+  0: 10: 3  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+ >> oTBE Target by pc: 0xbfb5bad1 to pc: 0xbfb5baca
+ >> oExc pc: 0xbfb5bac8 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfb5bac8
+  4:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+ >> oDMA OOB Write by seq_num: 5 pc: 0xbfb5bac9:0x9 to addr: 0xbfb5b0c8 len: 4B value:  0xd9  0xba  0xb5  0xbf 
+ >> >> oDMA value in memory at that address:  0xd9  0xba  0xb5  0xbf 
+ >> oEI pc: 0xbfb5bac9
+  5:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 6 pc: 0xbfb5baca:0xa to addr: 0xbfb5badc len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 6 pc: 0xbfb5baca:0xa to addr: 0xbfb5badb len: 1B value:  0x59 
+ >> >> oDMA value in memory at that address:  0x59 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 6 pc: 0xbfb5baca:0xa to addr: 0xbfb5bada len: 1B value:  0x13 
+ >> >> oDMA value in memory at that address:  0x13 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 6 pc: 0xbfb5baca:0xa to addr: 0xbfb5bad9 len: 1B value:  0xeb 
+ >> >> oDMA value in memory at that address:  0xeb 
+ >> oEI pc: 0xbfb5baca
+  6:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+  7:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+  8:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+  9:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> oExc pc: 0xbfb5baca exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfb5baca
+ >> oTIE pc: 0xbfb5baca:0x0a nextpc: bfb5bacc len: 2
+!!* pc != prev insn's next_pc; 0xbfb5baca != bfb5bad3
+  0: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oTIE pc: 0xbfb5bacc:0x0c nextpc: bfb5bacd len: 1
+  0: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oTIE pc: 0xbfb5bacd:0x0d nextpc: bfb5bacf len: 2
+  0: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oTIE pc: 0xbfb5bacf:0x0f nextpc: bfb5bad1 len: 2
+  0: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oTBE Target by pc: 0xbfb5bad1 to pc: 0xbfb5bad3
+ >> oTIE pc: 0xbfb5bad1:0x11 nextpc: bfb5bad3 len: 2
+  0: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+ >> oTBE Target by pc: 0xbfb5bad1 to pc: 0xbfb5baca
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 10 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae0 len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 10 pc: 0xbfb5baca:0xa to addr: 0xbfb5badf len: 1B value:  0x04 
+ >> >> oDMA value in memory at that address:  0x04 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 10 pc: 0xbfb5baca:0xa to addr: 0xbfb5bade len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 10 pc: 0xbfb5baca:0xa to addr: 0xbfb5badd len: 1B value:  0xc0 
+ >> >> oDMA value in memory at that address:  0xc0 
+ >> oEI pc: 0xbfb5baca
+ 10: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 11: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 12: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 13: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 14 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae4 len: 1B value:  0xd2 
+ >> >> oDMA value in memory at that address:  0xd2 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 14 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae3 len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 14 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae2 len: 1B value:  0x43 
+ >> >> oDMA value in memory at that address:  0x43 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 14 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae1 len: 1B value:  0xdb 
+ >> >> oDMA value in memory at that address:  0xdb 
+ >> oEI pc: 0xbfb5baca
+ 14: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 15: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 16: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 17: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> oExc pc: 0xbfb5baca exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 18 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae8 len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 18 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae7 len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 18 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae6 len: 1B value:  0x0f 
+ >> >> oDMA value in memory at that address:  0x0f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 18 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae5 len: 1B value:  0xb2 
+ >> >> oDMA value in memory at that address:  0xb2 
+ >> oEI pc: 0xbfb5baca
+ 18: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 19: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 20: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 21: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 22 pc: 0xbfb5baca:0xa to addr: 0xbfb5baec len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 22 pc: 0xbfb5baca:0xa to addr: 0xbfb5baeb len: 1B value:  0x4b 
+ >> >> oDMA value in memory at that address:  0x4b 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 22 pc: 0xbfb5baca:0xa to addr: 0xbfb5baea len: 1B value:  0x01 
+ >> >> oDMA value in memory at that address:  0x01 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 22 pc: 0xbfb5baca:0xa to addr: 0xbfb5bae9 len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> oEI pc: 0xbfb5baca
+ 22: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 23: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 24: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 25: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 26 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf0 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 26 pc: 0xbfb5baca:0xa to addr: 0xbfb5baef len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 26 pc: 0xbfb5baca:0xa to addr: 0xbfb5baee len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 26 pc: 0xbfb5baca:0xa to addr: 0xbfb5baed len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> oEI pc: 0xbfb5baca
+ 26: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 27: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 28: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 29: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 30 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf4 len: 1B value:  0x65 
+ >> >> oDMA value in memory at that address:  0x65 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 30 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf3 len: 1B value:  0x48 
+ >> >> oDMA value in memory at that address:  0x48 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 30 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf2 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 30 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf1 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> oEI pc: 0xbfb5baca
+ 30: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 31: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 32: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 33: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> oExc pc: 0xbfb5baca exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 34 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf8 len: 1B value:  0x2c 
+ >> >> oDMA value in memory at that address:  0x2c 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 34 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf7 len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 34 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf6 len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 34 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf5 len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfb5baca
+ 34: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 35: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 36: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 37: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 38 pc: 0xbfb5baca:0xa to addr: 0xbfb5bafc len: 1B value:  0x72 
+ >> >> oDMA value in memory at that address:  0x72 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 38 pc: 0xbfb5baca:0xa to addr: 0xbfb5bafb len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 38 pc: 0xbfb5baca:0xa to addr: 0xbfb5bafa len: 1B value:  0x77 
+ >> >> oDMA value in memory at that address:  0x77 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 38 pc: 0xbfb5baca:0xa to addr: 0xbfb5baf9 len: 1B value:  0x20 
+ >> >> oDMA value in memory at that address:  0x20 
+ >> oEI pc: 0xbfb5baca
+ 38: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 39: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 40: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 41: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 42 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb00 len: 1B value:  0x0a 
+ >> >> oDMA value in memory at that address:  0x0a 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 42 pc: 0xbfb5baca:0xa to addr: 0xbfb5baff len: 1B value:  0x21 
+ >> >> oDMA value in memory at that address:  0x21 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 42 pc: 0xbfb5baca:0xa to addr: 0xbfb5bafe len: 1B value:  0x64 
+ >> >> oDMA value in memory at that address:  0x64 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 42 pc: 0xbfb5baca:0xa to addr: 0xbfb5bafd len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfb5baca
+ 42: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 43: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 44: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 45: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> oExc pc: 0xbfb5baca exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 46 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb04 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 46 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb03 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 46 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb02 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 46 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb01 len: 1B value:  0x0d 
+ >> >> oDMA value in memory at that address:  0x0d 
+ >> oEI pc: 0xbfb5baca
+ 46: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 47: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 48: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 49: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb08 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb07 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb06 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfb5baca:0xa to addr: 0xbfb5bb05 len: 1B value:  0x00 
+ >> >> oDMA value in memory at that address:  0x00 
+ >> oEI pc: 0xbfb5baca
+ 50: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+ >> oEI pc: 0xbfb5bacc
+ 51: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+ >> oEI pc: 0xbfb5bacd
+ 52: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+ >> oEI pc: 0xbfb5bacf
+ 53: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+ >> oEB pc: 0xbfb5bad1
+ >> oEI pc: 0xbfb5bad1
+ 54: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+ >> oTBS pc: 0xbfb5bad3
+ >> oTJS pc: 0xbfb5bad4 jump_type: 0
+ >> oTIE pc: 0xbfb5bad3:0x13 nextpc: bfb5baca len: 1
+  0: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+ >> oEB pc: 0xbfb5bad3
+ >> oEI pc: 0xbfb5bad3
+ 55: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+ >> oTBS pc: 0xbfb5bad9
+ >> oTBE Target by pc: 0xbfb5bad9 to pc: 0xbfb5baee
+ >> oTIE pc: 0xbfb5bad9:0x19 nextpc: bfb5baee len: 2
+!!* pc != prev insn's next_pc; 0xbfb5bad9 != bfb5baca
+  0: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+ >> oExc pc: 0xbfb5bad9 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfb5bad9
+ >> oEI pc: 0xbfb5bad9
+ 56: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+ >> oTBS pc: 0xbfb5baee
+ >> oTBE Target by pc: 0xbfb5baee to pc: 0xbfb5badb
+ >> oTIE pc: 0xbfb5baee:0x2e nextpc: bfb5badb len: 5
+  0: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+ >> oDMA OOB Write by seq_num: 57 pc: 0xbfb5baee:0x2e to addr: 0xbfb5b0c8 len: 4B value:  0xf3  0xba  0xb5  0xbf 
+ >> >> oDMA value in memory at that address:  0xf3  0xba  0xb5  0xbf 
+ >> oEB pc: 0xbfb5baee
+ >> oEI pc: 0xbfb5baee
+ 57: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+ >> oTBS pc: 0xbfb5badb
+ >> oTIE pc: 0xbfb5badb:0x1b nextpc: bfb5badc len: 1
+  0: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+ >> oTIE pc: 0xbfb5badc:0x1c nextpc: bfb5bade len: 2
+  0: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+ >> oTIE pc: 0xbfb5bade:0x1e nextpc: bfb5bae0 len: 2
+  0: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+ >> oTIE pc: 0xbfb5bae0:0x20 nextpc: bfb5bae2 len: 2
+  0: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+ >> oTIE pc: 0xbfb5bae2:0x22 nextpc: bfb5bae3 len: 1
+  0: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+ >> oTIE pc: 0xbfb5bae3:0x23 nextpc: bfb5bae5 len: 2
+  0: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+ >> oTIE pc: 0xbfb5bae5:0x25 nextpc: bfb5bae7 len: 2
+  0: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+ >> oTBE Target by pc: 0xbfb5bae7 to pc: 0xbfb5bae7
+ >> oTBE INTERRUPT by pc: 0xbfb5bae7 int: 0x80
+ >> oTIE pc: 0xbfb5bae7:0x27 nextpc: bfb5bae7 len: 2
+  0: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+ >> oEI pc: 0xbfb5badb
+ 58: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+ >> oEI pc: 0xbfb5badc
+ 59: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+ >> oEI pc: 0xbfb5bade
+ 60: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+ >> oEI pc: 0xbfb5bae0
+ 61: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+ >> oEI pc: 0xbfb5bae2
+ 62: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+ >> oEI pc: 0xbfb5bae3
+ 63: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+ >> oEI pc: 0xbfb5bae5
+ 64: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+ >> oEB pc: 0xbfb5bae7
+ >> oExc pc: 0xbfb5bae7 exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbfb5bae7 syscall_num: 4(0x04)
+ >> oEI pc: 0xbfb5bae7
+ 65: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+>>      1:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+>>      2:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+>>      3:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+>>      4:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+>>      5:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+>>      6:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      7:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      8:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      9:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     10: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     11: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     12: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     13: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     14: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     15: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     16: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     17: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     18: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     19: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     20: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     21: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     22: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     23: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     24: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     25: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     26: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     27: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     28: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     29: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     30: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     31: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     32: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     33: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     34: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     35: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     36: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     37: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     38: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     39: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     40: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     41: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     42: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     43: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     44: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     45: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     46: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     47: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     48: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     49: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     50: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     51: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     52: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     53: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     54: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>     55: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+>>     56: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+>>     57: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+>>     58: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+>>     59: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+>>     60: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+>>     61: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+>>     62: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+>>     63: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+>>     64: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+>>     65: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+>> onSuccess EIP Found. Syscall number 0x4 at addr 0xbfb5bae7 offset from base: 39 (should be EIP-2) within pid: 86716416 number of exec'ed instructions: 66. This is success #1
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfb5baf3
+EDX=0xf
+ESI=0xbfb5bb09
+EDI=0x0
+EBP=0xbfb5b528
+ESP=0xbfb5b0cc
+EIP=0xbfb5bae7
+CR2=0xb763e29f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.901961; avg: 0
+>> Syscall eip: 0xbfb5bae9 offset from base: 41
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+>>      0:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+>>      0:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+>>      0:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+>>      0:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+>>      0:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+>>      0:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      0:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      0:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      0:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>      0: 10: 3  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>      0: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      0: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      0: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      0: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>      0: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>      0: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+>>      0: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+>>      0: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+>>      0: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+>>      0: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+>>      0: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+>>      0: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+>>      0: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+>>      0: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+>>      0: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+>>      0: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+>>      1:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+>>      2:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+>>      3:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+>>      4:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+>>      5:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+>>      6:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      7:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      8:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      9:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     10: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     11: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     12: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     13: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     14: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     15: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     16: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     17: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     18: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     19: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     20: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     21: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     22: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     23: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     24: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     25: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     26: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     27: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     28: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     29: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     30: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     31: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     32: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     33: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     34: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     35: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     36: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     37: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     38: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     39: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     40: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     41: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     42: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     43: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     44: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     45: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     46: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     47: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     48: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     49: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     50: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     51: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     52: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     53: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     54: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>     55: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+>>     56: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+>>     57: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+>>     58: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+>>     59: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+>>     60: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+>>     61: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+>>     62: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+>>     63: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+>>     64: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+>>     65: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (46/52) = 0
+>>    Mem_map start_addr: 0xbfb5bac0, length: 51B, valid bytes: 46, used bytes: 46, range: 52B, end_addr: 0xbfb5baf3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bac0 fcbbadc2 e984eb0c 5e56311e ad01c385  ........^V1.....
+0xbfb5bad0 c075f7c3 e8efffff ffeb1359 31c0b004  .u.........Y1...
+0xbfb5bae0 31db4331 d2b20fcd 80------ ----e8e8  1.C1............
+0xbfb5baf0 ffffff--                             ....            
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      3 by:0xbfb5bad4 wrote  4B @0xbfb5b0c8: OOB d9 ba b5 bf 
+>>      5 by:0xbfb5bac9 wrote  4B @0xbfb5b0c8: OOB d9 ba b5 bf 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5badc: 31 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5badb: 59 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5bada: 13 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5bad9: eb 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5bae0: 31 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5badf: 04 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5bade: b0 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5badd: c0 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae4: d2 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae3: 31 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae2: 43 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae1: db 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae8: 80 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae7: cd 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae6: 0f 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae5: b2 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baec: cd 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baeb: 4b 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baea: 01 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5bae9: b0 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baf0: ff 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baef: e8 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baee: e8 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baed: 80 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf4: 65 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf3: 48 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf2: ff 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf1: ff 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf8: 2c 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf7: 6f 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf6: 6c 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf5: 6c 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafc: 72 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafb: 6f 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafa: 77 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5baf9: 20 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bb00: 0a 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5baff: 21 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bafe: 64 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bafd: 6c 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb04: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb03: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb02: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb01: 0d 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb08: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb07: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb06: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb05: 00 
+>>     57 by:0xbfb5baee wrote  4B @0xbfb5b0c8: OOB f3 ba b5 bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (48/48) = 1
+>>    Mem_map start_addr: 0xbfb5bad9, length: 47B, valid bytes: 48, used bytes: 48, range: 48B, end_addr: 0xbfb5bb08
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bad0                     46d1b0 b5586646           F...XfF
+0xbfb5bae0 8783c476 3581c4b5 3955db0e f7153478  ...v5...9U....4x
+0xbfb5baf0 f8ea3a31 6278a9ad 40a0465d ebcccc80  ..:1bx..@.F]....
+0xbfb5bb00 01010dc3 15190dc3 15                 .........       
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (48/48) = 0
+>>    Mem_map start_addr: 0xbfb5bad9, length: 47B, valid bytes: 48, used bytes: 48, range: 48B, end_addr: 0xbfb5bb08
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bad0                     eb1359 31c0b004           ..Y1...
+0xbfb5bae0 31db4331 d2b20fcd 80b0014b cd80e8e8  1.C1.......K....
+0xbfb5baf0 ffffff48 656c6c6f 2c20776f 726c6421  ...Hello, world!
+0xbfb5bb00 0a0d0000 00000000 00                 .........       
+
+26 [State 1] Terminating state 1 with message 'EIP reached, success'
+26 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x208256b0
+26 [State 0] Message from guest (0xbfb5b11c): << Looping fork, currently at 0
+26 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.901961; avg: 0
+>> Syscall eip: 0xbfb5bae9 offset from base: 41
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+>>      0:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+>>      0:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+>>      0:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+>>      0:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+>>      0:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+>>      0:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      0:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      0:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      0:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>      0: 10: 3  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>      0: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      0: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      0: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      0: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>      0: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>      0: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+>>      0: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+>>      0: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+>>      0: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+>>      0: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+>>      0: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+>>      0: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+>>      0: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+>>      0: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+>>      0: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+>>      0: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  1B @0xbfb5bac0: fc                                 cld                      nextPC: 0xbfb5bac1
+>>      1:  1: 1  5B @0xbfb5bac1: bb ad c2 e9 84                     mov ebx, 0x84e9c2ad      nextPC: 0xbfb5bac6
+>>      2:  2: 1  2B @0xbfb5bac6: eb 0c                              jmp 0xe                  nextPC: 0xbfb5bad4
+>>      3:  3: 2  5B @0xbfb5bad4: e8 ef ff ff ff                     call 0xfffffffffffffff4  nextPC: 0xbfb5bac8
+>>      4:  4: 3  1B @0xbfb5bac8: 5e                                 pop esi                  nextPC: 0xbfb5bac9
+>>      5:  5: 3  1B @0xbfb5bac9: 56                                 push esi                 nextPC: 0xbfb5baca
+>>      6:  6: 3  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>      7:  7: 3  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>      8:  8: 3  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>      9:  9: 3  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     10: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     11: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     12: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     13: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     14: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     15: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     16: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     17: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     18: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     19: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     20: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     21: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     22: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     23: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     24: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     25: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     26: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     27: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     28: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     29: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     30: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     31: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     32: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     33: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     34: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     35: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     36: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     37: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     38: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     39: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     40: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     41: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     42: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     43: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     44: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     45: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     46: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     47: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     48: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     49: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     50: 11: 4  2B @0xbfb5baca: 31 1e                              xor [esi], ebx           nextPC: 0xbfb5bacc
+>>     51: 12: 4  1B @0xbfb5bacc: ad                                 lodsd                    nextPC: 0xbfb5bacd
+>>     52: 13: 4  2B @0xbfb5bacd: 01 c3                              add ebx, eax             nextPC: 0xbfb5bacf
+>>     53: 14: 4  2B @0xbfb5bacf: 85 c0                              test eax, eax            nextPC: 0xbfb5bad1
+>>     54: 15: 4  2B @0xbfb5bad1: 75 f7                              jnz 0xfffffffffffffff9   nextPC: 0xbfb5bad3
+>>     55: 16: 5  1B @0xbfb5bad3: c3                                 ret                      nextPC: 0xbfb5baca
+>>     56: 17: 6  2B @0xbfb5bad9: eb 13                              jmp 0x15                 nextPC: 0xbfb5baee
+>>     57: 18: 7  5B @0xbfb5baee: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfb5badb
+>>     58: 19: 8  1B @0xbfb5badb: 59                                 pop ecx                  nextPC: 0xbfb5badc
+>>     59: 20: 8  2B @0xbfb5badc: 31 c0                              xor eax, eax             nextPC: 0xbfb5bade
+>>     60: 21: 8  2B @0xbfb5bade: b0 04                              mov al, 0x4              nextPC: 0xbfb5bae0
+>>     61: 22: 8  2B @0xbfb5bae0: 31 db                              xor ebx, ebx             nextPC: 0xbfb5bae2
+>>     62: 23: 8  1B @0xbfb5bae2: 43                                 inc ebx                  nextPC: 0xbfb5bae3
+>>     63: 24: 8  2B @0xbfb5bae3: 31 d2                              xor edx, edx             nextPC: 0xbfb5bae5
+>>     64: 25: 8  2B @0xbfb5bae5: b2 0f                              mov dl, 0xf              nextPC: 0xbfb5bae7
+>>     65: 26: 8  2B @0xbfb5bae7: cd 80                              int 0x80                 nextPC: 0xbfb5bae7
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (46/52) = 0
+>>    Mem_map start_addr: 0xbfb5bac0, length: 51B, valid bytes: 46, used bytes: 46, range: 52B, end_addr: 0xbfb5baf3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bac0 fcbbadc2 e984eb0c 5e56311e ad01c385  ........^V1.....
+0xbfb5bad0 c075f7c3 e8efffff ffeb1359 31c0b004  .u.........Y1...
+0xbfb5bae0 31db4331 d2b20fcd 80------ ----e8e8  1.C1............
+0xbfb5baf0 ffffff--                             ....            
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      3 by:0xbfb5bad4 wrote  4B @0xbfb5b0c8: OOB d9 ba b5 bf 
+>>      5 by:0xbfb5bac9 wrote  4B @0xbfb5b0c8: OOB d9 ba b5 bf 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5badc: 31 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5badb: 59 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5bada: 13 
+>>      6 by:0xbfb5baca wrote  1B @0xbfb5bad9: eb 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5bae0: 31 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5badf: 04 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5bade: b0 
+>>     10 by:0xbfb5baca wrote  1B @0xbfb5badd: c0 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae4: d2 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae3: 31 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae2: 43 
+>>     14 by:0xbfb5baca wrote  1B @0xbfb5bae1: db 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae8: 80 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae7: cd 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae6: 0f 
+>>     18 by:0xbfb5baca wrote  1B @0xbfb5bae5: b2 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baec: cd 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baeb: 4b 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5baea: 01 
+>>     22 by:0xbfb5baca wrote  1B @0xbfb5bae9: b0 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baf0: ff 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baef: e8 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baee: e8 
+>>     26 by:0xbfb5baca wrote  1B @0xbfb5baed: 80 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf4: 65 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf3: 48 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf2: ff 
+>>     30 by:0xbfb5baca wrote  1B @0xbfb5baf1: ff 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf8: 2c 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf7: 6f 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf6: 6c 
+>>     34 by:0xbfb5baca wrote  1B @0xbfb5baf5: 6c 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafc: 72 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafb: 6f 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5bafa: 77 
+>>     38 by:0xbfb5baca wrote  1B @0xbfb5baf9: 20 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bb00: 0a 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5baff: 21 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bafe: 64 
+>>     42 by:0xbfb5baca wrote  1B @0xbfb5bafd: 6c 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb04: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb03: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb02: 00 
+>>     46 by:0xbfb5baca wrote  1B @0xbfb5bb01: 0d 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb08: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb07: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb06: 00 
+>>     50 by:0xbfb5baca wrote  1B @0xbfb5bb05: 00 
+>>     57 by:0xbfb5baee wrote  4B @0xbfb5b0c8: OOB f3 ba b5 bf 
+>> Printing the memory map (2 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (48/48) = 1
+>>    Mem_map start_addr: 0xbfb5bad9, length: 47B, valid bytes: 48, used bytes: 48, range: 48B, end_addr: 0xbfb5bb08
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bad0                     46d1b0 b5586646           F...XfF
+0xbfb5bae0 8783c476 3581c4b5 3955db0e f7153478  ...v5...9U....4x
+0xbfb5baf0 f8ea3a31 6278a9ad 40a0465d ebcccc80  ..:1bx..@.F]....
+0xbfb5bb00 01010dc3 15190dc3 15                 .........       
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (48/48) = 0
+>>    Mem_map start_addr: 0xbfb5bad9, length: 47B, valid bytes: 48, used bytes: 48, range: 48B, end_addr: 0xbfb5bb08
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb5bad0                     eb1359 31c0b004           ..Y1...
+0xbfb5bae0 31db4331 d2b20fcd 80b0014b cd80e8e8  1.C1.......K....
+0xbfb5baf0 ffffff48 656c6c6f 2c20776f 726c6421  ...Hello, world!
+0xbfb5bb00 0a0d0000 00000000 00                 .........       
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.901961
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbfb5bae9 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3216358080 and ends at 3216358119
+>>    Done printing chunk 0
+26 [State 0] Killing state 0
+26 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x3e79560
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3f9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c51]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

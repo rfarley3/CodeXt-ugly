@@ -1,0 +1,94 @@
+55               push ebp                k
+89e5             mov ebp, esp            k
+57               push edi                k
+56               push esi                k
+53               push ebx                k
+e800000000       call 0xb                k
+5b               pop ebx                 k
+83c3f5           add ebx, 0xf5           k
+31d2             xor edx, edx            k
+bf05000000       mov edi, 0x5            k
+8db398000000     lea esi, [ebx+0x98]     k   L2
+89f8             mov eax, edi            k
+89d1             mov ecx, edx            k
+53               push ebx                k
+89f3             mov ebx, esi            k
+cd80             int 0x80                k   open
+5b               pop ebx                 k
+89c7             mov edi, eax            k
+40               inc eax                 k
+7459             jz 0x84                 k
+8d4df3           lea ecx, [ebp-0xd]      k
+ba01000000       mov edx, 0x1            k
+b803000000       mov eax, 0x3            k
+53               push ebx                k
+89fb             mov ebx, edi            k
+cd80             int 0x80                k   read
+5b               pop ebx                 k
+48               dec eax                 k
+740b             jz 0x4c                 k
+89d0             mov eax, edx            k
+53               push ebx                k
+bbfeffffff       mov ebx, 0xfffffffe     k
+cd80             int 0x80                k   exit -2
+5b               pop ebx                 k
+8a45f3           mov al, [ebp-0xd]       k  
+3c09             cmp al, 0x9             k   if1 (x-9>0)
+7e29             jle 0x7c                k   if x <= 9 instead of x >= 10
+b202             mov dl, 0x2             k   y = 2
+0fbed2           movsx edx, dl           k   L5
+42               inc edx                 k   z=1, so y = y+z (if from L3 then 3, L4 then 2)
+b806000000       mov eax, 0x6            k
+53               push ebx                k
+89fb             mov ebx, edi            k
+cd80             int 0x80                k   close
+5b               pop ebx                 k
+b801000000       mov eax, 0x1            k
+53               push ebx                k
+89d3             mov ebx, edx            k
+cd80             int 0x80                k   exit y+z
+5b               pop ebx                 k
+31c0             xor eax, eax            k
+83c410           add esp, 0x10           k
+5b               pop ebx                 k
+5e               pop esi                 k
+5f               pop edi                 k
+c9               leave                   k
+c3               ret                     k
+8d7600           lea esi, [esi+0x0]      ?
+84c0             test al, al             k    L4 else1, if2
+7814             js 0x94                 k    jmp L11 if (al < 0) instead of do if x >= 0
+b201             mov dl, 0x1             k    y = 1
+ebd1             jmp 0x55                k    go back to exit (y+z)
+b801000000       mov eax, 0x1            k    L10
+53               push ebx                k
+bbffffffff       mov ebx, 0xffffffff     k
+cd80             int 0x80                k    exit -1 
+5b               pop ebx                 k
+eb97             jmp 0x2b                ? jmp L2
+31d2             xor edx, edx            k    L11
+ebc1             jmp 0x59     
+
+note that the optimizations removed the dead code
+replace last three lines with:
+.L11
+   cmpb $0, %dl ; dl-0
+   jne .L12     ; jump if y != 0
+   ; if (y == 0) z = 0;
+   xorl  %edx, %edx         ; same as movsbl dl,edx, y+z = 0+0
+   jmp   .L7
+.L12
+   ;if (y==1 && z==0) z=4
+   cmpb $1, %dl
+   jne .L13    ; jmp if y!=1
+   movb $1, %al ; z=1 bc not set anywhere else
+   cmpb $0, %al
+   jne .L13    ; jmp if z!=0
+   ;y==1 && z==0
+   ;5 = y+z = 1+4
+   movb $5, %dl
+   movsbl %dl,%edx
+   jmp .L7
+.L13
+   ; default is that z=1, L5 will inc y then close/exits
+   jmp .L5

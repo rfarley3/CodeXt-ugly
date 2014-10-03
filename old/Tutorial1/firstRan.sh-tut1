@@ -1,0 +1,4 @@
+#! /bin/sh
+
+echo "Stub 2a: Follow the symbolic execution tutorial"
+./tutorial1

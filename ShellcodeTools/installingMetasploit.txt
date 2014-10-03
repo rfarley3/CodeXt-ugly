@@ -1,0 +1,9 @@
+wget http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run 
+
+And then follow commands here:
+https://www.redspin.com/blog/2011/08/19/installing-metasploit-4-in-ubuntu-11-04/
+
+chmod +x framework-4.*-linux-full.run
+sudo ./framework-4.*-linux-full.run
+sudo msfupdate
+msfconsole

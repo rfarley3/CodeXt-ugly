@@ -1,0 +1,1596 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x38c2000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x3b69000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1ca4a000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1ca93000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1e5ba000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1e62e000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+32 [State 0] Message from guest (0xbfd019cc): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+32 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+32 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+32 [State 1] Message from guest (0xbfd019cc): << About to call dasospreproc_init with shell: 0xbfd02370 (offset of 0 not yet applied), shell_len: 99, eip: 0x00000000
+
+32 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 102297600, addr range: 0xbfd02370-0xbfd023d3 with eip: 0x00000000 buffer length: 99 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfd02370, length: 99B, end_addr: 0xbfd023d3
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd02370 eb305b31 d2b22c8b 0b81f14a 95a39c81  .0[1..,....J....
+0xbfd02380 c1936794 f0c1c90c 81c1daa4 e068c1c9  ..g..........h..
+0xbfd02390 0f890b81 ebfdffff ff4380ea 034a7407  .........C...Jt.
+0xbfd023a0 ebd5e8cb ffffff34 2f0bc22e b2059ab7  .......4/.......
+0xbfd023b0 ee0c7f16 cf8705a6 dc2b1768 acbe9194  .........+.h....
+0xbfd023c0 aceb9c08 f822fadd f8129448 68cdf99d  .....".....Hh...
+0xbfd023d0 ec01edab                             ....            
+
+ >> oTBS pc: 0xbfd02370
+ >> oTBE Target by pc: 0xbfd02370 to pc: 0xbfd023a2
+ >> oTIE pc: 0xbfd02370:0x00 nextpc: bfd023a2 len: 2
+  0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+Firing timer event
+ >> oExc pc: 0xbfd02370 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd02370
+ >> oEI pc: 0xbfd02370
+  0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+ >> oTBS pc: 0xbfd023a2
+ >> oTBE Target by pc: 0xbfd023a2 to pc: 0xbfd02372
+ >> oTIE pc: 0xbfd023a2:0x32 nextpc: bfd02372 len: 5
+  0:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+ >> oDMA OOB Write by seq_num: 1 pc: 0xbfd023a2:0x32 to addr: 0xbfd01978 len: 4B value:  0xa7  0x23  0xd0  0xbf 
+ >> >> oDMA value in memory at that address:  0xa7  0x23  0xd0  0xbf 
+ >> oEB pc: 0xbfd023a2
+ >> oEI pc: 0xbfd023a2
+  1:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+ >> oTBS pc: 0xbfd02372
+ >> oTIE pc: 0xbfd02372:0x02 nextpc: bfd02373 len: 1
+  0:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+ >> oTIE pc: 0xbfd02373:0x03 nextpc: bfd02375 len: 2
+  0:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+ >> oTIE pc: 0xbfd02375:0x05 nextpc: bfd02377 len: 2
+  0:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+ >> oTIE pc: 0xbfd02377:0x07 nextpc: bfd02379 len: 2
+  0:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oTIE pc: 0xbfd02379:0x09 nextpc: bfd0237f len: 6
+  0:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oTIE pc: 0xbfd0237f:0x0f nextpc: bfd02385 len: 6
+  0:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oTIE pc: 0xbfd02385:0x15 nextpc: bfd02388 len: 3
+  0:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oTIE pc: 0xbfd02388:0x18 nextpc: bfd0238e len: 6
+  0:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oTIE pc: 0xbfd0238e:0x1e nextpc: bfd02391 len: 3
+  0: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> oTIE pc: 0xbfd02391:0x21 nextpc: bfd02393 len: 2
+  0: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oTIE pc: 0xbfd02393:0x23 nextpc: bfd02399 len: 6
+  0: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oTIE pc: 0xbfd02399:0x29 nextpc: bfd0239a len: 1
+  0: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oTIE pc: 0xbfd0239a:0x2a nextpc: bfd0239d len: 3
+  0: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oTIE pc: 0xbfd0239d:0x2d nextpc: bfd0239e len: 1
+  0: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oTBE Target by pc: 0xbfd0239e to pc: 0xbfd023a0
+ >> oTIE pc: 0xbfd0239e:0x2e nextpc: bfd023a0 len: 2
+  0: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oTBE Target by pc: 0xbfd0239e to pc: 0xbfd023a7
+ >> oExc pc: 0xbfd02372 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfd02372
+  2:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+ >> oEI pc: 0xbfd02373
+  3:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+ >> oEI pc: 0xbfd02375
+  4:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+  5:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+  6:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+  7:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+  8:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+  9:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 10: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfd02391:0x21 to addr: 0xbfd023aa len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfd02391:0x21 to addr: 0xbfd023a9 len: 1B value:  0x59 
+ >> >> oDMA value in memory at that address:  0x59 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfd02391:0x21 to addr: 0xbfd023a8 len: 1B value:  0x13 
+ >> >> oDMA value in memory at that address:  0x13 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 11 pc: 0xbfd02391:0x21 to addr: 0xbfd023a7 len: 1B value:  0xeb 
+ >> >> oDMA value in memory at that address:  0xeb 
+ >> oEI pc: 0xbfd02391
+ 11: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 12: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 13: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 14: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 15: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 16: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd023a0
+ >> oTBE Target by pc: 0xbfd023a0 to pc: 0xbfd02377
+ >> oTIE pc: 0xbfd023a0:0x30 nextpc: bfd02377 len: 2
+  0: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 17: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oTBS pc: 0xbfd02377
+ >> oTIE pc: 0xbfd02377:0x07 nextpc: bfd02379 len: 2
+  0: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oTIE pc: 0xbfd02379:0x09 nextpc: bfd0237f len: 6
+  0: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oTIE pc: 0xbfd0237f:0x0f nextpc: bfd02385 len: 6
+  0: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oTIE pc: 0xbfd02385:0x15 nextpc: bfd02388 len: 3
+  0: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oTIE pc: 0xbfd02388:0x18 nextpc: bfd0238e len: 6
+  0: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oTIE pc: 0xbfd0238e:0x1e nextpc: bfd02391 len: 3
+  0: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> oTIE pc: 0xbfd02391:0x21 nextpc: bfd02393 len: 2
+  0: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oTIE pc: 0xbfd02393:0x23 nextpc: bfd02399 len: 6
+  0: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oTIE pc: 0xbfd02399:0x29 nextpc: bfd0239a len: 1
+  0: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oTIE pc: 0xbfd0239a:0x2a nextpc: bfd0239d len: 3
+  0: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oTIE pc: 0xbfd0239d:0x2d nextpc: bfd0239e len: 1
+  0: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oTBE Target by pc: 0xbfd0239e to pc: 0xbfd023a0
+ >> oTIE pc: 0xbfd0239e:0x2e nextpc: bfd023a0 len: 2
+  0: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oTBE Target by pc: 0xbfd0239e to pc: 0xbfd023a7
+ >> oEI pc: 0xbfd02377
+ 18: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 19: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 20: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 21: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 22: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 23: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 24 pc: 0xbfd02391:0x21 to addr: 0xbfd023ae len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 24 pc: 0xbfd02391:0x21 to addr: 0xbfd023ad len: 1B value:  0x04 
+ >> >> oDMA value in memory at that address:  0x04 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 24 pc: 0xbfd02391:0x21 to addr: 0xbfd023ac len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 24 pc: 0xbfd02391:0x21 to addr: 0xbfd023ab len: 1B value:  0xc0 
+ >> >> oDMA value in memory at that address:  0xc0 
+ >> oEI pc: 0xbfd02391
+ 24: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 25: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 26: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 27: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 28: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 29: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 30: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 31: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 32: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 33: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 34: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 35: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 36: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 37 pc: 0xbfd02391:0x21 to addr: 0xbfd023b2 len: 1B value:  0xd2 
+ >> >> oDMA value in memory at that address:  0xd2 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 37 pc: 0xbfd02391:0x21 to addr: 0xbfd023b1 len: 1B value:  0x31 
+ >> >> oDMA value in memory at that address:  0x31 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 37 pc: 0xbfd02391:0x21 to addr: 0xbfd023b0 len: 1B value:  0x43 
+ >> >> oDMA value in memory at that address:  0x43 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 37 pc: 0xbfd02391:0x21 to addr: 0xbfd023af len: 1B value:  0xdb 
+ >> >> oDMA value in memory at that address:  0xdb 
+ >> oEI pc: 0xbfd02391
+ 37: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 38: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 39: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 40: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 41: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 42: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 43: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 44: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 45: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 46: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 47: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 48: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 49: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfd02391:0x21 to addr: 0xbfd023b6 len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfd02391:0x21 to addr: 0xbfd023b5 len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfd02391:0x21 to addr: 0xbfd023b4 len: 1B value:  0x0f 
+ >> >> oDMA value in memory at that address:  0x0f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 50 pc: 0xbfd02391:0x21 to addr: 0xbfd023b3 len: 1B value:  0xb2 
+ >> >> oDMA value in memory at that address:  0xb2 
+ >> oEI pc: 0xbfd02391
+ 50: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 51: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 52: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 53: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 54: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 55: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 56: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 57: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 58: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 59: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 60: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 61: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 62: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 63 pc: 0xbfd02391:0x21 to addr: 0xbfd023ba len: 1B value:  0xcd 
+ >> >> oDMA value in memory at that address:  0xcd 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 63 pc: 0xbfd02391:0x21 to addr: 0xbfd023b9 len: 1B value:  0x4b 
+ >> >> oDMA value in memory at that address:  0x4b 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 63 pc: 0xbfd02391:0x21 to addr: 0xbfd023b8 len: 1B value:  0x01 
+ >> >> oDMA value in memory at that address:  0x01 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 63 pc: 0xbfd02391:0x21 to addr: 0xbfd023b7 len: 1B value:  0xb0 
+ >> >> oDMA value in memory at that address:  0xb0 
+ >> oEI pc: 0xbfd02391
+ 63: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 64: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 65: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 66: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 67: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 68: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 69: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 70: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 71: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 72: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 73: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 74: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 75: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 76 pc: 0xbfd02391:0x21 to addr: 0xbfd023be len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 76 pc: 0xbfd02391:0x21 to addr: 0xbfd023bd len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 76 pc: 0xbfd02391:0x21 to addr: 0xbfd023bc len: 1B value:  0xe8 
+ >> >> oDMA value in memory at that address:  0xe8 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 76 pc: 0xbfd02391:0x21 to addr: 0xbfd023bb len: 1B value:  0x80 
+ >> >> oDMA value in memory at that address:  0x80 
+ >> oEI pc: 0xbfd02391
+ 76: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 77: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 78: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 79: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 80: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 81: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 82: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 83: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 84: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 85: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 86: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+ 87: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+ 88: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 89 pc: 0xbfd02391:0x21 to addr: 0xbfd023c2 len: 1B value:  0x65 
+ >> >> oDMA value in memory at that address:  0x65 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 89 pc: 0xbfd02391:0x21 to addr: 0xbfd023c1 len: 1B value:  0x48 
+ >> >> oDMA value in memory at that address:  0x48 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 89 pc: 0xbfd02391:0x21 to addr: 0xbfd023c0 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 89 pc: 0xbfd02391:0x21 to addr: 0xbfd023bf len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> oEI pc: 0xbfd02391
+ 89: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+ 90: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+ 91: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+ 92: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+ 93: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+ 94: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+ 95: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+ 96: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+ 97: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+ 98: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+ 99: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+100: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+101: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 102 pc: 0xbfd02391:0x21 to addr: 0xbfd023c6 len: 1B value:  0x2c 
+ >> >> oDMA value in memory at that address:  0x2c 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 102 pc: 0xbfd02391:0x21 to addr: 0xbfd023c5 len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 102 pc: 0xbfd02391:0x21 to addr: 0xbfd023c4 len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 102 pc: 0xbfd02391:0x21 to addr: 0xbfd023c3 len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfd02391
+102: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+103: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+104: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+105: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+106: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+107: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+108: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+109: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+110: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+111: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+112: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+113: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+114: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 115 pc: 0xbfd02391:0x21 to addr: 0xbfd023ca len: 1B value:  0x72 
+ >> >> oDMA value in memory at that address:  0x72 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 115 pc: 0xbfd02391:0x21 to addr: 0xbfd023c9 len: 1B value:  0x6f 
+ >> >> oDMA value in memory at that address:  0x6f 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 115 pc: 0xbfd02391:0x21 to addr: 0xbfd023c8 len: 1B value:  0x77 
+ >> >> oDMA value in memory at that address:  0x77 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 115 pc: 0xbfd02391:0x21 to addr: 0xbfd023c7 len: 1B value:  0x20 
+ >> >> oDMA value in memory at that address:  0x20 
+ >> oEI pc: 0xbfd02391
+115: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+116: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+117: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+118: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+119: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+120: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+121: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+122: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+123: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+124: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+125: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+126: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+127: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 128 pc: 0xbfd02391:0x21 to addr: 0xbfd023ce len: 1B value:  0x0a 
+ >> >> oDMA value in memory at that address:  0x0a 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 128 pc: 0xbfd02391:0x21 to addr: 0xbfd023cd len: 1B value:  0x21 
+ >> >> oDMA value in memory at that address:  0x21 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 128 pc: 0xbfd02391:0x21 to addr: 0xbfd023cc len: 1B value:  0x64 
+ >> >> oDMA value in memory at that address:  0x64 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 128 pc: 0xbfd02391:0x21 to addr: 0xbfd023cb len: 1B value:  0x6c 
+ >> >> oDMA value in memory at that address:  0x6c 
+ >> oEI pc: 0xbfd02391
+128: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+129: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+130: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+131: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+132: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oEI pc: 0xbfd0239e
+133: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+ >> oExc pc: 0xbfd023a0 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfd023a0
+ >> oEI pc: 0xbfd023a0
+134: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+ >> oEI pc: 0xbfd02377
+135: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+ >> oEI pc: 0xbfd02379
+136: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+ >> oEI pc: 0xbfd0237f
+137: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+ >> oEI pc: 0xbfd02385
+138: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+ >> oEI pc: 0xbfd02388
+139: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+ >> oEI pc: 0xbfd0238e
+140: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 141 pc: 0xbfd02391:0x21 to addr: 0xbfd023d2 len: 1B value:  0x90 
+ >> >> oDMA value in memory at that address:  0x90 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 141 pc: 0xbfd02391:0x21 to addr: 0xbfd023d1 len: 1B value:  0x90 
+ >> >> oDMA value in memory at that address:  0x90 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 141 pc: 0xbfd02391:0x21 to addr: 0xbfd023d0 len: 1B value:  0xff 
+ >> >> oDMA value in memory at that address:  0xff 
+ >> Benign write to unused address
+ >> oDMA Write by seq_num: 141 pc: 0xbfd02391:0x21 to addr: 0xbfd023cf len: 1B value:  0x0d 
+ >> >> oDMA value in memory at that address:  0x0d 
+ >> oEI pc: 0xbfd02391
+141: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+ >> oEI pc: 0xbfd02393
+142: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+ >> oEI pc: 0xbfd02399
+143: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+ >> oEI pc: 0xbfd0239a
+144: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+ >> oEI pc: 0xbfd0239d
+145: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+ >> oEB pc: 0xbfd0239e
+ >> oExc pc: 0xbfd023a7 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfd023a7
+ >> oTBE Target by pc: 0xbfd023a7 to pc: 0xbfd023bc
+ >> oTIE pc: 0xbfd023a7:0x37 nextpc: bfd023bc len: 2
+!!* pc != prev insn's next_pc; 0xbfd023a7 != bfd023a0
+  0: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+ >> oEB pc: 0xbfd023a7
+ >> oEI pc: 0xbfd023a7
+146: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+ >> oTBS pc: 0xbfd023bc
+ >> oTBE Target by pc: 0xbfd023bc to pc: 0xbfd023a9
+ >> oTIE pc: 0xbfd023bc:0x4c nextpc: bfd023a9 len: 5
+  0: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+ >> oDMA OOB Write by seq_num: 147 pc: 0xbfd023bc:0x4c to addr: 0xbfd01978 len: 4B value:  0xc1  0x23  0xd0  0xbf 
+ >> >> oDMA value in memory at that address:  0xc1  0x23  0xd0  0xbf 
+ >> oEB pc: 0xbfd023bc
+ >> oEI pc: 0xbfd023bc
+147: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+ >> oTBS pc: 0xbfd023a9
+ >> oTIE pc: 0xbfd023a9:0x39 nextpc: bfd023aa len: 1
+  0: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+ >> oTIE pc: 0xbfd023aa:0x3a nextpc: bfd023ac len: 2
+  0: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+ >> oTIE pc: 0xbfd023ac:0x3c nextpc: bfd023ae len: 2
+  0: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+ >> oTIE pc: 0xbfd023ae:0x3e nextpc: bfd023b0 len: 2
+  0: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+ >> oTIE pc: 0xbfd023b0:0x40 nextpc: bfd023b1 len: 1
+  0: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+ >> oTIE pc: 0xbfd023b1:0x41 nextpc: bfd023b3 len: 2
+  0: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+ >> oTIE pc: 0xbfd023b3:0x43 nextpc: bfd023b5 len: 2
+  0: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+ >> oTBE Target by pc: 0xbfd023b5 to pc: 0xbfd023b5
+ >> oTBE INTERRUPT by pc: 0xbfd023b5 int: 0x80
+ >> oTIE pc: 0xbfd023b5:0x45 nextpc: bfd023b5 len: 2
+  0: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+ >> oExc pc: 0xbfd023a9 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEI pc: 0xbfd023a9
+148: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+ >> oEI pc: 0xbfd023aa
+149: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+ >> oEI pc: 0xbfd023ac
+150: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+ >> oEI pc: 0xbfd023ae
+151: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+ >> oEI pc: 0xbfd023b0
+152: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+ >> oEI pc: 0xbfd023b1
+153: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+ >> oEI pc: 0xbfd023b3
+154: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+ >> oEB pc: 0xbfd023b5
+ >> oExc pc: 0xbfd023b5 exception_idx: 128(0x80)
+ >> oExc INT 0x80 pc: 0xbfd023b5 syscall_num: 4(0x04)
+ >> oEI pc: 0xbfd023b5
+155: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+>> !! DEBUG isITUnique f.size 0 given fragment:
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+>>      1:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+>>      2:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+>>      3:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+>>      4:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+>>      5:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      6:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      7:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      8:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      9:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     10: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     11: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     12: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     13: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     14: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     15: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     16: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     17: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     18: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     19: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     20: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     21: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     22: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     23: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     24: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     25: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     26: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     27: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     28: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     29: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     30: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     31: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     32: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     33: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     34: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     35: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     36: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     37: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     38: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     39: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     40: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     41: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     42: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     43: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     44: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     45: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     46: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     47: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     48: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     49: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     50: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     51: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     52: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     53: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     54: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     55: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     56: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     57: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     58: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     59: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     60: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     61: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     62: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     63: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     64: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     65: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     66: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     67: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     68: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     69: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     70: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     71: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     72: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     73: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     74: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     75: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     76: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     77: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     78: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     79: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     80: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     81: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     82: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     83: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     84: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     85: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     86: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     87: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     88: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     89: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     90: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     91: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     92: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     93: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     94: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     95: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     96: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     97: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     98: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     99: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    100: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    101: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    102: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    103: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    104: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    105: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    106: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    107: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    108: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    109: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    110: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    111: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    112: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    113: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    114: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    115: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    116: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    117: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    118: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    119: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    120: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    121: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    122: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    123: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    124: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    125: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    126: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    127: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    128: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    129: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    130: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    131: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    132: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    133: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    134: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    135: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    136: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    137: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    138: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    139: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    140: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    141: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    142: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    143: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    144: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    145: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    146: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+>>    147: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+>>    148: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+>>    149: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+>>    150: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+>>    151: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+>>    152: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+>>    153: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+>>    154: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+>>    155: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+>> onSuccess EIP Found. Syscall number 0x4 at addr 0xbfd023b5 offset from base: 69 (should be EIP-2) within pid: 102297600 number of exec'ed instructions: 156. This is success #1
+[State 1] CPU dump
+EAX=0x4
+EBX=0x1
+ECX=0xbfd023c1
+EDX=0xf
+ESI=0x402fdc90
+EDI=0x0
+EBP=0xbfd01dd8
+ESP=0xbfd0197c
+EIP=0xbfd023b5
+CR2=0xb76cd29f
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.938272; avg: 0
+>> Syscall eip: 0xbfd023b7 offset from base: 71
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+>>      0:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+>>      0:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+>>      0:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+>>      0:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+>>      0:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      0:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      0:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      0:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      0:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>      0: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>      0: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>      0: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>      0: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>      0: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>      0: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>      0: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>      0: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>      0: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      0: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      0: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      0: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      0: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>      0: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>      0: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>      0: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>      0: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>      0: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>      0: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>      0: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>      0: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+>>      0: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+>>      0: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+>>      0: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+>>      0: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+>>      0: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+>>      0: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+>>      0: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+>>      0: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+>>      0: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+>>      1:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+>>      2:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+>>      3:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+>>      4:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+>>      5:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      6:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      7:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      8:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      9:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     10: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     11: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     12: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     13: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     14: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     15: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     16: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     17: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     18: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     19: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     20: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     21: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     22: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     23: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     24: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     25: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     26: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     27: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     28: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     29: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     30: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     31: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     32: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     33: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     34: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     35: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     36: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     37: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     38: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     39: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     40: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     41: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     42: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     43: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     44: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     45: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     46: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     47: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     48: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     49: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     50: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     51: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     52: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     53: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     54: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     55: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     56: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     57: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     58: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     59: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     60: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     61: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     62: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     63: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     64: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     65: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     66: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     67: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     68: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     69: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     70: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     71: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     72: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     73: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     74: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     75: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     76: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     77: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     78: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     79: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     80: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     81: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     82: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     83: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     84: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     85: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     86: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     87: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     88: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     89: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     90: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     91: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     92: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     93: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     94: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     95: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     96: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     97: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     98: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     99: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    100: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    101: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    102: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    103: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    104: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    105: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    106: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    107: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    108: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    109: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    110: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    111: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    112: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    113: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    114: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    115: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    116: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    117: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    118: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    119: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    120: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    121: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    122: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    123: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    124: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    125: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    126: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    127: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    128: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    129: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    130: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    131: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    132: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    133: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    134: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    135: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    136: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    137: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    138: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    139: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    140: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    141: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    142: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    143: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    144: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    145: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    146: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+>>    147: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+>>    148: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+>>    149: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+>>    150: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+>>    151: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+>>    152: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+>>    153: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+>>    154: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+>>    155: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (76/82) = 0
+>>    Mem_map start_addr: 0xbfd02370, length: 81B, valid bytes: 76, used bytes: 76, range: 82B, end_addr: 0xbfd023c1
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd02370 eb305b31 d2b22c8b 0b81f14a 95a39c81  .0[1..,....J....
+0xbfd02380 c1936794 f0c1c90c 81c1daa4 e068c1c9  ..g..........h..
+0xbfd02390 0f890b81 ebfdffff ff4380ea 034a7407  .........C...Jt.
+0xbfd023a0 ebd5e8cb ffffffeb 135931c0 b00431db  .........Y1...1.
+0xbfd023b0 4331d2b2 0fcd80-- -------- e8e8ffff  C1..............
+0xbfd023c0 ff--                                 ..              
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      1 by:0xbfd023a2 wrote  4B @0xbfd01978: OOB a7 23 d0 bf 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023aa: 31 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a9: 59 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a8: 13 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a7: eb 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ae: 31 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ad: 04 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ac: b0 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ab: c0 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b2: d2 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b1: 31 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b0: 43 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023af: db 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b6: 80 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b5: cd 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b4: 0f 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b3: b2 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023ba: cd 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b9: 4b 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b8: 01 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b7: b0 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023be: ff 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bd: e8 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bc: e8 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bb: 80 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c2: 65 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c1: 48 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c0: ff 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023bf: ff 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c6: 2c 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c5: 6f 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c4: 6c 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c3: 6c 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023ca: 72 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c9: 6f 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c8: 77 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c7: 20 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023ce: 0a 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cd: 21 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cc: 64 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cb: 6c 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d2: 90 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d1: 90 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d0: ff 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023cf: 0d 
+>>    147 by:0xbfd023bc wrote  4B @0xbfd01978: OOB c1 23 d0 bf 
+>> Printing the memory map (c snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbfd023a7, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfd023d2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                34 2f0bc22e b2059ab7         4/.......
+0xbfd023b0 ee0c7f16 cf8705a6 dc2b1768 acbe9194  .........+.h....
+0xbfd023c0 aceb9c08 f822fadd f8129448 68cdf99d  .....".....Hh...
+0xbfd023d0 ec01ed                               ...             
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023a7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023aa
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                eb 135931                    ..Y1     
+
+>>    Printing snapshot 2
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023ab, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ae
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                         c0 b00431               ...1 
+
+>>    Printing snapshot 3
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023af, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023b2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                                  db                 .
+0xbfd023b0 4331d2                               C1.             
+
+>>    Printing snapshot 4
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023b3, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023b6
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0       b2 0fcd80                         ....         
+
+>>    Printing snapshot 5
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023b7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ba
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                b0 014bcd                    ..K.     
+
+>>    Printing snapshot 6
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023bb, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023be
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                         80 e8e8ff               .... 
+
+>>    Printing snapshot 7
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023bf, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023c2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                                  ff                 .
+0xbfd023c0 ff4865                               .He             
+
+>>    Printing snapshot 8
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023c3, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023c6
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0       6c 6c6f2c                         llo,         
+
+>>    Printing snapshot 9
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023c7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ca
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                20 776f72                     wor     
+
+>>    Printing snapshot 10
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023cb, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ce
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                         6c 64210a               ld!. 
+
+>>    Printing snapshot 11
+>>    The density (0 to 1) of this state's path is (4/4) = 0
+>>    Mem_map start_addr: 0xbfd023cf, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023d2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                                  0d                 .
+0xbfd023d0 ff9090                               ...             
+
+33 [State 1] Terminating state 1 with message 'EIP reached, success'
+33 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1fe08ec0
+33 [State 0] Message from guest (0xbfd019cc): << Looping fork, currently at 0
+33 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 1 successes
+>>    Printing success 0
+>> Fragment is a SUCCESS
+>> Fragment densities, overlay: 0.938272; avg: 0
+>> Syscall eip: 0xbfd023b7 offset from base: 71
+>> Printing Trans_Trace (instructions in order of translation)
+>>      0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+>>      0:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+>>      0:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+>>      0:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+>>      0:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+>>      0:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      0:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      0:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      0:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      0:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>      0: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>      0: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>      0: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>      0: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>      0: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>      0: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>      0: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>      0: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>      0: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      0: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      0: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      0: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      0: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>      0: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>      0: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>      0: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>      0: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>      0: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>      0: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>      0: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>      0: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+>>      0: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+>>      0: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+>>      0: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+>>      0: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+>>      0: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+>>      0: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+>>      0: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+>>      0: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+>>      0: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+
+>> Printing Exec_Trace (instructions in order of execution)
+>>      0:  0: 1  2B @0xbfd02370: eb 30                              jmp 0x32                 nextPC: 0xbfd023a2
+>>      1:  1: 2  5B @0xbfd023a2: e8 cb ff ff ff                     call 0xffffffffffffffd0  nextPC: 0xbfd02372
+>>      2:  2: 3  1B @0xbfd02372: 5b                                 pop ebx                  nextPC: 0xbfd02373
+>>      3:  3: 3  2B @0xbfd02373: 31 d2                              xor edx, edx             nextPC: 0xbfd02375
+>>      4:  4: 3  2B @0xbfd02375: b2 2c                              mov dl, 0x2c             nextPC: 0xbfd02377
+>>      5:  5: 3  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>      6:  6: 3  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>      7:  7: 3  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>      8:  8: 3  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>      9:  9: 3  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     10: 10: 3  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     11: 11: 3  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     12: 12: 3  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     13: 13: 3  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     14: 14: 3  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     15: 15: 3  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     16: 16: 3  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     17: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     18: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     19: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     20: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     21: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     22: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     23: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     24: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     25: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     26: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     27: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     28: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     29: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     30: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     31: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     32: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     33: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     34: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     35: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     36: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     37: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     38: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     39: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     40: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     41: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     42: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     43: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     44: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     45: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     46: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     47: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     48: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     49: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     50: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     51: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     52: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     53: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     54: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     55: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     56: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     57: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     58: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     59: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     60: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     61: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     62: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     63: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     64: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     65: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     66: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     67: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     68: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     69: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     70: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     71: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     72: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     73: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     74: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     75: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     76: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     77: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     78: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     79: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     80: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     81: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     82: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     83: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     84: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     85: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     86: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>     87: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>     88: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>     89: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>     90: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>     91: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>     92: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>     93: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>     94: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>     95: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>     96: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>     97: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>     98: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>     99: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    100: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    101: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    102: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    103: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    104: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    105: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    106: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    107: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    108: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    109: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    110: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    111: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    112: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    113: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    114: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    115: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    116: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    117: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    118: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    119: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    120: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    121: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    122: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    123: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    124: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    125: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    126: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    127: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    128: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    129: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    130: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    131: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    132: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    133: 29: 5  2B @0xbfd0239e: 74 07                              jz 0x9                   nextPC: 0xbfd023a0
+>>    134: 17: 4  2B @0xbfd023a0: eb d5                              jmp 0xffffffffffffffd7   nextPC: 0xbfd02377
+>>    135: 18: 5  2B @0xbfd02377: 8b 0b                              mov ecx, [ebx]           nextPC: 0xbfd02379
+>>    136: 19: 5  6B @0xbfd02379: 81 f1 4a 95 a3 9c                  xor ecx, 0x9ca3954a      nextPC: 0xbfd0237f
+>>    137: 20: 5  6B @0xbfd0237f: 81 c1 93 67 94 f0                  add ecx, 0xf0946793      nextPC: 0xbfd02385
+>>    138: 21: 5  3B @0xbfd02385: c1 c9 0c                           ror ecx, 0xc             nextPC: 0xbfd02388
+>>    139: 22: 5  6B @0xbfd02388: 81 c1 da a4 e0 68                  add ecx, 0x68e0a4da      nextPC: 0xbfd0238e
+>>    140: 23: 5  3B @0xbfd0238e: c1 c9 0f                           ror ecx, 0xf             nextPC: 0xbfd02391
+>>    141: 24: 5  2B @0xbfd02391: 89 0b                              mov [ebx], ecx           nextPC: 0xbfd02393
+>>    142: 25: 5  6B @0xbfd02393: 81 eb fd ff ff ff                  sub ebx, 0xfffffffd      nextPC: 0xbfd02399
+>>    143: 26: 5  1B @0xbfd02399: 43                                 inc ebx                  nextPC: 0xbfd0239a
+>>    144: 27: 5  3B @0xbfd0239a: 80 ea 03                           sub dl, 0x3              nextPC: 0xbfd0239d
+>>    145: 28: 5  1B @0xbfd0239d: 4a                                 dec edx                  nextPC: 0xbfd0239e
+>>    146: 30: 6  2B @0xbfd023a7: eb 13                              jmp 0x15                 nextPC: 0xbfd023bc
+>>    147: 31: 7  5B @0xbfd023bc: e8 e8 ff ff ff                     call 0xffffffffffffffed  nextPC: 0xbfd023a9
+>>    148: 32: 8  1B @0xbfd023a9: 59                                 pop ecx                  nextPC: 0xbfd023aa
+>>    149: 33: 8  2B @0xbfd023aa: 31 c0                              xor eax, eax             nextPC: 0xbfd023ac
+>>    150: 34: 8  2B @0xbfd023ac: b0 04                              mov al, 0x4              nextPC: 0xbfd023ae
+>>    151: 35: 8  2B @0xbfd023ae: 31 db                              xor ebx, ebx             nextPC: 0xbfd023b0
+>>    152: 36: 8  1B @0xbfd023b0: 43                                 inc ebx                  nextPC: 0xbfd023b1
+>>    153: 37: 8  2B @0xbfd023b1: 31 d2                              xor edx, edx             nextPC: 0xbfd023b3
+>>    154: 38: 8  2B @0xbfd023b3: b2 0f                              mov dl, 0xf              nextPC: 0xbfd023b5
+>>    155: 39: 8  2B @0xbfd023b5: cd 80                              int 0x80                 nextPC: 0xbfd023b5
+>> Printing the memory map (1 snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (76/82) = 0
+>>    Mem_map start_addr: 0xbfd02370, length: 81B, valid bytes: 76, used bytes: 76, range: 82B, end_addr: 0xbfd023c1
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd02370 eb305b31 d2b22c8b 0b81f14a 95a39c81  .0[1..,....J....
+0xbfd02380 c1936794 f0c1c90c 81c1daa4 e068c1c9  ..g..........h..
+0xbfd02390 0f890b81 ebfdffff ff4380ea 034a7407  .........C...Jt.
+0xbfd023a0 ebd5e8cb ffffffeb 135931c0 b00431db  .........Y1...1.
+0xbfd023b0 4331d2b2 0fcd80-- -------- e8e8ffff  C1..............
+0xbfd023c0 ff--                                 ..              
+
+>> Printing Data_Trace (bytes written in order of write)
+>>      1 by:0xbfd023a2 wrote  4B @0xbfd01978: OOB a7 23 d0 bf 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023aa: 31 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a9: 59 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a8: 13 
+>>     11 by:0xbfd02391 wrote  1B @0xbfd023a7: eb 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ae: 31 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ad: 04 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ac: b0 
+>>     24 by:0xbfd02391 wrote  1B @0xbfd023ab: c0 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b2: d2 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b1: 31 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023b0: 43 
+>>     37 by:0xbfd02391 wrote  1B @0xbfd023af: db 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b6: 80 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b5: cd 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b4: 0f 
+>>     50 by:0xbfd02391 wrote  1B @0xbfd023b3: b2 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023ba: cd 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b9: 4b 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b8: 01 
+>>     63 by:0xbfd02391 wrote  1B @0xbfd023b7: b0 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023be: ff 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bd: e8 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bc: e8 
+>>     76 by:0xbfd02391 wrote  1B @0xbfd023bb: 80 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c2: 65 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c1: 48 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023c0: ff 
+>>     89 by:0xbfd02391 wrote  1B @0xbfd023bf: ff 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c6: 2c 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c5: 6f 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c4: 6c 
+>>    102 by:0xbfd02391 wrote  1B @0xbfd023c3: 6c 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023ca: 72 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c9: 6f 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c8: 77 
+>>    115 by:0xbfd02391 wrote  1B @0xbfd023c7: 20 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023ce: 0a 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cd: 21 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cc: 64 
+>>    128 by:0xbfd02391 wrote  1B @0xbfd023cb: 6c 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d2: 90 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d1: 90 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023d0: ff 
+>>    141 by:0xbfd02391 wrote  1B @0xbfd023cf: 0d 
+>>    147 by:0xbfd023bc wrote  4B @0xbfd01978: OOB c1 23 d0 bf 
+>> Printing the memory map (c snapshots)
+>>    Printing snapshot 0
+>>    The density (0 to 1) of this state's path is (44/44) = 1
+>>    Mem_map start_addr: 0xbfd023a7, length: 43B, valid bytes: 44, used bytes: 44, range: 44B, end_addr: 0xbfd023d2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                34 2f0bc22e b2059ab7         4/.......
+0xbfd023b0 ee0c7f16 cf8705a6 dc2b1768 acbe9194  .........+.h....
+0xbfd023c0 aceb9c08 f822fadd f8129448 68cdf99d  .....".....Hh...
+0xbfd023d0 ec01ed                               ...             
+
+>>    Printing snapshot 1
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023a7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023aa
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                eb 135931                    ..Y1     
+
+>>    Printing snapshot 2
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023ab, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ae
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                         c0 b00431               ...1 
+
+>>    Printing snapshot 3
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023af, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023b2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023a0                                  db                 .
+0xbfd023b0 4331d2                               C1.             
+
+>>    Printing snapshot 4
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023b3, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023b6
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0       b2 0fcd80                         ....         
+
+>>    Printing snapshot 5
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023b7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ba
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                b0 014bcd                    ..K.     
+
+>>    Printing snapshot 6
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023bb, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023be
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                         80 e8e8ff               .... 
+
+>>    Printing snapshot 7
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023bf, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023c2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023b0                                  ff                 .
+0xbfd023c0 ff4865                               .He             
+
+>>    Printing snapshot 8
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023c3, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023c6
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0       6c 6c6f2c                         llo,         
+
+>>    Printing snapshot 9
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023c7, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ca
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                20 776f72                     wor     
+
+>>    Printing snapshot 10
+>>    The density (0 to 1) of this state's path is (4/4) = 1
+>>    Mem_map start_addr: 0xbfd023cb, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023ce
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                         6c 64210a               ld!. 
+
+>>    Printing snapshot 11
+>>    The density (0 to 1) of this state's path is (4/4) = 0
+>>    Mem_map start_addr: 0xbfd023cf, length: 3B, valid bytes: 4, used bytes: 4, range: 4B, end_addr: 0xbfd023d2
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfd023c0                                  0d                 .
+0xbfd023d0 ff9090                               ...             
+
+>>    Done printing success 0
+>> Done printing successes
+>> The success/offset with the highest overlay density is 0, value of 0.938272
+>> The success/offset with the highest average density is 0, value of 0
+>> There were 1 different eips: 0xbfd023b7 
+>> There were 0 fragments
+ >> There were 1 chunks
+>>    Printing chunk 0
+ >> There were 1 chunks
+>> Chunk fragment 0 is success starts at 3218088816 and ends at 3218088885
+>>    Done printing chunk 0
+33 [State 0] Killing state 0
+33 [State 0] Terminating state 0 with message 'State was terminated by opcode
+            message: "<< Ending state 0"
+            status: 0'
+All states were terminated
+Deleting state 0 0x0x34a3440
+Stack trace
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x74c3d9]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44f215]
+  /lib/libc.so.6 : exit()+0xe2
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x727c31]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x51f30d]
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x453c41]
+  /lib/libc.so.6 : __libc_start_main()+0xfe
+  /home/s2e/s2e/dasos/s2e/build/qemu-release/i386-s2e-softmmu/qemu() [0x44ca39]

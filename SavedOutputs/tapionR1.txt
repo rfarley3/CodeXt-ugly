@@ -1,0 +1,234 @@
+Current data layout: e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128
+Current target triple: 
+Creating plugin CorePlugin
+Creating plugin BaseInstructions
+Creating plugin ExecutionTracer
+Creating plugin HostFiles
+Creating plugin InterruptMonitor
+Creating plugin LinuxSyscallMonitor
+Creating plugin DasosPreproc
+1 [State 0] Created initial state
+Adding memory block (startAddr = 0x0, size = 0xa0000, hostAddr = 0x3734000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xa0000, size = 0x60000, hostAddr = 0x39db000, isSharedConcrete=1)
+Adding memory block (startAddr = 0x100000, size = 0x7f00000, hostAddr = 0x2aaab8aad000, isSharedConcrete=0)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1c8bc000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xc0000, size = 0x20000, hostAddr = 0x1c905000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x800000, hostAddr = 0x2aaac09af000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x10000, hostAddr = 0x1e42c000, isSharedConcrete=1)
+Adding memory block (startAddr = 0xffffffffffffffff, size = 0x20000, hostAddr = 0x1e4a0000, isSharedConcrete=1)
+Initing initial device state.
+Looking for relevant virtual devices...
+   Registering device slirp
+   Shared device block
+   Registering device timer
+   Shared device ram
+   Registering device cpu_common
+   Shared device cpu
+   Registering device apic
+   Registering device fw_cfg
+   Registering device i8259
+   Registering device i8259
+   Registering device PCIBUS
+   Registering device I440FX
+   Registering device PIIX3
+   Registering device cirrus_vga
+   Registering device mc146818rtc
+   Registering device ioapic
+   Registering device i8254
+   Registering device serial
+   Registering device e1000
+   Registering device ide
+   Registering device ps2kbd
+   Registering device ps2mouse
+   Registering device vmmouse
+   Registering device pckbd
+   Registering device dma
+   Registering device dma
+   Registering device fdc
+   Registering device piix4_pm
+   Registering device i2c_bus
+WARNING!!! All writes to disk will be lost after shutdown.
+Initializing periodic timer
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+Firing timer event
+28 [State 0] Message from guest (0xbfb467fc): << Within execShellcode with params f: 0, c: 1, eip_known: no
+
+>> fuzzInit: datum forking for value 0
+>> fuzzInit: datum forking for value 0
+28 [State 0] Forking state 0 at pc = 0x8048a0e into states:
+    state 0 with condition (Eq false
+    (Eq (w32 0)
+        (ReadLSB w32 0 v0_fuzz_symb_0)))
+    state 1 with condition (Not (Eq false
+         (Eq (w32 0)
+             (ReadLSB w32 0 v0_fuzz_symb_0))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+Size=2 Low=0 splitIndex=1 high=1
+28 [State 0] Switching from state 0 to state 1
+Copied 34928 (count=1)
+Finalizing TB execution 1
+s2e_dummyMainFunction
+tcg-llvm-tb-0-8048a0e
+28 [State 1] Message from guest (0xbfb467fc): << About to call dasospreproc_init with shell: 0xbfb471a0 (offset of 0 not yet applied), shell_len: 395, eip: 0x00000000
+
+28 [State 1] Warning: EIP is not set, there may be false positives
+>> Recv'ed custom insn for a DasosPreproc memory segment within pid 86716416, addr range: 0xbfb471a0-0xbfb4732b with eip: 0x00000000 buffer length: 395 and syscall number: 1024
+>>    Mem_map start_addr: 0xbfb471a0, length: 395B, end_addr: 0xbfb4732b
+           0 1 2 3  4 5 6 7  8 9 a b  c d e f   ASCII
+0xbfb471a0 c7c25a52 90c39052 909bdbe3 d9eb09c0  ..ZR...R........
+0xbfb471b0 dbe28bd2 8d1424fd d9fcdee9 d8d9f9ff  ......$.........
+0xbfb471c0 d27609dd c1dae9d9 e13bfffd 6857fd98  .v.......;..hW..
+0xbfb471d0 44770490 dbe2fc59 d8d9d9f1 ddd1dae9  Dw.....Y........
+0xbfb471e0 81e92efd 9844c7c0 3c715f32 81e8d86f  .....D..<q_2...o
+0xbfb471f0 5f326831 c81e11dd d15f81ef 31c81e11  _2h1....._..1...
+0xbfb47200 d8d1f5fc d9fc5209 db8bc087 fae30209  ......R.........
+0xbfb47210 c0d9f2f5 5a7c09de c13bc7d9 f590d9fd  ....Z|...;......
+0xbfb47220 d9fa8b1f 7708d9e9 81ffeeaa c975477c  ....w........uG|
+0xbfb47230 03d9f5f5 85c9477f 04ddd1dd e9d9f8d9  ......G.........
+0xbfb47240 fe5203d0 fc85c0f0 311adee1 8bd25add  .R......1.....Z.
+0xbfb47250 e9ddd1d9 f33bcb71 083bcad9 f3dae9d9  .....;.q.;......
+0xbfb47260 e1d8d98b c9803fe8 d9f0751f d9edc7c7  ......?...u.....
+0xbfb47270 8763c07e dec981ef 8a63c07e dae94747  .c.~.....c.~..GG
+0xbfb47280 47d9f0d9 f7d8d9de f98bfade e1d9f7de  G...............
+0xbfb47290 c1d9e9d9 ff81e8a6 4f532185 d2ddd185  ........OS!.....
+0xbfb472a0 c0dee1de c181c0a4 4f5321d8 d990fc48  ........OS!....H
+0xbfb472b0 700285ff 487b08f5 ded93bc7 09c0fc49  p...H{....;....I
+0xbfb472c0 ded93bcf fc497a02 dee1497c 0e09ff81  ..;..Iz...I|....
+0xbfb472d0 fac94de4 01d9fe21 c909db85 ff497e09  ..M....!.....I~.
+0xbfb472e0 dde909db d9fafcd9 f7d9e1db e285c9de  ................
+0xbfb472f0 e90f8f2b ffffffd9 fddef1d9 f909ef00  ...+............
+0xbfb47300 e9506be6 cdac47a1 092a4bba 84e7fcd3  .Pk...G..*K.....
+0xbfb47310 897d80bf 02c400b5 0db58d54 d3fa9eb6  .}.........T....
+0xbfb47320 93b1a5fb e37b09dd c100001f           .....{......    
+
+ >> oTBS pc: 0xbfb471a0
+ >> oTIE pc: 0xbfb471a0:0x00 nextpc: bfb471a6 len: 6
+  0:  0: 1  6B @0xbfb471a0: c7 c2 5a 52 90 c3                  mov edx, 0xc390525a      nextPC: 0xbfb471a6
+ >> oTIE pc: 0xbfb471a6:0x06 nextpc: bfb471a7 len: 1
+  0:  1: 1  1B @0xbfb471a6: 90                                 nop                      nextPC: 0xbfb471a7
+ >> oTIE pc: 0xbfb471a7:0x07 nextpc: bfb471a8 len: 1
+  0:  2: 1  1B @0xbfb471a7: 52                                 push edx                 nextPC: 0xbfb471a8
+ >> oTIE pc: 0xbfb471a8:0x08 nextpc: bfb471a9 len: 1
+  0:  3: 1  1B @0xbfb471a8: 90                                 nop                      nextPC: 0xbfb471a9
+ >> oTBE Target by pc: 0xbfb471a9 to pc: 0xbfb471a9
+ >> oTIE pc: 0xbfb471a9:0x09 nextpc: bfb471a9 len: 1
+  0:  4: 1  1B @0xbfb471a9: 9b                                 wait                     nextPC: 0xbfb471a9
+ >> oEI pc: 0xbfb471a0
+  0:  0: 1  6B @0xbfb471a0: c7 c2 5a 52 90 c3                  mov edx, 0xc390525a      nextPC: 0xbfb471a6
+ >> oEI pc: 0xbfb471a6
+  1:  1: 1  1B @0xbfb471a6: 90                                 nop                      nextPC: 0xbfb471a7
+ >> oDMA OOB Write by seq_num: 2 pc: 0xbfb471a7:0x7 to addr: 0xbfb467a8 len: 4B value:  0x5a  0x52  0x90  0xc3 
+ >> >> oDMA value in memory at that address:  0x5a  0x52  0x90  0xc3 
+ >> oEI pc: 0xbfb471a7
+  2:  2: 1  1B @0xbfb471a7: 52                                 push edx                 nextPC: 0xbfb471a8
+ >> oEI pc: 0xbfb471a8
+  3:  3: 1  1B @0xbfb471a8: 90                                 nop                      nextPC: 0xbfb471a9
+ >> oEB pc: 0xbfb471a9
+ >> oExc pc: 0xbfb471a9 exception_idx: 7(0x07)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oTBS pc: 0xbfb471a9
+ >> oTBE Target by pc: 0xbfb471a9 to pc: 0xbfb471a9
+ >> oTIE pc: 0xbfb471a9:0x09 nextpc: bfb471aa len: 1
+  0:  5: 2  1B @0xbfb471a9: 9b                                 wait                     nextPC: 0xbfb471aa
+ >> oTIE pc: 0xbfb471aa:0x0a nextpc: bfb471ac len: 2
+  0:  6: 2  2B @0xbfb471aa: db e3                              fninit                   nextPC: 0xbfb471ac
+ >> oTIE pc: 0xbfb471ac:0x0c nextpc: bfb471ae len: 2
+  0:  7: 2  2B @0xbfb471ac: d9 eb                              fldlpi                   nextPC: 0xbfb471ae
+ >> oTIE pc: 0xbfb471ae:0x0e nextpc: bfb471b0 len: 2
+  0:  8: 2  2B @0xbfb471ae: 09 c0                              or eax, eax              nextPC: 0xbfb471b0
+ >> oTIE pc: 0xbfb471b0:0x10 nextpc: bfb471b2 len: 2
+  0:  9: 2  2B @0xbfb471b0: db e2                              fclex                    nextPC: 0xbfb471b2
+ >> oTIE pc: 0xbfb471b2:0x12 nextpc: bfb471b4 len: 2
+  0: 10: 2  2B @0xbfb471b2: 8b d2                              mov edx, edx             nextPC: 0xbfb471b4
+ >> oTIE pc: 0xbfb471b4:0x14 nextpc: bfb471b7 len: 3
+  0: 11: 2  3B @0xbfb471b4: 8d 14 24                           lea edx, [esp]           nextPC: 0xbfb471b7
+ >> oTIE pc: 0xbfb471b7:0x17 nextpc: bfb471b8 len: 1
+  0: 12: 2  1B @0xbfb471b7: fd                                 std                      nextPC: 0xbfb471b8
+ >> oTIE pc: 0xbfb471b8:0x18 nextpc: bfb471ba len: 2
+  0: 13: 2  2B @0xbfb471b8: d9 fc                              frndint                  nextPC: 0xbfb471ba
+ >> oTIE pc: 0xbfb471ba:0x1a nextpc: bfb471bc len: 2
+  0: 14: 2  2B @0xbfb471ba: de e9                              fsubp st1, st0           nextPC: 0xbfb471bc
+ >> oTIE pc: 0xbfb471bc:0x1c nextpc: bfb471be len: 2
+  0: 15: 2  2B @0xbfb471bc: d8 d9                              fcomp st0, st1           nextPC: 0xbfb471be
+ >> oTIE pc: 0xbfb471be:0x1e nextpc: bfb471bf len: 1
+  0: 16: 2  1B @0xbfb471be: f9                                 stc                      nextPC: 0xbfb471bf
+ >> oTIE pc: 0xbfb471bf:0x1f nextpc: bfb471a9 len: 2
+  0: 17: 2  2B @0xbfb471bf: ff d2                              call edx                 nextPC: 0xbfb471a9
+ >> oExc pc: 0xbfb471a9 exception_idx: 239(0xef)
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 3
+ >> oEB pc: 0xbfb471a9
+ >> oEI pc: 0xbfb471a9
+  4:  5: 2  1B @0xbfb471a9: 9b                                 wait                     nextPC: 0xbfb471aa
+ >> oEI pc: 0xbfb471aa
+ >> oEI handling FPU insn pc: 0xbfb471aa
+  5:  6: 2  2B @0xbfb471aa: db e3                              fninit                   nextPC: 0xbfb471ac
+ >> oEI pc: 0xbfb471ac
+ >> oEI handling FPU insn pc: 0xbfb471ac
+  6:  7: 2  2B @0xbfb471ac: d9 eb                              fldlpi                   nextPC: 0xbfb471ae
+ >> oEI pc: 0xbfb471ae
+  7:  8: 2  2B @0xbfb471ae: 09 c0                              or eax, eax              nextPC: 0xbfb471b0
+ >> oEI pc: 0xbfb471b0
+ >> oEI handling FPU insn pc: 0xbfb471b0
+  8:  9: 2  2B @0xbfb471b0: db e2                              fclex                    nextPC: 0xbfb471b2
+ >> oEI pc: 0xbfb471b2
+  9: 10: 2  2B @0xbfb471b2: 8b d2                              mov edx, edx             nextPC: 0xbfb471b4
+ >> oEI pc: 0xbfb471b4
+ 10: 11: 2  3B @0xbfb471b4: 8d 14 24                           lea edx, [esp]           nextPC: 0xbfb471b7
+ >> oEI pc: 0xbfb471b7
+ 11: 12: 2  1B @0xbfb471b7: fd                                 std                      nextPC: 0xbfb471b8
+ >> oEI pc: 0xbfb471b8
+ >> oEI handling FPU insn pc: 0xbfb471b8
+ 12: 13: 2  2B @0xbfb471b8: d9 fc                              frndint                  nextPC: 0xbfb471ba
+ >> oEI pc: 0xbfb471ba
+ >> oEI handling FPU insn pc: 0xbfb471ba
+ 13: 14: 2  2B @0xbfb471ba: de e9                              fsubp st1, st0           nextPC: 0xbfb471bc
+ >> oEI pc: 0xbfb471bc
+ >> oEI handling FPU insn pc: 0xbfb471bc
+ 14: 15: 2  2B @0xbfb471bc: d8 d9                              fcomp st0, st1           nextPC: 0xbfb471be
+ >> oEI pc: 0xbfb471be
+ 15: 16: 2  1B @0xbfb471be: f9                                 stc                      nextPC: 0xbfb471bf
+ >> oDMA OOB Write by seq_num: 16 pc: 0xbfb471bf:0x1f to addr: 0xbfb467a4 len: 4B value:  0xc1  0x71  0xb4  0xbf 
+ >> >> oDMA value in memory at that address:  0xc1  0x71  0xb4  0xbf 
+ >> oEB pc: 0xbfb471bf
+ >> oEI pc: 0xbfb471bf
+ 16: 17: 2  2B @0xbfb471bf: ff d2                              call edx                 nextPC: 0xbfb471a9
+ >> oPC prev: 3 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 0
+ >> oPC prev: 0 curr: 3
+28 [State 1] @0xbfb467a8, left buffer range after 18 IoB insns; last IoB insn @0xbfb471bf, disasm in debug.
+  0: 17: 2  2B @0xbfb471bf: ff d2                              call edx                 nextPC: 0xbfb471a9
+28 [State 1] ERROR: we've left our module/shellcode unexpectedly, terminateStateEarly
+>> Terminating non-successful state that had 2 legitimate writes, outputting its trace and mem_map
+>> Printing Data_Trace (bytes written in order of write)
+>>      2 by:0xbfb471a7 wrote  4B @0xbfb467a8: OOB 5a 52 90 c3 
+>>     16 by:0xbfb471bf wrote  4B @0xbfb467a4: OOB c1 71 b4 bf 
+28 [State 1] Terminating state 1 with message 'eliminated a state that exec'ed out of module bounds unexpectedly'
+28 [State 1] Switching from state 1 to state 0
+Copied 34928 (count=1)
+Deleting state 1 0x0x1fcc6a90
+28 [State 0] Message from guest (0xbfb467fc): << Looping fork, currently at 0
+28 [State 0] >> Recv'ed onFini custom insn
+>> Recv'ed onFini custom insn
+>> There were 0 successes
+>> There were 0 fragments

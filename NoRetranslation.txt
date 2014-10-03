@@ -1,0 +1,75 @@
+------- No retranslation 
+ 
+ 
+ KLEE: WARNING: silently concretizing (reason: memory access from concrete code) expression (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1)) to value 255 (:0)
+  >> oSC addr: 0x092fd17d concretized to: 0xff reason: memory access from concrete code
+  >> getOriginalTaint addr: 0x0000000d cfg.symb_vars[0].addr: 13 cfg.symb_vars[0].exprs[0]
+  >> getOriginalTaint taint: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+  >> oSC restoring addr: 0x092fd17d to: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+  >> oTRA pc: 0x092fd17c write to EBX
+  >> oTIE pc: 0x092fd17c:0x0000000c nextpc: 0x092fd181 len: 5
+   0:  6: 3  5B @0x092fd17c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0x092fd181
+ 
+ ---------------------  
+   
+ >> oRA pc: 0x092fd17c write to EBX
+ >> oEI pc: 0x092fd17c
+ >> oEI pc: 0x092fd17c had been silently concretized at addr: 0x092fd17d
+ >> getOriginalTaint addr: 0x0000000d cfg.symb_vars[0].addr: 13 cfg.symb_vars[0].exprs[0]
+ >> getOriginalTaint taint: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> oEI pc: 0x092fd17c wrote to reg: EBX
+ >> getExprLabel addr: 0x0000000d cfg.symb_vars[0].addr: 13 cfg.symb_vars[0].labels[0]
+ >> getExprLabel label: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg from  byte_expr: 255
+ >> taintReg to tainted_byte: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> taintReg     tainted_reg: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> taintReg     extrac_expr: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> taintReg from  byte_expr: 0
+ >> taintReg to tainted_byte: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     tainted_reg: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     extrac_expr: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg from  byte_expr: 0
+ >> taintReg to tainted_byte: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     tainted_reg: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     extrac_expr: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg from  byte_expr: 0
+ >> taintReg to tainted_byte: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     tainted_reg: (Read w8 0 v1_code_Key0000_1)
+ >> taintReg     extrac_expr: (Read w8 0 v1_code_Key0000_1)
+  6:  6: 3  5B @0x092fd17c: bb ff 00 00 00                     mov ebx, 0xff            nextPC: 0x092fd181
+ >> monitorMemByte code_Key[0] byte value is 0xff and its symb expr is: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> monitorRegister _EBX word value inside is 0x000000ff and its symb expr is: (Concat w32 N0:(Read w8 0 v1_code_Key0000_1)
+            (Concat w24 N0
+                        (Concat w16 N0 (Add w8 (w8 255) N0))))
+ >> monitorRegister _EAX word value inside is 0x092fd170
+ >> monitorMemByte Out[0] byte value is 0x14
+
+----------------------
+
+  9:  9: 3  1B @0x092fd184: ac                                 lodsb                    nextPC: 0x092fd185
+ >> monitorMemByte code_Key[0] byte value is 0xff and its symb expr is: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> monitorRegister _EBX word value inside is 0x000000ff and its symb expr is: (Concat w32 N0:(Read w8 0 v1_code_Key0000_1)
+            (Concat w24 N0
+                        (Concat w16 N0 (Add w8 (w8 255) N0))))
+ >> monitorRegister _EAX word value inside is 0x00000014
+ >> monitorMemByte Out[0] byte value is 0x14
+ >> oRA pc: 0x092fd185 write to EAX
+ >> oEI pc: 0x092fd185
+ 10: 10: 3  2B @0x092fd185: 31 d8                              xor eax, ebx             nextPC: 0x092fd187
+ >> monitorMemByte code_Key[0] byte value is 0xff and its symb expr is: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> monitorRegister _EBX word value inside is 0x000000ff and its symb expr is: (Concat w32 N0:(Read w8 0 v1_code_Key0000_1)
+            (Concat w24 N0
+                        (Concat w16 N0 (Add w8 (w8 255) N0))))
+ >> monitorRegister _EAX word value inside is 0x000000eb
+ >> monitorMemByte Out[0] byte value is 0x14
+ >> oDMA pc: 0x092fd187:0x00000017 Write by seq_num: 11 to addr: 0x092fd191 len: 1B value:  eb 
+ >> oRA pc: 0x092fd187 write to EDI
+ >> oEI pc: 0x092fd187
+ 11: 11: 3  1B @0x092fd187: aa                                 stosb                    nextPC: 0x092fd188
+ >> monitorMemByte code_Key[0] byte value is 0xff and its symb expr is: (Add w8 (w8 255) (Read w8 0 v1_code_Key0000_1))
+ >> monitorRegister _EBX word value inside is 0x000000ff and its symb expr is: (Concat w32 N0:(Read w8 0 v1_code_Key0000_1)
+            (Concat w24 N0
+                        (Concat w16 N0 (Add w8 (w8 255) N0))))
+ >> monitorRegister _EAX word value inside is 0x000000eb
+ >> monitorMemByte Out[0] byte value is 0x14
+ 

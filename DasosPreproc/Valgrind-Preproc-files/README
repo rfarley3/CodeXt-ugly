@@ -1,0 +1,2 @@
+These files are a copy of the host's directory: ~/VirtualMachines/ASoS VM Shared/dasos-forensics-dev
+In which is valgrind-3.7.0/dasos/ where I did all the Valgrind specific module coding.

@@ -1,0 +1,12 @@
+#! /bin/sh
+
+PATH=/home/s2e/s2e/dasos/s2e/build/qemu-release
+
+# Verify that QEMU works in vanilla mode
+$PATH/i386-softmmu/qemu -m 8 
+# you should see BIOS booting in the VM
+
+# Verify that QEMU works in S2E mode
+$PATH/i386-s2e-softmmu/qemu -m 8 
+# you should see BIOS booting in the VM
+

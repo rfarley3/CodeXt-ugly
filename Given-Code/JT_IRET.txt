@@ -1,0 +1,56 @@
+Hi,
+
+if you rename JT_IRET to JT_RET, you will get way too much calls, as
+every return instruction will be interpreted as a system call return.
+The value should be defined in s2e-src/qemu/exec-all.h:
+
+(around line 167)
+
+#ifdef CONFIG_S2E
+enum JumpType
+{
+    JT_RET, JT_LRET, JT_IRET
+};
+#endif
+
+and in s2e-src/qemu/target-i386/translate.c you should have:
+
+(around line 6367)
+   case 0xcf: /* iret */
+        SET_TB_TYPE(TB_RET);
+        gen_svm_check_intercept(s, pc_start, SVM_EXIT_IRET);
+        if (!s->pe) {
+            /* real mode */
+                s2e_on_translate_jump_start(g_s2e, g_s2e_state, s->tb,
+s->pc, JT_IRET);                                   <=
+            gen_helper_iret_real(tcg_const_i32(s->dflag));
+            s->cc_op = CC_OP_EFLAGS;
+        } else if (s->vm86) {
+            if (s->iopl != 3) {
+                gen_exception(s, EXCP0D_GPF, pc_start - s->cs_base);
+            } else {
+                s2e_on_translate_jump_start(g_s2e, g_s2e_state, s->tb,
+s->pc, JT_IRET);                                 <=
+                gen_helper_iret_real(tcg_const_i32(s->dflag));
+                s->cc_op = CC_OP_EFLAGS;
+            }
+        } else {
+                s2e_on_translate_jump_start(g_s2e, g_s2e_state, s->tb,
+s->pc, JT_IRET);                                          <=
+            if (s->cc_op != CC_OP_DYNAMIC)
+                gen_op_set_cc_op(s->cc_op);
+            gen_jmp_im(s, pc_start - s->cs_base);
+            gen_helper_iret_protected(tcg_const_i32(s->dflag),
+                                      tcg_const_i32(s->pc - s->cs_base));
+            s->cc_op = CC_OP_EFLAGS;
+        }
+        gen_eob(s);
+        break;
+
+Getting a state in S2E is indeed a bit tricky, the trick I saw in
+other plugins was to hook a signal for instruction translation, and
+just do all the initialization once the first instruction is
+translated. Afterwards you unhook the signal, so the init routine is
+not called any more and does not incure overhead. I wrote the code for
+this in your files, altough I didn't compile them, so please just take
+it as a guide ;)

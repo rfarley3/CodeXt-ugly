@@ -27,3 +27,77 @@
 *.i*86
 *.x86_64
 *.hex
+
+# large files to avoid
+core
+*.tar
+*.tar.gz
+*.tar.bz2
+*.deb
+*~
+*.swp
+*.iso
+*.raw
+*.qcow2
+*.old
+
+# my runtime make outputs
+mk.stamps
+runtime.dir
+
+# other projects that I did not modify
+cccc-3.1.4
+ADMmutate-0.8.4
+alpha2
+alpha3
+clet
+shcfuscator
+tapion
+upx-3.*
+metasploit*run
+ObfuscationTesting/shellforge
+udis86-1.7*/build
+udis86-1.7*/docs
+udis86-1.7*/tests
+
+# runtime output files
+s2e-out*
+s2e-last
+
+# s2e build dir
+s2e/build
+s2e/demos
+
+# over 100M files
+ObfuscationTesting/randfill/*-debug.txt 
+ObfuscationTesting/randfill/2-debug.txt 
+ObfuscationTesting/randfill/3-debug.txt
+
+ObfuscationTesting/shellforge/shellforge
+
+# over 50M files
+SavedOutputs/10k/randfill-10240kb:11-cd80-2048-1024.txt
+SavedOutputs/10k/randfill-10240kb:11-cd80-4096-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-*.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-2048-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-18432-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-86016-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-100352-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-28672-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-64512-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-27648-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-26624-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-96256-1024.txt
+SavedOutputs/100k/randfill-102400kb:0-cd80-13312-1024.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep12.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep18.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep16.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep10.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep8.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep3.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep7.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep17.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep0.txt
+SavedOutputs/1krep20/randfill-1024kb:648-rep2.txt
+
+ObfuscationTesting/randfill/randfill*rawshell

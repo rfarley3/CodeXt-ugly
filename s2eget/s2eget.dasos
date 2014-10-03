@@ -1,0 +1,4 @@
+# Run this script on the QEMU test machine before you suspend it to have it autoexec test upon resume
+
+./s2eget && tar xvf pkg.tar && cd runtime.dir && chmod +x firstran.sh && ./firstran.sh
+

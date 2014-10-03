@@ -1,0 +1,60 @@
+//
+//  libDasosfDump.h
+//  
+//
+//  Created by Ryan Farley on 3/13/12.
+//  Copyright (c) 2012 George Mason University. All rights reserved.
+//
+
+#ifndef _libDasosBastard_h
+#define _libDasosBastard_h
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>		/* for strerror(int errno) */
+#include <errno.h>
+
+#include <libdis.h>
+
+
+/* This program reads in a file to a dump struct.
+ * It assumes that the reader has the same sizes 
+ * for all struct elements as the writer.
+ * As of now this is:
+ *   int: 4; char: 1; u_ints: 4; timeval: 8
+ * Note that OSX timeval is 16
+ * Ideally the writer should be changed to use untyped 
+ * vars with set lengths when writing, then the reader
+ * can use an untyped reader which is converted into a
+ * typed version to guarantee compatibility regardless 
+ * of writer OS version changes.
+ */
+
+
+#include "libDasosfDump.h"
+
+unsigned int libdisasm_inited; // = 0;
+
+void initDasosBastard ();
+void libdisasm_init ();
+void libdisasm_dest ();
+unsigned int findShellcode_LenViaDisasm (struct dasos_forens_dump dump);
+void findShellcode_2 (struct dasos_forens_dump dump, struct shellcode* shell);
+unsigned int doesShellcodeReach_0 (unsigned char* haystack, unsigned int goal);
+unsigned int doesShellcodeReach_1 (unsigned char* haystack, unsigned int idx, unsigned int align);
+unsigned int doesShellcodeReach_2 (unsigned char* haystack, unsigned int idx, unsigned int align);
+unsigned int doesShellcodeReach_3 (unsigned char* haystack, unsigned int idx, unsigned int align);
+unsigned int doesShellcodeReach (unsigned char* haystack, unsigned int idx, unsigned int align);
+unsigned int findShellcode_3 (struct dasos_forens_dump dump, struct shellcode* shell);
+unsigned int findShellcode (struct dasos_forens_dump dump, struct shellcode* shell);
+void disasmShellcode (struct shellcode shell);
+
+
+#endif
