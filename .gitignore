@@ -34,8 +34,11 @@ core
 *.tar.gz
 *.tar.bz2
 *.deb
+
 *~
 *.swp
+._*
+
 *.iso
 *.raw
 *.qcow2
