@@ -1,0 +1,58 @@
+ .d8888b.              888       Y88b   d88P888    
+d88P  Y88b             888        Y88b d88P 888    
+888    888             888         Y88o88P  888    
+888        .d88b.  .d88888 .d88b.   Y888P   888888 
+888       d88""88bd88" 888d8P  Y8b  d888b   888    
+888    888888  888888  88888888888 d88888b  888    
+Y88b  d88PY88..88PY88b 888Y8b.    d88P Y88b Y88b.  
+ "Y8888P"  "Y88P"  "Y88888 "Y8888d88P   Y88b "Y888
+
+Available at https://github.com/rfarley3/CodeXt-ugly.git
+
+A plugin for S2E (https://sites.google.com/site/dslabepfl/proj/s2e).
+
+Created by Ryan Farley  <rfarley3@gmu.edu> or <rfarley@mitre.org>
+       and Xinyuan Wang <xwangc@gmu.edu>
+       
+See "CodeXt: Automatic Extraction of Obfuscated Attack Code from Memory Dump." 
+    In Proceedings of the 17th Information Security and Forensics Society 
+    Information Security Conference (ISC 2014). Hong Kong, October 2014.
+
+Keywords: Malware Forensics, Binary Analysis, Symbolic Execution
+
+****************************************************
+CodeXt extends S2E (with some modifications to the underlying engines: 
+S2E/QEMU/KLEE) to monitor x86 byte code for the purposes of shellcode/malware 
+modeling, forensics, or generic code extration. Upon real-time detection of
+an attack, CodeXt is able to automatically and accurately pinpoint the 
+exact start and boundaries of attack code---even if it is mingled with
+random bytes in the memory. CodeXt has a generic way of handling 
+self-modifying code and multiple layers of encoding, and it can 
+automatically extract the complete hidden and transient code protected 
+by multiple layers of sophisticated encoders without using any signature 
+or pattern of the decoder.
+
+What you can do:
+- You can give it a buffer of memory and it will comb through and 
+  report back all the executable chunks of code within it. 
+- You can give it a fragment of code or a full executable and 
+  it will report back detailed execution information.
+- You can expand branch exploration by marking segments of 
+  memory as symbolic, and each fork will be tracked.
+- You can follow data and instruction influences on the data
+  via a taint labeling mechanism that leverages KLEE, e.g. you 
+  can monitor network applications by marking all input 
+  as tainted and determine which attack bytes impact which 
+  bytes in a forensics dump. 
+- The output information includes:
+  * translated instruction trace
+  * executed instruction trace
+  * data (in a specified range of memory) write trace
+  * grouping of instructions into related execution strings
+  * visual deltas of memory changes (to follow self-mutating
+    code iterations)
+
+*****************************************************
+
+
+
