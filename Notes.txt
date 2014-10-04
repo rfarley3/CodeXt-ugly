@@ -5179,3 +5179,95 @@ Concat w32 (Extract w8 24 (Xor w32 (w32 3085654150) (Concat w32 N0 (w24 0))))
                
                
 188 key0000 val 0x14 
+
+
+
+
+
+
+
+3 Oct 2014 Inhibiting forking.
+the first output that notifies us of a fork is:
+g_s2e->getDebugStream(s2eState) << "forkAndConcretize(" << expr << ")" << std::endl;
+in S2EExecutor.h:222/cpp:477 in function static void S2EExecutor::handleForkAndConcretize(klee::Executor* executor, klee::ExecutionState* state, klee::KInstruction* target, std::vector<klee::ref<klee::Expr> > &args);
+ note that it contains:     if (UseExprSimplifier) {        expr = s2eExecutor->simplifyExpr(*state, expr);} which can be set by a klee option in the .lua config of --use-expr-simplifier=false
+ if it is set, then the program will repeatedly fork on this PC, ie stuck in a loop without translating or executing any further instructions.
+The function also expr = state->constraints.simplifyExpr(expr); without any option to avoid it
+After these two simplifiers (executor and constraints), if the expr is constant, then it returns without forking: if(isa<klee::ConstantExpr>(expr)) { s2eExecutor->bindLocal(target, *state, expr); return; }
+The function is given 3 expr: std::vector< ref<Expr> > &args [expr, min, max]; what sets the min/max?
+If the function can't solve, then it iterates between min and max building a vector of values that pass constraints and are likely candidates (mayBeTrue). It then reduces this into a minimum set. It then does a for loop, creating states and binding the value per state.
+hF&C appears 3 times in the src. the def (:442), a recursive call when forking the secondary state s.t. that state goes back 1 pc and re-calls hf&C (:626); and (:850)  inside the S2EExecutor instantiator (starts at :655)
+:848:   llvm::Function* function = kmodule->module->getFunction("tcg_llvm_fork_and_concretize"); assert(function); addSpecialFunctionHandler(function, handleForkAndConcretize);
+/home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:3481:void Executor::addSpecialFunctionHandler(Function* function, FunctionHandler handler){ specialFunctionHandler->addUHandler(function, handler);} allows a user to specify a function to call upon events
+
+
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/Plugins/Searchers/MaxTbSearcher.cpp:178:const Instruction *instr = state->pc->inst; const CallInst *callInst = dyn_cast<CallInst>(instr); if (!callInst) {return 0;} assert(callInst->getCalledFunction()->getName() == "tcg_llvm_fork_and_concretize");
+
+    
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/s2e/s2e_qemu.h:354:uint64_t tcg_llvm_fork_and_concretize(uint64_t value, uint64_t knownMin, uint64_t knownMax);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/tcg/tcg-llvm.cpp #ifdef CONFIG_S2E void TCGLLVMContextPrivate::initializeHelpers() { Function *m_helperForkAndConcretize = m_module->getFunction("tcg_llvm_fork_and_concretize");
+
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:
+#define S2E_FORK_AND_CONCRETIZE(val, max) tcg_llvm_fork_and_concretize(val, 0, max)
+#define S2E_FORK_AND_CONCRETIZE(val, max) (val)
+#define S2E_FORK_AND_CONCRETIZE_ADDR(val, max) (g_s2e_fork_on_symbolic_address ? S2E_FORK_AND_CONCRETIZE(val, max) : val)
+#define S2E_FORK_AND_CONCRETIZE_ADDR(val, max) (val)
+
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:
+#define S2E_FORK_AND_CONCRETIZE(val, max) tcg_llvm_fork_and_concretize(val, 0, max)
+#define S2E_FORK_AND_CONCRETIZE(val, max) (val)
+#define S2E_FORK_AND_CONCRETIZE_ADDR(val, max) (g_s2e_fork_on_symbolic_address ? S2E_FORK_AND_CONCRETIZE(val, max) : val)
+    
+    
+
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:148:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:149:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:185:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:186:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:222:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:223:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:303:#undef S2E_FORK_AND_CONCRETIZE
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:260:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(addr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:261:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:331:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(addr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:332:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:511:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(addr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:512:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:578:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(addr, ADDR_MAX);
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:579:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:636:#undef S2E_FORK_AND_CONCRETIZE_ADDR
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_template.h:637:#undef S2E_FORK_AND_CONCRETIZE
+
+[s2e@s2e:~/s2e/dasos]$ ./searchSource.sh m_helperForkAndConcretize
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/tcg/tcg-llvm.cpp:1004:
+int TCGLLVMContextPrivate::generateOperation(int opc, const TCGArg *args)
+{
+#ifndef CONFIG_S2E
+    __ST_OP(INDEX_op_st_i32,   32, 32)
+#else
+    case INDEX_op_st_i32: {
+        assert(getValue(args[0])->getType() == intType(32));
+        assert(getValue(args[1])->getType() == wordType());
+
+        Value* valueToStore = getValue(args[0]);
+        if (args[1] == 0 && args[2] == offsetof(CPUX86State, eip)) {
+            valueToStore = m_builder.CreateCall3(m_helperForkAndConcretize,
+                                m_builder.CreateZExt(valueToStore, intType(64)),
+                                ConstantInt::get(intType(64), 0),
+                                ConstantInt::get(intType(64), 0xffffffff));
+            valueToStore = m_builder.CreateTrunc(valueToStore, intType(32));
+        }
+
+        v = m_builder.CreateAdd(getValue(args[1]),
+                    ConstantInt::get(wordType(), args[2]));
+        v = m_builder.CreateIntToPtr(v, intPtrType(32));
+        m_builder.CreateStore(m_builder.CreateTrunc(
+                    valueToStore, intType(32)), v);
+        }
+        break;
+#endif
+
+
+s2eExecutor->bindLocal(target, *state, expr); is inherited from Klee::Executor::void bindLocal(KInstruction *target, ExecutionState &state, ref<Expr> value); /home/s2e/s2e/dasos/s2e/./s2e/klee/lib/Core/Executor.cpp:1080:void Executor::bindLocal (...) {getDestCell(state, target).value = simplifyExpr(state, value);}
+Klee::Executor.h::Cell& getDestCell(ExecutionState &, KInstruction *target) { return state.stack.back().locals[target->dest];}
+

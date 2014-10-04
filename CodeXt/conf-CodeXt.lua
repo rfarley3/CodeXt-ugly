@@ -8,6 +8,7 @@ s2e = {
     kleeArgs = {
       "--use-dfs-search=true",
       "--state-shared-memory=true",
+		--"--use-expr-simplifier=false", -- this did not work, it kept forking at the same pc over and over again
     }
 }
 
