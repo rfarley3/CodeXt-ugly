@@ -3408,6 +3408,7 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 		return;
 	}
 	//remFalseConstraints (newStates[0]);
+	s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
 	newStates[0]->constraints.clear ();
 	newStates[1]->constraints.clear ();
 	klee::ref<klee::Expr> final_constraint;

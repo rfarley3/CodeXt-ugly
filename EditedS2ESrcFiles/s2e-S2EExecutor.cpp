@@ -439,6 +439,45 @@ void S2EExecutor::handlerTracePortAccess(Executor* executor,
     }
 }
 
+
+// added RJF
+bool S2EExecutor::isaTaintLabeledExpr (klee::ref<klee::Expr> expr) {
+	 if(isa<klee::ConstantExpr>(expr)) {
+	  	  return false;
+	 }
+    // search for a labeled leaf
+    // or get obtuse and print the string and see if a Read with name code_ or data_ exists within it
+	 std::ostringstream os;
+	 os << expr;
+	 std::string expr_str (os.str () );
+	 if (expr_str.find ("code_") == std::string::npos) {
+		 return true;
+	 }
+	 if (expr_str.find ("data_") == std::string::npos) {
+		 return true;
+	 }
+    return false;
+} // end fn isaTaintLabeledExpr
+
+
+// added RJF
+klee::ref<klee::Expr> S2EExecutor::solveTaintLabeledExpr (klee::Executor* executor, klee::ExecutionState* state, klee::ref<klee::Expr> e) {
+    if (e.isNull () ) {
+        S2EExecutionState* s2eState = static_cast<S2EExecutionState*>(state);
+        g_s2e->getDebugStream(s2eState) << "!! ERROR: solveTaintLabeledExpr: null expression\n";
+        return klee::ref<klee::Expr> (0);
+    }
+    if (isa<klee::ConstantExpr> (e) ) {
+        return e;
+    }
+    klee::ref<klee::ConstantExpr> e_solved;
+    S2EExecutor* s2eExecutor = static_cast<S2EExecutor*>(executor);
+    //S2EExecutionState* s2eState = static_cast<S2EExecutionState*>(state);
+    s2eExecutor->getSolver()->getValue (klee::Query (state->constraints, e), e_solved);
+    return e_solved;
+} // end fn solveTaintLabeledExpr
+
+
 void S2EExecutor::handleForkAndConcretize(Executor* executor,
                                      ExecutionState* state,
                                      klee::KInstruction* target,
@@ -460,7 +499,14 @@ void S2EExecutor::handleForkAndConcretize(Executor* executor,
 
     // XXX: this might be expensive...
     if (UseExprSimplifier) {
-        expr = s2eExecutor->simplifyExpr(*state, expr);
+		 if (s2eExecutor->isaTaintLabeledExpr (expr) ) {
+    		g_s2e->getDebugStream(s2eState) << "forkAndConcretize:isaTaintLabeledExpr (" << expr << ")" << std::endl;
+		 	expr = s2eExecutor->solveTaintLabeledExpr (executor, state, expr);
+		 }
+       else {
+    		 //g_s2e->getDebugStream(s2eState) << "forkAndConcretize:NOT:isaTaintLabeledExpr (" << expr << ")" << std::endl;
+			 expr = s2eExecutor->simplifyExpr(*state, expr);
+		 }
     }
 
     expr = state->constraints.simplifyExpr(expr);
@@ -470,9 +516,11 @@ void S2EExecutor::handleForkAndConcretize(Executor* executor,
         uint64_t value = cast<klee::ConstantExpr>(expr)->getZExtValue();
         assert(value >= min && value <= max);
 #endif
+    	  g_s2e->getDebugStream(s2eState) << "forkAndConcretize:bindLocal (" << expr << ")" << std::endl;
         s2eExecutor->bindLocal(target, *state, expr);
         return;
     }
+    // RJF : other possible location for semi-simplifier code?
 
     g_s2e->getDebugStream(s2eState) << "forkAndConcretize(" << expr << ")" << std::endl;
 
@@ -613,6 +661,7 @@ void S2EExecutor::handleForkAndConcretize(Executor* executor,
 	 // Mod by RJF
     for (uint64_t i=0; i<conditions.size(); i++) {
     //XXX: may create deep paths!
+    g_s2e->getDebugStream(s2eState) << "forkAndConcretize:executor->fork (" << conditions[0] << ")" << std::endl;
 	 StatePair sp = executor->fork(*state, conditions[0], true);
 
 	 //The condition is always true in the current state
@@ -2125,6 +2174,7 @@ S2EExecutor::StatePair S2EExecutor::fork(ExecutionState &current,
         newConditions[0] = condition;
         newConditions[1] = klee::NotExpr::create(condition);
 
+	     m_s2e->getDebugStream() << "S2EExecutor::fork about to doStateFork" << std::endl;
         doStateFork(static_cast<S2EExecutionState*>(&current),
                        newStates, newConditions);
     }

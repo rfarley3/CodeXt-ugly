@@ -203,6 +203,12 @@ public:
 
     void updateStats(S2EExecutionState *state);
 
+	 bool isaTaintLabeledExpr (klee::ref<klee::Expr> expr); // RJF
+	 
+	 klee::ref<klee::Expr> solveTaintLabeledExpr (klee::Executor* executor, 
+	                                              klee::ExecutionState* state, 
+																 klee::ref<klee::Expr> e); // RJF
+
 protected:
     static void handlerTraceMemoryAccess(klee::Executor* executor,
                                     klee::ExecutionState* state,
@@ -218,7 +224,7 @@ protected:
                                          klee::ExecutionState* state,
                                          klee::KInstruction* target,
                                          std::vector<klee::ref<klee::Expr> > &args);
-
+	 
     static void handleForkAndConcretize(klee::Executor* executor,
                                          klee::ExecutionState* state,
                                          klee::KInstruction* target,

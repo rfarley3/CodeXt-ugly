@@ -5221,7 +5221,7 @@ hF&C appears 3 times in the src. the def (:442), a recursive call when forking t
     
 
 /home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:148:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
-/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:149:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
+/home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:149:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS, ADDR_MAX >> S2E_RAM_OBJECT_BITS);
 /home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:185:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
 /home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:186:    object_index = S2E_FORK_AND_CONCRETIZE(addr >> S2E_RAM_OBJECT_BITS,
 /home/s2e/s2e/dasos/s2e/./s2e/qemu/softmmu_header.h:222:    addr = S2E_FORK_AND_CONCRETIZE_ADDR(ptr, ADDR_MAX);
