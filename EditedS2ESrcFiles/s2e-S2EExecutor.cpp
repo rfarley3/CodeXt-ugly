@@ -499,14 +499,14 @@ void S2EExecutor::handleForkAndConcretize(Executor* executor,
 
     // XXX: this might be expensive...
     if (UseExprSimplifier) {
-		 if (s2eExecutor->isaTaintLabeledExpr (expr) ) {
-    		g_s2e->getDebugStream(s2eState) << "forkAndConcretize:isaTaintLabeledExpr (" << expr << ")" << std::endl;
-		 	expr = s2eExecutor->solveTaintLabeledExpr (executor, state, expr);
-		 }
-       else {
+		 //if (s2eExecutor->isaTaintLabeledExpr (expr) ) {
+    	//	g_s2e->getDebugStream(s2eState) << "forkAndConcretize:isaTaintLabeledExpr (" << expr << ")" << std::endl;
+		 	//expr = s2eExecutor->solveTaintLabeledExpr (executor, state, expr);
+		 //}
+       //else {
     		 //g_s2e->getDebugStream(s2eState) << "forkAndConcretize:NOT:isaTaintLabeledExpr (" << expr << ")" << std::endl;
 			 expr = s2eExecutor->simplifyExpr(*state, expr);
-		 }
+		 //}
     }
 
     expr = state->constraints.simplifyExpr(expr);
@@ -516,7 +516,7 @@ void S2EExecutor::handleForkAndConcretize(Executor* executor,
         uint64_t value = cast<klee::ConstantExpr>(expr)->getZExtValue();
         assert(value >= min && value <= max);
 #endif
-    	  g_s2e->getDebugStream(s2eState) << "forkAndConcretize:bindLocal (" << expr << ")" << std::endl;
+    	  //g_s2e->getDebugStream(s2eState) << "forkAndConcretize:bindLocal (" << expr << ")" << std::endl;
         s2eExecutor->bindLocal(target, *state, expr);
         return;
     }

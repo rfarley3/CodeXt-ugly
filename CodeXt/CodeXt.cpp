@@ -726,6 +726,7 @@ bool CodeXt::isInShell (S2EExecutionState* state, uint64_t pc) {
 		}
 		
 		if (isInKernMode (pc) ) {
+   		//return true; /********************* debug */
 			return false;
 		}
 		
@@ -756,11 +757,11 @@ bool CodeXt::isInKernMode (uint64_t pc) {
       return true;
    }
    return false;
-} // end fn isInKernelMode
+} // end fn isInKernMode
 
 
 bool CodeXt::isInLoaderSegment (uint64_t pc) {
-   //return false;
+   //return false; /********************* debug */
 	if (cfg.elf_mode && (pc > 0xb7000000 && pc < 0xb8000000)) {
 		return true;
 	}
@@ -2121,7 +2122,7 @@ void CodeXt::onDataMemoryAccess (S2EExecutionState* state, klee::ref<klee::Expr>
       return;
    }
 	
-	if (cfg.elf_mode && isInLoaderSegment (state->getPc () ) ) {
+	if (cfg.elf_mode && (isInKernMode (state->getPc () ) || isInLoaderSegment (state->getPc () ) ) ) {
 		return;
 	}
    
@@ -3181,31 +3182,13 @@ void CodeXt::markSymb (S2EExecutionState* state, struct symb_var_t svar) {
    	s2e()->getDebugStream () << " >> markSymb: label: " << name << '\n';
 		klee::ref<klee::Expr> label = createSymbolicValue (state, name); 
 		cfg.symb_vars[symb_var_idx].labels[i] = label;
-   	/*DECLARE_PLUGINSTATE (CodeXtState, state);
-		Taint_Trace tt_init;
-		tt_init.label = label;
-		data_instance tt_init_event;
-		tt_init_event.snapshot_idx = 0;
-		tt_init_event.seq_num = plgState->seq_num;
-		tt_init_event.is_register = 0;
-		tt_init_event.addr = svar.addr + i;
-		tt_init_event.len = 1;
-		tt_init_event.next_pc = 0;
-		tt_init_event.other_pc = 0;
-		tt_init_event.is_write = 1;
-		tt_init_event.in_range = 1;
-		tt_init_event.valid = 1;
-		tt_init_event.ti_seq_num = plgState->ti_seq_num;
-		tt_init_event.tb_seq_num = plgState->tb_seq_num;
-		tt_init.events.push_back (tt_init_event);
-		plgState->taint_traces.push_back (tt_init);*/
 		klee::ref<klee::Expr> tainted_byte = markSymbTagged (state, cfg.base_addr + svar.addr + i, label);
 		if (cfg.elf_mode) {
 			/*qemu: /mnt/RJFDasos/s2e/build/../s2e/klee/include/klee/Expr.h:370: static klee::ref<klee::ConstantExpr> klee::ConstantExpr::create(uint64_t, unsigned int): Assertion `v == bits64::truncateToNBits(v, w) && "invalid constant"' failed.
 			klee::ref<klee::Expr> constraint_min = klee::UltExpr::create (klee::ConstantExpr::create (1, klee::Expr::Int8), tainted_byte);
 			klee::ref<klee::Expr> constraint_max = klee::SgtExpr::create (klee::ConstantExpr::create (-1, klee::Expr::Int8), tainted_byte);*/
-			klee::ref<klee::Expr> constraint_max = klee::UltExpr::create (klee::ConstantExpr::create ((uint8_t) 0x01, klee::Expr::Int8), tainted_byte);
-			klee::ref<klee::Expr> constraint_min = klee::SgtExpr::create (klee::ConstantExpr::create ((uint8_t) 0xff, klee::Expr::Int8), tainted_byte);
+			klee::ref<klee::Expr> constraint_max = klee::UltExpr::create (klee::ConstantExpr::create ((uint8_t) 0x01, klee::Expr::Int8), label); //tainted_byte);
+			klee::ref<klee::Expr> constraint_min = klee::SgtExpr::create (klee::ConstantExpr::create ((uint8_t) 0xff, klee::Expr::Int8), label); //tainted_byte);
 			state->addConstraint (constraint_min);
 			state->addConstraint (constraint_max);
 		}
@@ -3407,17 +3390,17 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 		s2e()->getDebugStream () << "oSF: newState.size: " << newStates.size () << ", skipping" << '\n';
 		return;
 	}
-	//remFalseConstraints (newStates[0]);
-	s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
-	newStates[0]->constraints.clear ();
-	newStates[1]->constraints.clear ();
+	//remFalseConstraints (newStates[0]); // old
+	//s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
+	//8oct newStates[0]->constraints.clear ();
+	//8oct newStates[1]->constraints.clear ();
 	klee::ref<klee::Expr> final_constraint;
 	struct ConstraintExpr c_e = getConstraint (newConditions[0]);
 	klee::ref<klee::Expr> solved_expr = scrubLabels (newStates[0], c_e.symb);
 
-	if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc == solved_expr) ) {
+	if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc != solved_expr) ) {
 		s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
-		newStates[0]->constraints.addConstraint (newConditions[0]);
+		//8oct newStates[0]->constraints.addConstraint (newConditions[0]);
 		final_constraint = newConditions[0];
 		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';
    	terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);
@@ -3425,7 +3408,7 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 	else {
 		//s2e()->getDebugStream () << "oSF: newState[1] has correct constraint, moved to netState[0]" << '\n';
 		s2e()->getDebugStream () << "oSF: newState[1] has correct constraint" << '\n';
-		newStates[1]->constraints.addConstraint (newConditions[1]);
+		//8oct newStates[1]->constraints.addConstraint (newConditions[1]);
 		final_constraint = newConditions[1];
 		c_e.eq = !c_e.eq;
 		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';

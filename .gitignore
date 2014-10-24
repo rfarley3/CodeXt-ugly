@@ -68,6 +68,7 @@ s2e-out*
 s2e-last
 
 # s2e build dir
+s2e/s2e
 s2e/build
 s2e/demos
 

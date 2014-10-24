@@ -25,7 +25,7 @@
 
 
 int  doServer (int sock);
-void logMsg   (char* msg);
+void logMsg   (char* msg, int msg_len);
 
 
 void usage (char *self) {
@@ -87,15 +87,18 @@ int main (int argc, char *argv[]) {
 	struct sockaddr_in fromAddr;	/* the from address of a client	*/
 	unsigned int  fromAddrLen;		/* from-address length          */
 	fromAddrLen = sizeof (fromAddr);
-	printf ("Waiting for connection\n");
+	//printf ("Waiting for connection\n");
+	putchar ('1');	putchar ('\n');
 	ssock = accept (msock, (struct sockaddr *) &fromAddr, &fromAddrLen);
 	if (ssock < 0) {
 		if (errno != EINTR) {
 			errmesg ("accept error\n");
 		}
 	}
-	printf ("Connection recv'd\n");
+	//printf ("Connection recv'd\n");
+	putchar ('2');	putchar ('\n');
 	while (doServer (ssock) > 0) {};
+	putchar ('8');	putchar ('\n');
 
 	close (ssock);
 	close (msock);
@@ -108,18 +111,22 @@ int doServer (int sock) {
 	char msg[128]; // this is the buffer that will be executed
 	int bytes_read = 0;
 	memset (msg, '\0', 128);
-	printf ("Waiting for msg\n");
+	//printf ("Waiting for msg\n");
+	putchar ('3');	putchar ('\n');
 	if ((bytes_read = read (sock, msg, sizeof (msg) ) ) <= 0) {
 		return bytes_read;
 	} 
-	printf ("Msg recv'd\n");
-	if (bytes_read == 1 && msg[0] == '\n') {
+	//printf ("Msg recv'd\n");
+	putchar ('4');	putchar ('\n');
+	if (bytes_read == 0 || (bytes_read == 1 && msg[0] == '\n') ) {
 		return 0;
 	}
-	msg[bytes_read] = 0;
-	logMsg (msg);
+	msg[bytes_read] = '\0';
+	putchar ('5');	putchar ('\n');
+	logMsg (msg, bytes_read);
+	putchar ('7');	putchar ('\n');
 	memset (msg, '\0', 128);
-	sprintf (msg, "Msg of %uB recv'd and logged, secret: 0x%08x\n", bytes_read, (unsigned int) msg);
+	sprintf (msg, "Msg of %3uB recv'd and logged, secret: 0x%08x\n", bytes_read, (unsigned int) msg);
 	if (write (sock, msg, strlen (msg) ) < 0) {
 		return -1;
 	}
@@ -127,11 +134,15 @@ int doServer (int sock) {
 } // end fn doServer
 
 
-void logMsg (char* msg) {
+void logMsg (char* msg, int msg_len) {
 	char log_str[119]; // this is the buffer that will be overflowed, buf[(strlen (hello) - 9)]
-	sprintf (log_str, "Msg in: %s", msg);
-	printf ("%s", log_str);
+	//sprintf (log_str, "Msg in: %s", msg);
+	strcpy (log_str, "Msg in: ");
+	strcpy (&(log_str[8]), msg);
+	putchar ('6');	putchar ('\n');
+	//printf ("%s", log_str);
 	//fprintf to mimic ghttpd
+	//for (unsigned int i = 0; i < (msg_len + 8); i++) { putchar (log_str[i]); }
 	return;
 } // end fn logString
 

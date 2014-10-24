@@ -1,5 +1,0 @@
-#!/bin/sh
-
-S2E=/home/s2e/s2e/dasos/s2e/build/qemu-release/i386-softmmu/qemu
-
-$S2E -m 48 -hda linux-s2e-tutorial.qcow2 -net nic,model=pcnet -redir tcp:2222::22 -net user $*
