@@ -3187,10 +3187,11 @@ void CodeXt::markSymb (S2EExecutionState* state, struct symb_var_t svar) {
 			/*qemu: /mnt/RJFDasos/s2e/build/../s2e/klee/include/klee/Expr.h:370: static klee::ref<klee::ConstantExpr> klee::ConstantExpr::create(uint64_t, unsigned int): Assertion `v == bits64::truncateToNBits(v, w) && "invalid constant"' failed.
 			klee::ref<klee::Expr> constraint_min = klee::UltExpr::create (klee::ConstantExpr::create (1, klee::Expr::Int8), tainted_byte);
 			klee::ref<klee::Expr> constraint_max = klee::SgtExpr::create (klee::ConstantExpr::create (-1, klee::Expr::Int8), tainted_byte);*/
-			klee::ref<klee::Expr> constraint_max = klee::UltExpr::create (klee::ConstantExpr::create ((uint8_t) 0x01, klee::Expr::Int8), label); //tainted_byte);
-			klee::ref<klee::Expr> constraint_min = klee::SgtExpr::create (klee::ConstantExpr::create ((uint8_t) 0xff, klee::Expr::Int8), label); //tainted_byte);
+         // the label is 0, not the byte! below corrects this
+			/*klee::ref<klee::Expr> constraint_max = klee::UltExpr::create (klee::ConstantExpr::create ((uint8_t) 0x01, klee::Expr::Int8), label);
+			klee::ref<klee::Expr> constraint_min = klee::SgtExpr::create (klee::ConstantExpr::create ((uint8_t) 0xff, klee::Expr::Int8), label);
 			state->addConstraint (constraint_min);
-			state->addConstraint (constraint_max);
+			state->addConstraint (constraint_max);*/
 		}
 	   s2e()->getDebugStream () << " >> markSymb: inserting at [" << i << "]: " << tainted_byte << '\n';
 		cfg.symb_vars[symb_var_idx].exprs[i] = tainted_byte;
@@ -3391,16 +3392,17 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 		return;
 	}
 	//remFalseConstraints (newStates[0]); // old
-	//s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
-	//8oct newStates[0]->constraints.clear ();
-	//8oct newStates[1]->constraints.clear ();
+	s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
+   //8oct changes were to remove constraint clearing. constraints are added to forked states (== and != or < == >). these are somewhat unnecessary. to keep things minimized, all previous constraints were flushed and the valid constraint was added into the valid state.
+	newStates[0]->constraints.clear (); // 8oct
+	newStates[1]->constraints.clear (); // 8oct
 	klee::ref<klee::Expr> final_constraint;
 	struct ConstraintExpr c_e = getConstraint (newConditions[0]);
 	klee::ref<klee::Expr> solved_expr = scrubLabels (newStates[0], c_e.symb);
 
 	if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc != solved_expr) ) {
 		s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
-		//8oct newStates[0]->constraints.addConstraint (newConditions[0]);
+		newStates[0]->constraints.addConstraint (newConditions[0]); // 8oct
 		final_constraint = newConditions[0];
 		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';
    	terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);
@@ -3408,7 +3410,7 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 	else {
 		//s2e()->getDebugStream () << "oSF: newState[1] has correct constraint, moved to netState[0]" << '\n';
 		s2e()->getDebugStream () << "oSF: newState[1] has correct constraint" << '\n';
-		//8oct newStates[1]->constraints.addConstraint (newConditions[1]);
+		newStates[1]->constraints.addConstraint (newConditions[1]); // 8oct
 		final_constraint = newConditions[1];
 		c_e.eq = !c_e.eq;
 		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';

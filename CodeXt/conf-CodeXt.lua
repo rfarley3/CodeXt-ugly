@@ -77,7 +77,7 @@ pluginsConfig.CodeXt = {
 	
 	elfMode = true,
 	elfLoadedSig = 0x90585090, -- remember that intel is LSB, so this will match insn sequence 90:nop 50:pusheax 58:popeax 90:nop. 
-   elfLabelNetwIn = true,
+ 	elfLabelNetwIn = true,
 	monitorVars = { "_ESP", "0", "4", "100"},
 	--90535B90, 53:pushebx 5B:popebx
 	multiSysc = true,   -- should execution continue past the first system call
@@ -89,10 +89,10 @@ pluginsConfig.CodeXt = {
 	--argvString = "hw.elf"
 
 	-- The following allow you to tune the decisions used to determine if a string of executed bytes forms something you are interested in	
-	maxInRangeInsn  = 100000, -- max cummulative insns to execute within bounds of the shellcode before terminating early, defaults to 100000
-	maxOutRangeInsn =  100000, -- max cummulative insns to execute out of bounds of the shellcode (having had exec >= 1 within bounds insn) before terminating early, defaults to 10000
-	maxKernelInsn   =  100000, -- max contiguous kernelspace insns to execute (reset if returns within bounds of the shellcode, or execs a non-kernel OoB insn) before terminating early, defaults to 10000. If TLB is flushed (CR3 overwritten), then cap not enforced. Has to have exec >= 1 within bounds insn.
-	maxKillableInsn =  100000, -- max contiguous killable insns to execute (OoB | Kernel) before terminating early, defaults to 10000. This covers the case when a emulation bounces between kernel and OoB, and allows kernelspace to count as cummulative with the OoB limit.
+	maxInRangeInsn  =  100000, -- max cummulative insns to execute within bounds of the shellcode before terminating early, defaults to 100000
+	maxOutRangeInsn =  1000000, -- max cummulative insns to execute out of bounds of the shellcode (having had exec >= 1 within bounds insn) before terminating early, defaults to 10000
+	maxKernelInsn   =  1000000, -- max contiguous kernelspace insns to execute (reset if returns within bounds of the shellcode, or execs a non-kernel OoB insn) before terminating early, defaults to 10000. If TLB is flushed (CR3 overwritten), then cap not enforced. Has to have exec >= 1 within bounds insn.
+	maxKillableInsn =  1000000, -- max contiguous killable insns to execute (OoB | Kernel) before terminating early, defaults to 10000. This covers the case when a emulation bounces between kernel and OoB, and allows kernelspace to count as cummulative with the OoB limit.
 	
 	clusterWritesBy = 10, -- if more than x insns occur since last write cluster, then make new cluster for deltas on the memory maps, defaults to 10
 	minExecInsns    =  6, -- min executed insns needed for a fragment to be considered legit code
