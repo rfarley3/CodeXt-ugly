@@ -208,12 +208,10 @@ typedef std::vector<struct label_str_to_expr> Label_Table;
 
 
 struct ConstraintExpr {
-	bool eq;
-	klee::ref<klee::Expr> conc;
-	klee::ref<klee::Expr> symb; // if both_symb, then left hand side of binary symb
-   int kind;
-   bool both_symb;
-   klee::ref<klee::Expr> symb_rh; // right hand side of binary symb
+	bool is_not;
+   int  kind;
+   klee::ref<klee::Expr> lh; // left  hand side of binary operator
+   klee::ref<klee::Expr> rh; // right hand side of binary operator
 };
 
 

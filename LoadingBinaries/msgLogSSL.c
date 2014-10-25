@@ -90,25 +90,24 @@ int main (int argc, char *argv[]) {
 	SSL_CTX *ctx = SSL_CTX_new (meth);
 	if (!ctx) {
 		ERR_print_errors_fp (stderr);
-      exit (1);
+		exit (1);
 	}
 	
 	/* Load the server certificate into the SSL_CTX structure */
     if (SSL_CTX_use_certificate_file (ctx, CERT_F, SSL_FILETYPE_PEM) <= 0) {
-		 ERR_print_errors_fp (stderr);
-		 exit (1);
-   }
+		ERR_print_errors_fp (stderr);
+		exit (1);
+	}
 
   	/* Load the private-key corresponding to the server certificate */
    if (SSL_CTX_use_PrivateKey_file (ctx, KEY_F, SSL_FILETYPE_PEM) <= 0) {
-   	ERR_print_errors_fp (stderr);
+		ERR_print_errors_fp (stderr);
 		exit (1);
 	}
 	
 	/* Check if the server certificate and private-key matches */
 	if (!SSL_CTX_check_private_key (ctx) ) {
-		fprintf (stderr,"Private key does not match the certificate public key\n");
-		exit (1);
+		errmesg ("Private key does not match the certificate public key");
 	}
 	
 	int  msock;			/* master server socket		*/
@@ -126,23 +125,79 @@ int main (int argc, char *argv[]) {
 	fromAddrLen = sizeof (fromAddr);
 	//printf ("Waiting for connection\n");
 	putchar ('1');	putchar ('\n');
-	ssock = accept (msock, (struct sockaddr *) &fromAddr, &fromAddrLen);
-	if (ssock < 0) {
-		if (errno != EINTR) {
-			errmesg ("accept error\n");
-		}
+	ssock = -1;
+	if ((ssock = accept (msock, (struct sockaddr *) &fromAddr, &fromAddrLen) ) < 0) {
+		//if (errno != EINTR) {
+		errmesg ("accept error");
 	}
 	//printf ("Connection recv'd\n");
 	putchar ('2');	putchar ('a');	putchar ('\n');
-	SSL* ssl = SSL_new (ctx);
-	SSL_set_fd (ssl, ssock);
-	int err = SSL_accept (ssl);
-	if (err != 1) {
-		//== 0 proto error or shutdown 
-		// < 0 fatal
+	SSL* ssl = NULL;
+	if ((ssl = SSL_new (ctx) ) == NULL) {
+		errmesg ("SSL_new error");
+	}
+	if (SSL_set_fd (ssl, ssock) == 0) {
+		errmesg ("SSL_set_fd error");
+	}
+	int ret = 0;
+	if ((ret = SSL_accept (ssl) ) != 1) {
+		int err = SSL_get_error (ssl, ret);
 		// SSL_get_error()
    		//printf("SSL connection using %s\n", SSL_get_cipher (ssl));
-		//printf("The SSL client does not have certificate.\n");
+		if (ret == 0) {
+			// The TLS/SSL handshake was not successful but was shut down controlled and by the specifications of the TLS/SSL protocol. 
+			//errmesg ("SSL_accept error, proto or shutdown");
+		}
+		if (ret < 0) {
+			int e;
+			char buf[128];
+			//The TLS/SSL handshake was not successful because a fatal error occurred either at the protocol level or a connection failure occurred. The shutdown was not clean. It can also occur of action is need to continue the operation for non-blocking BIOs. 
+			//errmesg ("SSL_accept error, fatal");
+			switch (err) {
+				case SSL_ERROR_NONE:
+					fprintf (stderr, "SSL_ERROR_NONE SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_ZERO_RETURN:
+					fprintf (stderr, "SSL_ERROR_ZERO_RETURN: SSL connection closed SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_WANT_READ:
+					fprintf (stderr, "SSL_ERROR_WANT_READ: operation could not complete -- retry SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_WANT_WRITE:
+					fprintf (stderr, "SSL_ERROR_WANT_WRITE: operation could not complete -- retry SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_WANT_CONNECT:
+					fprintf (stderr, "SSL_ERROR_WANT_CONNECT: operation could not complete (not connected SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_WANT_ACCEPT:
+					fprintf (stderr, "SSL_ERROR_WANT_ACCEPT: operation could not complete (not accepted) SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_WANT_X509_LOOKUP:
+					fprintf (stderr, "SSL_ERROR_WANT_X509_LOOKUP SSL_get_error: %d\n", err);
+					break;
+				case SSL_ERROR_SYSCALL:
+					fprintf (stderr, "SSL_ERROR_SYSCALL SSL_get_error: %d\n", err);
+					//openssl_print_errq (print);
+					while ((e = ERR_get_error () ) ) {
+						ERR_error_string (e, buf);
+						fprintf (stderr, "SSL_error_queue, %s\n", buf);
+					}
+					break;
+				case SSL_ERROR_SSL:
+					fprintf (stderr, "SSL_ERROR_SSL SSL_get_error: %d\n", err);
+					//openssl_print_errq (print);
+					while ((e = ERR_get_error () ) ) {
+						ERR_error_string (e, buf);
+						fprintf (stderr, "SSL_error_queue, %s\n", buf);
+					}
+					break;
+				default:
+					fprintf (stderr, "unk SSL_get_error: %d\n", err);
+					break;
+			}
+		}
+		fprintf (stderr, "ret: %d, SSL_get_error: %d\n", ret, err);
+		errmesg ("SSL_accept error");
 	}
 	
 	putchar ('2');	putchar ('b');	putchar ('\n');
@@ -168,11 +223,27 @@ int doServerSSL (SSL* ssl) {
 	//printf ("Waiting for msg\n");
 	putchar ('3');	putchar ('\n');
 	if ((bytes_read = SSL_read (ssl, msg, sizeof (msg) - 1) ) <= 0) {
-		return bytes_read;
+		int err = SSL_get_error (ssl, bytes_read);
+		if (bytes_read == 0) {
+			//The read operation was not successful.
+			if (SSL_get_shutdown (ssl) == SSL_RECEIVED_SHUTDOWN) {
+				// The reason was a clean shutdown due to a ``close notify'' alert sent by the peer 
+				return 0;
+			}
+			if (err == SSL_ERROR_ZERO_RETURN) {
+				// The reason was an incomplete shutdown
+				return 0;
+			}
+		}
+		if (bytes_read < 0) {
+			//The read operation was not successful, because either an error occurred or action must be taken by the calling process.
+		}
+		fprintf (stderr, "Bytes_read: %d, SSL_get_error: %d\n", bytes_read, err);
+		errmesg ("SSL_read error");
 	} 
 	//printf ("Msg recv'd\n");
 	putchar ('4');	putchar ('\n');
-	if (bytes_read == 0 || (bytes_read == 1 && msg[0] == '\n') ) {
+	if (bytes_read == 1 && msg[0] == '\n') {
 		return 0;
 	}
 	msg[bytes_read] = 0;

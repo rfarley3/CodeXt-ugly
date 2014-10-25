@@ -35,3 +35,8 @@ msgLogSSL.elf: msgLogSSL.c
 	${CC32} -o $@ -fno-stack-protector -z execstack msgLogSSL.c -lssl -I/opt/metasploit-4.4.0/msf3/external/source/meterpreter/source/openssl/include
 	cp $@ ../ByteArrays/.
 	cp my.* ../ByteArrays/.
+
+msgLogSSL-static.elf: msgLogSSL.c
+	${CC32} -static -o $@ -fno-stack-protector -z execstack msgLogSSL.c -lssl -I/opt/metasploit-4.4.0/msf3/external/source/meterpreter/source/openssl/include
+	cp $@ ../ByteArrays/.
+	cp my.* ../ByteArrays/.

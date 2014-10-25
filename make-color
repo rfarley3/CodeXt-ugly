@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+make ${@} 2>&1 | perl -wln -M'Term::ANSIColor' -e '
+m/Entering directory|Leaving directory|Building|CXX|gcc/i and print "\e[1;32m", "$_", "\e[0m"
+or
+m/Error/ and print "\e[1;91m", "$_", "\e[0m"
+or
+s/error[^s]/\e\[1\;91merror\e\[0m/ and print "$_"
+or
+m/Warning/i and print "\e[1;93m", "$_", "\e[0m"
+or
+m/LINK|Linking|\.a\b/ and print "\e[1;36m", "$_", "\e[0m"
+or
+print "\e[0m", "$_", "\e[0m";'
+

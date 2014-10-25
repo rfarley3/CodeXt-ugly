@@ -148,8 +148,9 @@ echo "Executing the S2E CodeXt Forensics Tracer"
 #./elf-wrapper ./hw.elf dry-run
 #./elf-wrapper ./hw.elf
 #./elf-wrapper ./msgLog.elf dry-run
-./elf-wrapper ./msgLog.elf
-#./elf-wrapper ./msgLogSSL.elf
+#./elf-wrapper ./msgLog.elf
+./elf-wrapper ./msgLogSSL.elf
+echo "Sleeping 5 so you can see the output"
 sleep 5
 
 # catch any orphaned states

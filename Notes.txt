@@ -7862,16 +7862,53 @@ qemu: /mnt/RJFDasos/s2e/build/../s2e/klee/include/klee/util/Ref.h:100: int klee:
 #4  0x00000000006a3179 in klee::ref<klee::Expr>::operator==(klee::ref<klee::Expr> const&) const ()
 #5  0x000000000068dcbe in s2e::plugins::CodeXt::onStateFork (this=0x301dac0, state=<value optimized out>, newStates=..., newConditions=...) at /mnt/RJFDasos/s2e/s2e/qemu/s2e/Plugins/CodeXt.cpp:3415
 
-#one of the sides is null
+#one of the sides is null due to getConstraints not being able to parse Ult and Not-Ult and returning empty exprs
 oSF: clearing both states' constraints
  >> isConstraint cond wasn't an Eq: Ult
 !! ERROR: scrubLabels: null expression
 
+# fixed getConstraints to be aware of non Eq constraint pairs. This error was being asserted bc of logic existing in the system call made by the shellcode. To avoid this I have the plugin declare a success upon the first system call in shellcode. To determine this I simply look for int 80. This works only bc all the other system calls are sysenters. TODO, make that decision more intelligent.
 
 
 
-Ran with sganai. Froze/hung at first decoding loop (after add ebx,4). S2E/Qemu or my plugin error.
+Ran with sganai. Froze/hung at first decoding loop (after add ebx,4). S2E/Qemu or my plugin error. Ran with xor. Failed sanity check: exploit wasn't working, even on host machine. Bc of nulls. Abandon for null-free version. 
 
-Ran with xor. Failed sanity check: exploit wasn't working, even on host machine. Bc of nulls. Use null-free version. Used hw-call4dword with success, but qemu threw a stack smash detect flag (some error in a s2e destructor).
+Ran with hw-call4dword. Success. Note that qemu threw a stack smash detect flag (some error in a s2e destructor).
 
 Ran SSL server (edit firstRan.sh). Saw 12a2b38; which means the read_SSL returned < 0 (failure). Investigation needed.
+
+
+
+
+
+S2EExecutor::fork about to doStateFork
+57 [State 0] Forking state 0 at pc = 0xb7760dd9 into states:
+    state 0 with condition (Eq (w32 0)
+    (And w32 (Add w32 (w32 4294967293) 
+	      (And w32 (AShr w32 (SExt w32 (Extract w16 0 (Or w32 (ZExt w32 (Add w8 (w8 1) (Read w8 0 v2_netwIn0002_2)))
+                  (Shl w32 (ZExt w32 (Add w8 (w8 3) (Read w8 0 v1_netwIn0001_1)))
+                           (w32 8)))))
+(w32 8))
+	               (w32 65535)))
+             (w32 65535)))
+    state 1 with condition (Not (Eq (w32 0)
+         (And w32 (Add w32 (w32 4294967293)   
+	           (And w32 (AShr w32 (SExt w32 (Extract w16 0 (Or w32 (ZExt w32 (Add w8 (w8 1) (Read w8 0 v2_netwIn0002_2)))
+                               (Shl w32 (ZExt w32 (Add w8 (w8 3) (Read w8 0 v1_netwIn0001_1)))
+                                        (w32 8)))))
+	                              (w32 8))
+	                    (w32 65535)))
+                  (w32 65535))))
+Stack frame at fork:
+s2e_dummyMainFunction
+tcg-llvm-tb-9-b7760dd1
+Size=2 Low=0 splitIndex=1 high=1
+oSF: clearing both states' constraintsoSF: newState[0] has correct constraint
+57 [State 1] Terminating state 1 with message 'onStateFork intercepted invalid condition'oSF: Eq: 0==0
+oSF: constraint enforced: (Eq (w32 0)                                              
+    (And w32 (Add w32 (w32 4294967293)   
+	          (And w32 (AShr w32 (SExt w32 (Extract w16 0 (Or w32 (ZExt w32 (Add w8 (w8 1) (Read w8 0 v2_netwIn0002_2)))
+	              (Shl w32 (ZExt w32 (Add w8 (w8 3) (Read w8 0 v1_netwIn0001_1)))
+	                       (w32 8)))))                                         (w32 8))
+	                   (w32 65535)))                                                (w32 65535)))
+Deleting state 1 0x0x20c915b0                                              
