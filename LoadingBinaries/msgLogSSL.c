@@ -124,21 +124,30 @@ int main (int argc, char *argv[]) {
 	struct sockaddr_in fromAddr;	/* the from address of a client	*/
 	unsigned int  fromAddrLen;		/* from-address length          */
 	fromAddrLen = sizeof (fromAddr);
-	printf ("Waiting for connection\n");
+	//printf ("Waiting for connection\n");
+	putchar ('1');	putchar ('\n');
 	ssock = accept (msock, (struct sockaddr *) &fromAddr, &fromAddrLen);
 	if (ssock < 0) {
 		if (errno != EINTR) {
 			errmesg ("accept error\n");
 		}
 	}
-	printf ("Connection recv'd\n");
+	//printf ("Connection recv'd\n");
+	putchar ('2');	putchar ('a');	putchar ('\n');
 	SSL* ssl = SSL_new (ctx);
 	SSL_set_fd (ssl, ssock);
 	int err = SSL_accept (ssl);
-   printf("SSL connection using %s\n", SSL_get_cipher (ssl));
-	printf("The SSL client does not have certificate.\n");
+	if (err != 1) {
+		//== 0 proto error or shutdown 
+		// < 0 fatal
+		// SSL_get_error()
+   		//printf("SSL connection using %s\n", SSL_get_cipher (ssl));
+		//printf("The SSL client does not have certificate.\n");
+	}
 	
+	putchar ('2');	putchar ('b');	putchar ('\n');
 	while (doServerSSL (ssl) > 0) {};
+	putchar ('8');	putchar ('\n');
 
 	SSL_shutdown (ssl);
 	close (ssock);
@@ -156,16 +165,20 @@ int doServerSSL (SSL* ssl) {
 	char msg[128]; // this is the buffer that will be executed
 	int bytes_read = 0;
 	memset (msg, '\0', 128);
-	printf ("Waiting for msg\n");
+	//printf ("Waiting for msg\n");
+	putchar ('3');	putchar ('\n');
 	if ((bytes_read = SSL_read (ssl, msg, sizeof (msg) - 1) ) <= 0) {
 		return bytes_read;
 	} 
-	printf ("Msg recv'd\n");
-	if (bytes_read == 1 && msg[0] == '\n') {
+	//printf ("Msg recv'd\n");
+	putchar ('4');	putchar ('\n');
+	if (bytes_read == 0 || (bytes_read == 1 && msg[0] == '\n') ) {
 		return 0;
 	}
 	msg[bytes_read] = 0;
+	putchar ('5');	putchar ('\n');
 	logMsg (msg);
+	putchar ('7');	putchar ('\n');
 	memset (msg, '\0', 128);
 	sprintf (msg, "Msg of %uB recv'd and logged, secret: 0x%08x\n", bytes_read, (unsigned int) msg);
 	if (SSL_write (ssl, msg, strlen (msg) ) < 0) {
@@ -175,34 +188,17 @@ int doServerSSL (SSL* ssl) {
 } // end fn doServer
 
 
-int doServer (int sock) {
-	char msg[128]; // this is the buffer that will be executed
-	int bytes_read = 0;
-	memset (msg, '\0', 128);
-	printf ("Waiting for msg\n");
-	if ((bytes_read = read (sock, msg, sizeof (msg) ) ) <= 0) {
-		return bytes_read;
-	} 
-	printf ("Msg recv'd\n");
-	if (bytes_read == 1 && msg[0] == '\n') {
-		return 0;
-	}
-	msg[bytes_read] = 0;
-	logMsg (msg);
-	memset (msg, '\0', 128);
-	sprintf (msg, "Msg of %uB recv'd and logged, secret: 0x%08x\n", bytes_read, (unsigned int) msg);
-	if (write (sock, msg, strlen (msg) ) < 0) {
-		return -1;
-	}
-   return bytes_read;
-} // end fn doServer
 
 
 void logMsg (char* msg) {
 	char log_str[119]; // this is the buffer that will be overflowed, buf[(strlen (hello) - 9)]
+	strcpy (log_str, "Msg in: ");
 	sprintf (log_str, "Msg in: %s", msg);
-	printf ("%s", log_str);
+	strcpy (&(log_str[8]), msg);
+	putchar ('6');	putchar ('\n');
+	//printf ("%s", log_str);
 	//fprintf to mimic ghttpd
+	//for (unsigned int i = 0; i < (msg_len + 8); i++) { putchar (log_str[i]); }
 	return;
 } // end fn logString
 

