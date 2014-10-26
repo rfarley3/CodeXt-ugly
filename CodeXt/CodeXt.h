@@ -473,10 +473,14 @@ public:
 	void                                 remOnSCConstraints     (S2EExecutionState* state);
 	void                                 taintAddr              (S2EExecutionState* state, uint64_t addr, uint8_t len, klee::ref<klee::Expr> label, bool is_reg);
 	klee::ref<klee::Expr>                labelExpr              (klee::ref<klee::Expr> e, klee::ref<klee::Expr> label); // taint e with label
-	
-   	
+
+
+   uint8_t  symb2uint8  (S2EExecutionState* state, klee::ref<klee::Expr> v);
+   uint64_t symb2uint64 (S2EExecutionState* state, klee::ref<klee::Expr> v);
+   int64_t  symb2int64  (S2EExecutionState* state, klee::ref<klee::Expr> v);
    bool isRetInsn (S2EExecutionState* state, uint64_t pc);
    bool enforceConcreteRetAddr (S2EExecutionState* state);
+   bool isConstraintValid (S2EExecutionState* state, struct ConstraintExpr c);
    void         onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EExecutionState*>& newStates, const std::vector<klee::ref<klee::Expr> >& newConditions);
    //bool       isValidCondition (S2EExecutionState* state, klee::ref<klee::Expr> cond);
    struct ConstraintExpr       getConstraint (klee::ref<klee::Expr> c);

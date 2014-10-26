@@ -49,6 +49,57 @@ void errmesg (char *msg) {
 } // end fn errmesg
 
 
+void SSL_errmsg (SSL* ssl, int err) {
+	int e;
+	char buf[128];
+	//The TLS/SSL handshake was not successful because a fatal error occurred either at the protocol level or a connection failure occurred. The shutdown was not clean. It can also occur of action is need to continue the operation for non-blocking BIOs. 
+	//errmesg ("SSL_accept error, fatal");
+	switch (err) {
+		case SSL_ERROR_NONE:
+			fprintf (stderr, "SSL_ERROR_NONE SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_ZERO_RETURN:
+			fprintf (stderr, "SSL_ERROR_ZERO_RETURN: SSL connection closed SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_WANT_READ:
+			fprintf (stderr, "SSL_ERROR_WANT_READ: operation could not complete -- retry SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_WANT_WRITE:
+			fprintf (stderr, "SSL_ERROR_WANT_WRITE: operation could not complete -- retry SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_WANT_CONNECT:
+			fprintf (stderr, "SSL_ERROR_WANT_CONNECT: operation could not complete (not connected SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_WANT_ACCEPT:
+			fprintf (stderr, "SSL_ERROR_WANT_ACCEPT: operation could not complete (not accepted) SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_WANT_X509_LOOKUP:
+			fprintf (stderr, "SSL_ERROR_WANT_X509_LOOKUP SSL_get_error: %d\n", err);
+			break;
+		case SSL_ERROR_SYSCALL:
+			fprintf (stderr, "SSL_ERROR_SYSCALL SSL_get_error: %d\n", err);
+			//openssl_print_errq (print);
+			while ((e = ERR_get_error () ) ) {
+				ERR_error_string (e, buf);
+				fprintf (stderr, "SSL_error_queue, %s\n", buf);
+			}
+			break;
+		case SSL_ERROR_SSL:
+			fprintf (stderr, "SSL_ERROR_SSL SSL_get_error: %d\n", err);
+			//openssl_print_errq (print);
+			while ((e = ERR_get_error () ) ) {
+				ERR_error_string (e, buf);
+				fprintf (stderr, "SSL_error_queue, %s\n", buf);
+			}
+			break;
+		default:
+			fprintf (stderr, "unk SSL_get_error: %d\n", err);
+			break;
+	}
+	return;
+} // end fn SSL_errmsg
+
+
 int
 serversock(int UDPorTCP, int portN, int qlen)
 {
@@ -149,52 +200,7 @@ int main (int argc, char *argv[]) {
 			//errmesg ("SSL_accept error, proto or shutdown");
 		}
 		if (ret < 0) {
-			int e;
-			char buf[128];
-			//The TLS/SSL handshake was not successful because a fatal error occurred either at the protocol level or a connection failure occurred. The shutdown was not clean. It can also occur of action is need to continue the operation for non-blocking BIOs. 
-			//errmesg ("SSL_accept error, fatal");
-			switch (err) {
-				case SSL_ERROR_NONE:
-					fprintf (stderr, "SSL_ERROR_NONE SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_ZERO_RETURN:
-					fprintf (stderr, "SSL_ERROR_ZERO_RETURN: SSL connection closed SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_WANT_READ:
-					fprintf (stderr, "SSL_ERROR_WANT_READ: operation could not complete -- retry SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_WANT_WRITE:
-					fprintf (stderr, "SSL_ERROR_WANT_WRITE: operation could not complete -- retry SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_WANT_CONNECT:
-					fprintf (stderr, "SSL_ERROR_WANT_CONNECT: operation could not complete (not connected SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_WANT_ACCEPT:
-					fprintf (stderr, "SSL_ERROR_WANT_ACCEPT: operation could not complete (not accepted) SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_WANT_X509_LOOKUP:
-					fprintf (stderr, "SSL_ERROR_WANT_X509_LOOKUP SSL_get_error: %d\n", err);
-					break;
-				case SSL_ERROR_SYSCALL:
-					fprintf (stderr, "SSL_ERROR_SYSCALL SSL_get_error: %d\n", err);
-					//openssl_print_errq (print);
-					while ((e = ERR_get_error () ) ) {
-						ERR_error_string (e, buf);
-						fprintf (stderr, "SSL_error_queue, %s\n", buf);
-					}
-					break;
-				case SSL_ERROR_SSL:
-					fprintf (stderr, "SSL_ERROR_SSL SSL_get_error: %d\n", err);
-					//openssl_print_errq (print);
-					while ((e = ERR_get_error () ) ) {
-						ERR_error_string (e, buf);
-						fprintf (stderr, "SSL_error_queue, %s\n", buf);
-					}
-					break;
-				default:
-					fprintf (stderr, "unk SSL_get_error: %d\n", err);
-					break;
-			}
+			SSL_errmsg (ssl, err);
 		}
 		fprintf (stderr, "ret: %d, SSL_get_error: %d\n", ret, err);
 		errmesg ("SSL_accept error");
@@ -237,6 +243,7 @@ int doServerSSL (SSL* ssl) {
 		}
 		if (bytes_read < 0) {
 			//The read operation was not successful, because either an error occurred or action must be taken by the calling process.
+			SSL_errmsg (ssl, err);
 		}
 		fprintf (stderr, "Bytes_read: %d, SSL_get_error: %d\n", bytes_read, err);
 		errmesg ("SSL_read error");

@@ -2264,21 +2264,57 @@ void CodeXt::onDataMemoryAccess (S2EExecutionState* state, klee::ref<klee::Expr>
    return;
 } // end fn onDataMemoryAccess
 
-		
-bool CodeXt::isRetInsn (S2EExecutionState* state, uint64_t pc) {
-   uint8_t ret = 0xc3;
-   klee::ref<klee::Expr> byte = read8 (state, pc, false);
-   if (isa<klee::ConstantExpr> (byte) && ((uint8_t) cast<klee::ConstantExpr>(byte)->getZExtValue (8) ) == ret) {
-      return true;
+
+uint8_t CodeXt::symb2uint8 (S2EExecutionState* state, klee::ref<klee::Expr> v) {
+   if (isa<klee::ConstantExpr> (v) ) {
+      return (uint8_t) cast<klee::ConstantExpr>(v)->getZExtValue (8);
    }
    // else its symbolic, and this can cause issues, can't just cast it
    // so let's try solving it
    klee::ref<klee::ConstantExpr> const_val;
-   if (!s2e()->getExecutor()->getSolver()->getValue (klee::Query (state->constraints, byte), const_val) ) {
-      s2e()->getDebugStream () << "!! ERROR: isRetInsn: could not solve value into const_val\n";
-      return false;
+   if (!s2e()->getExecutor()->getSolver()->getValue (klee::Query (state->constraints, v), const_val) ) {
+      s2e()->getDebugStream () << "!! ERROR: castSymb: could not solve value into const_val\n";
+      return 0;
    }
-   if (((uint8_t) cast<klee::ConstantExpr>(const_val)->getZExtValue (8) ) == ret) {
+   return (uint8_t) cast<klee::ConstantExpr>(const_val)->getZExtValue (8);
+} // end fn castSymb
+
+
+uint64_t CodeXt::symb2uint64 (S2EExecutionState* state, klee::ref<klee::Expr> v) {
+   if (isa<klee::ConstantExpr> (v) ) {
+      return (uint64_t) cast<klee::ConstantExpr>(v)->getZExtValue (64);
+   }
+   // else its symbolic, and this can cause issues, can't just cast it
+   // so let's try solving it
+   klee::ref<klee::ConstantExpr> const_val;
+   if (!s2e()->getExecutor()->getSolver()->getValue (klee::Query (state->constraints, v), const_val) ) {
+      s2e()->getDebugStream () << "!! ERROR: castSymb: could not solve value into const_val\n";
+      return 0;
+   }
+   return (uint64_t) cast<klee::ConstantExpr>(const_val)->getZExtValue (64);
+} // end fn castSymb
+
+
+int64_t CodeXt::symb2int64 (S2EExecutionState* state, klee::ref<klee::Expr> v) {
+   if (isa<klee::ConstantExpr> (v) ) {
+      return (int64_t) cast<klee::ConstantExpr>(v)->getZExtValue (64);
+   }
+   // else its symbolic, and this can cause issues, can't just cast it
+   // so let's try solving it
+   klee::ref<klee::ConstantExpr> const_val;
+   if (!s2e()->getExecutor()->getSolver()->getValue (klee::Query (state->constraints, v), const_val) ) {
+      s2e()->getDebugStream () << "!! ERROR: castSymb: could not solve value into const_val\n";
+      return 0;
+   }
+   return (int64_t) cast<klee::ConstantExpr>(const_val)->getZExtValue (64);
+} // end fn castSymb
+
+
+bool CodeXt::isRetInsn (S2EExecutionState* state, uint64_t pc) {
+   uint8_t ret = 0xc3;
+   klee::ref<klee::Expr> byte = read8 (state, pc, false);
+   uint8_t u_byte = symb2uint8 (state, byte);
+   if (u_byte == ret) {
       return true;
    }
 	return false;	
@@ -3411,6 +3447,49 @@ klee::ref<klee::Expr> CodeXt::labelExpr (klee::ref<klee::Expr> e, klee::ref<klee
 } // end fn labelExpr
 
 
+bool CodeXt::isConstraintValid (S2EExecutionState* state, struct ConstraintExpr c) {
+   // solve them
+   std::string op = "[UNK_OP]";
+   klee::ref<klee::Expr> solved_lh = scrubLabels (state, c.lh);
+   klee::ref<klee::Expr> solved_rh = scrubLabels (state, c.rh);
+   uint64_t u_lh = 0;
+   uint64_t u_rh = 0;
+   int64_t  s_lh = 0;
+   int64_t  s_rh = 0;
+   bool is_valid = false;
+   s2e()->getDebugStream () << "isConstraintValid: constraint kind: " << c.kind << " is_not: " << c.is_not << '\n';
+   switch (c.kind) {
+      case klee::Expr::Eq:
+         op = "==";
+         if ((!c.is_not && solved_lh == solved_rh) || (c.is_not && solved_lh != solved_rh) ) {
+            is_valid = true;
+         }
+         break;
+      case klee::Expr::Ult:
+         op = "<";
+         u_lh = symb2uint64 (state, solved_lh);
+         u_rh = symb2uint64 (state, solved_rh);
+         if ((!c.is_not && u_lh < u_rh) || (c.is_not && u_lh >= u_rh) ) {
+            is_valid = true;
+         }
+         break;
+      case klee::Expr::Slt:
+         op = "<";
+         s_lh = symb2int64 (state, solved_lh);
+         s_rh = symb2int64 (state, solved_rh);
+         if ((!c.is_not && s_lh < s_rh) || (c.is_not && s_lh >= s_rh) ) {
+            is_valid = true;
+         }
+         break;
+      default:
+         s2e()->getDebugStream () << "oSF: unhandled constraint kind: " << (c.is_not ? "Not-": "") << c.kind << '\n';
+         break;
+   }
+   s2e()->getDebugStream () << "oSF: " << (c.is_not ? "Not-": "    ") << c.kind << " " << (is_valid ? "  valid " : "invalid ") << (c.is_not ? "!(" : "  ") << solved_lh << op << solved_rh << (c.is_not ? ")" : " ") << '\n';
+   return is_valid;
+} // end fn isConstraintValid
+
+
 void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EExecutionState*>& newStates, const std::vector<klee::ref<klee::Expr> >& newConditions) {
 	// assert that this is a two state fork
 	if (newStates.size () != 2) {
@@ -3475,44 +3554,38 @@ void CodeXt::onStateFork (S2EExecutionState* state, const std::vector<s2e::S2EEx
    // clear possible invalid constraints
 	newStates[0]->constraints.clear (); 
 	newStates[1]->constraints.clear ();
-	struct ConstraintExpr c_e = getConstraint (newConditions[0]);
-   klee::ref<klee::Expr> solved_lh;
-   klee::ref<klee::Expr> solved_rh;
-   if (c_e.lh.isNull () || c_e.rh.isNull () ) {
+	struct ConstraintExpr c_e_0 = getConstraint (newConditions[0]);
+   struct ConstraintExpr c_e_1 = getConstraint (newConditions[1]);
+   if (c_e_0.lh.isNull () || c_e_0.rh.isNull () ) {
       s2e()->getDebugStream () << "oSF: couldn't getConstraint, intercepted null expr" << '\n';
-      terminateStateEarly_wrap (state, std::string ("onStateFork intercepted null expr"), false);
+      terminateStateEarly_wrap (state, std::string ("onStateFork, intercepted null expr"), false);
+   }
+   if (c_e_0.kind != c_e_1.kind) {
+      s2e()->getDebugStream () << "oSF: couldn't getConstraint, kinds don't match" << '\n';
+      terminateStateEarly_wrap (state, std::string ("onStateFork, kinds don't match"), false);
+   }
+   if (c_e_0.is_not == c_e_1.is_not) {
+      s2e()->getDebugStream () << "oSF: couldn't getConstraint, constraints not mutex" << '\n';
+      terminateStateEarly_wrap (state, std::string ("onStateFork, constraints not mutex"), false);
+   }
+   if (c_e_0.lh != c_e_1.lh || c_e_0.rh != c_e_1.rh) {
+      // this also double checks that c_e_1.lh and .rf are !Null
+      s2e()->getDebugStream () << "oSF: couldn't getConstraint, operand mismatch" << '\n';
+      terminateStateEarly_wrap (state, std::string ("onStateFork, operand mismatch"), false);
    }
 
-   // solve them
-   solved_lh = scrubLabels (newStates[0], c_e.lh);
-   solved_rh = scrubLabels (newStates[0], c_e.rh);
 
    // determine which is valid
-   s2e()->getDebugStream () << "oSF: constraint kind: " << c_e.kind << " is_not: " << c_e.is_not << '\n';
-   bool saveState0 = false;
-   switch (c_e.kind) {
-      case klee::Expr::Eq:
-         if ((!c_e.is_not && solved_lh == solved_rh) || (c_e.is_not && solved_lh != solved_rh) ) {
-            saveState0 = true;
-         }
-         s2e()->getDebugStream () << "oSF: " << (c_e.is_not ? "Not-": "") << c_e.kind << " testing: " << solved_lh << (c_e.is_not ? "!=" : "==") << solved_lh << '\n';
-         break;
-      case klee::Expr::Ult:
-         //if ((!c_e.is_not && solved_lh < solved_rh) || (c_e.is_not && solved_lh >= solved_rh) ) {
-         if ((!c_e.is_not && solved_lh < solved_rh) || (c_e.is_not && !(solved_lh < solved_rh) ) ) {
-            saveState0 = true;
-         }
-         s2e()->getDebugStream () << "oSF: " << (c_e.is_not ? "Not-": "") << c_e.kind << " testing: " << solved_lh << (c_e.is_not ? "!=" : "==") << solved_lh << '\n';
-         break;
-      default:
-         s2e()->getDebugStream () << "oSF: unhandled constraint kind: " << (c_e.is_not ? "Not-": "") << c_e.kind << '\n';
-         saveState0 = true;
-         break;
+   bool c0_valid = isConstraintValid (state, c_e_0);
+   bool c1_valid = isConstraintValid (state, c_e_1);
+   if (c0_valid && c1_valid) {
+      s2e()->getDebugStream () << "oSF: error both constraints valid" << '\n';
+      terminateStateEarly_wrap (state, std::string ("onStateFork, both constraints valid"), false);
    }
 
    // enforce decision
    klee::ref<klee::Expr> final_constraint;
-   if (saveState0) {
+   if (c0_valid) {
       s2e()->getDebugStream () << "oSF: newState[0] has correct constraint" << '\n';
       newStates[0]->constraints.addConstraint (newConditions[0]);
       final_constraint = newConditions[0];
